@@ -1,0 +1,18 @@
+
+
+header-component {
+    display: block;
+    header {
+        nav.navbar {
+            height: $header-height;
+            .top { height: $header-top-height; }
+            .menu { padding: .3rem .6rem; }
+            .bottom { height: $header-bottom-height; }
+        }
+    }
+}
+
+section#content {
+    margin-top: $header-height;
+    box-sizing: border-box;
+}

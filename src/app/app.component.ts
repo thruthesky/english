@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { App } from '../providers/app';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <router-outlet (window:resize)="onResize($event)"></router-outlet>
+  `
 })
 export class AppComponent {
   title = 'app works!';

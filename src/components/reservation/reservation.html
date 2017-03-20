@@ -1,0 +1,145 @@
+<section id="reservation" class="part">
+<div class="my-banner">
+    <img src="assets/img/reservation.jpg">
+    <div class="banner-info">
+        <font class="level">MyClass</font>
+        <font class="desc">
+            <strong>첫 수업:</strong> <br>
+            <strong>지난 수업:</strong> 0<br>
+            <strong>예약된 수업:</strong> 0<br>
+            <strong>다음 수업:</strong>
+        </font>
+    </div>
+</div>
+
+<div class="reservation">
+
+    <div class="reservation-container">
+        <div class="prev-month" (click)="onClickPrev()">   
+            <span>&lt;&lt; Prev</span>
+        </div>
+        <div class="next-month" (click)="onClickNext()">   
+            <span>Next &gt;&gt;</span>
+        </div>
+        <div class="this-month">   
+          {{ year }} {{ month }}
+        </div>
+        
+        
+        
+        
+        <!--<span (click)="onClickPrev()">&lt;&lt; Prev</span> - {{ year }} {{ month }} - <span (click)="onClickNext()">Next &gt;&gt;</span>-->
+        <table class="table">
+            <thead>
+                <th class="calendar-day-head">Sun</th>
+                <th class="calendar-day-head">Mon</th>
+                <th class="calendar-day-head">Tue</th>
+                <th class="calendar-day-head">Wed</th>
+                <th class="calendar-day-head">Thu</th>
+                <th class="calendar-day-head">Fri</th> 
+                <th class="calendar-day-head">Sat</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week" class="calendar-day">
+                        <span class="my-date">{{day?.myDate}}</span>
+                        <!--<span *ngIf="day.myDate">{{day.myDate}} / {{ day.date }}</span>-->
+                        <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
+                        <div class ="teacher-icon" [innerHTML]="day?.icon"></div>
+                        
+                        <!--Sample https://englishfordevelopers.com/api/data/teacher/primary_photo_27018-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="this.calendarLoad" class="calendar-loader">
+          <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="reservation">
+    <div class="reservation-container">
+        <table class="table">
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td *ngFor="let mydata of data">
+                        <div [innerHTML]="mydata.icon"></div>
+                        <span>  {{ mydata.teacher.mb_nick}} </span>
+                        <span> {{mydata.kdate }}</span>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>-->
+<!--<div class="reservation">
+    <div class="reservation-container">
+        <table class="table">
+            <thead>
+                <th class="calendar-day-head">Sun</th>
+                <th class="calendar-day-head">Mon</th>
+                <th class="calendar-day-head">Tue</th>
+                <th class="calendar-day-head">Wed</th>
+                <th class="calendar-day-head">Thu</th>
+                <th class="calendar-day-head">Fri</th> 
+                <th class="calendar-day-head">Sat</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day">4</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">5</td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day">11</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">12</td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day">18</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">19</td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day">25</td>
+                </tr>
+                <tr>
+                    <td class="calendar-day">26</td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                    <td class="calendar-day"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="!user.logged" class="reminder-image"> <img src="assets/img/reservation-banner.png" >
+            <div class="reminder-text">수업 시간표를 보시려면 로그인을 하세요.</div>
+        </div>
+    </div>
+
+    
+</div>-->
+</section>
