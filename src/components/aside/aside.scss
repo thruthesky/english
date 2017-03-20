@@ -1,0 +1,103 @@
+//Narrow
+@import './../../theme/variables';
+:host {
+    background-color: blue!important;
+}
+:host aside {
+        overflow: auto;
+        display: block;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        ul {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            list-style: none;
+            li {
+                float: left;
+                width: 20%;
+                text-align: center;
+                a {
+                    display: block;
+                    position: relative;
+                    overflow: auto;
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                    font {
+                        text-decoration: none;
+                        position: absolute;
+                        right: 0;
+                        left: 0;
+                        bottom:.5em;
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                    .chrome {
+                        color:#3a2123;
+                    }
+                }
+            }
+        }
+    }
+    
+//Wide Medium
+@media all and(min-width:$breakpoint) {
+    aside-component {
+        .sidebar {
+            ul {
+                z-index: 1;
+                position: fixed;
+                bottom:0;
+                right: 0;
+                li {
+                    margin-left: .2em;
+                    margin-bottom: .5em;
+                    width: 100px;
+                    a {
+                        img {
+                            width: 95%;
+                            height: auto;
+                        }
+                        font {
+                            font-size: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//Wide Large
+@media all and(min-width:$large_breakpoint) {
+    aside-component {
+        .sidebar {
+            z-index: 1;
+            position: fixed;
+            top: 9em;
+            left: 1.5em;
+            right: auto;
+            bottom: auto;
+            ul {
+                position: relative;
+                li {
+                    float: none;
+                    width: 100px;
+                    a {
+                        img {
+                            width: 95%;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

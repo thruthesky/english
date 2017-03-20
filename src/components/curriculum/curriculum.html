@@ -1,0 +1,32 @@
+<section id="curriculum" class="part">
+    <div class="curriculum-container">
+        <div class="info-text">
+            화상영어 교재 안내
+        </div>
+        <div class="more-text">
+            <span>교재 더보기</span>
+        </div>
+        
+        <div class="collection" *ngIf="books">    
+            <div class="row">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6 mybook" *ngFor="let book of books">
+                    <div class="inner-row">
+                        <img class="book-image" src="{{ book.img }}">
+                        <div class="title">
+                            {{ book.title }}
+                        </div>
+                        <div class="desc">
+                            {{ book.desc }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="load" (click)="onClickShowMore()">
+                <div class="load-more" >
+                    <font *ngIf="showBook">감추기</font>
+                    <font *ngIf="!showBook">더 보기</font>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

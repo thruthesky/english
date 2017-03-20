@@ -4,7 +4,8 @@ import { User } from '../../angular-backend/user';
 import { PrevMonths, NextMonths, BOOKS, WEEKS } from './reservation-interface';
 @Component({
     selector: 'reservation-component',
-    templateUrl: 'reservation.html'
+    templateUrl: 'reservation.html',
+    styleUrls: ['./reservation.scss']
 })
 export class ReservationComponent implements OnInit {
     data: BOOKS = [];

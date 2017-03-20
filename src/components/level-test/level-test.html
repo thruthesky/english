@@ -1,0 +1,97 @@
+<section id="level-test" class="part">
+    <div class="my-banner">
+        <img src="assets/img/leveltest.jpg">
+        <div class="banner-info">
+            <font class="level">레벨테스트</font>
+            <font class="desc">
+                본인의 영어 실력을 확인하고 수
+                <br>
+                업 과목과 교재 선택
+            </font>
+        </div>
+    </div>
+
+    <div class="level-test-form">
+        <h2>레벨테스트 신청서</h2>
+        <form>
+            <div class="container">
+                <input type="hidden" name="action" value="level_test_inquiry">
+                <input type="hidden" name="post_title" value="post_inquiry">
+                <input type="hidden" name="post_inquiry_seen" value="true">
+                <div class="row line title justify-content-sm-center">
+                    <label>
+                        *레벨테스트 신청은 로그인시에만 가능합니다.
+                    </label>     
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="student_id">아이디</label>
+                    </div>
+                    <div class="col-auto col-sm-6 text">
+                        <input type="text" class="form-control" name="student_id" maxlength="64" id="student_id" tabindex="101" placeholder="아이디">
+                    </div>
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="student_name">이름</label>
+                    </div>
+                    <div class="col-auto col-sm-6 text">
+                        <input type="text" class="form-control" name="student_name" maxlength="64" id="student_name" tabindex="101" placeholder="이름">
+                    </div>
+                </div>
+
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="date">날짜를 선택하세요<span>*</span></label>
+                    </div>
+                    
+                    <div class="col-auto col-sm-6 text">
+                        <input class="form-control" type="date" name="date" id="date" maxlength="64" tabindex="101" placeholder="공휴일,주말을 제외한 주중에만 테스트가 가능합니다.">
+                    </div>
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="time">시간선택<span>*</span></label>
+                    </div>
+                    
+                    <div class="col-auto col-sm-6 text">
+                        <select class="form-control" name="time">
+                            <option value="3:00pm">3:00 PM</option><option value="3:30pm">3:30 PM</option><option value="4:00pm">4:00 PM</option><option value="4:30pm">4:30 PM</option><option value="5:00pm">5:00 PM</option><option value="5:30pm">5:30 PM</option><option value="6:00pm">6:00 PM</option><option value="6:30pm">6:30 PM</option><option value="7:00pm">7:00 PM</option><option value="7:30pm">7:30 PM</option><option value="8:00pm">8:00 PM</option><option value="8:30pm">8:30 PM</option><option value="9:00pm">9:00 PM</option><option value="9:30pm">9:30 PM</option><option value="10:00pm">10:00 PM</option><option value="10:30pm">10:30 PM</option><option value="11:00pm">11:00 PM</option><option value="11:30pm">11:30 PM</option>                        </select>
+                    </div>
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="phone">핸드폰번호</label>
+                    </div>
+                    <div class="col-auto col-sm-6 text">
+                        <input class="form-control" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
+                    </div>
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="kakao">카카오톡아이디</label>
+                    </div>
+                    
+                    <div class="col-auto col-sm-6 text">
+                        <input class="form-control" type="text" name="kakao" maxlength="64" id="kakao" tabindex="101" placeholder="카카오톡아이디">
+                    </div>
+                </div>
+                <div class="row line justify-content-sm-center">
+                    <div class="col-auto">
+                        <label for="post_content">내용<span>*</span></label>
+                    </div>
+                    <div class="col-auto col-sm-6 text">
+                        <textarea class="form-control" name="post_content" id="post_content" tabindex="101" rows="5" placeholder="Your comment here..."></textarea>
+                    </div>
+                </div>
+                <div class="row line-submit justify-content-sm-center">
+                    <div class="col-auto"></div>
+                    <div class="col-auto col-sm-6 text">
+                        <input class="form-control" type="submit" tabindex="121" value="제출">
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+    </div>
+</section>

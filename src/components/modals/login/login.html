@@ -1,0 +1,80 @@
+<div class="login-modal">
+
+
+  <div class="modal-header">
+
+      <h5 class="modal-title">
+        <font class="modal-title">login</font>
+      </h5>
+      <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+        <span aria-hidden="true">×</span>
+      </button>
+      
+  </div>
+  
+    <div class="modal-body">
+      <div class="form-container"> 
+        <form>
+            <div>
+            <p class="form-title">Please login.</p>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <input [(ngModel)]="form.id" name="id" type="text" class="form-control form-control-sm" placeholder="User ID">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input [(ngModel)]="form.password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="Password" (keydown)="onEnterLogin($event)">
+            </div>
+
+            <div class="row">
+              <!--<div class="col-md-6 save-id">-->
+                <!--<label class="form-check-label">-->
+                  <!--<input type="checkbox" class="form-check-input" [(ngModel)]="saveid" name="saveid" (keydown)="onEnterLogin($event)">-->
+                  <!--save ID-->
+                <!--</label>-->
+              <!--</div>-->
+              <!--<div class="col-md-6 login" ><button type="button"class="btn btn-danger form-control" (click)="onClickLogin()">Log in</button></div>-->
+              
+              
+            </div>
+            <!--<div class="login" ><button type="button"class="btn btn-danger form-control" >Log in</button></div>-->
+            <div class="error alert alert-danger" role="alert" *ngIf="result.message">
+                <button type="button" class="close" (click)="result.message=null">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ result?.message }}
+            </div>
+            <div  class="button-signin">
+                <button type="button"class="btn btn-danger form-control" (click)="onClickLogin()">
+                  <i *ngIf="loading" class='fa fa-spinner fa-pulse'></i>
+                  Log in
+                </button>
+              </div>
+            <hr/>
+            <div class="id-password row">
+              <!--<div class="col-md-6 button-id" >-->
+                <!--<button type="button"class="btn btn-info form-control" (click)="onClickFindId()">-->
+                  <!--<i class="fa fa-user fa-fw"></i>find ID-->
+                <!--</button>-->
+              <!--</div>-->
+              <!--<div class="col-md-6 button-password" >-->
+                <!--<button type="button"class="btn btn-info form-control" (click)="onClickForgotPassword()">-->
+                  <!--<i class="fa fa-lock fa-fw"></i>Forgot password-->
+                <!--</button>-->
+              <!--</div>-->
+            </div>
+              <p class="info">
+                아직 문단열파워잉글리시 회원이 아니세요?
+              </p>
+              
+              <div  class="button-signup">
+                <button type="button"class="btn btn-warning form-control" (click)="onClickRegister()">
+                  Sign Up
+                </button>
+              </div>
+        </form>
+      </div> 
+    </div>
+
+</div>

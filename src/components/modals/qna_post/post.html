@@ -1,0 +1,40 @@
+<div class="post-modal">
+    <div class="modal-header">
+
+        <h5 class="modal-title">
+            <span class="modal-title">Post</span>
+        </h5>
+        <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <div class="form-container">
+
+                <form>
+                    <div>
+                        <p class="form-title">QnA</p>
+                    </div>
+                    <div class="input-group">
+
+                        <input [(ngModel)]="form.title" name="title" type="text" class="form-control form-control-sm" placeholder="Title">
+                    </div>
+                    <div class="input-group">
+
+                        <textarea [(ngModel)]="form.content" name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 post" ><button type="button"class="btn btn-primary form-control" (click)="onClickPost()">Post</button></div>
+                    </div>
+                    <hr/>
+
+                </form>
+            </div>
+
+    </div>
+</div>

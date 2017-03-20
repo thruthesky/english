@@ -1,0 +1,25 @@
+@import '../../theme/variables';
+
+:host {
+    .copyright {
+        padding: 5em 0;
+        background-color: #ecf0f1;
+        img {
+            width: 100%;
+        }
+        .footer-content {
+            padding: 0 .5em;
+            width: 100%;
+            color: #383838;
+            font-size: 0.9em;
+            line-height: 1.6rem;
+            text-align: center;
+            @media(min-width:$maxbreakpoint) {
+                border-left: 0.15rem solid #898989;
+                padding-left:1em; 
+                text-align: left;
+                width: auto;
+            }
+        }
+    }
+}

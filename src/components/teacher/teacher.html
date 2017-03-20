@@ -1,0 +1,67 @@
+<section id="teacher" class="part">
+    <div class="teacher-container">
+    <div class="title">
+        <h2>강사 소개</h2>
+        <h3>Withcenter, Inc. Teacher List.</h3>
+    </div>
+    <div *ngIf="teachers" class="teachers">
+        <div class="teacher col-sm-4" *ngFor=" let teacher of teachers; let i = index" >
+            <div class="photo">
+                <img src="{{ lms.url }}/{{ teacher.photo }}">
+            </div>
+            <div class="teacher-info">
+                <div class="id">
+                    {{ teacher.id }}
+                </div>
+                
+                <div class="teaching-year text">
+                    <span class="caption">Exp.</span><span class="value">{{ teacher.teaching_year }} years</span>
+                </div>
+                <div class="birthday text">
+                    <span class="caption">Birthday</span><span class="value">{{ teacher.birthday }}</span>
+                </div>
+                <div class="gender text">
+                    <span class="caption">Gender</span><span class="value">{{ teacher.gender }}</span>
+                </div>
+                <div class="major text">
+                    <span class="caption">Major</span><span class="value">{{ teacher.major }}</span>
+                </div>
+            </div>
+
+
+            <div class="greeting" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting" [class.more]=" teacher.show_more_greeting ">
+                <div class="text" [innerHTML]=" teacher.greeting "></div>
+                <div class="more">... show more</div>
+            </div>
+            
+            
+
+            <div class="youtube-wrapper">
+                <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="youtube-default-photo">
+                    <img [src]="teacher.img_youtube" >
+                    <div class="play" >
+                        <i class="fa fa-play-circle" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div *ngIf="teacher.play_video" class="youtube-player" >
+                    <object>
+                        <param name="movie" [value]='teacher.url_youtube'/>
+                        <embed class="youtube-video" [src]='teacher.url_youtube'  type="text/html" />
+                    </object>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+    </div>
+   
+   
+    <div class="load" (click)="onClickShowMore()">
+        <div class="load-more" >
+            <font *ngIf="showMore">감추기</font>
+            <font *ngIf="!showMore">더 보기</font>
+        </div>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,159 @@
+<header class="small">
+    <nav class="navbar fixed-top">
+        <div class="top">
+            <div class="menu">
+                <div *ngIf="! user.logged " class="button" (click)="onClickRegister()">
+                    <span class="text"> Register </span> 
+                </div>
+                <div *ngIf=" ! user.logged " class="button" (click)="onClickLogin()">
+                    <span class="text"> Login </span>
+                </div>
+                <div *ngIf=" user.logged " class="button" (click)="onClickUpdateProfile()">
+                    <span class="text"> Profile </span>
+                </div>
+                <div *ngIf=" user.logged " class="button" (click)="onClickLogout()">
+                    <span class="text">Logout</span>
+                </div>
+                <div class="button" (click)="onClickPanelMenu('contact')"> 
+                    <span class="text">Help </span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="logo" (click)="onClickPanelMenu('intro')">
+                <img src="assets/img/logo.png">
+            </div>
+            
+            <div class="button" (click)="onClickMoreMenu()"> 
+                <i class="icon fa fa-bars" ></i>
+            </div>
+            <div class="panel" [class.active]="this.more">
+                <ul class="menus">
+                    <li class="menu" [class.active]=" app.scrollId =='intro' " (click)="onClickPanelMenu('intro')">
+                        <span class="text">Home</span>
+                        
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+                        <span class="text">Courses</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                        <span class="text">Teachers</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                        <span class="text">Payment</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                        <span class="text">Level Test</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='contact' " (click)="onClickPanelMenu('contact')">
+                        <span class="text">Contact</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                        <span class="text">Comment</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                        <span class="text">Inquiry</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                        <span class="text">Reservations </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--<header class="small">
+    <nav class="navbar fixed-top">    
+        <div class="logo" (click)="onClickPanelMenu('intro')">
+            <img src="assets/img/preloader.png">
+        </div>
+        asdasdasd
+        <div class="bottom">
+            <div class="menu">
+                <ul>
+                    <li class="menu more">
+                        <i class="icon fa fa-bars" (click)="onClickMoreMenu()"></i>
+                    </li>
+                    <li *ngIf="! user.logged " class="menu register" (click)="onClickRegister()">
+                        <span class="text"> Register </span> 
+                    </li>
+                    <li *ngIf=" user.logged " class="menu profile" (click)="onClickUpdateProfile()">
+                        <span class="text"> Profile </span>
+                    </li>
+
+                    <li *ngIf=" ! user.logged " class="menu" (click)="onClickLogin()">
+                        <span class="text"> Login </span>
+                    </li>
+
+
+                    <li *ngIf=" user.logged " class="menu" (click)="onClickLogout()">
+                        <span class="text">Logout</span>
+                    </li>
+                    
+                    <li class="menu" (click)="onClickPanelMenu('contact')"> 
+                        <span class="text">Help </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel" [class.active]="this.more">
+                <ul class="menus">
+                    <li class="menu" [class.active]=" app.scrollId =='intro' " (click)="onClickPanelMenu('intro')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-headphones fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Home</span>
+                        
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-book fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Courses</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-user-circle-o fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Teachers</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-money fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Payment</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-video-camera fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Level Test</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='contact' " (click)="onClickPanelMenu('contact')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-phone fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Contact</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-comments fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Comment</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-info-circle fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Inquiry</span>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                        <span class="menu-img fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-calendar fa-stack-1x fa-inverse fa-fw"></i>
+                        </span> <span class="text">Reservations </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>-->

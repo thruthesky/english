@@ -1,8 +1,21 @@
+
+@import './../../theme/variables.scss';
+
 #content {
     margin: 0 .3em;
 }
 @media all and(min-width:$breakpoint) {
     #content {
         margin: 0;
+    }
+}
+
+
+aside-component {
+    display: block;
+    padding: .3em 0 .3em;
+    background: #8d8d8d;
+    @media(min-width:$md_breakpoint) {
+        background: white;
     }
 }

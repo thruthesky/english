@@ -1,3 +1,5 @@
+@import './../../theme/variables';
+
 @mixin nav_setting() {
     margin:0 0.2em;
     padding: .5em;
@@ -12,7 +14,7 @@
         font-weight: bold;
     }
 }
-reservation-component {
+:host {
     display: block;
     background-color:#fff;
     .my-banner {

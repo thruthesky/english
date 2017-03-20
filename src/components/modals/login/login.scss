@@ -1,0 +1,90 @@
+
+login-component{
+
+    // @mixin button-size() {
+    //     margin: 0 0 20px;
+    //     padding: 7px 22px;
+    //     width: 135px;
+    //     height: 34px;
+    // }
+
+    // Module -- Component -- Narrow
+    .login-modal {
+        .modal-header {
+            .modal-title {
+                line-height: 1.428571429;
+            }
+        }
+        .modal-body {
+
+            .form-container {
+                margin:1em auto;
+                border: solid 1px #eee;
+                padding: 30px;
+                color: #555;
+                background: #fefefe;
+                box-shadow: 0 0 3px #eee;
+                .form-title {
+                    text-align: center;
+                    font-size: 22px;
+                    font-family: 나눔고딕, 돋음, verdana;
+                    border-bottom: 1px solid #eee;
+                }
+                .input-group {
+                    margin-top:1.5em;
+                }
+
+                .save-id {
+                    padding-top: 1em;
+                }
+                // .login {
+                //     padding-top: 1em;
+                //     .btn {
+                //         margin: 0 0 20px;
+                //         padding: 7px 22px;
+                //         background-color:#f15f4c;
+                //         cursor: pointer;
+                        
+                //         &:focus {
+                //             color: white;
+                //         }
+                //     }
+                // }
+
+                // .id-password{
+                //     button {
+                //         margin: 0 0 20px;
+                //         padding: 7px 22px;
+                //         background-color: #45c1ae;
+                //         border-color: #3bb19f;
+                //         cursor: pointer;
+                //     }
+                // }
+                .info {
+                    text-align: center;
+                    font-weight: bold;
+                }
+                .button-signin {
+                    padding-top:1em;
+                    .btn {
+                        background-color: #f15f4c;
+                        border-color: #f15f4c;
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+                .button-signup {
+                    .btn {
+                        background-color: #e5b742;
+                        border-color: #e2ae2c;
+                        cursor: pointer;
+                    }
+                }
+                .error {
+                    margin-top: 1em;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
