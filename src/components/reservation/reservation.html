@@ -16,22 +16,21 @@
 <div class="reservation">
 
     <div class="reservation-container">
-        <div class="prev-month" (click)="onClickPrev()" on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
-            <!--<span>&lt;&lt; Prev</span>-->
-            <span>{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span>
+        <div class="prev-month"  on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
+            <div (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
+            
             <div class="prev-months" *ngIf="showPrevious">   
                 <ul>
-                    <li class="prev" *ngFor="let prev of prevMonths | slice:2"> {{ prev.m }} {{ prev.Y }}</li>
+                    <li class="prev" *ngFor="let prev of prevMonths | slice:2" (click)="selectNewDate({m:prev.m,Y:prev.Y})"> {{ prev.m }} {{ prev.Y }}</li>
                 </ul>
             </div>
         </div>
  
-        <div class="next-month" (click)="onClickNext()" on-mouseover="showNext=true" on-mouseleave="showNext=false">   
-            <span>{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span>
-            <!--<span>Next &gt;&gt;</span>-->
+        <div class="next-month" on-mouseover="showNext=true" on-mouseleave="showNext=false">
+            <div (click)="onClickNext()" ><span >{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>   
             <div class="next-months" *ngIf="showNext">   
                 <ul>
-                    <li class="next" *ngFor="let next of nextMonths | slice:1"> {{ next.m }} {{ next.Y }}</li>
+                    <li class="next" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y})"> {{ next.m }} {{ next.Y }}</li>
                 </ul>
             </div>
         </div>
@@ -40,10 +39,6 @@
           <span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span>
         </div>
         
-        
-        
-        
-        <!--<span (click)="onClickPrev()">&lt;&lt; Prev</span> - {{ year }} {{ month }} - <span (click)="onClickNext()">Next &gt;&gt;</span>-->
         <table class="table">
             <thead>
                 <th class="calendar-day-head">Sun</th>
@@ -73,88 +68,4 @@
     </div>
 </div>
 
-<!--<div class="reservation">
-    <div class="reservation-container">
-        <table class="table">
-            <thead></thead>
-            <tbody>
-                <tr>
-                    <td *ngFor="let mydata of data">
-                        <div [innerHTML]="mydata.icon"></div>
-                        <span>  {{ mydata.teacher.mb_nick}} </span>
-                        <span> {{mydata.kdate }}</span>
-                        
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>-->
-<!--<div class="reservation">
-    <div class="reservation-container">
-        <table class="table">
-            <thead>
-                <th class="calendar-day-head">Sun</th>
-                <th class="calendar-day-head">Mon</th>
-                <th class="calendar-day-head">Tue</th>
-                <th class="calendar-day-head">Wed</th>
-                <th class="calendar-day-head">Thu</th>
-                <th class="calendar-day-head">Fri</th> 
-                <th class="calendar-day-head">Sat</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day">4</td>
-                </tr>
-                <tr>
-                    <td class="calendar-day">5</td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day">11</td>
-                </tr>
-                <tr>
-                    <td class="calendar-day">12</td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day">18</td>
-                </tr>
-                <tr>
-                    <td class="calendar-day">19</td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day">25</td>
-                </tr>
-                <tr>
-                    <td class="calendar-day">26</td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                    <td class="calendar-day"></td>
-                </tr>
-            </tbody>
-        </table>
-        <div *ngIf="!user.logged" class="reminder-image"> <img src="assets/img/reservation-banner.png" >
-            <div class="reminder-text">수업 시간표를 보시려면 로그인을 하세요.</div>
-        </div>
-    </div>
-
-    
-</div>-->
 </section>

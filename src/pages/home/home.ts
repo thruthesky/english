@@ -17,7 +17,7 @@ export class HomePage implements AfterViewInit {
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
         public app: App,
-        private test: Test,
+        // private test: Test,
         private lms: LMS
             ) {
                 console.log("HomePage::constructor");

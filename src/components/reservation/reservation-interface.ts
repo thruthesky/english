@@ -1,11 +1,14 @@
-export interface PrevMonths {
+export interface NewDate {
     m:string;
     Y:string;
 }
-export interface NextMonths {
-    m:string;
-    Y:string;
+export interface ListOfYears extends NewDate {
 }
+export interface PrevMonths extends NewDate {
+}
+export interface NextMonths extends NewDate {
+}
+
 
 export interface ClassInformation {
     first_class: string;

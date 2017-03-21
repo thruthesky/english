@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { User } from '../../angular-backend/user';
-import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation } from './reservation-interface';
+import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
 
 @Component({
     selector: 'reservation-component',
@@ -19,6 +19,7 @@ export class ReservationComponent implements OnInit {
     month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
     prevMonths:Array<PrevMonths> = [];
     nextMonths:Array<NextMonths> = [];
+    listOfYears:Array<ListOfYears> = [];
     classinformation:ClassInformation = null;
     showPrevious: boolean = false;
     showNext: boolean = false;
@@ -29,18 +30,24 @@ export class ReservationComponent implements OnInit {
     }
     ngOnInit() {
         this.listCalendar(this.month, this.year);
+        this.getNewCalendar();
+    }
+    getNewCalendar() {
         this.getNewReservationData();
         this.getPreviousMonths();
         this.getNextMonths();
+    }
+    selectNewDate( data: NewDate ) {
+        this.year = parseInt(data.Y);
+        this.month =new Date(Date.parse(`${data.m} +1, ${data.Y}`)).getMonth()+1;
+        this.getNewCalendar();
     }
     getPreviousMonths() {
         this.prevMonths = [];
         for(let i=0; i < 13;i++ ) {
             let test = (new Date(this.year, this.month-i-1, 1, 1, 10)).toDateString().split(" ");
-            // let test = (new Date(this.year, this.month-i, 1, 1, 10)).toDateString().split(" ");
             this.prevMonths.push( { m: test[1], Y: test[3] } );
         }
-        console.log(this.prevMonths);
     }
     getNextMonths() {
         this.nextMonths = [];
@@ -48,20 +55,25 @@ export class ReservationComponent implements OnInit {
             let test = (new Date(this.year, this.month+i, 1, 1, 10)).toDateString().split(" ");
             this.nextMonths.push( { m: test[1], Y: test[3] } );
         }
-        console.log(this.nextMonths);
+    }
+    getListOfYears() {
+        let startingYear = --this.year;
+        this.listOfYears = [];
+        for(let i=0; i < 5;i++ ) {
+            let test = (new Date(this.year+i, this.month, 1, 1, 10)).toDateString().split(" ");
+            this.listOfYears.push( { m: test[1], Y: test[3] } );
+        }
     }
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
             //Process gather data
-            console.log("Result:",res);
             this.classinformation = {
                 first_class: res.first_class,
                 next_class: res.next_class,
                 no_of_past: res.no_of_past,
                 no_of_reservation: res.no_of_reservation
             };
-            console.log("info:",this.classinformation);
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
                  'https://englishfordevelopers.com/api/data');
@@ -115,9 +127,7 @@ export class ReservationComponent implements OnInit {
             this.year ++;
             this.month = 1;
         }
-        this.getNewReservationData();
-        this.getNextMonths();
-        this.getPreviousMonths();
+        this.getNewCalendar();
     }
     onClickPrev() {
         this.month --;
@@ -125,8 +135,6 @@ export class ReservationComponent implements OnInit {
             this.year --;
             this.month = 12;
         }
-        this.getNewReservationData();
-        this.getNextMonths();
-        this.getPreviousMonths();
+        this.getNewCalendar();
     }
 }
