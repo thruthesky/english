@@ -1,4 +1,5 @@
-pl-header-component .big .navbar {
+@import './../../../../../theme/variables';
+:host .big .navbar {
     .top {
         background-color: #4b494f;
         .menu {

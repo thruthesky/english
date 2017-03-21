@@ -1,8 +1,18 @@
 //Narrow
 @import './../../theme/variables';
+
+
+
+
 :host {
-    background-color: blue!important;
+    display: block;
+    padding: .3em 0 .3em;
+    background: #8d8d8d;
+    @media(min-width:$md_breakpoint) {
+        background: white;
+    }
 }
+
 :host aside {
         overflow: auto;
         display: block;
@@ -49,7 +59,7 @@
     
 //Wide Medium
 @media all and(min-width:$breakpoint) {
-    aside-component {
+    :host {
         .sidebar {
             ul {
                 z-index: 1;
@@ -77,7 +87,7 @@
 
 //Wide Large
 @media all and(min-width:$large_breakpoint) {
-    aside-component {
+    :host {
         .sidebar {
             z-index: 1;
             position: fixed;
