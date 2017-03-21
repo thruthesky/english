@@ -47,13 +47,14 @@ import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 
 import { AngularBackend } from './../angular-backend/angular-backend';
-
+import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
 
 
 import { LMS } from '../providers/lms';
 
 
 const appRoutes: Routes = [
+  { path: 'admin', component: BackendAdminPage },
   { path: '', component: HomePage }
 ];
 

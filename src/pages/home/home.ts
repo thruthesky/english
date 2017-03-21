@@ -3,7 +3,7 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { App } from '../../providers/app';
 import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
-// import { Test } from './../../angular-backend/test';
+import { Test } from './../../angular-backend/test';
 
 @Component( {
     selector: 'home-page',
@@ -17,9 +17,10 @@ export class HomePage implements AfterViewInit {
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
         public app: App,
+        private test: Test,
         private lms: LMS
             ) {
-        // testAll.run();
+                console.log("HomePage::constructor");
         this.lms.getTeachers( teachers => this.teachers = teachers );
         // console.log( 'check this user ::: ' + JSON.stringify(this.user.loginUser) );
         //if( this.user.loggedIn ) this.getReservation();
