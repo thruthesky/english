@@ -1,18 +1,17 @@
 @import './../../theme/variables';
 
 @mixin nav_setting() {
-    margin:0 0.2em;
-    padding: .5em;
+ 
     width: 7em;
     border-radius: .1em;
     background-color: #1abc9c;
     color:#fff;
-    font-size: 1.3em;
+    // font-size: 1.3em;
     cursor: pointer;
     text-align:center;
-    &:hover {
-        font-weight: bold;
-    }
+    // &:hover {
+    //     font-weight: bold;
+    // }
 }
 :host {
     display: block;
@@ -172,18 +171,75 @@
         max-width: $lg_breakpoint;
         .reservation-container {
             position: relative;
+            .hello {
+                background-color: maroon;
+                overflow: hidden;
+            }
             .this-month {
-                @include nav_setting();
+                font-size: 1.3rem;
+                padding: .3em;
                 margin:0 auto;
+                @include nav_setting();
                 
+                &:hover {
+                    font-weight: bold;
+                }
+            }
+            .prev-months {
+                font-size: 1.3rem;
+                position: absolute;
+                top:2.15em;
+                left: .3em;
+                z-index: 1;
+                @include nav_setting();
+                ul {
+                    padding: 0;
+                    list-style: none;
+                    .prev {
+                        padding: .3em;
+                    }
+                    .prev:hover {
+                        font-weight: bold;
+                    }
+                }
             }
             .prev-month {
-                @include nav_setting();
+                margin:0 0.3em;
+                padding: .3em;
+                font-size: 1.3rem;
                 float: left;
+                @include nav_setting();
+                span:hover {
+                    font-weight: bold;
+                }
+            }
+            .next-months {
+                position: absolute;
+                top:2.15em;
+                right: .3em;
+                z-index: 1;
+                font-size: 1.3rem;
+                @include nav_setting();
+                ul {
+                    padding: 0;
+                    list-style: none;
+                    .next {
+                        padding: .3em;
+                    }
+                    .next:hover {
+                        font-weight: bold;
+                    }
+                }
             }
             .next-month {
-                @include nav_setting();
+                margin:0 0.3em;
+                padding: .3em;
+                font-size: 1.3rem;
                 float: right;
+                @include nav_setting();
+                span:hover {
+                    font-weight: bold;
+                }
             }
             table {
                 margin: 1em 0;

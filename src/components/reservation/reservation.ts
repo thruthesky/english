@@ -20,10 +20,13 @@ export class ReservationComponent implements OnInit {
     prevMonths:Array<PrevMonths> = [];
     nextMonths:Array<NextMonths> = [];
     classinformation:ClassInformation = null;
+    showPrevious: boolean = false;
+    showNext: boolean = false;
     constructor(
         public user : User,
         private lms : LMS
-    ) {}
+    ) {
+    }
     ngOnInit() {
         this.listCalendar(this.month, this.year);
         this.getNewReservationData();
@@ -32,10 +35,12 @@ export class ReservationComponent implements OnInit {
     }
     getPreviousMonths() {
         this.prevMonths = [];
-        for(let i=0; i < 12;i++ ) {
-            let test = (new Date(this.year, this.month-i, 1, 1, 10)).toDateString().split(" ");
+        for(let i=0; i < 13;i++ ) {
+            let test = (new Date(this.year, this.month-i-1, 1, 1, 10)).toDateString().split(" ");
+            // let test = (new Date(this.year, this.month-i, 1, 1, 10)).toDateString().split(" ");
             this.prevMonths.push( { m: test[1], Y: test[3] } );
         }
+        console.log(this.prevMonths);
     }
     getNextMonths() {
         this.nextMonths = [];
@@ -43,6 +48,7 @@ export class ReservationComponent implements OnInit {
             let test = (new Date(this.year, this.month+i, 1, 1, 10)).toDateString().split(" ");
             this.nextMonths.push( { m: test[1], Y: test[3] } );
         }
+        console.log(this.nextMonths);
     }
     getNewReservationData() {
         this.calendarLoad = true;
@@ -110,6 +116,8 @@ export class ReservationComponent implements OnInit {
             this.month = 1;
         }
         this.getNewReservationData();
+        this.getNextMonths();
+        this.getPreviousMonths();
     }
     onClickPrev() {
         this.month --;
@@ -118,5 +126,7 @@ export class ReservationComponent implements OnInit {
             this.month = 12;
         }
         this.getNewReservationData();
+        this.getNextMonths();
+        this.getPreviousMonths();
     }
 }

@@ -16,14 +16,28 @@
 <div class="reservation">
 
     <div class="reservation-container">
-        <div class="prev-month" (click)="onClickPrev()">   
-            <span>&lt;&lt; Prev</span>
+        <div class="prev-month" (click)="onClickPrev()" on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
+            <!--<span>&lt;&lt; Prev</span>-->
+            <span>{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span>
+            <div class="prev-months" *ngIf="showPrevious">   
+                <ul>
+                    <li class="prev" *ngFor="let prev of prevMonths | slice:2"> {{ prev.m }} {{ prev.Y }}</li>
+                </ul>
+            </div>
         </div>
-        <div class="next-month" (click)="onClickNext()">   
-            <span>Next &gt;&gt;</span>
+ 
+        <div class="next-month" (click)="onClickNext()" on-mouseover="showNext=true" on-mouseleave="showNext=false">   
+            <span>{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span>
+            <!--<span>Next &gt;&gt;</span>-->
+            <div class="next-months" *ngIf="showNext">   
+                <ul>
+                    <li class="next" *ngFor="let next of nextMonths | slice:1"> {{ next.m }} {{ next.Y }}</li>
+                </ul>
+            </div>
         </div>
+       
         <div class="this-month">   
-          {{ year }} {{ month }}
+          <span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span>
         </div>
         
         
