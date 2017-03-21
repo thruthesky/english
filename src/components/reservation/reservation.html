@@ -16,7 +16,8 @@
 <div class="reservation">
 
     <div class="reservation-container">
-        <div class="prev-month"  on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
+        <div class="date-container">
+             <div class="prev-month"  on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
             <div (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
             
             <div class="prev-months" *ngIf="showPrevious">   
@@ -35,9 +36,17 @@
             </div>
         </div>
        
-        <div class="this-month">   
-          <span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span>
+        <div class="this-month" on-mouseover="showYear=true" on-mouseleave="showYear=false">
+            <div><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>   
+          
+          <div class="this-months" *ngIf="showYear">   
+                <ul>
+                    <li class="this-year" *ngFor="let year of listOfYears" (click)="selectNewDate({m:year.m,Y:year.Y})"> {{ year.m }} {{ year.Y }}</li>
+                </ul>
+            </div>
         </div>
+        </div>
+       
         
         <table class="table">
             <thead>

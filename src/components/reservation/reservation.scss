@@ -171,18 +171,39 @@
         max-width: $lg_breakpoint;
         .reservation-container {
             position: relative;
-            .hello {
-                background-color: maroon;
-                overflow: hidden;
+            .date-container {
+                height: 3em;
+                width:100%;
+                
             }
             .this-month {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
                 font-size: 1.3rem;
                 padding: .3em;
-                margin:0 auto;
                 @include nav_setting();
-                
-                &:hover {
+                &span:hover {
                     font-weight: bold;
+                }
+            }
+            .this-months {
+                position: absolute;
+                font-size: 1.3rem;
+                top:2.15em;
+                z-index: 1;
+                left: 0;
+                @include nav_setting();
+                ul {
+                    padding: 0;
+                    list-style: none;
+                    .this-year {
+                        padding: .3em;
+                    }
+                    .this-year:hover {
+                        font-weight: bold;
+                    }
                 }
             }
             .prev-months {

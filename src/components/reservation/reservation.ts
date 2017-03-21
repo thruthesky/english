@@ -23,6 +23,7 @@ export class ReservationComponent implements OnInit {
     classinformation:ClassInformation = null;
     showPrevious: boolean = false;
     showNext: boolean = false;
+    showYear: boolean = false;
     constructor(
         public user : User,
         private lms : LMS
@@ -36,6 +37,7 @@ export class ReservationComponent implements OnInit {
         this.getNewReservationData();
         this.getPreviousMonths();
         this.getNextMonths();
+        this.getListOfYears();
     }
     selectNewDate( data: NewDate ) {
         this.year = parseInt(data.Y);
@@ -57,10 +59,11 @@ export class ReservationComponent implements OnInit {
         }
     }
     getListOfYears() {
-        let startingYear = --this.year;
+        let startingYear = this.year;
+        --startingYear;
         this.listOfYears = [];
         for(let i=0; i < 5;i++ ) {
-            let test = (new Date(this.year+i, this.month, 1, 1, 10)).toDateString().split(" ");
+            let test = (new Date(startingYear+i, this.month-1, 1, 1, 10)).toDateString().split(" ");
             this.listOfYears.push( { m: test[1], Y: test[3] } );
         }
     }
