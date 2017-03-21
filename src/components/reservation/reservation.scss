@@ -6,12 +6,9 @@
     border-radius: .1em;
     background-color: #1abc9c;
     color:#fff;
-    // font-size: 1.3em;
+    font-size: 1rem;
     cursor: pointer;
     text-align:center;
-    // &:hover {
-    //     font-weight: bold;
-    // }
 }
 :host {
     display: block;
@@ -181,7 +178,6 @@
                 left: 0;
                 right: 0;
                 margin: 0 auto;
-                font-size: 1.3rem;
                 padding: .3em;
                 @include nav_setting();
                 &span:hover {
@@ -190,7 +186,6 @@
             }
             .this-months {
                 position: absolute;
-                font-size: 1.3rem;
                 top:2.15em;
                 z-index: 1;
                 left: 0;
@@ -207,7 +202,6 @@
                 }
             }
             .prev-months {
-                font-size: 1.3rem;
                 position: absolute;
                 top:2.15em;
                 left: .3em;
@@ -227,7 +221,6 @@
             .prev-month {
                 margin:0 0.3em;
                 padding: .3em;
-                font-size: 1.3rem;
                 float: left;
                 @include nav_setting();
                 span:hover {
@@ -239,7 +232,6 @@
                 top:2.15em;
                 right: .3em;
                 z-index: 1;
-                font-size: 1.3rem;
                 @include nav_setting();
                 ul {
                     padding: 0;
@@ -255,7 +247,6 @@
             .next-month {
                 margin:0 0.3em;
                 padding: .3em;
-                font-size: 1.3rem;
                 float: right;
                 @include nav_setting();
                 span:hover {
