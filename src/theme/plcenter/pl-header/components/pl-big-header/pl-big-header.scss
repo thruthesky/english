@@ -1,5 +1,6 @@
 @import './../../../../../theme/variables';
 :host .big .navbar {
+    padding: 0;
     .top {
         background-color: #4b494f;
         .menu {
@@ -72,89 +73,4 @@
         }
     }
 }
-// pl-header-component .big .navbar {
-//     margin:0 auto;
-//     width: 100%;
-//     max-width: $lg_breakpoint;
-//     .logo {
-//         margin: 0;
-//         padding-top: 3em;
-//         width: 180px;
-//         cursor: pointer;
-//         img {
-//             margin-left: .5em;
-//             width: 100%;
-//             max-width: 180px;
-//         }
-//     }
-//     .bottom {
-//         margin: 0;
-//         padding-top: 2em;
-//         position: absolute;
-//         top:0;
-//         right: 0;
-//         display: inline-block;
-//         color: #045f9c;
-//         background-color: rgba(0,0,0,0);
-//     }
-// }
-// pl-header-component .big .navbar .bottom .top-menu {
-//     position: absolute;
-//     top:0;
-//     right: 0;
-//     margin-right:.6em;
-//     color:#fff;
-//     ul {
-//         margin:0;
-//         padding: 0;
-//         background-color: #44bddf;
-//         border-top-left-radius: -10px;
-//         border-bottom-left-radius: 2px;
-//         border-bottom-right-radius: 2px;
-//         li {
-//             padding: .3em 1em;
-//             padding-bottom: .2em;
-//             display: inline-block;
-//             cursor: pointer;
-//         }
-//     }
-// }
-// pl-header-component .big .navbar .bottom .menus {
-//     ul {
-//         margin: 1em 0;
-//         padding: 0;
-//         @media ( min-width:$md_breakpoint ) {
-//             margin-right:.5em;
-//         }   
-//     }
-//     ul li {
-//         display: inline-block;
-//         list-style: none;
-//         text-align: center;
-//         cursor: pointer;
-        
-//         &.active {
-//             color: #d35400;
-//             font-weight: 600;
-//         }
-//         &:hover {
-//             color: #0e7ecc;
-//         }
-//         span {
-//             margin:0 auto;
-//             display: block;
-//             font-size: 1em;
-//         }
-        
-//     }
-//     ul li span {
-//         i {
-//             color: #15acd7 ;
-//             &.fa-inverse {
-//                 color: white;
-//             }
-//         }
-//     }
-// }
-
 
