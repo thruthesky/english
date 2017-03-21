@@ -4,10 +4,11 @@
     <div class="banner-info">
         <font class="level">MyClass</font>
         <font class="desc">
-            <strong>첫 수업:</strong> <br>
-            <strong>지난 수업:</strong> 0<br>
-            <strong>예약된 수업:</strong> 0<br>
-            <strong>다음 수업:</strong>
+            <strong>첫 수업:</strong>      {{classinformation?.first_class}} <br>
+            
+            <strong>예약된 수업:</strong>  {{classinformation?.no_of_past}}<br>
+            <strong>다음 수업:</strong>    {{classinformation?.no_of_reservation}}
+            <strong>지난 수업:</strong>    {{classinformation?.next_class}}<br>
         </font>
     </div>
 </div>

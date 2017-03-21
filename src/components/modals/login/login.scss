@@ -1,12 +1,4 @@
-
-login-component{
-
-    // @mixin button-size() {
-    //     margin: 0 0 20px;
-    //     padding: 7px 22px;
-    //     width: 135px;
-    //     height: 34px;
-    // }
+:host {
 
     // Module -- Component -- Narrow
     .login-modal {
@@ -37,29 +29,6 @@ login-component{
                 .save-id {
                     padding-top: 1em;
                 }
-                // .login {
-                //     padding-top: 1em;
-                //     .btn {
-                //         margin: 0 0 20px;
-                //         padding: 7px 22px;
-                //         background-color:#f15f4c;
-                //         cursor: pointer;
-                        
-                //         &:focus {
-                //             color: white;
-                //         }
-                //     }
-                // }
-
-                // .id-password{
-                //     button {
-                //         margin: 0 0 20px;
-                //         padding: 7px 22px;
-                //         background-color: #45c1ae;
-                //         border-color: #3bb19f;
-                //         cursor: pointer;
-                //     }
-                // }
                 .info {
                     text-align: center;
                     font-weight: bold;

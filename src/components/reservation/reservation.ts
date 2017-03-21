@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { User } from '../../angular-backend/user';
-import { PrevMonths, NextMonths, BOOKS, WEEKS } from './reservation-interface';
+import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation } from './reservation-interface';
+
 @Component({
     selector: 'reservation-component',
     templateUrl: 'reservation.html',
@@ -18,6 +19,7 @@ export class ReservationComponent implements OnInit {
     month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
     prevMonths:Array<PrevMonths> = [];
     nextMonths:Array<NextMonths> = [];
+    classinformation:ClassInformation = null;
     constructor(
         public user : User,
         private lms : LMS
@@ -46,6 +48,14 @@ export class ReservationComponent implements OnInit {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
             //Process gather data
+            console.log("Result:",res);
+            this.classinformation = {
+                first_class: res.first_class,
+                next_class: res.next_class,
+                no_of_past: res.no_of_past,
+                no_of_reservation: res.no_of_reservation
+            };
+            console.log("info:",this.classinformation);
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
                  'https://englishfordevelopers.com/api/data');
