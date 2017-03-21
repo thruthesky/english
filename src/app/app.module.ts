@@ -17,6 +17,11 @@ import { HomePage } from '../pages/home/home';
 
 import { HeaderComponent } from '../components/header/header';
 
+import { KkangHeaderComponent } from '../theme/kkang/kkang-header/kkang-header';
+import { KkangFooterComponent } from '../theme/kkang/kkang-footer/kkang-footer';
+import { KkangSmallHeaderComponent } from '../theme/kkang/kkang-header/components/kkang-small-header/kkang-small-header';
+import { KkangBigHeaderComponent } from '../theme/kkang/kkang-header/components/kkang-big-header/kkang-big-header';
+
 
 import { PlFooterComponent } from '../theme/plcenter/pl-footer/pl-footer';
 import { PlHeaderComponent } from '../theme/plcenter/pl-header/pl-header';
@@ -67,6 +72,10 @@ const appRoutes: Routes = [
     PlSmallHeaderComponent,
     PlBigHeaderComponent,
     ForgotPasswordComponent,
+    KkangHeaderComponent,
+    KkangFooterComponent,
+    KkangSmallHeaderComponent,
+    KkangBigHeaderComponent,
     FindIdModal,
     LoginModal,
     AsideComponent,

@@ -1,0 +1,15 @@
+<kkang-small-header-component  *ngIf=" app.widthSize == 'small' " [login]="login"
+                         (logout)="onClickLogout()"
+                         (onLogin)="onClickLogin()"
+                         (register)="onClickRegister()"
+                         (profile)="onClickUpdateProfile()"
+                         (classroom)="onClickGotoClassRoom()"
+></kkang-small-header-component>
+<kkang-big-header-component *ngIf=" app.widthSize == 'big' " [login]="login"
+                      (logout)="onClickLogout()"
+                      (onLogin)="onClickLogin()"
+                      (register)="onClickRegister()"
+                      (profile)="onClickUpdateProfile()"
+                      (classroom)="onClickGotoClassRoom()"
+></kkang-big-header-component>
+
