@@ -3,7 +3,8 @@ import { App } from '../../../../providers/app';
 import { User } from './../../../../angular-backend/user';
 @Component({
     selector: 'big-header-component',
-    templateUrl: 'big-header.html'
+    templateUrl: 'big-header.html',
+    styleUrls: ['big-header.scss']
 })
 export class BigHeaderComponent {
     // event:any = {};
