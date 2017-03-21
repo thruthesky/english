@@ -271,7 +271,7 @@
                 }
                 td {
                     border: .3em solid #fff;
-                    text-align: center;
+                    
                     position: relative;
                 }
                 .my-date {
@@ -281,12 +281,17 @@
                         font-weight:bold;
                     }
                 }
-                .teacher-icon {
+                .teacher-nick {
+                    text-align: center;
+                }
+                 /deep/ .teacher-icon{
+                    text-align: center;
+                    border-radius:50%;
                     img {
                         border-radius:50%;
                         @media(min-width: $sm_breakpoint ) {
-                            width: 5em;
-                            height: 5em;
+                            width: 3em;
+                            height: 3em;
                         }
                     }
                 }
@@ -319,6 +324,20 @@
                 .calendar-day {
                     background-color: #f1f1f1;
                     max-width: 3em;
+                    .class-info {
+                        position: absolute;
+                        padding: 1em;
+                        top:-10em;
+                        left: -13em;
+                        width: 15em;
+                        z-index: 1;
+                        background-color:#e63349;
+                        color:#fff;
+                        font-size: 1em;
+                        div {
+                            margin-bottom: 1em;
+                        }
+                    }
                     &:first-child {
                         background-color: #eaeaea;
                         color: #fd0e35;
