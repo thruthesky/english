@@ -19,7 +19,8 @@ import {
 
 @Component({
     selector: 'login-component',
-    templateUrl: 'login.html'
+    templateUrl: 'login.html',
+    styleUrls: ['login.scss']
 })
 
 export class LoginModal implements OnInit {

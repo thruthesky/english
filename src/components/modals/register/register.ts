@@ -14,7 +14,8 @@ import { User,
 
 @Component({
     selector:'register-component',
-    templateUrl: 'register.html'
+    templateUrl: 'register.html',
+    styleUrls: ['register.scss']
 })
 
 export class RegisterComponent{

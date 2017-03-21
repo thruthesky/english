@@ -7,6 +7,12 @@ export interface NextMonths {
     Y:string;
 }
 
+export interface ClassInformation {
+    first_class: string;
+    next_class: string;
+    no_of_past: string;
+    no_of_reservation: string;
+}
 export interface BOOK {
     "idx": string,
     "regstamp":string,

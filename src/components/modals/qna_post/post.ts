@@ -10,7 +10,8 @@ import { App } from '../../../providers/app';
 import { User, PostData, POST_CREATE, USER } from './../../../angular-backend/angular-backend';
 @Component({
     selector: 'qna-post-component',
-    templateUrl: 'post.html'
+    templateUrl: 'post.html',
+    styleUrls: ['post.scss']
 })
 
 export class QnaPostComponent implements OnInit {

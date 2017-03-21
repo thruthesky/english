@@ -1,4 +1,5 @@
-qna-post-component{
+@import '../../../theme/variables.scss';
+:host{
 
   @mixin button-size() {
     margin: 0 0 20px;
