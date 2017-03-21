@@ -3,7 +3,8 @@ import { App } from '../../../../providers/app';
 import { User } from './../../../../angular-backend/user';
 @Component({
     selector: 'small-header-component',
-    templateUrl: 'small-header.html'
+    templateUrl: 'small-header.html',
+    styleUrls: ['small-header.scss']
 })
 export class SmallHeaderComponent {
     event:any = {};

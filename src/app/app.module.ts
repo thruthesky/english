@@ -16,6 +16,8 @@ import { AppComponent } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { HeaderComponent } from '../components/header/header';
+import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
+import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
 
 import { KkangHeaderComponent } from '../theme/kkang/kkang-header/kkang-header';
 import { KkangFooterComponent } from '../theme/kkang/kkang-footer/kkang-footer';
@@ -67,6 +69,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomePage,
+    HeaderComponent,
+    BigHeaderComponent,
+    SmallHeaderComponent,
     PlFooterComponent,
     PlHeaderComponent,
     PlSmallHeaderComponent,
