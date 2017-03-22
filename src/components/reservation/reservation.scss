@@ -10,6 +10,15 @@
     cursor: pointer;
     text-align:center;
 }
+@mixin show_list_settings() {
+    .show-list {
+        color: #efefef;
+        float: right;
+    }
+    .show-list:hover {
+        color:#fff;
+    }
+}
 :host {
     display: block;
     background-color:#fff;
@@ -173,6 +182,7 @@
                 width:100%;
                 
             }
+          
             .this-month {
                 position: absolute;
                 left: 0;
@@ -183,8 +193,10 @@
                 &span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             .this-months {
+                clear: right;
                 position: absolute;
                 top:2.15em;
                 z-index: 1;
@@ -226,6 +238,7 @@
                 span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             .next-months {
                 position: absolute;
@@ -252,6 +265,7 @@
                 span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             table {
                 margin: 1em 0;

@@ -17,8 +17,12 @@
 
     <div class="reservation-container">
         <div class="date-container">
-             <div class="prev-month"  on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
-            <div (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
+        <div class="prev-month"  on-mouseleave="showPrevious=false">   
+            <span class="show-list" (click)="showPrevious=!showPrevious">
+                <i *ngIf="showPrevious" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showPrevious" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div on-mouseover="showPrevious=true" (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
             
             <div class="prev-months" *ngIf="showPrevious">   
                 <ul>
@@ -27,8 +31,12 @@
             </div>
         </div>
  
-        <div class="next-month" on-mouseover="showNext=true" on-mouseleave="showNext=false">
-            <div (click)="onClickNext()" ><span >{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>   
+        <div class="next-month" on-mouseleave="showNext=false">
+            <span class="show-list" (click)="showNext=!showNext">
+                <i *ngIf="showNext" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showNext" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div  on-mouseover="showNext=true" (click)="onClickNext()" ><span >{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>   
             <div class="next-months" *ngIf="showNext">   
                 <ul>
                     <li class="next" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y})"> {{ next.m }} {{ next.Y }}</li>
@@ -36,8 +44,12 @@
             </div>
         </div>
        
-        <div class="this-month" on-mouseover="showYear=true" on-mouseleave="showYear=false">
-            <div><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>   
+        <div class="this-month" on-mouseleave="showYear=false">
+            <span class="show-list" (click)="showYear=!showYear">
+                <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div on-mouseover="showYear=true"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>   
           
           <div class="this-months" *ngIf="showYear">   
                 <ul>
