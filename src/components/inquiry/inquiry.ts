@@ -24,7 +24,7 @@ export class InquiryComponent {
             if( item.eventType == 'post'  ){
               this.getPostList()
             }
-        })
+        });
     }
     getPostList() {
         this.post.list().subscribe( (res: POST_RESPONSE) => {

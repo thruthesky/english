@@ -73,7 +73,7 @@
             <tbody>
                 <tr *ngFor="let week of weeks">
                     <td *ngFor="let day of week;" class="calendar-day" >
-                        <div class="info-container" on-mouseover="day.display = true" on-mouseleave="day.display = false">
+                        <div class="info-container" (click)="onClickClassInfo(day)" on-mouseover="day.display = true" on-mouseleave="day.display = false">
                             <span class="my-date">{{day?.myDate}}</span>
                             <!--<span *ngIf="day.myDate">{{day.myDate}} / {{ day.date }}</span>-->
                             <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
@@ -83,6 +83,7 @@
                                     <span >
                                         Teacher's Name: {{ day?.teacher?.mb_nick }}
                                     </span>
+                                    
                                 </div>
                                 <div>
                                     <span>

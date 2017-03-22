@@ -31,6 +31,7 @@ import { PlHeaderComponent } from '../theme/plcenter/pl-header/pl-header';
 import { PlSmallHeaderComponent } from '../theme/plcenter/pl-header/components/pl-small-header/pl-small-header';
 import { PlBigHeaderComponent } from '../theme/plcenter/pl-header/components/pl-big-header/pl-big-header';
 
+import { ClassInfoModal } from '../components/modals/class-info/class-info';
 import { LoginModal } from '../components/modals/login/login';
 import { RegisterComponent } from '../components/modals/register/register';
 import { ForgotPasswordComponent } from '../components/modals/forgot-password/forgot-password';
@@ -82,6 +83,7 @@ const appRoutes: Routes = [
     KkangSmallHeaderComponent,
     KkangBigHeaderComponent,
     FindIdModal,
+    ClassInfoModal,
     LoginModal,
     AsideComponent,
     RegisterComponent,
@@ -115,6 +117,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     FindIdModal,
     LoginModal,
+    ClassInfoModal,
     ForgotPasswordComponent
   ]
 })
