@@ -291,10 +291,16 @@
                     text-align: center;
                 }
                  /deep/ .teacher-icon{
-                    text-align: center;
-                    border-radius:50%;
+                    // text-align: center;
+                    border-radius: 50%;
+                    width: 4rem;
+                    height: 4rem;
+                    overflow: hidden;
+                    margin:0 auto;
                     img {
-                        border-radius:50%;
+                        width: 4rem;
+                        height: auto;
+                        // border-radius:50%;
                     }
                 }
                 .calendar-day-head {
