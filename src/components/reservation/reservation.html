@@ -76,8 +76,9 @@
                         <div class="info-container" (click)="onClickClassInfo(day)" on-mouseover="day.display = true" on-mouseleave="day.display = false">
                             <span class="my-date">{{day?.myDate}}</span>
                             <!--<span *ngIf="day.myDate">{{day.myDate}} / {{ day.date }}</span>-->
-                            <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
+                            
                             <div class ="teacher-icon" [innerHTML]="day?.icon"></div>
+                            <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
                             <div class="class-info" *ngIf="day?.display && day?.teacher">
                                 <div>
                                     <span >

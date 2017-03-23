@@ -177,6 +177,7 @@
         max-width: $lg_breakpoint;
         .reservation-container {
             position: relative;
+            margin-bottom:5em;
             .date-container {
                 height: 3em;
                 width:100%;
@@ -294,10 +295,6 @@
                     border-radius:50%;
                     img {
                         border-radius:50%;
-                        @media(min-width: $sm_breakpoint ) {
-                            width: 3em;
-                            height: 3em;
-                        }
                     }
                 }
                 .calendar-day-head {
