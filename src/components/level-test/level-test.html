@@ -1,5 +1,5 @@
 <section id="level-test" class="part">
-    <div class="my-banner">
+    <!--<div class="my-banner">
         <img src="assets/img/other/6.png">
         <div class="banner-info">
             <font class="level">레벨테스트</font>
@@ -9,8 +9,9 @@
                 업 과목과 교재 선택
             </font>
         </div>
-    </div>
-
+    </div>-->
+    <level-test-banner-component *ngIf="numberDesign == 'first'"></level-test-banner-component>
+    <second-level-test-banner-component *ngIf="numberDesign == 'second'"></second-level-test-banner-component>
     <div class="level-test-form">
         <h2>레벨테스트 신청서</h2>
         <form>

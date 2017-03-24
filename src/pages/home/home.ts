@@ -11,8 +11,8 @@ import { Test } from './../../angular-backend/test';
     styleUrls: ['./home.scss']
 })
 export class HomePage implements AfterViewInit {
-    //login: boolean = false;
     data;
+    design:string = 'first';
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(

@@ -16,6 +16,14 @@ import { AppComponent } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SecondDesignPage } from '../pages/second-design/second-design';
 
+import { PaymentBannerComponent } from '../components/banners/payment/payment';
+import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
+
+
+import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
+import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
+
+
 import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
 import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
@@ -74,6 +82,10 @@ const appRoutes: Routes = [
     HomePage,
     SecondDesignPage,
     HeaderComponent,
+    PaymentBannerComponent,
+    LevelTestBannerComponent,
+    SecondLevelTestBannerComponent,
+    SecondPaymentBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
     PlFooterComponent,

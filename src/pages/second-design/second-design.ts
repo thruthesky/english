@@ -13,6 +13,7 @@ import { Test } from './../../angular-backend/test';
 export class SecondDesignPage implements AfterViewInit {
     //login: boolean = false;
     data;
+    design:string = "second";
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
