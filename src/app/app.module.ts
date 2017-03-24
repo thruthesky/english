@@ -18,12 +18,14 @@ import { SecondDesignPage } from '../pages/second-design/second-design';
 
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
+import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
 import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
-import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
+
 
 import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
 import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
-
+import { SecondInquiryBannerComponent } from '../components/banners/second-inquiry/second-inquiry';
+import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
 
 import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
@@ -84,10 +86,12 @@ const appRoutes: Routes = [
     SecondDesignPage,
     HeaderComponent,
     PaymentBannerComponent,
+    InquiryBannerComponent,
     ReservationBannerComponent,
     LevelTestBannerComponent,
     SecondLevelTestBannerComponent,
     SecondPaymentBannerComponent,
+    SecondInquiryBannerComponent,
     SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
