@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { SecondDesignPage } from '../pages/second-design/second-design';
+import { ThirdDesignPage } from '../pages/third-design/third-design';
 
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
@@ -76,9 +77,11 @@ import { LMS } from '../providers/lms';
 
 
 const appRoutes: Routes = [
-  { path: 'admin', component: BackendAdminPage },
   { path: '', component: HomePage },
-  { path: 'seconddesign', component: SecondDesignPage }
+  { path: 'admin', component: BackendAdminPage },
+  
+  { path: 'seconddesign', component: SecondDesignPage },
+  { path: 'thirddesign', component: ThirdDesignPage }
 ];
 
 @NgModule({
@@ -86,6 +89,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomePage,
     SecondDesignPage,
+    ThirdDesignPage,
     HeaderComponent,
     PaymentBannerComponent,
     InquiryBannerComponent,
