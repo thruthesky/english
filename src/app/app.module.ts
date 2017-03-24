@@ -14,6 +14,7 @@ import { App } from '../providers/app';
 import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
+import { SecondDesignPage } from '../pages/second-design/second-design';
 
 import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
@@ -63,13 +64,15 @@ import { LMS } from '../providers/lms';
 
 const appRoutes: Routes = [
   { path: 'admin', component: BackendAdminPage },
-  { path: '', component: HomePage }
+  { path: '', component: HomePage },
+  { path: 'design2', component: SecondDesignPage }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
+    SecondDesignPage,
     HeaderComponent,
     BigHeaderComponent,
     SmallHeaderComponent,

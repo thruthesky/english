@@ -1,0 +1,32 @@
+<!--<kkang-header-component
+        (onLogin)="onLogin()"
+        (onLogout)="onLogout()"
+></kkang-header-component>-->
+
+
+<pl-header-component
+        (onLogin)="onLogin()"
+        (onLogout)="onLogout()"
+></pl-header-component>
+<!--<header-component
+        (onLogin)="onLogin()"
+        (onLogout)="onLogout()"
+></header-component>-->
+
+
+<section id="content" [class]="app.widthSize">
+    <aside-component></aside-component>
+    <intro-component></intro-component>
+    <curriculum-component></curriculum-component>
+    <teacher-component [teachers]="teachers" ></teacher-component>
+    <payment-component></payment-component>
+    <level-test-component></level-test-component>
+    <contact-component></contact-component>
+    <comment-component></comment-component>
+    <inquiry-component></inquiry-component>
+    <reservation-component #reservation ></reservation-component>
+</section>
+
+<!--<footer-component></footer-component>-->
+<pl-footer-component></pl-footer-component>
+<!--<kkang-footer-component></kkang-footer-component>-->
