@@ -19,12 +19,14 @@ import { SecondDesignPage } from '../pages/second-design/second-design';
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
 import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
+import { ContactBannerComponent } from '../components/banners/contact/contact';
 import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
 
 
 import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
 import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
 import { SecondInquiryBannerComponent } from '../components/banners/second-inquiry/second-inquiry';
+import { SecondContactBannerComponent } from '../components/banners/second-contact/second-contact';
 import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
 
 import { HeaderComponent } from '../components/header/header';
@@ -76,7 +78,7 @@ import { LMS } from '../providers/lms';
 const appRoutes: Routes = [
   { path: 'admin', component: BackendAdminPage },
   { path: '', component: HomePage },
-  { path: 'design2', component: SecondDesignPage }
+  { path: 'seconddesign', component: SecondDesignPage }
 ];
 
 @NgModule({
@@ -87,11 +89,13 @@ const appRoutes: Routes = [
     HeaderComponent,
     PaymentBannerComponent,
     InquiryBannerComponent,
+    ContactBannerComponent,
     ReservationBannerComponent,
     LevelTestBannerComponent,
     SecondLevelTestBannerComponent,
     SecondPaymentBannerComponent,
     SecondInquiryBannerComponent,
+    SecondContactBannerComponent,
     SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
