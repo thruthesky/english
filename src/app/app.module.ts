@@ -18,7 +18,8 @@ import { SecondDesignPage } from '../pages/second-design/second-design';
 
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
-
+import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
+import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
 
 import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
 import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
@@ -83,9 +84,11 @@ const appRoutes: Routes = [
     SecondDesignPage,
     HeaderComponent,
     PaymentBannerComponent,
+    ReservationBannerComponent,
     LevelTestBannerComponent,
     SecondLevelTestBannerComponent,
     SecondPaymentBannerComponent,
+    SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
     PlFooterComponent,

@@ -1,30 +1,6 @@
 <section id="reservation" class="part">
-<div class="my-banner">
-    <img src="assets/img/other/5.png">
-    <div class="banner-info">
-        <font class="level">MyClass</font>
-        <font class="desc">
-            <strong>첫 수업:</strong>      {{classinformation?.first_class}} <br>
-            
-            <strong>예약된 수업:</strong>  {{classinformation?.no_of_past}}<br>
-            <strong>다음 수업:</strong>    {{classinformation?.no_of_reservation}}
-            <strong>지난 수업:</strong>    {{classinformation?.next_class}}<br>
-        </font>
-    </div>
-</div>
-<!--<div class="my-banner">
-    <img src="assets/img/reservation.jpg">
-    <div class="banner-info">
-        <font class="level">MyClass</font>
-        <font class="desc">
-            <strong>첫 수업:</strong>      {{classinformation?.first_class}} <br>
-            
-            <strong>예약된 수업:</strong>  {{classinformation?.no_of_past}}<br>
-            <strong>다음 수업:</strong>    {{classinformation?.no_of_reservation}}
-            <strong>지난 수업:</strong>    {{classinformation?.next_class}}<br>
-        </font>
-    </div>
-</div>-->
+<reservation-banner-component *ngIf="numberDesign == 'first'"></reservation-banner-component>
+<second-reservation-banner-component *ngIf="numberDesign == 'second'"></second-reservation-banner-component>
 
 <div class="reservation">
 
@@ -86,11 +62,11 @@
             <tbody>
                 <tr *ngFor="let week of weeks">
                     <td *ngFor="let day of week;" class="calendar-day" >
-                        <div class="info-container" (click)="onClickClassInfo(day)" on-mouseover="day.display = true" on-mouseleave="day.display = false">
+                        <div class="info-container" (click)="onClickClassInfo(day)" >
                             <span class="my-date">{{day?.myDate}}</span>
                             <!--<span *ngIf="day.myDate">{{day.myDate}} / {{ day.date }}</span>-->
                             
-                            <div class ="teacher-icon" [innerHTML]="day?.icon"></div>
+                            <div class ="teacher-icon" [innerHTML]="day?.icon" on-mouseover="day.display = true" on-mouseleave="day.display = false"></div>
                             <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
                             <div class="class-info" *ngIf="day?.display && day?.teacher">
                                 <div>

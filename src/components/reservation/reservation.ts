@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassInfoModal } from '../modals/class-info/class-info';
@@ -26,6 +26,7 @@ export class ReservationComponent implements OnInit {
     showPrevious: boolean = false;
     showNext: boolean = false;
     showYear: boolean = false;
+    @Input() numberDesign;
     constructor(
         private app     : App,
         private modal   : NgbModal,
