@@ -14,6 +14,21 @@ import { App } from '../providers/app';
 import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
+import { SecondDesignPage } from '../pages/second-design/second-design';
+import { ThirdDesignPage } from '../pages/third-design/third-design';
+
+import { PaymentBannerComponent } from '../components/banners/payment/payment';
+import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
+import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
+import { ContactBannerComponent } from '../components/banners/contact/contact';
+import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
+
+
+import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
+import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
+import { SecondInquiryBannerComponent } from '../components/banners/second-inquiry/second-inquiry';
+import { SecondContactBannerComponent } from '../components/banners/second-contact/second-contact';
+import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
 
 import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
@@ -31,6 +46,7 @@ import { PlHeaderComponent } from '../theme/plcenter/pl-header/pl-header';
 import { PlSmallHeaderComponent } from '../theme/plcenter/pl-header/components/pl-small-header/pl-small-header';
 import { PlBigHeaderComponent } from '../theme/plcenter/pl-header/components/pl-big-header/pl-big-header';
 
+import { ClassInfoModal } from '../components/modals/class-info/class-info';
 import { LoginModal } from '../components/modals/login/login';
 import { RegisterComponent } from '../components/modals/register/register';
 import { ForgotPasswordComponent } from '../components/modals/forgot-password/forgot-password';
@@ -61,15 +77,30 @@ import { LMS } from '../providers/lms';
 
 
 const appRoutes: Routes = [
+  { path: '', component: HomePage },
   { path: 'admin', component: BackendAdminPage },
-  { path: '', component: HomePage }
+  
+  { path: 'seconddesign', component: SecondDesignPage },
+  { path: 'thirddesign', component: ThirdDesignPage }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePage,
+    SecondDesignPage,
+    ThirdDesignPage,
     HeaderComponent,
+    PaymentBannerComponent,
+    InquiryBannerComponent,
+    ContactBannerComponent,
+    ReservationBannerComponent,
+    LevelTestBannerComponent,
+    SecondLevelTestBannerComponent,
+    SecondPaymentBannerComponent,
+    SecondInquiryBannerComponent,
+    SecondContactBannerComponent,
+    SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
     PlFooterComponent,
@@ -82,6 +113,7 @@ const appRoutes: Routes = [
     KkangSmallHeaderComponent,
     KkangBigHeaderComponent,
     FindIdModal,
+    ClassInfoModal,
     LoginModal,
     AsideComponent,
     RegisterComponent,
@@ -115,6 +147,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     FindIdModal,
     LoginModal,
+    ClassInfoModal,
     ForgotPasswordComponent
   ]
 })

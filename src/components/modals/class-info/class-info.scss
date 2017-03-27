@@ -1,0 +1,30 @@
+:host {
+    .modal-header {
+        color: #fff;
+        background-color: #1abc9c;
+        .modal-title {
+            line-height: 1.428571429;
+        }
+        .close {
+            color:#fff;
+        }
+    }
+    .modal-body {
+      .form-container {
+        margin-left: auto;
+        margin-right: auto;
+        border: solid 1px #eee;
+        padding: 1em;
+        color: #fff;
+        background-color: #1abc9c;
+        box-shadow: 0 0 3px #eee;
+        .info-block {
+            margin-bottom: .5em;
+        }
+        .info-title {
+            display: block;
+            margin-bottom: .5em;
+        }
+      }
+    }
+}

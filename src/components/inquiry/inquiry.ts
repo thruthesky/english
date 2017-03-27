@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QnaPostComponent } from '../modals/qna_post/post';
 //import { Post } from './../../angular-backend/post';
@@ -12,6 +12,7 @@ import { PostData, POST, POSTS, POST_RESPONSE } from './../../angular-backend/an
     styleUrls: ['./inquiry.scss']
 })
 export class InquiryComponent {
+    @Input() numberDesign;
     postList: POSTS = [];
     constructor( private modal: NgbModal,
                 private post: PostData,
@@ -24,7 +25,7 @@ export class InquiryComponent {
             if( item.eventType == 'post'  ){
               this.getPostList()
             }
-        })
+        });
     }
     getPostList() {
         this.post.list().subscribe( (res: POST_RESPONSE) => {

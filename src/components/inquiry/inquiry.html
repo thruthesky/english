@@ -1,13 +1,6 @@
 <section id="inquiry" class="part">
-    <div class="my-banner">
-        <img src="assets/img/inquiry.jpg">
-        <div class="banner-info">
-            <font class="level">Forum</font>
-            <font class="desc">
-                Frm:B1:Banner Description will be place here
-            </font>
-        </div>
-    </div>
+    <inquiry-banner-component *ngIf="numberDesign == 'first'"></inquiry-banner-component>
+    <second-inquiry-banner-component *ngIf="numberDesign == 'second'"></second-inquiry-banner-component>
     <main id="post-list" class="forum">
         <div class="inquiry-container">
              <div class="post-list-meta">

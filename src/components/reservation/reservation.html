@@ -1,24 +1,17 @@
 <section id="reservation" class="part">
-<div class="my-banner">
-    <img src="assets/img/reservation.jpg">
-    <div class="banner-info">
-        <font class="level">MyClass</font>
-        <font class="desc">
-            <strong>첫 수업:</strong>      {{classinformation?.first_class}} <br>
-            
-            <strong>예약된 수업:</strong>  {{classinformation?.no_of_past}}<br>
-            <strong>다음 수업:</strong>    {{classinformation?.no_of_reservation}}
-            <strong>지난 수업:</strong>    {{classinformation?.next_class}}<br>
-        </font>
-    </div>
-</div>
+<reservation-banner-component *ngIf="numberDesign == 'first'"></reservation-banner-component>
+<second-reservation-banner-component *ngIf="numberDesign == 'second'"></second-reservation-banner-component>
 
 <div class="reservation">
 
     <div class="reservation-container">
         <div class="date-container">
-             <div class="prev-month"  on-mouseover="showPrevious=true" on-mouseleave="showPrevious=false">   
-            <div (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
+        <div class="prev-month"  on-mouseleave="showPrevious=false">   
+            <span class="show-list" (click)="showPrevious=!showPrevious">
+                <i *ngIf="showPrevious" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showPrevious" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div on-mouseover="showPrevious=true" (click)="onClickPrev()"><span >{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
             
             <div class="prev-months" *ngIf="showPrevious">   
                 <ul>
@@ -27,8 +20,12 @@
             </div>
         </div>
  
-        <div class="next-month" on-mouseover="showNext=true" on-mouseleave="showNext=false">
-            <div (click)="onClickNext()" ><span >{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>   
+        <div class="next-month" on-mouseleave="showNext=false">
+            <span class="show-list" (click)="showNext=!showNext">
+                <i *ngIf="showNext" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showNext" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div  on-mouseover="showNext=true" (click)="onClickNext()" ><span >{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>   
             <div class="next-months" *ngIf="showNext">   
                 <ul>
                     <li class="next" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y})"> {{ next.m }} {{ next.Y }}</li>
@@ -36,8 +33,12 @@
             </div>
         </div>
        
-        <div class="this-month" on-mouseover="showYear=true" on-mouseleave="showYear=false">
-            <div><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>   
+        <div class="this-month" on-mouseleave="showYear=false">
+            <span class="show-list" (click)="showYear=!showYear">
+                <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+            <div on-mouseover="showYear=true"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>   
           
           <div class="this-months" *ngIf="showYear">   
                 <ul>
@@ -61,16 +62,18 @@
             <tbody>
                 <tr *ngFor="let week of weeks">
                     <td *ngFor="let day of week;" class="calendar-day" >
-                        <div class="info-container" on-mouseover="day.display = true" on-mouseleave="day.display = false">
+                        <div class="info-container" (click)="onClickClassInfo(day)" >
                             <span class="my-date">{{day?.myDate}}</span>
                             <!--<span *ngIf="day.myDate">{{day.myDate}} / {{ day.date }}</span>-->
+                            
+                            <div class ="teacher-icon" [innerHTML]="day?.icon" on-mouseover="day.display = true" on-mouseleave="day.display = false"></div>
                             <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
-                            <div class ="teacher-icon" [innerHTML]="day?.icon"></div>
                             <div class="class-info" *ngIf="day?.display && day?.teacher">
                                 <div>
                                     <span >
                                         Teacher's Name: {{ day?.teacher?.mb_nick }}
                                     </span>
+                                    
                                 </div>
                                 <div>
                                     <span>

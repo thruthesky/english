@@ -6,13 +6,14 @@ import { ReservationComponent } from './../../components/reservation/reservation
 import { Test } from './../../angular-backend/test';
 
 @Component( {
-    selector: 'home-page',
-    templateUrl: 'home.html',
-    styleUrls: ['./home.scss']
+    selector: 'second-design',
+    templateUrl: 'second-design.html',
+    styleUrls: ['./second-design.scss']
 })
-export class HomePage implements AfterViewInit {
+export class SecondDesignPage implements AfterViewInit {
+    //login: boolean = false;
     data;
-    design:string = 'first';
+    design:string = "second";
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(

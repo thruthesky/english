@@ -10,6 +10,15 @@
     cursor: pointer;
     text-align:center;
 }
+@mixin show_list_settings() {
+    .show-list {
+        color: #efefef;
+        float: right;
+    }
+    .show-list:hover {
+        color:#fff;
+    }
+}
 :host {
     display: block;
     background-color:#fff;
@@ -168,11 +177,13 @@
         max-width: $lg_breakpoint;
         .reservation-container {
             position: relative;
+            margin-bottom:5em;
             .date-container {
                 height: 3em;
                 width:100%;
                 
             }
+          
             .this-month {
                 position: absolute;
                 left: 0;
@@ -183,8 +194,10 @@
                 &span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             .this-months {
+                clear: right;
                 position: absolute;
                 top:2.15em;
                 z-index: 1;
@@ -226,6 +239,7 @@
                 span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             .next-months {
                 position: absolute;
@@ -252,6 +266,7 @@
                 span:hover {
                     font-weight: bold;
                 }
+                @include show_list_settings();
             }
             table {
                 margin: 1em 0;
@@ -276,14 +291,16 @@
                     text-align: center;
                 }
                  /deep/ .teacher-icon{
-                    text-align: center;
-                    border-radius:50%;
+                    // text-align: center;
+                    border-radius: 50%;
+                    width: 4rem;
+                    height: 4rem;
+                    overflow: hidden;
+                    margin:0 auto;
                     img {
-                        border-radius:50%;
-                        @media(min-width: $sm_breakpoint ) {
-                            width: 3em;
-                            height: 3em;
-                        }
+                        width: 4rem;
+                        height: auto;
+                        // border-radius:50%;
                     }
                 }
                 .calendar-day-head {
@@ -322,7 +339,8 @@
                         left: -13em;
                         width: 15em;
                         z-index: 1;
-                        background-color:#e63349;
+                        background-color:#1abc9c;
+                        // background-color:#e63349;
                         color:#fff;
                         font-size: 1em;
                         div {
