@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { QnaPostComponent } from '../modals/qna_post/post';
 //import { Post } from './../../angular-backend/post';
@@ -12,7 +12,6 @@ import { PostData, POST, POSTS, POST_LIST_RESPONSE } from './../../angular-backe
     styleUrls: ['./inquiry.scss']
 })
 export class InquiryComponent {
-    @Input() numberDesign;
     postList: POSTS = [];
     constructor( private modal: NgbModal,
                 private post: PostData,

@@ -23,17 +23,34 @@
 
 
 
-        <section id="payment" class="part" >
-            <payment-banner-component></payment-banner-component>
-            <payment-component></payment-component>
-        </section>
-
-
-    <level-test-component [numberDesign]="design"></level-test-component>
-    <contact-component [numberDesign]="design"></contact-component>
+    <section id="payment" class="part" >
+        <second-payment-banner-component></second-payment-banner-component>
+        <payment-component></payment-component>
+    </section>
+    <section id="level-test" class="part">
+        <second-level-test-banner-component></second-level-test-banner-component>
+        <level-test-component></level-test-component>
+    </section>
+    <section id="contact" class="part">
+        <second-contact-banner-component></second-contact-banner-component>
+        <contact-component></contact-component>
+    </section>
     <comment-component></comment-component>
+   
+    <section id="inquiry" class="part">
+        <second-inquiry-banner-component></second-inquiry-banner-component>
+        <inquiry-component></inquiry-component>
+    </section>
+    <section id="reservation" class="part">
+        <second-reservation-banner-component></second-reservation-banner-component>
+        <reservation-component></reservation-component>
+    </section>
+    
+    
+     <!--<level-test-component [numberDesign]="design"></level-test-component>
+    <contact-component [numberDesign]="design"></contact-component>
     <inquiry-component [numberDesign]="design"></inquiry-component>
-    <reservation-component #reservation [numberDesign]="design" ></reservation-component>
+    <reservation-component #reservation [numberDesign]="design" ></reservation-component>-->
 </section>
 
 <!--<footer-component></footer-component>-->

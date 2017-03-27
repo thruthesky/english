@@ -12,7 +12,6 @@ import { ReservationComponent } from './../../components/reservation/reservation
 })
 export class HomePage implements AfterViewInit {
     data;
-    design:string = 'first';
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(

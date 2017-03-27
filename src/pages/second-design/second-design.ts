@@ -13,7 +13,6 @@ import { ReservationComponent } from './../../components/reservation/reservation
 export class SecondDesignPage implements AfterViewInit {
     //login: boolean = false;
     data;
-    design:string = "second";
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
