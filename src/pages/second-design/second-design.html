@@ -20,7 +20,15 @@
     <curriculum-component></curriculum-component>
     <teacher-component [teachers]="teachers" ></teacher-component>
     
-    <payment-component [numberDesign]="design"></payment-component>
+
+
+
+        <section id="payment" class="part" >
+            <payment-banner-component></payment-banner-component>
+            <payment-component></payment-component>
+        </section>
+
+
     <level-test-component [numberDesign]="design"></level-test-component>
     <contact-component [numberDesign]="design"></contact-component>
     <comment-component></comment-component>
