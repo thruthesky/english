@@ -4,7 +4,7 @@ import { QnaPostComponent } from '../modals/qna_post/post';
 //import { Post } from './../../angular-backend/post';
 // import { POST_RESPONSE } from './../../angular-backend/interface';
 import { App } from '../../providers/app';
-import { PostData, POST, POSTS, POST_RESPONSE } from './../../angular-backend/angular-backend';
+import { PostData, POST, POSTS, POST_LIST_RESPONSE } from './../../angular-backend/angular-backend';
 
 @Component({
     selector: 'inquiry-component',
@@ -28,7 +28,7 @@ export class InquiryComponent {
         });
     }
     getPostList() {
-        this.post.list().subscribe( (res: POST_RESPONSE) => {
+        this.post.list().subscribe( (res: POST_LIST_RESPONSE) => {
             this.getDataSuccess( res );
             console.log("getPostList:",res);
         }, error => {
@@ -36,7 +36,7 @@ export class InquiryComponent {
         } );
     }
 
-    getDataSuccess( res: POST_RESPONSE ) {
+    getDataSuccess( res: POST_LIST_RESPONSE ) {
         
         console.log(res);
         

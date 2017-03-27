@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassInfoModal } from '../modals/class-info/class-info';
-import { User } from '../../angular-backend/user';
+import { User } from '../../angular-backend/model/user';
 import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
 import { App } from '../../providers/app';
 @Component({

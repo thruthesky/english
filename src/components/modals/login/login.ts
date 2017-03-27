@@ -3,7 +3,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { App } from '../../../providers/app';
 
-import { User } from './../../../angular-backend/user';
+import { User } from './../../../angular-backend/model/user';
 
 
 import { FindIdModal } from '../find-id/find-id';

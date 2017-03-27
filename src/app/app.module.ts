@@ -70,7 +70,7 @@ import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 
 import { AngularBackend } from './../angular-backend/angular-backend';
-import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
+// import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
 
 
 import { LMS } from '../providers/lms';
@@ -78,7 +78,7 @@ import { LMS } from '../providers/lms';
 
 const appRoutes: Routes = [
   { path: '', component: HomePage },
-  { path: 'admin', component: BackendAdminPage },
+  // { path: 'admin', component: BackendAdminPage },
   
   { path: 'seconddesign', component: SecondDesignPage },
   { path: 'thirddesign', component: ThirdDesignPage }

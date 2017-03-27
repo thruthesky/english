@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModal } from '../modals/login/login';
 import { RegisterComponent } from '../modals/register/register';
 
-import { User } from '../../angular-backend/user';
+import { User } from '../../angular-backend/model/user';
 
 import { App } from '../../providers/app';
 

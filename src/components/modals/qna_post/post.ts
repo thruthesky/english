@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { App } from '../../../providers/app';
 //import { POST_CREATE, USER } from './../../../angular-backend/interface';
 //import { Post } from './../../../angular-backend/post';
-//import { User } from './../../../angular-backend/user';
+//import { User } from './../../../angular-backend/model/user';
 
 import { User, PostData, POST_CREATE, USER } from './../../../angular-backend/angular-backend';
 @Component({

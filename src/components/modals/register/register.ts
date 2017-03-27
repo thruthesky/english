@@ -10,7 +10,7 @@ import {
     , USER_EDIT, USER_EDIT_RESPONSE, USER
 } from './../../../angular-backend/interface';
 import { User,
-   } from './../../../angular-backend/user';
+   } from './../../../angular-backend/model/user';
 
 @Component({
     selector:'register-component',

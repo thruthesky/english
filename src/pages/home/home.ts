@@ -3,7 +3,7 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { App } from '../../providers/app';
 import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
-import { Test } from './../../angular-backend/test';
+// import { Test } from './../../angular-backend/test';
 
 @Component( {
     selector: 'home-page',

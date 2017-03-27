@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../../../../../angular-backend/user';
+import { User } from '../../../../../angular-backend/model/user';
 import { App } from '../../../../../providers/app';
 @Component({
     selector: 'kkang-big-header-component',

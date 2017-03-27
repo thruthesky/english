@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { App } from '../../../../providers/app';
-import { User } from './../../../../angular-backend/user';
+import { User } from './../../../../angular-backend/model/user';
 @Component({
     selector: 'small-header-component',
     templateUrl: 'small-header.html',
