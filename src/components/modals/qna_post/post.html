@@ -18,13 +18,6 @@
                         <p class="form-title">QnA</p>
                     </div>
                     <div class="input-group">
-                        <select class="form-control">
-                            <!--<select [(ngModel)]="vs.selectVideo" (ngModelChange)="onChangeVideo($event)">-->
-                            <option value="">Select Category</option>
-                            <option *ngFor="let config of postConfigs" value="{{ config.idx }}" >{{config.name}}</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
 
                         <input [(ngModel)]="form.title" name="title" type="text" class="form-control form-control-sm" placeholder="Title">
                     </div>
