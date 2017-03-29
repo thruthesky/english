@@ -71,17 +71,23 @@ import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 import { AngularBackend } from './../angular-backend/angular-backend';
 // import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
-
+import { AngularBackendAdmin,
+  BackendAdminPage,
+  BackendAdminUserListPage,
+  BackendAdminUserEditPage,
+  BackendAdminForumPage
+} from './../angular-backend/angular-backend-admin';
 
 import { LMS } from '../providers/lms';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomePage },
-  // { path: 'admin', component: BackendAdminPage },
-  
   { path: 'seconddesign', component: SecondDesignPage },
-  { path: 'thirddesign', component: ThirdDesignPage }
+  { path: 'thirddesign', component: ThirdDesignPage },
+  { path: 'admin/user', component: BackendAdminUserListPage },
+  { path: 'admin/forum', component: BackendAdminForumPage },
+  { path: 'admin', component: BackendAdminPage },
 ];
 
 @NgModule({
@@ -138,7 +144,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot( appRoutes, { useHash: !history.pushState }),
     NgbModule.forRoot(),
-    AngularBackend
+    AngularBackend,
+    AngularBackendAdmin
   ],
   providers: [ App, LMS, NgbActiveModal ],
   bootstrap: [AppComponent],
