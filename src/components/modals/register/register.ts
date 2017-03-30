@@ -56,16 +56,15 @@ export class RegisterComponent{
         let file = fileInput.files[0];
         console.log("file: ", file);
         let req: FILE_UPLOAD = {
-        model: 'user',
-        code: 'primary_photo',
-        unique: 'Y',
-        finish: 'Y'
+            model: 'user',
+            code: 'primary_photo'
         };
 
         this.file.upload(req, file).subscribe(res => {
-        console.log(res);
-        
-        this.src_photo = this.file.src( { idx: res.data.idx } );
+            console.log("hello:",res);
+            
+            this.src_photo = this.file.src( { idx: res.data.idx } );
+            this.form.file_hooks =  [ res.data.idx ];
         }, err => {
         console.log('error', err);
         });
@@ -76,11 +75,9 @@ export class RegisterComponent{
         let file = fileInput.files[0];
         console.log("file: ", file);
         let req: FILE_UPLOAD = {
-        model: 'user',
-        model_idx: this.userData.idx,
-        code: 'primary_photo',
-        unique: 'Y',
-        finish: 'Y'
+            model: 'user',
+            model_idx: this.userData.idx,
+            code: 'primary_photo'
         };
 
         this.file.upload(req, file).subscribe(res => {
