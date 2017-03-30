@@ -7,10 +7,11 @@ import { LMS } from '../../../providers/lms';
 import { 
     RESPONSE,
     USER_REGISTER, USER_REGISTER_RESPONSE
-    , USER_EDIT, USER_EDIT_RESPONSE, USER
+    , USER_EDIT, USER_EDIT_RESPONSE, USER, FILE_UPLOAD, USER_FIELDS
 } from './../../../angular-backend/interface';
-import { User,
-   } from './../../../angular-backend/model/user';
+
+import { User,File
+   } from './../../../angular-backend/angular-backend';
 
 @Component({
     selector:'register-component',
@@ -19,16 +20,18 @@ import { User,
 })
 
 export class RegisterComponent{
+    src_photo: string = null;
     loading     : boolean = false;
     form = <USER_REGISTER> {};
-
+    userData: USER_FIELDS = null;
     login: boolean = false;
     result: RESPONSE = <RESPONSE> {};
     constructor (
         private app          : App,
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
-        private user         : User
+        private user         : User,
+        private file: File
     ) {
         ///////////////
         // this.form['gender'] = ""; //Default Select gender
@@ -49,7 +52,45 @@ export class RegisterComponent{
     //     }, ()=> console.info( 'completed ') )
     // }
 
+    onChangeFileUpload( fileInput ) {
+        let file = fileInput.files[0];
+        console.log("file: ", file);
+        let req: FILE_UPLOAD = {
+        model: 'user',
+        code: 'primary_photo',
+        unique: 'Y',
+        finish: 'Y'
+        };
 
+        this.file.upload(req, file).subscribe(res => {
+        console.log(res);
+        
+        this.src_photo = this.file.src( { idx: res.data.idx } );
+        }, err => {
+        console.log('error', err);
+        });
+    }
+
+    onEditFile( fileInput ) {
+        console.log("file changed: ", fileInput);
+        let file = fileInput.files[0];
+        console.log("file: ", file);
+        let req: FILE_UPLOAD = {
+        model: 'user',
+        model_idx: this.userData.idx,
+        code: 'primary_photo',
+        unique: 'Y',
+        finish: 'Y'
+        };
+
+        this.file.upload(req, file).subscribe(res => {
+        console.log(res);
+        
+        this.src_photo = this.file.src( { idx: res.data.idx } );
+        }, err => {
+        console.log('error', err);
+        });
+    }
     onEnterRegister(event){
         if( event.keyCode == 13){
             if( this.user.logged ) this.updateProfile( callback => this.updateLMSprofile() );
@@ -122,8 +163,11 @@ export class RegisterComponent{
 
     getDataSuccess( res:any ) {
         console.log(res);
+        this.userData = res.data.user;
         this.form = res['data'].user;
         this.form.birthday = this.concatBirthdate();
+        this.src_photo = this.file.src( { idx: this.userData.primary_photo_idx });
+        console.log("photo:",this.src_photo);
     }
     concatBirthdate() {
         let month = this.form.birth_month;

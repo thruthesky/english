@@ -16,9 +16,23 @@
     <div class="modal-body">
       <div class="form-container"> 
         <form>
+            <!--<div>
+                <input *ngIf="!user.logged" #userfile type="file" (change)="onChangeFileUpload( userfile )">
+                <input *ngIf="user.logged" #userfileedit type="file" (change)="onEditFile( userfileedit )">
+                <img src="{{ src_photo }}">
+            </div>-->
+            
             <div>
             <p class="form-title" *ngIf=" ! user.logged ">Please Signup.</p>
             <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
+            </div>
+            
+            <div class="form_image">
+                <img src="{{ src_photo }}">
+            </div>
+            <div div class="input-group">
+                <input *ngIf="!user.logged" #userfile type="file" (change)="onChangeFileUpload( userfile )">
+                <input *ngIf="user.logged" #userfileedit type="file" (change)="onEditFile( userfileedit )">
             </div>
             <div class="input-group"  *ngIf=" ! user.logged ">
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
