@@ -15,13 +15,86 @@
   
     <div class="modal-body">
       <div class="form-container"> 
-        <form>
-            <!--<div>
-                <input *ngIf="!user.logged" #userfile type="file" (change)="onChangeFileUpload( userfile )">
-                <input *ngIf="user.logged" #userfileedit type="file" (change)="onEditFile( userfileedit )">
-                <img src="{{ src_photo }}">
-            </div>-->
+        <form [formGroup]="form" novalidate>
+            <div>
+            <p class="form-title" *ngIf=" ! user.logged ">Please Signup.</p>
+            <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
+            </div>
             
+            <div class="form_image">
+                <img *ngIf=" primary_photo_idx " src="{{ file.url( primary_photo_idx ) }}">
+            </div>
+            <div div class="input-group">
+                <input class="form-control-file" #userfile type="file" (change)="onChangeFileUpload( userfile )">
+            </div>
+            <div class="input-group"  *ngIf=" ! user.logged ">
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="User ID" (keydown)="onEnterRegister($event)">
+            </div>
+            
+            <div class="row" *ngIf=" user.logged ">
+                {{ user.info.id }}
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
+                <input formControlName="name" name="name" type="text" class="form-control form-control-sm" placeholder="Name" (keydown)="onEnterRegister($event)">
+            </div>
+
+            <div class="input-group" *ngIf=" ! user.logged ">
+                <span class="input-group-addon"><i class="fa fa-user-circle fa-fw"></i></span>
+                <input formControlName="email" name="email" type="email" class="form-control form-control-sm" placeholder="Email" (keydown)="onEnterRegister($event)">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-vcard fa-fw"></i></span>
+                <input formControlName="nickname" name="nickname" type="text" class="form-control form-control-sm" placeholder="Nickname" (keydown)="onEnterRegister($event)">
+            </div>
+
+            <div class="input-group" *ngIf=" ! user.logged ">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="Password" (keydown)="onEnterRegister($event)">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></span>
+                <input formControlName="mobile" name="mobile" type="text" class="form-control form-control-sm" placeholder="Mobile" (keydown)="onEnterRegister($event)">
+            </div>
+            
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
+                <input formControlName="birthday" name="birthday" type="date" class="birthday" (keydown)="onEnterRegister($event)">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-venus-mars fa-fw"></i></span>
+                <select class="custom-select form-control" formControlName="gender" name="gender" (keydown)="onEnterRegister($event)">
+                    <option value="">Select Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    
+                </select>
+            </div>
+
+            <div class="error alert alert-danger" role="alert" *ngIf="result.message">
+                <button type="button" class="close" (click)="result.message=null">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ result?.message }}
+            </div>
+            
+            <div class="row">
+            
+              <div class="col-md-12 register" >
+                <button *ngIf=" ! user.logged " type="button" class="btn btn-primary btn-sm form-control" (click)="onClickRegister()">
+                    <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
+                    Register
+                    </button>
+                <button *ngIf=" user.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickUpdate()">Update</button>
+              </div>
+            </div>
+            
+        </form>
+        <!--<form>
             <div>
             <p class="form-title" *ngIf=" ! user.logged ">Please Signup.</p>
             <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
@@ -97,7 +170,7 @@
               </div>
             </div>
             
-        </form>
+        </form>-->
       </div> 
     </div>
 

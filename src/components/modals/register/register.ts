@@ -10,9 +10,15 @@ import {
     , USER_EDIT, USER_EDIT_RESPONSE, USER, FILE_UPLOAD, USER_FIELDS
 } from './../../../angular-backend/interface';
 
-import { User,File
-   } from './../../../angular-backend/angular-backend';
+import { 
+    User,
+    File,
+    USER_DATA_RESPONSE,
+    _USER_CREATE,
+    _USER_EDIT
+} from './../../../angular-backend/angular-backend';
 
+import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 @Component({
     selector:'register-component',
     templateUrl: 'register.html',
@@ -20,74 +26,68 @@ import { User,File
 })
 
 export class RegisterComponent{
-    src_photo: string = null;
-    loading     : boolean = false;
-    form = <USER_REGISTER> {};
-    userData: USER_FIELDS = null;
+    // src_photo: string = null;
+    
+    // form = <USER_REGISTER> {};
+    // userData: USER_FIELDS = null;
     login: boolean = false;
     result: RESPONSE = <RESPONSE> {};
+    loading     : boolean = false;
+
+    userData: USER_FIELDS = null;
+    primary_photo_idx: number = null;
+    form: FormGroup;
     constructor (
         private app          : App,
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
         private user         : User,
-        private file: File
+        private file         : File,
+        private fb           : FormBuilder,
     ) {
+     
         ///////////////
         // this.form['gender'] = ""; //Default Select gender
         //////////////
-        this.fakeData();
+        
         // this.onClickRegister();
         // this.register();
-    }
 
-    // testforumpost(){
-    //     this.forum
-    //         .data('post', 'another post test')
-    //         .data('comment', 'comment test')
-    //         .create('QnA', res =>{
-    //             console.log('res :: ' + res);
-    //     }, err =>{
-    //         this.app.alert('error :: ' + err );
-    //     }, ()=> console.info( 'completed ') )
-    // }
+        // this.fakeData();
+
+        /////////////////////////////////////////////////////
+
+        if ( this.user.logged ) this.loadUserData();
+
+        this.form = fb.group({
+            name: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
+            email: [ '', [ Validators.required, this.emailValidator ] ],
+            nickname: [],
+            mobile: [],
+            birthday: [],
+            gender: []
+        });
+
+        if ( ! this.user.logged ) {
+            this.form.addControl( 'id', new FormControl('', [ Validators.required, Validators.minLength(3), Validators.maxLength(32)] ) );
+            this.form.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(128)] ) );
+        }
+        
+        this.form.valueChanges
+            .debounceTime( 1000 )
+            .subscribe( res => this.onValueChanged( res ) );
+    }
 
     onChangeFileUpload( fileInput ) {
         let file = fileInput.files[0];
-        console.log("file: ", file);
-        let req: FILE_UPLOAD = {
-            model: 'user',
-            code: 'primary_photo'
-        };
-
-        this.file.upload(req, file).subscribe(res => {
-            console.log("hello:",res);
-            
-            this.src_photo = this.file.src( { idx: res.data.idx } );
-            this.form.file_hooks =  [ res.data.idx ];
+        this.file.uploadPrimaryPhoto( file ).subscribe(res => {
+        this.primary_photo_idx = res.data.idx;
         }, err => {
-        console.log('error', err);
+        this.file.alert(err);
         });
     }
 
-    onEditFile( fileInput ) {
-        console.log("file changed: ", fileInput);
-        let file = fileInput.files[0];
-        console.log("file: ", file);
-        let req: FILE_UPLOAD = {
-            model: 'user',
-            model_idx: this.userData.idx,
-            code: 'primary_photo'
-        };
-
-        this.file.upload(req, file).subscribe(res => {
-        console.log(res);
-        
-        this.src_photo = this.file.src( { idx: res.data.idx } );
-        }, err => {
-        console.log('error', err);
-        });
-    }
+  
     onEnterRegister(event){
         if( event.keyCode == 13){
             if( this.user.logged ) this.updateProfile( callback => this.updateLMSprofile() );
@@ -95,28 +95,23 @@ export class RegisterComponent{
         }
     }
 
-    fakeData() {
-        let id = 'user' + (new Date).getHours() + (new Date).getMinutes() + (new Date).getSeconds();  
-        this.form.id = id;
-        this.form.email = id + '@gmail.com';
-        this.form.nickname = id;
-        this.form.name = id;
-        this.form.password = id;
-        this.form.mobile = '09174678000';
-        this.form.gender = 'M';
-        this.form.birthday = '1990-12-30';
+    // fakeData() {
+    //     let id = 'user' + (new Date).getHours() + (new Date).getMinutes() + (new Date).getSeconds();  
+    //     this.form.id = id;
+    //     this.form.email = id + '@gmail.com';
+    //     this.form.nickname = id;
+    //     this.form.name = id;
+    //     this.form.password = id;
+    //     this.form.mobile = '09174678000';
+    //     this.form.gender = 'M';
+    //     this.form.birthday = '1990-12-30';
         
-    }
+    // }
 
     onClickDismiss() {
         this.activeModal.close();
     }
 
-    ngOnInit(){
-        if ( this.user.logged ) {
-            this.getUserData();
-        }
-    }
     onClickRegister() {
         this.register( callback => this.lmsRegister() );
 
@@ -126,20 +121,44 @@ export class RegisterComponent{
         this.updateProfile( callback => this.updateLMSprofile() );
     }
 
-    getUserData() {
+    onValueChanged(data?: any) {
+        if ( ! this.form ) return;
+        const form = this.form;
+        for ( const field in this.formErrors ) {
+        this.formErrors[field] = '';        // clear previous error message (if any)
+        const control = form.get(field);
+        if ( control && control.dirty && ! control.valid ) {
+            const messages = this.validationMessages[field];
+            for ( const key in control.errors ) {
+            this.formErrors[field] += messages[key] + ' ';
+            }
+        }
+        }
+    }
+    loadUserData() {
         this.loading = true;
-        this.user.data().subscribe( (res: USER) => {
+        this.user.data().subscribe( (res: USER_DATA_RESPONSE) => {
             this.getDataSuccess( res );
         }, error => {
             this.error( error );
         } );
     }
     register( callback? ) {
-        // if ( this.validate() == false ) return;
         this.loading = true;
+        // this.splitBirthday();
+        console.log( this.form.value );
 
-        this.splitBirthday(); 
-        this.user.register( this.form ).subscribe( (res: USER_REGISTER_RESPONSE ) => {
+        let register = <_USER_CREATE> this.form.value;
+
+        register.file_hooks = [ this.primary_photo_idx ];
+        let date = this.splitBirthday( register['birthday']);
+        console.log(" DATE:",date);
+        delete register['birthday'];
+        register.birth_year = date[0];
+        register.birth_month = date[1];
+        register.birth_day = date[2];
+        console.log(" Register:",register);
+        this.user.register( register ).subscribe( (res: USER_REGISTER_RESPONSE ) => {
             //this.successRegister( res );
             callback();
         }, error => {
@@ -147,32 +166,35 @@ export class RegisterComponent{
         } );
 
     }
-    splitBirthday() {
-        if( this.form.birthday )
-        {
-            let date = this.form.birthday.split("-");
-            this.form.birth_year  = date[0];
-            this.form.birth_month = date[1];
-            this.form.birth_day   = date[2];
-            delete this.form.birthday;
-        }
-    }
+    // splitBirthday() {
+    //     if( this.form.birthday )
+    //     {
+    //         let date = this.form.birthday.split("-");
+    //         this.form.birth_year  = date[0];
+    //         this.form.birth_month = date[1];
+    //         this.form.birth_day   = date[2];
+    //         delete this.form.birthday;
+    //     }
+    // }
+    
 
     getDataSuccess( res:any ) {
         console.log(res);
         this.userData = res.data.user;
-        this.form = res['data'].user;
-        this.form.birthday = this.concatBirthdate();
-        this.src_photo = this.file.src( { idx: this.userData.primary_photo_idx });
-        console.log("photo:",this.src_photo);
+        this.form.patchValue( this.userData );
+        this.primary_photo_idx = this.userData.primary_photo_idx;
+        // this.form = res['data'].user;
+        // this.form.birthday = this.concatBirthdate();
+        // this.src_photo = this.file.src( { idx: this.userData.primary_photo_idx });
+        // console.log("photo:",this.src_photo);
     }
-    concatBirthdate() {
-        let month = this.form.birth_month;
-        let day =this.form.birth_day;
-        if( this.form.birth_month.length < 2 ) month = "0"+ month;
-        if( this.form.birth_day.length < 2 ) day = "0"+ day; 
-        return this.form.birth_year + "-" + month + "-" +day;
-    }
+    // concatBirthdate() {
+    //     let month = this.form.birth_month;
+    //     let day =this.form.birth_day;
+    //     if( this.form.birth_month.length < 2 ) month = "0"+ month;
+    //     if( this.form.birth_day.length < 2 ) day = "0"+ day; 
+    //     return this.form.birth_year + "-" + month + "-" +day;
+    // }
     successRegister( res: USER_REGISTER_RESPONSE) {
 
         console.log("user register success: ", res );
@@ -194,46 +216,40 @@ export class RegisterComponent{
         }, error => console.error(' error on registration ' + error ) )
     }
 
-
+    splitBirthday( date ) {
+        if( date )
+        {
+            let newdate = date.split("-");
+            return newdate;
+        }
+    }
 
     updateProfile( callback? ){
         // if ( this.validate() == false ) return;
         this.loading = true;
-        this.splitBirthday();
-        let data : USER_EDIT = {
-            name: this.form.name,
-            nickname: this.form.nickname,
-            mobile: this.form.mobile,
-            birth_year: this.form.birth_year,
-            birth_month: this.form.birth_month,
-            birth_day: this.form.birth_day,
-            gender: this.form.gender
-        }
-        this.user.edit( data ).subscribe( (res: any) => {
+        // this.splitBirthday();
+        // let data : USER_EDIT = {
+        //     name: this.form.name,
+        //     nickname: this.form.nickname,
+        //     mobile: this.form.mobile,
+        //     birth_year: this.form.birth_year,
+        //     birth_month: this.form.birth_month,
+        //     birth_day: this.form.birth_day,
+        //     gender: this.form.gender
+        // }
+
+        let edit = <_USER_EDIT> this.form.value;
+        delete edit['password'];
+        delete edit['id'];
+        let date = this.splitBirthday( edit['birthday']);
+        console.log(" DATE:",date);
+        this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
 
         }, error => {
             this.error( error );
         } );
-        /*
-        let data : USER_UPDATE_REQUEST_DATA ={
-            name: this.form.name,
-            nickname: this.form.nickname,
-            mobile: this.form.mobile,
-            landline: this.form.landline,
-            gender: this.form.gender,
-            birthday: this.form.birthday,
-            country: this.form.country,
-            province: this.form.province,
-            city: this.form.city,
-            address: this.form.address,
-            zipcode: this.form.zipcode,
-        }
-        this.user.update( data, res =>{
-            console.info( 'updated profile' + res );
-        }, err =>console.error( 'error on update ' + err ), ()=>{});
-        */
     }
     successUpdate( res: USER_EDIT_RESPONSE) {
 
@@ -248,28 +264,52 @@ export class RegisterComponent{
         }, err =>{})
     }
 
-//     validate() {
-//         console.log('form: ', this.form);
-// /*
-
-
-//         if ( ! this.form.id ) return this.validateError('ID');
-//         if( this.form.id.match(/[.#$\[\]]/g)) return this.validateError('valid id');
-//         if ( ! this.form.email ) return this.validateError('Email');
-//         if( ! this.form.password )return this.validateError('Password');
-
-//         if ( ! this.form.name ) return this.validateError('Name');
-//         if ( ! this.form.mobile ) return this.validateError('Mobile');
-//         if ( ! this.form.gender ) return this.validateError('Gender');
-//         if ( ! this.form.birthday ) return this.validateError('birthday');
-// */
-//         return true;
-//     }
 
     validateError( name ) {
         this.app.alert( name + ' is required ...' );
         return false;
     }
+    emailValidator(c: AbstractControl): { [key: string]: any } {
+    if ( c.value.length < 8 ) {
+      return { 'minlength' : '' };
+    }
+    if ( c.value.length > 64 ) {
+      return { 'maxlength' : '' };
+    }
+    let re = new RegExp( /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ ).test( <string> c.value );
+    if ( re ) return;
+    else return { 'malformed': '' };
+  }
 
+  formErrors = {
+    id: '',
+    password: '',
+    name: '',
+    email: ''
+  };
+  validationMessages = {
+    id: {
+      'required':      'ID is required.',
+      'minlength':     'ID must be at least 3 characters long.',
+      'maxlength':     'ID cannot be more than 32 characters long.'
+    },
+    name: {
+      'required':      'Name is required.',
+      'minlength':     'Name must be at least 3 characters long.',
+      'maxlength':     'Name cannot be more than 32 characters long.'
+    },
+    password: {
+      'required': 'Password is required.',
+      'minlength':     'Password must be at least 5 characters long.',
+      'maxlength':     'Password cannot be more than 128 characters long.'
+    },
+    email: {
+      'required':     'Email is required.',
+      'minlength':     'Email must be at least 8 characters long.',
+      'maxlength':     'Email cannot be more than 32 characters long.',
+      'malformed':    'Email must be in valid format. valudator error'
+    }
+    
+  };
 
 }
