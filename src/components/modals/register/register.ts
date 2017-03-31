@@ -145,19 +145,13 @@ export class RegisterComponent{
     }
     register( callback? ) {
         this.loading = true;
-        // this.splitBirthday();
-        console.log( this.form.value );
-
         let register = <_USER_CREATE> this.form.value;
-
         register.file_hooks = [ this.primary_photo_idx ];
         let date = this.splitBirthday( register['birthday']);
-        console.log(" DATE:",date);
         delete register['birthday'];
         register.birth_year = date[0];
         register.birth_month = date[1];
         register.birth_day = date[2];
-        console.log(" Register:",register);
         this.user.register( register ).subscribe( (res: USER_REGISTER_RESPONSE ) => {
             //this.successRegister( res );
             callback();
@@ -165,36 +159,21 @@ export class RegisterComponent{
             this.error( error );
         } );
 
-    }
-    // splitBirthday() {
-    //     if( this.form.birthday )
-    //     {
-    //         let date = this.form.birthday.split("-");
-    //         this.form.birth_year  = date[0];
-    //         this.form.birth_month = date[1];
-    //         this.form.birth_day   = date[2];
-    //         delete this.form.birthday;
-    //     }
-    // }
-    
+    }    
 
     getDataSuccess( res:any ) {
         console.log(res);
         this.userData = res.data.user;
         this.form.patchValue( this.userData );
+        let birthday = this.getConcatBirthdate();
+        this.form.patchValue( {birthday:birthday});
         this.primary_photo_idx = this.userData.primary_photo_idx;
-        // this.form = res['data'].user;
-        // this.form.birthday = this.concatBirthdate();
-        // this.src_photo = this.file.src( { idx: this.userData.primary_photo_idx });
-        // console.log("photo:",this.src_photo);
     }
-    // concatBirthdate() {
-    //     let month = this.form.birth_month;
-    //     let day =this.form.birth_day;
-    //     if( this.form.birth_month.length < 2 ) month = "0"+ month;
-    //     if( this.form.birth_day.length < 2 ) day = "0"+ day; 
-    //     return this.form.birth_year + "-" + month + "-" +day;
-    // }
+    getConcatBirthdate( ) {
+        if( this.userData.birth_month.length < 2 ) this.userData.birth_month = "0"+ this.userData.birth_month;
+        if( this.userData.birth_day.length < 2 ) this.userData.birth_day = "0"+ this.userData.birth_day;
+        return this.userData.birth_year + "-" + this.userData.birth_month + "-" +this.userData.birth_day;
+    }
     successRegister( res: USER_REGISTER_RESPONSE) {
 
         console.log("user register success: ", res );
@@ -225,28 +204,18 @@ export class RegisterComponent{
     }
 
     updateProfile( callback? ){
-        // if ( this.validate() == false ) return;
         this.loading = true;
-        // this.splitBirthday();
-        // let data : USER_EDIT = {
-        //     name: this.form.name,
-        //     nickname: this.form.nickname,
-        //     mobile: this.form.mobile,
-        //     birth_year: this.form.birth_year,
-        //     birth_month: this.form.birth_month,
-        //     birth_day: this.form.birth_day,
-        //     gender: this.form.gender
-        // }
-
         let edit = <_USER_EDIT> this.form.value;
         delete edit['password'];
         delete edit['id'];
         let date = this.splitBirthday( edit['birthday']);
-        console.log(" DATE:",date);
+        delete edit['birthday'];
+        edit.birth_year = date[0];
+        edit.birth_month = date[1];
+        edit.birth_day = date[2];
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
-
         }, error => {
             this.error( error );
         } );
