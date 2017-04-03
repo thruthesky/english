@@ -10,6 +10,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 
 import { App } from '../providers/app';
+import { ShareService } from '../providers/share-service';
+
 
 import { AppComponent } from './app.component';
 
@@ -149,7 +151,7 @@ const appRoutes: Routes = [
     AngularBackend,
     AngularBackendAdmin
   ],
-  providers: [ App, LMS, NgbActiveModal ],
+  providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
   entryComponents: [
     QnaPostComponent,
