@@ -44,6 +44,7 @@ export class InquiryComponent {
                 re['created'] = new Date(parseInt(re.created)).toLocaleDateString();
             });
             this.postList = res.data.posts;
+            console.log("data:",this.postList);
         }
         catch ( e ) {
             alert("CRITICAL: server returned wrong value");

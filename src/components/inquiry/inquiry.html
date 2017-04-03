@@ -27,7 +27,9 @@
                     <tbody>
 
                         <tr *ngFor="let post of postList">
-                            <th> {{ post.title }} </th>
+                            <th> {{ post.title }} 
+                                <img *ngIf=" post.url_primary_photo " src="{{ post.url_primary_photo }}">
+                            </th>
                             <td> {{ post.name }} </td>
                             <td> {{ post.content }} </td>
                             <!--<td> {{ post.created }} </td>-->

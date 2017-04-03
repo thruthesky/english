@@ -71,6 +71,9 @@ import { FooterComponent } from '../components/footer/footer';
 import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 
+import { ForumComponent} from '../components/forum/forum';
+import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
+
 import { AngularBackend } from './../angular-backend/angular-backend';
 // import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
 import { AngularBackendAdmin,
@@ -139,7 +142,9 @@ const appRoutes: Routes = [
     ReservationComponent,
     FooterComponent,
     QnaPostComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ForumComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

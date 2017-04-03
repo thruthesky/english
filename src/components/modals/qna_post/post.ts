@@ -42,7 +42,7 @@ export class QnaPostComponent implements OnInit {
         if ( this.user.logged ) this.getUserData();
     }
     getQnaConfig() {
-        let qna = "Qna";
+        let qna = "qna";
         let cond = '';
         let bind = '';
          if ( qna ) cond += cond ? "AND name LIKE ? " : "name LIKE ?";
