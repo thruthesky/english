@@ -1,0 +1,45 @@
+<div class="post-list-container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-inverse bg-info">
+            <th>Id</th>
+            <th>Photos</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Writer</th>
+        </thead>
+        <tbody *ngIf=" share.posts ">
+
+            <tr *ngFor="let post of share.posts">
+                <td>{{ post.idx }}</td>
+                <td> 
+                    <div class="files clearfix" *ngIf=" post.files ">
+                        <div class="w-25 float-left" *ngFor=" let file of post.files ">
+                        <img [src]=" file.url + '&crop=200x100x70'" style="width: 100%;">
+                        </div>
+                    </div>
+                </td>
+                <td>{{ post.title }}</td>
+                <td> {{ post.content }} </td>
+                <td> 
+                    <img *ngIf=" post.user.url_primary_photo " src="{{ post.user.url_primary_photo }}"
+                    style=" width: 40px; height: 40px; border-radius: 50%; ">
+                     {{ post.user?.name }} 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--<section *ngIf=" share.posts ">
+  <article *ngFor="let post of share.posts" >
+    
+    <post-view-component [post]=" post "></post-view-component>
+    
+    <ng-container *ngIf=" post.comments ">
+      <comment-view-component *ngFor=" let comment of post.comments "
+        [comment]=" comment ">
+      </comment-view-component>
+    </ng-container>
+
+  </article>
+</section>-->

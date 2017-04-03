@@ -3,6 +3,15 @@
       <div class="top">
           <div class="forum-description"><font>This is QnA Forum.</font></div>
       </div>
+      <div class="bottom">
+          <div class="post-count"><font>Page: 1 / No. </font></div>
+          <!--<div class="post-count"><font><font>Page: 1 / No. </font><font>Of Post: 3</font></font></div>-->
+          <div class="post-new-button">
+              <span>
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
+              </span>
+          </div>
+      </div>
       <post-list-component #postListComponent
         [no_of_items_in_one_page] = " no_of_items_in_one_page ">
       </post-list-component>

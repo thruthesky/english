@@ -23,6 +23,7 @@ export class ForumComponent {
   post_config_id: string = null;
   no_of_items_in_one_page: number = 5;
   active: boolean = false;
+  post_config_id_qna = 'qna';
   @ViewChild('postListComponent') postListComponent: PostListComponent;
 
   constructor(
@@ -34,11 +35,15 @@ export class ForumComponent {
   }
 
   ngOnInit() {
-    this.activated.params.subscribe( params => {
-      if ( params['post_config_id'] !== void 0 ) {
-        this.post_config_id = params['post_config_id'];
+        this.post_config_id = this.post_config_id_qna;
         this.postListComponent.load( this.post_config_id );
-      }
-    });
+ 
+    // this.activated.params.subscribe( params => {
+    //   if ( params['post_config_id'] !== void 0 ) {
+    //     this.post_config_id = params['post_config_id'];
+    //     this.postListComponent.load( this.post_config_id );
+    //     console.log("post_config_id:",this.post_config_id);
+    //   }
+    // });
   }
 }

@@ -73,6 +73,7 @@ import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
+import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
 
 import { AngularBackend } from './../angular-backend/angular-backend';
 // import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
@@ -144,7 +145,8 @@ const appRoutes: Routes = [
     QnaPostComponent,
     ContactFormComponent,
     ForumComponent,
-    PostListComponent
+    PostListComponent,
+    PostViewComponent
   ],
   imports: [
     BrowserModule,
