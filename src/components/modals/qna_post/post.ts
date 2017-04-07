@@ -74,7 +74,7 @@ export class QnaPostComponent implements OnInit {
         }, err => this.error( err ) );
     }
     getUserData() {
-        this.user.data().subscribe( (res: USER) => {
+        this.user.data().subscribe( (res) => {
             this.getDataSuccess( res );
         }, error => {
             this.error( error );
