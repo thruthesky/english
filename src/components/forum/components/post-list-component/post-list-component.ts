@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShareService } from '../../../../providers/share-service';
+import { ForumPostComponent} from '../../../modals/forum-post/forum-post';
 import {
     PostData,
     _LIST, _POST_LIST_RESPONSE,
@@ -15,11 +17,21 @@ export class PostListComponent  {
     @Input() no_of_items_in_one_page: number = 0;
     constructor(
         public share: ShareService,
-        private postData: PostData
+        private postData: PostData,
+        private modal: NgbModal,
     ) {
 
     }
-
+    onClickEdit(post) {
+        console.log("My post:",post);
+        let modalRef = this.modal.open( ForumPostComponent );
+        modalRef.componentInstance['post'] = post;
+        modalRef.result.then( () => {
+        }).catch( e => console.log('exit ' + e ) );
+    }
+    onClickDelete(id) {
+        console.log("My post id:",id);
+    }
     load( id ) {
         this.share.post_config_id = id;
         let req: _LIST = {

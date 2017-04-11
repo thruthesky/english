@@ -81,11 +81,13 @@ export class ForumPostComponent implements OnInit {
     createSuccess( post: _POST ) {
         this.reset();
         this.created.emit( post );
+        this.activeModal.close();
     }
     editSuccess( post: _POST ) {
         this.reset();
         console.log("emit: ", post);
         this.edited.emit( post );
+        this.activeModal.close();
     }
 
     onClickCancel() {
