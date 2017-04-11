@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs/Subject';
+import { ForumPostComponent} from '../modals/forum-post/forum-post';
+// import { QnaPostComponent} from '../modals/qna_post/post';
 import 'rxjs/add/operator/debounceTime';
 import {
   PostData,
@@ -28,7 +30,7 @@ export class ForumComponent {
 
   constructor(
     private activated: ActivatedRoute,
-    private ngbmodal: NgbModal,
+    private modal: NgbModal,
     private file: File,
     private postData: PostData )
   {
@@ -45,5 +47,11 @@ export class ForumComponent {
     //     console.log("post_config_id:",this.post_config_id);
     //   }
     // });
+  }
+  onClickPost() {
+    let modalRef = this.modal.open( ForumPostComponent );
+    modalRef.componentInstance['post_config_id'] = this.post_config_id;
+    modalRef.result.then( () => {
+    }).catch( e => console.log('exit ' + e ) );
   }
 }

@@ -1,4 +1,4 @@
-<div class="post-modal">
+<div class="forum-post-modal">
     <div class="modal-header">
 
         <h5 class="modal-title">
@@ -13,26 +13,27 @@
     <div class="modal-body">
         <div class="form-container">
 
-                <form>
+                <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
                     <div>
                         <p class="form-title">QnA</p>
                     </div>
+                    <file-form-component [files]=" files "></file-form-component>
                     <div class="input-group">
-
-                        <input [(ngModel)]="form.title" name="title" type="text" class="form-control form-control-sm" placeholder="Title">
+                        <input  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="Title">
                     </div>
+         
                     <div class="input-group">
 
-                        <textarea [(ngModel)]="form.content" name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
+                        <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
 
                     </div>
 
                     <div class="row">
 
-                        <div class="col-md-6 post" ><button type="button"class="btn btn-primary form-control" (click)="onClickPost()">Post</button></div>
+                        <div class="col-md-6 post" ><button type="button"class="btn btn-primary form-control" (click)="onSubmit()">Post</button></div>
                     </div>
                     <hr/>
-
+                    <button type="button"class="btn btn-info form-control" (click)="onShowFiles()">Show My Files</button>
                 </form>
             </div>
 

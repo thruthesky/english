@@ -74,6 +74,10 @@ import { QnaPostComponent } from '../components/modals/qna_post/post';
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
 import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
+import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
+
+
+import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 
 import { AngularBackend } from './../angular-backend/angular-backend';
 // import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
@@ -146,7 +150,9 @@ const appRoutes: Routes = [
     ContactFormComponent,
     ForumComponent,
     PostListComponent,
-    PostViewComponent
+    PostViewComponent,
+    FileFormComponent,
+    ForumPostComponent
   ],
   imports: [
     BrowserModule,
@@ -166,7 +172,8 @@ const appRoutes: Routes = [
     FindIdModal,
     LoginModal,
     ClassInfoModal,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ForumPostComponent
   ]
 })
 export class AppModule { }

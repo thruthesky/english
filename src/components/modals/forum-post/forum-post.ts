@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
     PostData,
@@ -9,19 +10,19 @@ import {
     _POST_EDIT, _POST_EDIT_RESPONSE
 } from './../../../angular-backend/angular-backend';
 import { ShareService } from '../../../providers/share-service';
-// import { AppService } from './../../services/app-service';
 @Component({
-    selector: 'post-form-component',
-    templateUrl: 'post-form-component.html'
+    selector: 'forum-post-component',
+    templateUrl: 'forum-post.html',
+    styleUrls: ['forum-post.scss']
 })
-export class PostFormComponent implements OnInit {
+export class ForumPostComponent implements OnInit {
 
-    @Output() created = new EventEmitter<_POST>();
-    @Output() edited = new EventEmitter<_POST>();
-    @Output() cancel = new EventEmitter<void>();
+    created = new EventEmitter<_POST>();
+    edited = new EventEmitter<_POST>();
+    cancel = new EventEmitter<void>();
 
-    @Input() post_config_id: string;
-    @Input() post: _POST = <_POST>{};
+    post_config_id: string;
+    post: _POST = <_POST>{};
 
 
     formGroup: FormGroup;
@@ -32,7 +33,8 @@ export class PostFormComponent implements OnInit {
         public share: ShareService,
         private fb: FormBuilder,
         public file: File,
-        private postData: PostData
+        private postData: PostData,
+        private activeModal  : NgbActiveModal
     ) {
     }
 
@@ -58,7 +60,10 @@ export class PostFormComponent implements OnInit {
         
 
     }
-
+    onShowFiles() {
+        console.log("Latest Files:",this.files);
+        console.log("Latest Config IDX:",this.post_config_id);
+    }
 
     onSubmit() {
         console.log( this.formGroup.value );
@@ -117,5 +122,60 @@ export class PostFormComponent implements OnInit {
     isEdit() {
         return ! this.isCreate();
     }
+    onClickDismiss(){
+        this.activeModal.close();
+    }
 
 }
+/////////////////////////////
+
+// import { Component, OnInit } from '@angular/core';
+// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+// import { App } from '../../../providers/app';
+// import { FormBuilder, FormGroup } from '@angular/forms';
+// import {
+//     PostData,
+//     File,
+//     NUMBERS,
+//     _FILE,
+//     _POST, _POST_CREATE, _POST_CREATE_RESPONSE,
+//     _POST_EDIT, _POST_EDIT_RESPONSE
+// } from './../../../angular-backend/angular-backend';
+// import { ShareService } from '../../../providers/share-service';
+// @Component({
+//     selector: 'forum-post-component',
+//     templateUrl: 'forum-post.html',
+//     styleUrls: ['forum-post.scss']
+// })
+
+// export class ForumPostComponent implements OnInit {
+  
+//     constructor(
+//         private activeModal  : NgbActiveModal,
+//         private app          : App,
+//         private post         : PostData,
+//     ) {
+//     }
+
+//     ngOnInit() {
+//     }
+//     onClickDismiss(){
+//         this.activeModal.close();
+//     }
+    
+//     onClickPost() {
+//        this.post.create( this.form ).subscribe( (res) => {
+//             console.log( res );
+//             this.app.myEvent.emit( { eventType:"post" } );
+//             this.onClickDismiss();
+//         }, error => {
+//             this.error( error );
+//         } );
+//     }
+//     error( error ) {
+//         return this.post.errorResponse( error );
+//     }
+// }
+
+////////////////////////
+
