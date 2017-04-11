@@ -1,17 +1,16 @@
 <div class="post-list-container">
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-responsive">
         <thead class="table-inverse bg-info">
             <th>Id</th>
             <th>Photos</th>
             <th>Title</th>
             <th>Content</th>
-            <th>Writer</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
-        <tbody *ngIf=" share.posts ">
+        <!--<tbody *ngIf=" posts ">
 
-            <tr *ngFor="let post of share.posts">
+            <tr *ngFor="let post of posts">
                 <td>{{ post.idx }}</td>
                 <td> 
                     <div class="files clearfix" *ngIf=" post.files ">
@@ -20,20 +19,55 @@
                         </div>
                     </div>
                 </td>
-                <td>{{ post.title }}</td>
-                <td> {{ post.content }} </td>
+                <td>
+                    <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
+                </td>
+                <td>
+                    <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
+                </td>
                 <td> 
                     <img *ngIf=" post.user.url_primary_photo " src="{{ post.user.url_primary_photo }}"
                     style=" width: 40px; height: 40px; border-radius: 50%; ">
                      {{ post.user?.name }} 
                 </td>
                 <td (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></td>
-                <td (click)="onClickDelete( post.idx )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
+                <td (click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
             </tr>
-        </tbody>
+        </tbody>-->
+         <tbody class="users">
+            <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}">
+              <!--<td (click)=" postPostForm = post; showPostForm = true " class="text-center" role="button"><i class="fa fa-pencil"></i></td>-->
+              
+              <th scope="row" (click)="onClickShowPostDetail(post.idx)">
+                {{post.idx}}
+              </th>
+              <td>
+                <div *ngFor=" let _file of post.files ">
+                  <img style="width:25%; float:left;" src="{{ _file.url }}">
+                </div>
+              </td>
+              <td>
+                <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
+              </td>
+              <td>
+                <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
+              </td>
+  
+               <td (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></td>
+               <td (click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
+            </tr>
+            </tbody>
     </table>
 </div>
-
+<page-navigation
+        [no_of_total_items]=" pageOption['totalRecord'] "
+        [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
+        [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "
+        [no_of_current_page] = " pageOption['currentPage'] "
+        [show_prev_next] = " true "
+        (pageClick)="onPostPageClick($event)"
+>
+</page-navigation>
 <!--<section *ngIf=" share.posts ">
   <article *ngFor="let post of share.posts" >
     

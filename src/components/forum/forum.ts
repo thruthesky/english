@@ -38,7 +38,6 @@ export class ForumComponent {
 
   ngOnInit() {
         this.post_config_id = this.post_config_id_qna;
-        this.postListComponent.load( this.post_config_id );
  
     // this.activated.params.subscribe( params => {
     //   if ( params['post_config_id'] !== void 0 ) {

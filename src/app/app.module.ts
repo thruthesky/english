@@ -75,7 +75,7 @@ import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
 import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
-
+import { AngularBackendComponentModule } from '../angular-backend/modules/angular-backend-components.module';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 
@@ -84,8 +84,7 @@ import { AngularBackend } from './../angular-backend/angular-backend';
 import { AngularBackendAdmin,
   BackendAdminPage,
   BackendAdminUserListPage,
-  BackendAdminUserEditPage,
-  BackendAdminForumPage
+  BackendAdminUserEditPage
 } from './../angular-backend/angular-backend-admin';
 import { EnhanceSample } from '../enhance/components/sample';
 import { LMS } from '../providers/lms';
@@ -96,7 +95,6 @@ const appRoutes: Routes = [
   { path: 'seconddesign', component: SecondDesignPage },
   { path: 'thirddesign', component: ThirdDesignPage },
   { path: 'admin/user', component: BackendAdminUserListPage },
-  { path: 'admin/forum', component: BackendAdminForumPage },
   { path: 'admin', component: BackendAdminPage },
 ];
 
@@ -162,7 +160,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot( appRoutes, { useHash: !history.pushState }),
     NgbModule.forRoot(),
     AngularBackend,
-    AngularBackendAdmin
+    AngularBackendAdmin,
+    AngularBackendComponentModule
   ],
   providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
