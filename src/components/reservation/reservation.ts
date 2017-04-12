@@ -71,6 +71,7 @@ export class ReservationComponent implements OnInit {
             this.listOfYears.push( { m: test[1], Y: test[3] } );
         }
     }
+    
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
@@ -87,6 +88,8 @@ export class ReservationComponent implements OnInit {
             });
             this.data = res.books;
             this.listCalendar( this.month, this.year);
+            this.calendarLoad = false;
+        }, () => {
             this.calendarLoad = false;
         });
     }

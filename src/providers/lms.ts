@@ -63,7 +63,7 @@ export class LMS {
         })
     }
 
-    getReservationsByMonthYear( data, success ) {
+    getReservationsByMonthYear( data, success, error ) {
         // let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=reservation_list`;
         // console.log('url: ', url);
         //Mock Test Reservation list
@@ -88,6 +88,9 @@ export class LMS {
                 console.log(json);
                 success( json['data'] );
             }
+        }, err => {
+            error();
+            // alert("error on class list by month");
         });
     }
     // getReservations( data, success ) {

@@ -12,9 +12,9 @@ import { RegisterComponent } from '../register/register';
 
 
 import {
-    RESPONSE, 
-    USER_LOGIN,
-    USER_LOGIN_RESPONSE
+    _RESPONSE, 
+    _USER_LOGIN,
+    _USER_LOGIN_RESPONSE
 } from './../../../angular-backend/interface';
 
 @Component({
@@ -25,9 +25,9 @@ import {
 
 export class LoginModal implements OnInit {
     loading: boolean = false;
-    result: RESPONSE = <RESPONSE> {};
+    result: _RESPONSE = <_RESPONSE> {};
     saveid:boolean = false;
-    form = <USER_LOGIN> {};
+    form = <_USER_LOGIN> {};
     // form = {};
     constructor( 
       public activeModal  : NgbActiveModal,
@@ -70,7 +70,7 @@ export class LoginModal implements OnInit {
     if ( this.validate() == false ) return;
 
     this.loading = true;
-    this.user.login( this.form ).subscribe( ( res: USER_LOGIN_RESPONSE ) => {
+    this.user.login( this.form ).subscribe( ( res: _USER_LOGIN_RESPONSE ) => {
         this.success( res );
     }, error => {
 
@@ -79,7 +79,7 @@ export class LoginModal implements OnInit {
   }
 
 
-  success( res: USER_LOGIN_RESPONSE) {
+  success( res: _USER_LOGIN_RESPONSE) {
 
     this.loading = false;
     this.activeModal.close();
