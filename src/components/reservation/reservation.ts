@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LMS } from '../../providers/lms';
+import { LMS, LMS_URL } from '../../providers/lms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassInfoModal } from '../modals/class-info/class-info';
 import { User } from '../../angular-backend/model/user';
@@ -84,7 +84,7 @@ export class ReservationComponent implements OnInit {
             };
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
-                 'https://englishfordevelopers.com/api/data');
+                 LMS_URL + '/data');
             });
             this.data = res.books;
             this.listCalendar( this.month, this.year);
