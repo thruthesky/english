@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 
@@ -10,6 +10,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 
 import { App } from '../providers/app';
+import { ShareService } from '../providers/share-service';
+
 
 import { AppComponent } from './app.component';
 
@@ -69,24 +71,37 @@ import { FooterComponent } from '../components/footer/footer';
 import { QnaPostComponent } from '../components/modals/qna_post/post';
 
 
+import { ForumComponent} from '../components/forum/forum';
+import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
+import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
+import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
+import { AngularBackendComponentModule } from '../angular-backend/modules/angular-backend-components.module';
+
+import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
+
 import { AngularBackend } from './../angular-backend/angular-backend';
 // import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
-
-
+import { AngularBackendAdmin,
+  BackendAdminPage,
+  BackendAdminUserListPage,
+  BackendAdminUserEditPage
+} from './../angular-backend/angular-backend-admin';
+import { EnhanceSample } from '../enhance/components/sample';
 import { LMS } from '../providers/lms';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomePage },
-  // { path: 'admin', component: BackendAdminPage },
-  
   { path: 'seconddesign', component: SecondDesignPage },
-  { path: 'thirddesign', component: ThirdDesignPage }
+  { path: 'thirddesign', component: ThirdDesignPage },
+  { path: 'admin/user', component: BackendAdminUserListPage },
+  { path: 'admin', component: BackendAdminPage },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    EnhanceSample,
     HomePage,
     SecondDesignPage,
     ThirdDesignPage,
@@ -130,17 +145,25 @@ const appRoutes: Routes = [
     ReservationComponent,
     FooterComponent,
     QnaPostComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ForumComponent,
+    PostListComponent,
+    PostViewComponent,
+    FileFormComponent,
+    ForumPostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot( appRoutes, { useHash: !history.pushState }),
     NgbModule.forRoot(),
-    AngularBackend
+    AngularBackend,
+    AngularBackendAdmin,
+    AngularBackendComponentModule
   ],
-  providers: [ App, LMS, NgbActiveModal ],
+  providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
   entryComponents: [
     QnaPostComponent,
@@ -148,7 +171,8 @@ const appRoutes: Routes = [
     FindIdModal,
     LoginModal,
     ClassInfoModal,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ForumPostComponent
   ]
 })
 export class AppModule { }

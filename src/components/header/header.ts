@@ -9,7 +9,8 @@ import { App } from '../../providers/app';
 
 @Component({
     selector: 'header-component',
-    templateUrl: 'header.html'
+    templateUrl: 'header.html',
+    styleUrls: ['header.scss']
 })
 export class HeaderComponent implements OnInit {
     event:any = {};

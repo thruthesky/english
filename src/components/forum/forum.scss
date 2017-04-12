@@ -1,0 +1,41 @@
+@import '../../theme/variables';
+:host {
+    .inquiry-container {
+        margin: 0 auto;
+        width: 100%;
+        max-width: $lg_breakpoint;
+        .top {
+            color: #06000a;
+            .forum-description {
+                margin-top: .4em;
+                padding: 0 0 .4em;
+                border-bottom: 1px solid #dfdfdf;
+                font-size: 28px;
+                color: #3b3b3b;
+            }
+        }
+        .bottom {
+            margin-top: .4em;
+            overflow: auto;
+            .post-count {
+                float: left;
+            }
+            .post-new-button {
+                float: right;
+                right: .2em;
+                margin: .2em 0;
+                padding: .2em .4em;
+                cursor: pointer;
+                border-radius: 3px;
+                background-color: #e67e22;
+                span {
+                    padding: .2em 1em;
+                    border-radius: 3px;
+                    background-color: #e67e22;
+                    text-decoration: none;
+                    color: #FFFFFF;
+                }
+            }
+        }
+    }
+}

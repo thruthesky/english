@@ -24,7 +24,12 @@
                 
                 padding: .6em 2em;
                 color: #555;
-                
+                .form_image {
+                    img {
+                        width:100%;
+                        height: auto;
+                    }
+                }
                 .form-title {
                     text-align: center;
                     font-size: 22px;
