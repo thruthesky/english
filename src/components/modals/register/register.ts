@@ -167,7 +167,7 @@ export class RegisterComponent{
         this.form.patchValue( this.userData );
         let birthday = this.getConcatBirthdate();
         this.form.patchValue( {birthday:birthday});
-        // this.primary_photo_idx = this.userData.primary_photo_idx;
+        this.primary_photo_idx = this.userData.primary_photo.idx;
     }
     getConcatBirthdate( ) {
         if( this.userData.birth_month.length < 2 ) this.userData.birth_month = "0"+ this.userData.birth_month;
