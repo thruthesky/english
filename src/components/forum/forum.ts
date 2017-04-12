@@ -38,7 +38,7 @@ export class ForumComponent {
 
   ngOnInit() {
         this.post_config_id = this.post_config_id_qna;
- 
+         
     // this.activated.params.subscribe( params => {
     //   if ( params['post_config_id'] !== void 0 ) {
     //     this.post_config_id = params['post_config_id'];
@@ -51,6 +51,7 @@ export class ForumComponent {
     let modalRef = this.modal.open( ForumPostComponent );
     modalRef.componentInstance['post_config_id'] = this.post_config_id;
     modalRef.result.then( () => {
+      this.postListComponent.loadPostData( );
     }).catch( e => console.log('exit ' + e ) );
   }
 }
