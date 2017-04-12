@@ -17,15 +17,15 @@ import { User, PostData, POST_LIST_RESPONSE, POST_CREATE, USER, PostConfig, CONF
 export class QnaPostComponent implements OnInit {
     form: POST_CREATE = <POST_CREATE> {}
     postConfigs: CONFIGS = [];
-    pageOption: PAGINATION_OPTION = {
-        limitPerPage: 5,
-        currentPage:1,
-        numberPerNav: 4, //
-        totalRecord: 0
-    };
-    searchQuery = <LIST>{
-        limit: this.pageOption['limitPerPage']
-    };
+    // pageOption: PAGINATION_OPTION = {
+    //     limitPerPage: 5,
+    //     currentPage:1,
+    //     numberPerNav: 4, //
+    //     totalRecord: 0
+    // };
+    // searchQuery = <LIST>{
+    //     limit: this.pageOption['limitPerPage']
+    // };
     constructor(
         private activeModal  : NgbActiveModal,
         private app          : App,
@@ -34,7 +34,7 @@ export class QnaPostComponent implements OnInit {
         private postConfig: PostConfig,       
         // private forum        : Forum
     ) {
-        this.searchQuery['order'] = 'idx ASC';
+        // this.searchQuery['order'] = 'idx ASC';
     }
 
     ngOnInit() {
@@ -42,36 +42,36 @@ export class QnaPostComponent implements OnInit {
         if ( this.user.logged ) this.getUserData();
     }
     getQnaConfig() {
-        let qna = "qna";
-        let cond = '';
-        let bind = '';
-         if ( qna ) cond += cond ? "AND name LIKE ? " : "name LIKE ?";
-        if ( qna ) bind += bind ? `,%${qna}%` : `%${qna}%`;
-        this.searchQuery.where = cond;
-        this.searchQuery.bind = bind;
-        this.searchQuery.order= 'idx DESC';
-        this.pageOption.currentPage = 1;
+        // let qna = "qna";
+        // let cond = '';
+        // let bind = '';
+        //  if ( qna ) cond += cond ? "AND name LIKE ? " : "name LIKE ?";
+        // if ( qna ) bind += bind ? `,%${qna}%` : `%${qna}%`;
+        // this.searchQuery.where = cond;
+        // this.searchQuery.bind = bind;
+        // this.searchQuery.order= 'idx DESC';
+        // this.pageOption.currentPage = 1;
         this.loadQnaPostConfig();
     }
     loadQnaPostConfig() {
-        this.postConfigs = [];
+        // this.postConfigs = [];
 
-        this.searchQuery.page = this.pageOption.currentPage;
+        // this.searchQuery.page = this.pageOption.currentPage;
 
-        this.postConfig.list( this.searchQuery ).subscribe( (res: POST_LIST_RESPONSE ) => {
+        // this.postConfig.list( this.searchQuery ).subscribe( (res: POST_LIST_RESPONSE ) => {
 
-        console.log("config list:",res);
+        // console.log("config list:",res);
 
-        this.postConfigs = res.data.configs;
-        this.pageOption.totalRecord = parseInt(res.data.total);
+        // this.postConfigs = res.data.configs;
+        // this.pageOption.totalRecord = parseInt(res.data.total);
 
 
-        this.postConfigs.map( (config: CONFIG) => {
-            config.created = ( new Date( parseInt(config.created) * 1000 ) ).toString();
-        });
-        //Change the form config idx to post config idx
-        this.form.post_config_id = this.postConfigs[0].idx.toString();
-        }, err => this.error( err ) );
+        // this.postConfigs.map( (config: CONFIG) => {
+        //     config.created = ( new Date( parseInt(config.created) * 1000 ) ).toString();
+        // });
+        // //Change the form config idx to post config idx
+        // this.form.post_config_id = this.postConfigs[0].idx.toString();
+        // }, err => this.error( err ) );
     }
     getUserData() {
         this.user.data().subscribe( (res) => {
