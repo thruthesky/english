@@ -23,7 +23,7 @@ export class KkangHeaderComponent implements OnInit {
     constructor(
         public user        : User,
         private modal       : NgbModal,
-        private app         : App
+        public app         : App
     ) {
     
     }

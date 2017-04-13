@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     constructor(
         public user        : User,
         private modal       : NgbModal,
-        private app         : App
+        public app         : App
     ) {
         // userTest.run();
         // console.log('header :: constructor(), loginUser: ', user.loginUser);

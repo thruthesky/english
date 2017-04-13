@@ -23,7 +23,7 @@ export class PlHeaderComponent implements OnInit {
     constructor(
         public user        : User,
         private modal       : NgbModal,
-        private app         : App
+        public app         : App
     ) {
         // this.onClickRegister();
         
