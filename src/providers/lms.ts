@@ -91,13 +91,13 @@ export class LMS {
             this.loadUserData();
             this.getUserDebounce
             .subscribe(() => {
-                console.log("Meow:",this.userData);
                 let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
-                let url = LMS_URL + `/ajax.php?id=${this.userData.id}6&email=${this.userData.email}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
+                let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                 // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                 this.http.get( url ).subscribe( re =>{
                     let json = null;
                     try {
+                        console.log('success:',json);
                         json = JSON.parse( re['_body'] );
                     }
                     catch ( e ) {
@@ -116,6 +116,8 @@ export class LMS {
                     // alert("error on class list by month");
                 });
             });
+        }else {
+            error();
         }
       
         //////////////////////////////////

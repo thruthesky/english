@@ -60,10 +60,6 @@ export class ForumPostComponent implements OnInit {
         
 
     }
-    onShowFiles() {
-        console.log("Latest Files:",this.files);
-        console.log("Latest Config IDX:",this.post_config_id);
-    }
 
     onSubmit() {
         console.log( this.formGroup.value );

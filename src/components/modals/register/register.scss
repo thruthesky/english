@@ -25,9 +25,13 @@
                 padding: .6em 2em;
                 color: #555;
                 .form_image {
+                    position: relative;
                     img {
                         width:100%;
                         height: auto;
+                    }
+                    span {
+                        cursor: pointer;
                     }
                 }
                 .form-title {

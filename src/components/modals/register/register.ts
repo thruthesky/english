@@ -15,7 +15,8 @@ import {
     File,
     USER_DATA_RESPONSE,
     _USER_CREATE,
-    _USER_EDIT
+    _USER_EDIT,
+    _DELETE_RESPONSE
 } from './../../../angular-backend/angular-backend';
 
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -219,6 +220,14 @@ export class RegisterComponent{
         }, error => {
             this.error( error );
         } );
+    }
+    onClickDeletePhoto() {
+        console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
+
+        this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
+            console.log("file delete: ", res);
+            this.primary_photo_idx = <any> {};
+        }, err => this.file.alert(err) );
     }
     successUpdate( res: USER_EDIT_RESPONSE) {
 

@@ -82,7 +82,6 @@ export class PostListComponent  {
         
 
         this.posts.map( (post: POST) => {
-            console.log("chemy",post);
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
         });
 

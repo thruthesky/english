@@ -21,8 +21,13 @@
             <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
             </div>
             
-            <div class="form_image">
-                <img *ngIf=" primary_photo_idx " src="{{ file.url( primary_photo_idx ) }}">
+            <div class="form_image" *ngIf=" primary_photo_idx ">
+                <span (click)="onClickDeletePhoto()" class="fa-stack fa-lg pointer" style="position: absolute; right: .6em; bottom: .6em;">
+                    <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                    <i class="fa fa-trash fa-stack-1x"></i>
+                </span>
+                <img  src="{{ file.url( primary_photo_idx ) }}">
+                
             </div>
             <div div class="input-group">
                 <input class="form-control-file" #userfile type="file" (change)="onChangeFileUpload( userfile )">
