@@ -89,13 +89,12 @@ import { AngularBackendAdmin,
 import { EnhanceSample } from '../enhance/components/sample';
 import { LMS } from '../providers/lms';
 
-
-const appRoutes: Routes = [
+const appRoutes:Routes = [
   { path: '', component: HomePage },
-  { path: 'seconddesign', component: SecondDesignPage },
-  { path: 'thirddesign', component: ThirdDesignPage },
+  { path: 'seconddesign', component:SecondDesignPage },
+  { path: 'thirddesign', component:ThirdDesignPage },
   { path: 'admin/user', component: BackendAdminUserListPage },
-  { path: 'admin', component: BackendAdminPage },
+  { path: 'admin', component: BackendAdminPage }
 ];
 
 @NgModule({
@@ -157,7 +156,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot( appRoutes, { useHash: !history.pushState }),
+    RouterModule.forRoot( appRoutes ),
     NgbModule.forRoot(),
     AngularBackend,
     AngularBackendAdmin,

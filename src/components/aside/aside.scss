@@ -1,17 +1,15 @@
 //Narrow
 @import './../../theme/variables';
 
-
-
-
 :host {
     display: block;
-    padding: .3em 0 .3em;
+    padding: .3 0 .3em;
     background: #8d8d8d;
-    @media(min-width:$md_breakpoint) {
-        background: white;
+    @media( min-width: $md_breakpoint ) {
+        background: #fff;
     }
 }
+
 
 :host aside {
         overflow: auto;
