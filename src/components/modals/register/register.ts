@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { App } from '../../../providers/app';
 
 import { LMS } from '../../../providers/lms';
-
+import { ChangePasswordComponent } from '../change-password/change-password';
 import { 
     RESPONSE,
     USER_REGISTER, USER_REGISTER_RESPONSE
@@ -45,6 +45,7 @@ export class RegisterComponent{
         public user         : User,
         private file         : File,
         private fb           : FormBuilder,
+        private modal: NgbModal,
     ) {
      
         ///////////////
@@ -78,7 +79,10 @@ export class RegisterComponent{
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
     }
-
+    onClickChangePasswordr(){
+        this.activeModal.close();
+        this.modal.open( ChangePasswordComponent );
+    }
     onChangeFileUpload( fileInput ) {
         let file = fileInput.files[0];
         this.file.uploadPrimaryPhoto( file ).subscribe(res => {
@@ -289,5 +293,7 @@ export class RegisterComponent{
     }
     
   };
+
+  
 
 }

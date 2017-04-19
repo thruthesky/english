@@ -94,7 +94,8 @@
                     <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
                     Register
                     </button>
-                <button *ngIf=" user.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickUpdate()">Update</button>
+                <button *ngIf=" user.logged " type="button" class="control btn btn-info btn-sm form-control" (click)="onClickUpdate()">Update</button>
+                <button *ngIf=" user.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickChangePasswordr()">Change Password</button>
               </div>
             </div>
             

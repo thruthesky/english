@@ -69,7 +69,7 @@ import { InquiryComponent } from '../components/inquiry/inquiry';
 import { ReservationComponent } from '../components/reservation/reservation';
 import { FooterComponent } from '../components/footer/footer';
 import { QnaPostComponent } from '../components/modals/qna_post/post';
-
+import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
@@ -122,6 +122,7 @@ const appRoutes:Routes = [
     PlSmallHeaderComponent,
     PlBigHeaderComponent,
     ForgotPasswordComponent,
+    ChangePasswordComponent,
     KkangHeaderComponent,
     KkangFooterComponent,
     KkangSmallHeaderComponent,
@@ -171,7 +172,8 @@ const appRoutes:Routes = [
     LoginModal,
     ClassInfoModal,
     ForgotPasswordComponent,
-    ForumPostComponent
+    ForumPostComponent,
+    ChangePasswordComponent
   ]
 })
 export class AppModule { }

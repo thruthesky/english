@@ -94,6 +94,7 @@ export class ForumPostComponent implements OnInit {
         let create = <_POST_CREATE> this.formGroup.value;
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
+        console.log("create:",create)
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
             console.log( res );
