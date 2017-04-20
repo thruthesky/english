@@ -91,7 +91,7 @@ export class LMS {
             setTimeout(()=>{
                 console.log(this.userData);
                 let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
-                let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
+                let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                 // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                 this.http.get( url ).subscribe( re =>{
                     let json = null;

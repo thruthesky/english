@@ -86,7 +86,7 @@ import { AngularBackendAdmin,
   BackendAdminUserListPage,
   BackendAdminUserEditPage
 } from './../angular-backend/angular-backend-admin';
-import { EnhanceSample } from '../enhance/components/sample';
+// import { EnhanceSample } from '../enhance/components/sample';
 import { LMS } from '../providers/lms';
 
 const appRoutes:Routes = [
@@ -100,7 +100,7 @@ const appRoutes:Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    EnhanceSample,
+    // EnhanceSample,
     HomePage,
     SecondDesignPage,
     ThirdDesignPage,
