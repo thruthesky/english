@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Subject } from 'rxjs/Subject';
 import { User, USER_DATA_RESPONSE, USER_FIELDS } from '../angular-backend/angular-backend';
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
@@ -22,7 +21,6 @@ export interface TEACHER {
 export type TEACHERS = Array< TEACHER >;
 @Injectable()
 export class LMS {
-    getUserDebounce = new Subject();
     userData: USER_FIELDS = null;
     constructor( private http: Http,
                  public user: User ) {
@@ -55,6 +53,7 @@ export class LMS {
     }
 
     register( data, success, failure: ( error : string ) => void ){
+        data = data.value;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
 
         this.http.get( url ).subscribe( re =>{
@@ -65,7 +64,7 @@ export class LMS {
     }
 
     update( data, success, failure: ( error: string) => void ){
-        console.log("My Girl:",data);
+        data = data.value;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
 
         this.http.get( url ).subscribe( re =>{
@@ -77,7 +76,6 @@ export class LMS {
     loadUserData() {
         this.user.data().subscribe( (res: USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
-            this.getUserDebounce.next();
         }, error => {
             this.error( error );
         } );
@@ -90,8 +88,8 @@ export class LMS {
         //update website
         if ( this.user.logged ) {
             this.loadUserData();
-            this.getUserDebounce
-            .subscribe(() => {
+            setTimeout(()=>{
+                console.log(this.userData);
                 let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
                 let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                 // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
@@ -116,34 +114,10 @@ export class LMS {
                     error();
                     // alert("error on class list by month");
                 });
-            });
+            },1000);
         }else {
             error();
         }
-      
-        //////////////////////////////////
-        // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
-        // this.http.get( url ).subscribe( re =>{
-        //     let json = null;
-        //     try {
-        //         json = JSON.parse( re['_body'] );
-        //     }
-        //     catch ( e ) {
-        //         alert("Parse ERROR on lms::getTeachers()");
-        //     }
-
-        //     if ( json['code'] ) {
-        //         alert( json['message'] );
-        //     }
-        //     else {
-        //         console.log(json);
-        //         success( json['data'] );
-        //     }
-        // }, err => {
-        //     error();
-        //     // alert("error on class list by month");
-        // });
-        ///////////////////
     }
     
     

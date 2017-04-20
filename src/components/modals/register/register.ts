@@ -152,11 +152,13 @@ export class RegisterComponent{
         this.loading = true;
         let register = <_USER_CREATE> this.form.value;
         register.file_hooks = [ this.primary_photo_idx ];
-        let date = this.splitBirthday( register['birthday']);
-        delete register['birthday'];
-        register.birth_year = date[0];
-        register.birth_month = date[1];
-        register.birth_day = date[2];
+        if( register['birthday']) {
+            let date = this.splitBirthday( register['birthday']);
+            delete register['birthday'];
+            register.birth_year = date[0];
+            register.birth_month = date[1];
+            register.birth_day = date[2];
+        }
         this.user.register( register ).subscribe( (res: USER_REGISTER_RESPONSE ) => {
             //this.successRegister( res );
             callback();

@@ -39,7 +39,7 @@ export class LoginModal implements OnInit {
       }
 
   onClickDismiss(){
-    this.activeModal.close();
+    this.activeModal.close('close');
   }
 
 
@@ -82,7 +82,7 @@ export class LoginModal implements OnInit {
   success( res: _USER_LOGIN_RESPONSE) {
 
     this.loading = false;
-    this.activeModal.close();
+    this.activeModal.close('success');
   }
 
   error( error ) {

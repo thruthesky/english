@@ -32,6 +32,14 @@ export class ReservationComponent implements OnInit {
         public user     : User,
         private lms     : LMS
     ) {
+        this.listenEvents();
+    }
+    listenEvents(){
+        this.app.myEvent.subscribe( item =>{
+            if( item.eventType == 'login-success'  ){
+              this.getNewReservationData()
+            }
+        });
     }
     ngOnInit() {
         this.listCalendar(this.month, this.year);
