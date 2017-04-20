@@ -169,12 +169,17 @@ export class RegisterComponent{
     }    
 
     getDataSuccess( res:any ) {
-        console.log(res);
-        this.userData = res.data.user;
-        this.form.patchValue( this.userData );
-        let birthday = this.getConcatBirthdate();
-        this.form.patchValue( {birthday:birthday});
-        this.primary_photo_idx = this.userData.primary_photo.idx;
+        try {
+            console.log(res);
+            this.userData = res.data.user;
+            this.form.patchValue( this.userData );
+            let birthday = this.getConcatBirthdate();
+            this.form.patchValue( {birthday:birthday});
+            this.primary_photo_idx = this.userData.primary_photo.idx;
+        }catch(e){
+
+        }
+        
     }
     getConcatBirthdate( ) {
         if( this.userData.birth_month.length < 2 ) this.userData.birth_month = "0"+ this.userData.birth_month;
