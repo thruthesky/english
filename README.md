@@ -2,6 +2,9 @@
 
 # TODO
 
+* in reservation handle also if there is many reservations on a single day
+
+
 * make error on class reservation by month and show error message nicely.
 * do all error handling.
 
@@ -14,11 +17,11 @@
 if domain in address bar is
 
 
-igoodtalk.com       then, translate "ID@igoodtalk.onlineenglish.kr"
-iamtalkative.com    then, translate "ID@talkative.onlineenglish.kr"
+igoodtalk.com       then, the domain should be "igoodtalk.onlineenglish.kr"
+iamtalkative.com    then, domain is '' "talkative.onlineenglish.kr"
 
-witheng.com         then, no translation.
-onfis.com           then, no translation
+witheng.com         then, domain is ''
+onfis.com           then, domain is ''
 
 
 If domain is not one of above, then, translate
@@ -31,6 +34,7 @@ for instance, if domain is "www.abc.co.kr", then the translated would be "ID@abc
 
 
 Sample ID: mgonkim of "www.iamtalkative.com"
+Sample ID: italk2 of "www.iamtalkative.com"
 
 
 

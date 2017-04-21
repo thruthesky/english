@@ -107,6 +107,9 @@ export class ReservationComponent implements OnInit {
         return n < 10 ? '0' + n : n.toString();
     }
     listCalendar( month, year ) {
+        if(this.data)this.data.forEach((book)=>{
+                console.log("chemy chemy:",book);
+            });
         this.books = [];
         let book;
         let empty_day = new Date(year + "-" + month + "-01").getDay()               // first date(day) of the month. 0~6
@@ -114,7 +117,10 @@ export class ReservationComponent implements OnInit {
         for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }      // Fill all the empty days first
         for (let i = 1; i <= days_in_month; i++) {                                  //Fill the days of month
             let date = this.year.toString() +  this.add0( this.month ) + this.add0( i );
+            
+            
             if(this.data) book = this.data.find( book => book['date'] == date );
+            
             if ( book ) book['myDate'] = i;
             else book = { myDate: i };
             this.books.push( book );

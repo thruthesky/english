@@ -54,6 +54,8 @@ export class LMS {
 
     register( data, success, failure: ( error : string ) => void ){
         data = data.value;
+        let domain = this.getDomain();
+        console.log("res:", domain );
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
 
         this.http.get( url ).subscribe( re =>{
@@ -62,9 +64,29 @@ export class LMS {
             else failure( ' error on lms registration ' );
         })
     }
-
+    getDomain( ) {
+        let hostname = window.location.hostname
+        let domain:string = '';
+        if ( hostname.indexOf("witheng.com" ) != -1 ) {
+        }
+        else if( hostname.indexOf("onfis.com") != -1 ) {
+        }
+        else if( hostname.indexOf('iamtalkative') != -1 ) {
+            domain = 'talkative.onlineenglish.kr';
+        }
+        else if( hostname.indexOf("igoodtalk.com") != -1 ) {
+            domain = 'igoodtalk.onlineenglish.kr';
+        }
+        else {
+            let parts = hostname.split( '.' );
+            domain = parts[0] == 'www' ? parts[1] : parts[0];
+        }
+        return domain;
+    }
     update( data, success, failure: ( error: string) => void ){
         data = data.value;
+        let domain = this.getDomain();
+        console.log("res:", domain );
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
 
         this.http.get( url ).subscribe( re =>{
@@ -86,39 +108,45 @@ export class LMS {
     }
     getReservationsByMonthYear( data, success, error ) {
         //update website
-        if ( this.user.logged ) {
-            this.loadUserData();
-            setTimeout(()=>{
-                console.log(this.userData);
-                let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
-                let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
-                // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
-                this.http.get( url ).subscribe( re =>{
-                    let json = null;
-                    try {
-                        console.log('success:',json);
-                        json = JSON.parse( re['_body'] );
-                    }
-                    catch ( e ) {
-                        alert("Parse ERROR on lms::getTeachers()");
-                    }
+        try {
+            if ( this.user.logged ) {
+                this.loadUserData();
+                setTimeout(()=>{
+                    let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
+                    console.log(this.userData);
+                    let domain = this.getDomain();
+                    console.log("res:", domain );
 
-                    if ( json['code'] ) {
-                        alert( json['message'] );
-                    }
-                    else {
-                        console.log(json);
-                        success( json['data'] );
-                    }
-                }, err => {
-                    error();
-                    // alert("error on class list by month");
-                });
-            },1000);
-        }else {
-            error();
+                    let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+                    // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
+                    this.http.get( url ).subscribe( re =>{
+                        console.log("URI:",re['url']);
+                        let json = null;
+                        try {
+                            console.log('success:',json);
+                            json = JSON.parse( re['_body'] );
+                        }
+                        catch ( e ) {
+                            alert("Parse ERROR on lms::getTeachers()");
+                        }
+
+                        if ( json['code'] ) {
+                            alert( json['message'] );
+                        }
+                        else {
+                            console.log(json);
+                            success( json['data'] );
+                        }
+                    }, err => {
+                        error();
+                        // alert("error on class list by month");
+                    });
+                },1000);
+            }else {
+                error();
+            }
+        }catch(e) {
+            console.log(e);
         }
     }
-    
-    
 }

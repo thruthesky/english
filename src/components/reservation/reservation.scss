@@ -293,14 +293,21 @@
                  /deep/ .teacher-icon{
                     // text-align: center;
                     border-radius: 50%;
-                    width: 4rem;
-                    height: 4rem;
+                    width: 2rem;
+                    height: 2rem;
                     overflow: hidden;
                     margin:0 auto;
                     img {
-                        width: 4rem;
+                        width: 2rem;
                         height: auto;
                         // border-radius:50%;
+                    }
+                    @media(min-width:$md_breakpoint) {
+                        width: 4rem;
+                        height: 4rem;
+                        img {
+                            width: 4rem;
+                        } 
                     }
                 }
                 .calendar-day-head {

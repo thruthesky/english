@@ -90,12 +90,12 @@
             <div class="row">
             
               <div class="col-md-12 register" >
-                <button *ngIf=" ! user.logged " type="button" class="btn btn-primary btn-sm form-control" (click)="onClickRegister()">
+                <button *ngIf=" ! user?.logged " type="button" class="btn btn-primary btn-sm form-control" (click)="onClickRegister()">
                     <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
                     Register
                     </button>
-                <button *ngIf=" user.logged " type="button" class="control btn btn-info btn-sm form-control" (click)="onClickUpdate()">Update</button>
-                <button *ngIf=" user.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickChangePasswordr()">Change Password</button>
+                <button *ngIf=" user?.logged " type="button" class="control btn btn-info btn-sm form-control" (click)="onClickUpdate()">Update</button>
+                <button *ngIf=" user?.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickChangePasswordr()">Change Password</button>
               </div>
             </div>
             
