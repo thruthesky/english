@@ -79,7 +79,7 @@ export class LMS {
         }
         else {
             let parts = hostname.split( '.' );
-            domain = parts[0] == 'www' ? parts[1] : parts[0];
+            domain = parts[0] == 'www' ? parts[1] + '.onlineenglish.kr' : parts[0] + '.onlineenglish.kr';
         }
         return domain;
     }
