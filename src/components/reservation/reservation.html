@@ -62,31 +62,62 @@
             <tbody>
                 <tr *ngFor="let week of weeks">
                     <td *ngFor="let day of week;" class="calendar-day" >
-                        <div class="info-container" (click)="onClickClassInfo(day)" >
+                        <div *ngIf="day" class="info-container" >
                             <span class="my-date">{{day?.myDate}}</span>
-                            <div *ngIf="day?.icon" class ="teacher-icon" [innerHTML]="day?.icon" on-mouseover="day.display = true" on-mouseleave="day.display = false"></div>
-                            <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
-                            <div class="class-info" *ngIf="day?.display && day?.teacher">
-                                <div>
-                                    <span >
-                                        Teacher's Name: {{ day?.teacher?.mb_nick }}
-                                    </span>
-                                    
+                            <div *ngIf="day?.teachers">
+                                <div *ngFor="let t of day.teachers;" >
+                                     <div *ngIf="t?.icon" class ="teacher-icon" (click)="onClickClassInfo(t)" [innerHTML]="t?.icon" on-mouseover="t.display = true" on-mouseleave="t.display = false"></div>
+                                    <div class="teacher-nick">{{t?.teacher?.mb_nick}}</div>
+                                    <div class="class-info" *ngIf="t?.display && t?.teacher">
+                                    <div>
+                                        <span >
+                                            Teacher's Name: {{ t?.teacher?.mb_nick }}
+                                        </span>
+                                        
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Date: {{ t?.date }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Book: {{ t?.book }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Teacher's Comment: {{ t?.rate_comment }}
+                                        </span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span>
-                                        Date: {{ day?.date }}
-                                    </span>
                                 </div>
-                                <div>
-                                    <span>
-                                        Book: {{ day?.book }}
-                                    </span>
-                                </div>
-                                <div>
-                                    <span>
-                                        Teacher's Comment: {{ day?.rate_comment }}
-                                    </span>
+                            </div>
+                            <div *ngIf="!day?.teachers">
+                                <div *ngIf="day?.icon" class ="teacher-icon" (click)="onClickClassInfo(day)" [innerHTML]="day?.icon" on-mouseover="day.display = true" on-mouseleave="day.display = false"></div>
+                                <div class="teacher-nick">{{day?.teacher?.mb_nick}}</div>
+                                <div class="class-info" *ngIf="day?.display && day?.teacher">
+                                    <div>
+                                        <span >
+                                            Teacher's Name: {{ day?.teacher?.mb_nick }}
+                                        </span>
+                                        
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Date: {{ day?.date }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Book: {{ day?.book }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Teacher's Comment: {{ day?.rate_comment }}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
