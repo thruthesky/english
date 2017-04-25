@@ -219,7 +219,8 @@ export class RegisterComponent{
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
         delete edit['password'];
-        delete edit['id'];
+        // delete edit['id'];
+        
         let date = this.splitBirthday( edit['birthday']);
         delete edit['birthday'];
         edit.birth_year = date[0];

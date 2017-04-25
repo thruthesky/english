@@ -69,6 +69,9 @@ export class LMS {
         let domain:string = '';
         if ( hostname.indexOf("witheng.com" ) != -1 ) {
         }
+        else if ( hostname.indexOf("witheng.dev" ) != -1 ) {
+            domain = 'witheng.onlineenglish.kr';
+        }
         else if( hostname.indexOf("onfis.com") != -1 ) {
         }
         else if( hostname.indexOf('iamtalkative') != -1 ) {
@@ -87,8 +90,9 @@ export class LMS {
         data = data.value;
         let domain = this.getDomain();
         console.log("res:", domain );
+        console.log('data:',data);
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
-
+        console
         this.http.get( url ).subscribe( re =>{
             console.log( ' user_update :: ' + re );
             if( re ) success( re );
@@ -126,17 +130,16 @@ export class LMS {
                         try {
                             console.log('success:',json);
                             json = JSON.parse( re['_body'] );
+                            if ( json['code'] ) {
+                                alert( json['message'] );
+                            }
+                            else {
+                                console.log(json);
+                                success( json['data'] );
+                            }
                         }
                         catch ( e ) {
-                            alert("Parse ERROR on lms::getTeachers()");
-                        }
-
-                        if ( json['code'] ) {
-                            alert( json['message'] );
-                        }
-                        else {
-                            console.log(json);
-                            success( json['data'] );
+                            alert("Parse ERROR on lms::getReservationsByMonthYear()");
                         }
                     }, err => {
                         error();
