@@ -39,4 +39,7 @@ export class ChangePasswordComponent{
             this.activeModal.close();
         }, err => this.user.alert( err ));
     }
+    onEnterChangePassword( event ){
+        if( event.keyCode == 13 ) this.onClickChangePassword();
+    }
 }

@@ -36,7 +36,8 @@ for instance, if domain is "www.abc.co.kr", then the translated would be "ID@abc
 Sample ID: mgonkim of "www.iamtalkative.com"
 Sample ID: italk2 of "www.iamtalkative.com"
 
-
+test id: testboy pw:0000
+testboy@talkative.onlineenglish.kr
 
 
 

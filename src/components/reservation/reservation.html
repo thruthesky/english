@@ -60,7 +60,45 @@
                 <th class="calendar-day-head">Sat</th>
             </thead>
             <tbody>
-                <tr *ngFor="let week of weeks">
+                  <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week;" class="calendar-day" >
+                        <div *ngIf="day" class="info-container" >
+                            <span class="my-date">{{day?.myDate}}</span>
+                            <div>
+                                <div *ngFor="let info of day;" >
+                                     <div *ngIf="info?.icon" class ="teacher-icon" (click)="onClickClassInfo(info)" [innerHTML]="info?.icon" on-mouseover="info.display = true" on-mouseleave="info.display = false"></div>
+                                    <div class="teacher-nick">{{info?.teacher?.mb_nick}}</div>
+                                    <div class="class-info" *ngIf="info?.display && info?.teacher">
+                                    <div>
+                                        <span >
+                                            Teacher's Name: {{ info?.teacher?.mb_nick }}
+                                        </span>
+                                        
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Date: {{ info?.date }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Book: {{ info?.book }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            Teacher's Comment: {{ info?.rate_comment }}
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        
+                    </td>
+                </tr>
+                <!--<tr *ngFor="let week of weeks">
                     <td *ngFor="let day of week;" class="calendar-day" >
                         <div *ngIf="day" class="info-container" >
                             <span class="my-date">{{day?.myDate}}</span>
@@ -123,7 +161,7 @@
                         </div>
                         
                     </td>
-                </tr>
+                </tr>-->
             </tbody>
         </table>
         <div *ngIf="!user.logged" class="reminder-image"> <img src="assets/img/reservation-banner.png" >

@@ -15,6 +15,7 @@ export class ReservationComponent implements OnInit {
     maxDay:number = 42;
     calendarLoad:boolean = true;
     books: BOOKS = [];
+    chemy: BOOKS = [];
     weeks: WEEKS = [];
     date:Date = new Date();
     year:number = this.date.getFullYear();
@@ -107,10 +108,6 @@ export class ReservationComponent implements OnInit {
         return n < 10 ? '0' + n : n.toString();
     }
     listCalendar( month, year ) {
-        // if(this.data)this.data.forEach((book)=>{
-        //         console.log("chemy chemy:",book);
-        //     });
-        let res;
         this.books = [];
         let book;
         let empty_day = new Date(year + "-" + month + "-01").getDay()               // first date(day) of the month. 0~6
@@ -118,27 +115,12 @@ export class ReservationComponent implements OnInit {
         for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }      // Fill all the empty days first
         for (let i = 1; i <= days_in_month; i++) {                                  //Fill the days of month
             let date = this.year.toString() +  this.add0( this.month ) + this.add0( i );
-            if(this.data) book = this.data.find( book => book['date'] == date );
+            // if(this.data) book = this.data.find( book => book['date'] == date );
+            if(this.data) book = this.data.filter( (mybook)=> { return mybook['date'] == date; });
             if ( book ) book['myDate'] = i;
             else book = { myDate: i };
             this.books.push( book );
         }
-        //Update for teachers
-        this.data.forEach( re => {
-            if( re && !re['myDate']){
-                if(this.data) res = this.data.find( book => book['date'] == re['date'] );
-                this.books.forEach((book)=>{
-                    if( book && res && book['idx'] == res['idx']) {
-                        if( !book['teachers'] ){
-                            book['teachers'] = [];
-                            book['teachers'].unshift( book );
-                        }
-                        book['teachers'].push( re );
-                    }
-
-                }); 
-            }
-        });
         while( this.books.length < this.maxDay ) { this.books.push( null ); } // fill the remaining days
         this.weeks = this.chunk(this.books );                             //Chunk Date
         console.log('week:',this.weeks);

@@ -116,8 +116,9 @@ export class LMS {
                     console.log(this.userData);
                     let domain = this.getDomain();
                     console.log("res:", domain );
-
-                    let url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+                    let url = '';
+                    if( this.userData && this.userData.id ) url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+                    else return error();
                     // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                     this.http.get( url ).subscribe( re =>{
                         console.log("URI:",re['url']);
