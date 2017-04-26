@@ -1,4 +1,8 @@
-@import '../../../../variables.scss'; 
+@import '../../../../variables.scss';
+.top .menu {
+    img { width: 28px; }
+}
+
 :host .small .navbar {
     padding: 0;
     .top {
@@ -23,8 +27,6 @@
         }
     }
     .top .menu .left-menu {
-        img { width: 28px; } // 
-        
         padding: .4em;
         width: 50%;
         float: left;

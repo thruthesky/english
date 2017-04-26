@@ -2,52 +2,19 @@
     <nav class="navbar fixed-top">
         <div class="top">
             <div class="menu">
-                <div class="left-menu">
-                    <div class="icon">
-                        <span><img src="assets/img/kkang/k.png"></span>
-                        <span><img src="assets/img/kkang/f.png"></span>
-                        <span><img src="assets/img/kkang/b.png"></span>
-                    </div>
-                    <div class="float-right">
-                        무료 레벨 테스트
-                    </div>
-                </div>
-                <div class="right-menu hidden-sm-down">
-                    <div *ngIf="! user.logged " class="button" (click)="onClickRegister()">
-                        <span> <img src="assets/img/kkang/top-btn1.png"> </span>
-                    </div>
-                    <div *ngIf=" ! user.logged " class="button" (click)="onClickLogin()">
-                        <span> <img src="assets/img/kkang/top-btn2.png"> </span>
-                    </div>
-                    <div *ngIf=" user.logged " class="button" (click)="onClickUpdateProfile()">
-                        <span> <img src="assets/img/kkang/top-btn3.png"> </span>
-                    </div>
-                    <div *ngIf=" user.logged " class="button" (click)="onClickLogout()">
-                        <span> <img src="assets/img/kkang/top-btn1.png"> </span>
-                    </div>
-                    <div class="button" (click)="onClickPanelMenu('contact')"> 
-                        <span> <img src="assets/img/kkang/top-btn3.png"> </span>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 icon">
+                            <span><img src="assets/img/kkang/k.png"></span>
+                            <span><img src="assets/img/kkang/f.png"></span>
+                            <span><img src="assets/img/kkang/b.png"></span>
+                        </div>
+                        <div class="col-6 p-2 fs-2">
+                            무료 레벨 테스트
+                        </div>
                     </div>
                 </div>
             </div>
-                <!--<div class="right-menu">
-                    <div *ngIf="! user.logged " class="button" (click)="onClickRegister()">
-                        <span class="text"> Register </span> 
-                    </div>
-                    <div *ngIf=" ! user.logged " class="button" (click)="onClickLogin()">
-                        <span class="text"> Login </span>
-                    </div>
-                    <div *ngIf=" user.logged " class="button" (click)="onClickUpdateProfile()">
-                        <span class="text"> Profile </span>
-                    </div>
-                    <div *ngIf=" user.logged " class="button" (click)="onClickLogout()">
-                        <span class="text">Logout</span>
-                    </div>
-                    <div class="button" (click)="onClickPanelMenu('contact')"> 
-                        <span class="text">Help </span>
-                    </div>
-                </div>
-            </div>-->
         </div>
         <div class="bottom">
             <div class="logo" (click)="onClickPanelMenu('intro')">
