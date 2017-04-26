@@ -4,22 +4,21 @@ import { App } from '../../../providers/app';
 
 import { LMS } from '../../../providers/lms';
 import { ChangePasswordComponent } from '../change-password/change-password';
-import { 
-    RESPONSE,
-    USER_REGISTER, USER_REGISTER_RESPONSE
-    , USER_EDIT, USER_EDIT_RESPONSE, USER, FILE_UPLOAD, USER_FIELDS
-} from './../../../angular-backend/interface';
-
-import { 
-    User,
-    File,
-    USER_DATA_RESPONSE,
-    _USER_CREATE,
-    _USER_EDIT,
-    _DELETE_RESPONSE
-} from './../../../angular-backend/angular-backend';
 
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+
+import {
+    User,
+    File,
+    _USER_CREATE,
+    _USER_EDIT,
+    _RESPONSE,
+    _USER_RESPONSE,
+    _USER_DATA_RESPONSE,
+    _USER_CREATE_RESPONSE,
+    _USER_EDIT_RESPONSE,
+    _DELETE_RESPONSE
+} from './../../../angular-backend/angular-backend';
 @Component({
     selector:'register-component',
     templateUrl: 'register.html',
@@ -32,33 +31,21 @@ export class RegisterComponent{
     // form = <USER_REGISTER> {};
     // userData: USER_FIELDS = null;
     login: boolean = false;
-    result: RESPONSE = <RESPONSE> {};
+    result: _RESPONSE = <_RESPONSE> {};
     loading     : boolean = false;
 
-    userData: USER_FIELDS = null;
+    userData: _USER_RESPONSE = null;
     primary_photo_idx: number = null;
     form: FormGroup;
     constructor (
         private app          : App,
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
-        public user         : User,
+        public  user         : User,
         private file         : File,
         private fb           : FormBuilder,
         private modal: NgbModal,
     ) {
-     
-        ///////////////
-        // this.form['gender'] = ""; //Default Select gender
-        //////////////
-        
-        // this.onClickRegister();
-        // this.register();
-
-        // this.fakeData();
-
-        /////////////////////////////////////////////////////
-
         if ( this.user.logged ) this.loadUserData();
 
         this.form = fb.group({
@@ -67,7 +54,8 @@ export class RegisterComponent{
             nickname: [],
             mobile: [],
             birthday: [],
-            gender: []
+            gender: [],
+            id: [],
         });
 
         if ( ! this.user.logged ) {
@@ -142,7 +130,7 @@ export class RegisterComponent{
     }
     loadUserData() {
         this.loading = true;
-        this.user.data().subscribe( (res: USER_DATA_RESPONSE) => {
+        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.getDataSuccess( res );
         }, error => {
             this.error( error );
@@ -159,7 +147,7 @@ export class RegisterComponent{
             register.birth_month = date[1];
             register.birth_day = date[2];
         }
-        this.user.register( register ).subscribe( (res: USER_REGISTER_RESPONSE ) => {
+        this.user.register( register ).subscribe( (res: _USER_CREATE_RESPONSE ) => {
             //this.successRegister( res );
             callback();
         }, error => {
@@ -173,6 +161,7 @@ export class RegisterComponent{
             console.log(res);
             this.userData = res.data.user;
             this.form.patchValue( this.userData );
+            console.log("chemy chemy:",this.form.value);
             let birthday = this.getConcatBirthdate();
             this.form.patchValue( {birthday:birthday});
             this.primary_photo_idx = this.userData.primary_photo.idx;
@@ -186,7 +175,7 @@ export class RegisterComponent{
         if( this.userData.birth_day.length < 2 ) this.userData.birth_day = "0"+ this.userData.birth_day;
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" +this.userData.birth_day;
     }
-    successRegister( res: USER_REGISTER_RESPONSE) {
+    successRegister( res: _USER_CREATE_RESPONSE) {
 
         console.log("user register success: ", res );
         this.loading = false;
@@ -226,6 +215,7 @@ export class RegisterComponent{
         edit.birth_year = date[0];
         edit.birth_month = date[1];
         edit.birth_day = date[2];
+        console.log('myDate:',edit);
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
@@ -241,7 +231,7 @@ export class RegisterComponent{
             this.primary_photo_idx = <any> {};
         }, err => this.file.alert(err) );
     }
-    successUpdate( res: USER_EDIT_RESPONSE) {
+    successUpdate( res: _USER_EDIT_RESPONSE) {
 
         console.log("user update success: ", res );
         this.loading = false;

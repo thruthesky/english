@@ -3,19 +3,16 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { App } from '../../../providers/app';
 
-import { User } from './../../../angular-backend/model/user';
-
-
 import { FindIdModal } from '../find-id/find-id';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password';
 import { RegisterComponent } from '../register/register';
 
-
 import {
+    User,
     _RESPONSE, 
     _USER_LOGIN,
     _USER_LOGIN_RESPONSE
-} from './../../../angular-backend/interface';
+} from './../../../angular-backend/angular-backend';
 
 @Component({
     selector: 'login-component',
@@ -28,15 +25,11 @@ export class LoginModal implements OnInit {
     result: _RESPONSE = <_RESPONSE> {};
     saveid:boolean = false;
     form = <_USER_LOGIN> {};
-    // form = {};
     constructor( 
       public activeModal  : NgbActiveModal,
       private app: App,
       private modal: NgbModal,
-      private user : User
-      ){
-          // this.onClickLogin();
-      }
+      private user : User ){}
 
   onClickDismiss(){
     this.activeModal.close('close');
@@ -88,8 +81,6 @@ export class LoginModal implements OnInit {
   error( error ) {
     this.loading = false;
     this.result = error;
-
-    console.log( this.result );
     return this.user.errorResponse( error );
 
   }
@@ -115,5 +106,4 @@ export class LoginModal implements OnInit {
       this.app.alert( name + ' is required ...' );
       return false;
   }
-
 }
