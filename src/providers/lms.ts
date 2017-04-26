@@ -68,11 +68,13 @@ export class LMS {
         let hostname = window.location.hostname
         let domain:string = '';
         if ( hostname.indexOf("witheng.com" ) != -1 ) {
+            domain = 'witheng.onlineenglish.kr';
         }
         else if ( hostname.indexOf("witheng.dev" ) != -1 ) {
             domain = 'witheng.onlineenglish.kr';
         }
         else if( hostname.indexOf("onfis.com") != -1 ) {
+            domain = 'onfis.onlineenglish.kr';
         }
         else if( hostname.indexOf('iamtalkative') != -1 ) {
             domain = 'talkative.onlineenglish.kr';
