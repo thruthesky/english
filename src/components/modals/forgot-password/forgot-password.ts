@@ -23,13 +23,5 @@ export class ForgotPasswordComponent{
      */
 
     onClickResetPassword(){
-        // this.user.resetpassword( this.email , success =>{
-        //     console.log( ' failed ' + success );
-        // }, fail =>{
-        //     console.log( ' error ' + fail );
-        // }, complete =>{
-        //     console.log( ' completed ' );
-        //     this.activeModal.close();
-        // })
     }
 }

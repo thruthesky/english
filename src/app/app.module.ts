@@ -67,7 +67,6 @@ import { LevelTestComponent } from '../components/level-test/level-test';
 import { CommentComponent } from '../components/comment/comment';
 import { ReservationComponent } from '../components/reservation/reservation';
 import { FooterComponent } from '../components/footer/footer';
-import { QnaPostComponent } from '../components/modals/qna_post/post';
 import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
 import { ForumComponent} from '../components/forum/forum';
@@ -142,7 +141,6 @@ const appRoutes:Routes = [
     CommentComponent,
     ReservationComponent,
     FooterComponent,
-    QnaPostComponent,
     ContactFormComponent,
     ForumComponent,
     PostListComponent,
@@ -164,7 +162,6 @@ const appRoutes:Routes = [
   providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
   entryComponents: [
-    QnaPostComponent,
     RegisterComponent,
     FindIdModal,
     LoginModal,

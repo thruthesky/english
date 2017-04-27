@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs/Subject';
 import { ForumPostComponent} from '../modals/forum-post/forum-post';
-// import { QnaPostComponent} from '../modals/qna_post/post';
 import 'rxjs/add/operator/debounceTime';
 import {
   PostData,

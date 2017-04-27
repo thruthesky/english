@@ -15,28 +15,24 @@
                     <div class="info-block">
                         <span class="info-title">
                             Teacher's Name
-                            <!--:  {{ classInfo?.teacher?.mb_nick}}-->
                         </span>
                         <input [(ngModel)]="classInfo.teacher.mb_nick" name="teachers-name" type="text" class="form-control"  placeholder="Teacher's Name">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
                             Date
-                            <!--: {{ classInfo?.date }}-->
                         </span>
                         <input [(ngModel)]="classInfo.date" name="date" type="text" class="form-control" placeholder="Date">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
                             Book
-                            <!--: {{ classInfo?.book }}-->
                         </span>
                         <input [(ngModel)]="classInfo.book" name="book" type="text" class="form-control" placeholder="Book">
                     </div>
                     <div>
                         <span class="info-title">
                             Teacher's Comment
-                            <!--: {{ classInfo?.rate_comment }}-->
                         </span>
                         <textarea rows="10" name="rate-comment" type="text" class="form-control">
                             {{classInfo.rate_comment}}
