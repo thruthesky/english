@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { App } from '../../../providers/app';
 
 import { FindIdModal } from '../find-id/find-id';
@@ -24,13 +24,19 @@ export class LoginModal implements OnInit {
     loading: boolean = false;
     result: _RESPONSE = <_RESPONSE> {};
     saveid:boolean = false;
-    form = <_USER_LOGIN> {};
+    form: FormGroup;
     constructor( 
       public activeModal  : NgbActiveModal,
       private app: App,
       private modal: NgbModal,
-      private user : User ){}
-
+      private fb: FormBuilder,
+      private user : User ){ this.createForm(); }
+  createForm() {
+    this.form = this.fb.group({
+        id:['',[ Validators.required]],
+        password:['',[ Validators.required]]
+    });
+  }
   onClickDismiss(){
     this.activeModal.close('close');
   }
@@ -61,9 +67,9 @@ export class LoginModal implements OnInit {
   }
   onClickLogin(){
     if ( this.validate() == false ) return;
-
+    let loginData = this.form.value;
     this.loading = true;
-    this.user.login( this.form ).subscribe( ( res: _USER_LOGIN_RESPONSE ) => {
+    this.user.login( loginData ).subscribe( ( res: _USER_LOGIN_RESPONSE ) => {
         this.success( res );
     }, error => {
 
@@ -92,14 +98,15 @@ export class LoginModal implements OnInit {
   }
 
   validate(){
-    if( this.form.id && this.form.id.match(/[.#$\[\]]/g)) return this.errorResult(' valid id ');
-    if( ! this.form.id )return this.errorResult( 'id ' );
-    if( ! this.form.password ) return this.errorResult( 'password ' );
+    let loginData = this.form.value;
+    if( loginData.id && loginData.id.match(/[.#$\[\]]/g) ) return this.errorResult(' valid id ');
+    if( ! loginData.id ) return this.errorResult( 'id ' );
+    if( ! loginData.password ) return this.errorResult( 'password ' );
     return true;
   }
 
   errorResult ( name ) {
-       this.result = <any>{message: name + "is required ..."}
+       this.result = <any>{ message: name + "is required ..." };
        return false;
   }
   validateError( name ) {

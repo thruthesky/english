@@ -81,7 +81,6 @@ export class ForumPostComponent implements OnInit {
     }
     editSuccess( post: _POST ) {
         this.reset();
-        console.log("emit: ", post);
         this.edited.emit( post );
         this.activeModal.close();
     }
@@ -94,7 +93,6 @@ export class ForumPostComponent implements OnInit {
         let create = <_POST_CREATE> this.formGroup.value;
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
-        console.log("create:",create)
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
             console.log( res );
@@ -110,7 +108,6 @@ export class ForumPostComponent implements OnInit {
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
             console.log( 'after edit: ', res );
             Object.assign( this.post, res.data ); // two-way binding.
-            //this.post = res.data;
             this.editSuccess( res.data );
         }, err => this.postData.alert( err ) );
     }
@@ -126,55 +123,5 @@ export class ForumPostComponent implements OnInit {
     }
 
 }
-/////////////////////////////
 
-// import { Component, OnInit } from '@angular/core';
-// import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-// import { App } from '../../../providers/app';
-// import { FormBuilder, FormGroup } from '@angular/forms';
-// import {
-//     PostData,
-//     File,
-//     NUMBERS,
-//     _FILE,
-//     _POST, _POST_CREATE, _POST_CREATE_RESPONSE,
-//     _POST_EDIT, _POST_EDIT_RESPONSE
-// } from './../../../angular-backend/angular-backend';
-// import { ShareService } from '../../../providers/share-service';
-// @Component({
-//     selector: 'forum-post-component',
-//     templateUrl: 'forum-post.html',
-//     styleUrls: ['forum-post.scss']
-// })
-
-// export class ForumPostComponent implements OnInit {
-  
-//     constructor(
-//         private activeModal  : NgbActiveModal,
-//         private app          : App,
-//         private post         : PostData,
-//     ) {
-//     }
-
-//     ngOnInit() {
-//     }
-//     onClickDismiss(){
-//         this.activeModal.close();
-//     }
-    
-//     onClickPost() {
-//        this.post.create( this.form ).subscribe( (res) => {
-//             console.log( res );
-//             this.app.myEvent.emit( { eventType:"post" } );
-//             this.onClickDismiss();
-//         }, error => {
-//             this.error( error );
-//         } );
-//     }
-//     error( error ) {
-//         return this.post.errorResponse( error );
-//     }
-// }
-
-////////////////////////
 

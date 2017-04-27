@@ -65,10 +65,8 @@ import { PaymentComponent } from '../components/payment/payment';
 import { TeacherComponent } from '../components/teacher/teacher';
 import { LevelTestComponent } from '../components/level-test/level-test';
 import { CommentComponent } from '../components/comment/comment';
-import { InquiryComponent } from '../components/inquiry/inquiry';
 import { ReservationComponent } from '../components/reservation/reservation';
 import { FooterComponent } from '../components/footer/footer';
-import { QnaPostComponent } from '../components/modals/qna_post/post';
 import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
 import { ForumComponent} from '../components/forum/forum';
@@ -141,10 +139,8 @@ const appRoutes:Routes = [
     TeacherComponent,
     LevelTestComponent,
     CommentComponent,
-    InquiryComponent,
     ReservationComponent,
     FooterComponent,
-    QnaPostComponent,
     ContactFormComponent,
     ForumComponent,
     PostListComponent,
@@ -166,7 +162,6 @@ const appRoutes:Routes = [
   providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
   entryComponents: [
-    QnaPostComponent,
     RegisterComponent,
     FindIdModal,
     LoginModal,

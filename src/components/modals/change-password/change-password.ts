@@ -25,6 +25,7 @@ export class ChangePasswordComponent{
     }
     onClickCancel() {
         console.log("Change Password Click Cancel");
+        this.activeModal.close();
     }
     onClickDismiss() {
         this.activeModal.close();
