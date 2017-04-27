@@ -1,17 +1,7 @@
-<kkang-header-component
+<header-component
         (onLogin)="onLogin()"
         (onLogout)="onLogout()"
-></kkang-header-component>
-
-
-<!--<pl-header-component
-        (onLogin)="onLogin()"
-        (onLogout)="onLogout()"
-></pl-header-component>-->
-<!--<header-component
-        (onLogin)="onLogin()"
-        (onLogout)="onLogout()"
-></header-component>-->
+></header-component>
 
 
 <section id="content" [class]="app.widthSize">
@@ -36,25 +26,12 @@
         <section id="inquiry" class="part">
                 <inquiry-banner-component></inquiry-banner-component>
                 <forum-component></forum-component>
-                <!--<inquiry-component></inquiry-component>-->
         </section>
         <section id="reservation" class="part">
                 <reservation-banner-component></reservation-banner-component>
                 <reservation-component></reservation-component>
         </section>
 
-    <!--<aside-component></aside-component>
-    <intro-component></intro-component>
-    <curriculum-component></curriculum-component>
-    <teacher-component [teachers]="teachers" ></teacher-component>
-    <payment-component [numberDesign]="design"></payment-component>
-    <level-test-component [numberDesign]="design"></level-test-component>
-    <contact-component [numberDesign]="design"></contact-component>
-    <comment-component></comment-component>
-    <inquiry-component [numberDesign]="design"></inquiry-component>
-    <reservation-component #reservation [numberDesign]="design"></reservation-component>-->
 </section>
 
-<!--<footer-component></footer-component>-->
-<!--<pl-footer-component></pl-footer-component>-->
-<kkang-footer-component></kkang-footer-component>
+<footer-component></footer-component>

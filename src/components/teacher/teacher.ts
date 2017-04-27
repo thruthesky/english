@@ -22,10 +22,9 @@ export class TeacherComponent {
         if(changes['teachers']) {
             if(!this.teachers) return;
             this.teachers.forEach( (teacher) => {
-                // console.log(teacher);
                 teacher.id = teacher.id.replace('ontue_', '');
                 teacher.id = teacher.id.replace('_ontue', '');
-                teacher.id = teacher.id.replace( /[0-9]+/, '' ); ////\\\\///
+                teacher.id = teacher.id.replace( /[0-9]+/, '' );
                 teacher.play_video = false;
                 teacher.show_more_greeting = false;
                 if( teacher.url_youtube.match(/http :\/\//g))  teacher.url_youtube = teacher.url_youtube.replace(/http :\/\//g, 'http://');
@@ -40,10 +39,6 @@ export class TeacherComponent {
                 teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube );//to fix unsafe
             });
         }
-        // console.log("teacher",this.teachers);
-        //this.whole_teacher = this.teachers;
-
-        // console.log( 'count: ', this.teachers.length );
         this.first_9_teachers = this.teachers.filter(this.firstDisplayTeacherIndex);
         this.rest_teacher = this.teachers.filter( e => this.first_9_teachers.findIndex( x => e.nickname == x.nickname ) == -1 );
         this.whole_teacher = this.first_9_teachers.concat( this.rest_teacher );
@@ -80,8 +75,6 @@ export class TeacherComponent {
         }
         else {
             this.teachers = this.first_9_teachers;
-            // this.teachers = _.take( this.teachers, this.no_teacher_show_by_defualt);
-           
         }
     }
 }

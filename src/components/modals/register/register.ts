@@ -25,15 +25,10 @@ import {
     styleUrls: ['register.scss']
 })
 
-export class RegisterComponent{
-    // src_photo: string = null;
-    
-    // form = <USER_REGISTER> {};
-    // userData: USER_FIELDS = null;
+export class RegisterComponent {
     login: boolean = false;
     result: _RESPONSE = <_RESPONSE> {};
     loading     : boolean = false;
-
     userData: _USER_RESPONSE = null;
     primary_photo_idx: number = null;
     form: FormGroup;
@@ -87,19 +82,6 @@ export class RegisterComponent{
             else this.register( callback => this.lmsRegister() );
         }
     }
-
-    // fakeData() {
-    //     let id = 'user' + (new Date).getHours() + (new Date).getMinutes() + (new Date).getSeconds();  
-    //     this.form.id = id;
-    //     this.form.email = id + '@gmail.com';
-    //     this.form.nickname = id;
-    //     this.form.name = id;
-    //     this.form.password = id;
-    //     this.form.mobile = '09174678000';
-    //     this.form.gender = 'M';
-    //     this.form.birthday = '1990-12-30';
-        
-    // }
 
     onClickDismiss() {
         this.activeModal.close();
@@ -208,14 +190,11 @@ export class RegisterComponent{
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
         delete edit['password'];
-        // delete edit['id'];
-        
         let date = this.splitBirthday( edit['birthday']);
         delete edit['birthday'];
         edit.birth_year = date[0];
         edit.birth_month = date[1];
         edit.birth_day = date[2];
-        console.log('myDate:',edit);
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
@@ -291,7 +270,5 @@ export class RegisterComponent{
     }
     
   };
-
-  
 
 }
