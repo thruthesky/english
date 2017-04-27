@@ -34,8 +34,6 @@
                 <div class="more">... show more</div>
             </div>
             
-            
-
             <div class="youtube-wrapper">
                 <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="youtube-default-photo">
                     <img [src]="teacher.img_youtube" >
@@ -50,12 +48,8 @@
                     </object>
                 </div>
             </div>
-            
         </div>
-        
-        
     </div>
-   
    
     <div class="load" (click)="onClickShowMore()">
         <div class="load-more" >

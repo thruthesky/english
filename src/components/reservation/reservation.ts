@@ -115,7 +115,6 @@ export class ReservationComponent implements OnInit {
         for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }      // Fill all the empty days first
         for (let i = 1; i <= days_in_month; i++) {                                  //Fill the days of month
             let date = this.year.toString() +  this.add0( this.month ) + this.add0( i );
-            // if(this.data) book = this.data.find( book => book['date'] == date );
             if(this.data) book = this.data.filter( (mybook)=> { return mybook['date'] == date; });
             if ( book ) book['myDate'] = i;
             else book = { myDate: i };
@@ -159,7 +158,6 @@ export class ReservationComponent implements OnInit {
         this.getNewCalendar();
     }
     onClickClassInfo( data ) {
-        console.log("Data:", data);
         this.modal.open( ClassInfoModal ).result.then( () => {
         }).catch( e => console.log('exit ' + e ) );
         this.app.myEvent.emit( {
