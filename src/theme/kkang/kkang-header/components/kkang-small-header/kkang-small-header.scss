@@ -1,6 +1,5 @@
 @import '../../../../variables.scss';
 nav.navbar {
-    
     border-bottom: .1em solid #d7d7d7;
 }
 .top {
@@ -10,93 +9,26 @@ nav.navbar {
 .top .icons {
     img { width: 28px; }
 }
-
-:host .small .navbar {
+.panel {
     padding: 0;
-    // .top {
-    //     border-top:.2em solid #006bb6;
-    //     border-bottom: .1em solid #d7d7d7;
-    //     background-color: #fff;
-    //     .menu {
-    //         padding:.3em;
-    //     }
-    // }
-    // .top .menu {
-    //     margin: 0 auto;
-    //     max-width: $lg_breakpoint;
-    //     width: 100%;  
-    //     .button {
-    //         display: inline-block;
-    //         font-size: 1em;
-    //     }
-    //     .button:hover {
-    //         cursor: pointer;
-    //         color:#fde000;
-    //     }
-    // }
-    // .top .menu .left-menu {
-    //     padding: .4em;
-    //     width: 50%;
-    //     float: left;
-    //     span {
-    //         cursor:pointer;
-    //     }
-    // }
-    // .top .menu .right-menu {
-    //     padding: .6em;
-    //     width: 50%;
-    //     display: inline-block;
-    //     text-align: right;
-    // }
-    .bottom {
-        position: relative;
-        background-color: white;
-        padding: .3em;
-        display: block;
-        .logo {
-            margin: 0;
-            width: 300px;
-            cursor: pointer;
-            img {
-                margin: 0 .2em;
-                width: 100%;
-                max-width: 300px;
-                height: 100%;
-            }
-        }
-        .button {
-            position: absolute;
-            font-size: 2em;
-            right: 1em;
-            top: .5em;
-            cursor: pointer;
-            color: #4b494f;
-        }
-        .panel {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition-duration: .3s;
-            &.active {
-                max-height: 450px;
-            }
-            .menus {
-                margin: 0;
-                padding: .5em 1em 0;
-                list-style: none;
-                .menu {
-                    border-top: 1px solid #eee;
-                    padding:.5em .8em;
-                    font-size: 1.3em;
-                    cursor:pointer;
-                    &.active {
-                        color: #f15f4c;
-                    }
-                    &:hover {
-                        color: #fde000;
-                    }
-                }
-            }
-        }
+    max-height: 0;
+    overflow: hidden;
+    transition-duration: .3s;
+    &.active {
+        max-height: 450px;
+    }
+}
+
+
+.list-panel-menu {
+    .text {
+        display: inline-block;
+        padding: 0 .6em;
+    }
+    small {
+        color: #888b92;
+        font-weight: bold;
+        font-family: Helvetica, sans-serif!important;
+        font-style: italic;
     }
 }
