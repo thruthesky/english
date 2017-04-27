@@ -7,7 +7,6 @@ import { User } from './../../../../angular-backend/model/user';
     styleUrls: ['big-header.scss']
 })
 export class BigHeaderComponent {
-    // event:any = {};
     more: boolean = false;
     @Input() login: boolean;
     @Output() logout = new EventEmitter();

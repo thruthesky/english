@@ -65,7 +65,6 @@ import { PaymentComponent } from '../components/payment/payment';
 import { TeacherComponent } from '../components/teacher/teacher';
 import { LevelTestComponent } from '../components/level-test/level-test';
 import { CommentComponent } from '../components/comment/comment';
-import { InquiryComponent } from '../components/inquiry/inquiry';
 import { ReservationComponent } from '../components/reservation/reservation';
 import { FooterComponent } from '../components/footer/footer';
 import { QnaPostComponent } from '../components/modals/qna_post/post';
@@ -141,7 +140,6 @@ const appRoutes:Routes = [
     TeacherComponent,
     LevelTestComponent,
     CommentComponent,
-    InquiryComponent,
     ReservationComponent,
     FooterComponent,
     QnaPostComponent,
