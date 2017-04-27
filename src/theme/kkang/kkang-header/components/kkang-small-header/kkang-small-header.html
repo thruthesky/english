@@ -3,12 +3,16 @@
         <div class="top">
             <div class="menu">
                 <div class="left-menu">
-                    <span> <img src="assets/img/kkang/btn-fb.png"> </span>
-                    <span> <img src="assets/img/kkang/btn-kakao.png"> </span>
-                    <span> <img src="assets/img/kkang/btn-blog.png"> </span>
-                    <span> <img src="assets/img/kkang/btn-info.png"> </span>
+                    <div class="icon">
+                        <span><img src="assets/img/kkang/k.png"></span>
+                        <span><img src="assets/img/kkang/f.png"></span>
+                        <span><img src="assets/img/kkang/b.png"></span>
+                    </div>
+                    <div class="float-right">
+                        무료 레벨 테스트
+                    </div>
                 </div>
-                <div class="right-menu">
+                <div class="right-menu hidden-sm-down">
                     <div *ngIf="! user.logged " class="button" (click)="onClickRegister()">
                         <span> <img src="assets/img/kkang/top-btn1.png"> </span>
                     </div>
