@@ -1,6 +1,3 @@
-[submodule "src/angular-backend"]
-	path = src/angular-backend
-	url = https://github.com/thruthesky/angular-backend
 [submodule "src/enhance"]
 	path = src/enhance
 	url = https://github.com/thruthesky/enhance
