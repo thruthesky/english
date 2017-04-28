@@ -5,6 +5,7 @@ import { ShareService } from '../../../../providers/share-service';
 import { ForumPostComponent} from '../../../modals/forum-post/forum-post';
 import { Subject } from 'rxjs/Subject';
 import {
+    User,
     PostData,
     _LIST, 
     _POST_LIST_RESPONSE,
@@ -12,7 +13,9 @@ import {
     _POSTS,
     _FILE,
     _DELETE_RESPONSE,
-    _POST_COMMON_WRITE_FIELDS
+    _POST_COMMON_WRITE_FIELDS,
+    _USER_RESPONSE,
+    _USER_DATA_RESPONSE
 } from 'angular-backend';
 @Component({
     selector: 'post-list-component',
@@ -34,11 +37,14 @@ export class PostListComponent  {
         extra: {file: true}
     };
     searchPostChangeDebounce = new Subject();
+    userData: _USER_RESPONSE = null;
     constructor(
         public share: ShareService,
         private postData: PostData,
         private modal: NgbModal,
+        public  user : User
     ) {
+        if ( this.user.logged ) this.loadUserData();
         this.searchQuery['order'] = 'idx DESC';
         if ( this.post_config_id !== void 0 ) this.post_config_id = 'qna';
         this.loadPostData();
@@ -46,6 +52,14 @@ export class PostListComponent  {
         this.searchPostChangeDebounce
         .debounceTime(300) // wait 300ms after the last event before emitting last event
         .subscribe(() => this.onChangedPostSearch());
+    }
+    loadUserData() {
+        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+            this.userData = res.data.user;
+            console.log('User:',this.userData);
+        }, error => {
+            this.user.alert( error );
+        } );
     }
     onClickEdit( _post ) {
         if( _post.deleted == '1' ) return;
@@ -76,7 +90,7 @@ export class PostListComponent  {
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
         });
-
+        console.log('Posts:',this.posts);
 
         }, err => this.postData.alert( err ));
     }

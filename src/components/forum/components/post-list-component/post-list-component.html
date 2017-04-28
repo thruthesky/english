@@ -1,58 +1,25 @@
 <div class="post-list-container">
     <table class="table table-striped table-bordered table-hover table-responsive">
         <thead class="table-inverse bg-info">
-            <th>Id</th>
-            <th>Photos</th>
             <th>Title</th>
+            <th>Date</th>
             <th>Content</th>
             <th>Edit</th>
             <th>Delete</th>
         </thead>
-        <!--<tbody *ngIf=" posts ">
-
-            <tr *ngFor="let post of posts">
-                <td>{{ post.idx }}</td>
-                <td> 
-                    <div class="files clearfix" *ngIf=" post.files ">
-                        <div class="w-25 float-left" *ngFor=" let file of post.files ">
-                        <img [src]=" file.url + '&crop=200x100x70'" style="width: 100%;">
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
-                </td>
-                <td>
-                    <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
-                </td>
-                <td> 
-                    <img *ngIf=" post.user.url_primary_photo " src="{{ post.user.url_primary_photo }}"
-                    style=" width: 40px; height: 40px; border-radius: 50%; ">
-                     {{ post.user?.name }} 
-                </td>
-                <td (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></td>
-                <td (click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
-            </tr>
-        </tbody>-->
+      
          <tbody class="users">
             <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}">
-              <!--<td (click)=" postPostForm = post; showPostForm = true " class="text-center" role="button"><i class="fa fa-pencil"></i></td>-->
-              
-              <th scope="row" (click)="onClickShowPostDetail(post.idx)">
-                {{post.idx}}
-              </th>
-              <td>
-                <div *ngFor=" let _file of post.files ">
-                  <img style="width:25%; float:left;" src="{{ _file.url }}">
-                </div>
-              </td>
+             
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
               </td>
               <td>
+                <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
+              </td>
+              <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
               </td>
-  
                <td (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></td>
                <td (click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
             </tr>
