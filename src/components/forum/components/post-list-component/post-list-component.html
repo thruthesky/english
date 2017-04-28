@@ -4,8 +4,9 @@
             <th>Title</th>
             <th>Date</th>
             <th>Content</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Action</th>
+            <!--<th>Edit</th>
+            <th>Delete</th>-->
         </thead>
       
          <tbody class="users">
@@ -20,8 +21,10 @@
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
               </td>
-               <td (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></td>
-               <td (click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></td>
+              <td>
+                <span  *ngIf="userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
+                <span  *ngIf="userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
+              </td>
             </tr>
             </tbody>
     </table>
