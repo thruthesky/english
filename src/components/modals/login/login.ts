@@ -12,7 +12,7 @@ import {
     _RESPONSE, 
     _USER_LOGIN,
     _USER_LOGIN_RESPONSE
-} from './../../../angular-backend/angular-backend';
+} from 'angular-backend';
 
 @Component({
     selector: 'login-component',

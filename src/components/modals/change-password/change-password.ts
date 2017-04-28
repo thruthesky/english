@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { User, _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE } from '../../../angular-backend/angular-backend';
+import { User, _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE } from 'angular-backend';
 @Component({
     selector: 'change-password-component',
     templateUrl: 'change-password.html',

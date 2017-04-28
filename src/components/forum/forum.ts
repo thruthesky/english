@@ -6,12 +6,8 @@ import { ForumPostComponent} from '../modals/forum-post/forum-post';
 import 'rxjs/add/operator/debounceTime';
 import {
   PostData,
-  File,
-  POST,
-  UPLOAD,
-  POST_LIST, POST_LIST_RESPONSE, LIST,
-  POST_CREATE, POST_CREATE_RESPONSE
-} from '../../angular-backend/angular-backend';
+  File
+} from 'angular-backend';
 
 import { PostListComponent } from './components/post-list-component/post-list-component';
 
@@ -37,14 +33,7 @@ export class ForumComponent {
 
   ngOnInit() {
         this.post_config_id = this.post_config_id_qna;
-         
-    // this.activated.params.subscribe( params => {
-    //   if ( params['post_config_id'] !== void 0 ) {
-    //     this.post_config_id = params['post_config_id'];
-    //     this.postListComponent.load( this.post_config_id );
-    //     console.log("post_config_id:",this.post_config_id);
-    //   }
-    // });
+   
   }
   onClickPost() {
     let modalRef = this.modal.open( ForumPostComponent );

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { User, USER_DATA_RESPONSE, USER_FIELDS } from '../angular-backend/angular-backend';
+import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
 export const domain: string = 'englishfordevelopers.onlineenglish.kr';
@@ -21,7 +21,7 @@ export interface TEACHER {
 export type TEACHERS = Array< TEACHER >;
 @Injectable()
 export class LMS {
-    userData: USER_FIELDS = null;
+    userData: _USER_RESPONSE = null;
     constructor( private http: Http,
                  public user: User ) {
 
@@ -102,7 +102,7 @@ export class LMS {
         })
     }
     loadUserData() {
-        this.user.data().subscribe( (res: USER_DATA_RESPONSE) => {
+        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
         }, error => {
             this.error( error );

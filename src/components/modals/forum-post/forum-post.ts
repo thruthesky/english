@@ -6,9 +6,11 @@ import {
     File,
     NUMBERS,
     _FILE,
-    _POST, _POST_CREATE, _POST_CREATE_RESPONSE,
-    _POST_EDIT, _POST_EDIT_RESPONSE
-} from './../../../angular-backend/angular-backend';
+    _POST, _POST_CREATE,
+    _POST_CREATE_RESPONSE,
+    _POST_EDIT,
+    _POST_EDIT_RESPONSE
+} from 'angular-backend';
 import { ShareService } from '../../../providers/share-service';
 @Component({
     selector: 'forum-post-component',

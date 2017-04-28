@@ -2,11 +2,10 @@ import { Component, Input } from '@angular/core';
 import {
     File,
     _FILE,
-    _UPLOAD_RESPONSE, _DELETE_RESPONSE
-} from '../../../../angular-backend/angular-backend';
-import {
+    _UPLOAD_RESPONSE, 
+    _DELETE_RESPONSE,
     ERROR_NO_FILE_SELECTED
-} from '../../../../angular-backend/define';
+} from 'angular-backend';
 @Component({
     selector: 'file-form-component',
     templateUrl:'./file-form-component.html',

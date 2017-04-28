@@ -18,7 +18,7 @@ import {
     _USER_CREATE_RESPONSE,
     _USER_EDIT_RESPONSE,
     _DELETE_RESPONSE
-} from './../../../angular-backend/angular-backend';
+} from 'angular-backend';
 @Component({
     selector:'register-component',
     templateUrl: 'register.html',

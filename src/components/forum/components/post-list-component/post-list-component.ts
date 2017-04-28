@@ -8,15 +8,12 @@ import {
     PostData,
     _LIST, 
     _POST_LIST_RESPONSE,
-    _POST, _POSTS,
+    _POST, 
+    _POSTS,
     _FILE,
-    POST_DELETE_RESPONSE,
-    PAGINATION_OPTION,
-    LIST,
-    POST,
-    POSTS,
-    POST_LIST_RESPONSE
-} from '../../../../angular-backend/angular-backend';
+    _DELETE_RESPONSE,
+    _POST_COMMON_WRITE_FIELDS
+} from 'angular-backend';
 @Component({
     selector: 'post-list-component',
     templateUrl: 'post-list-component.html'
@@ -24,15 +21,15 @@ import {
 export class PostListComponent  {
     @Input() no_of_items_in_one_page: number = 0;
     post_config_id: string = '';
-    posts: POSTS = [];
-    pageOption: PAGINATION_OPTION = {
+    posts: _POSTS = [];
+    pageOption = {
         limitPerPage: 3,
         currentPage: 1,
         limitPerNavigation: 4, //
         totalRecord: 0
     };
-    searchPostForm: POST = {};
-    searchQuery = <LIST>{
+    searchPostForm: _POST = <_POST> {};
+    searchQuery = <_LIST>{
         limit: this.pageOption['limitPerPage'],
         extra: {file: true}
     };
@@ -61,27 +58,22 @@ export class PostListComponent  {
     onClickDelete( _post ) {
             if( _post.deleted == '1' ) return;
         console.log( _post.idx );
-        this.postData.delete( parseInt( _post.idx) ).subscribe( (res: POST_DELETE_RESPONSE) => {
+        this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
         console.log("delete response: ", res);
         _post.deleted = '1';
-        //this.posts = this.posts.filter( ( post: POST ) => post.idx != _post.idx );
         }, err => this.postData.alert( err ) );
     }
     loadPostData() {
         this.posts = [];
         this.searchQuery.page = this.pageOption.currentPage;
         this.searchQuery.extra['post_config_id'] = this.post_config_id ? this.post_config_id : null;
-        console.log("Meow:",this.searchQuery.extra['post_config_id']);
-        this.postData.list( this.searchQuery ).subscribe( (res: POST_LIST_RESPONSE ) => {
-
-        console.log('this.postData.list::', res);
-
+        this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
         this.posts = res.data.posts;
 
-        this.pageOption.totalRecord = parseInt(res.data.total);
+        this.pageOption.totalRecord = res.data.total;
         
 
-        this.posts.map( (post: POST) => {
+        this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
         });
 
@@ -92,8 +84,6 @@ export class PostListComponent  {
         this.searchPostChangeDebounce.next();
     }
     onChangedPostSearch() {
-        //console.log('onChangeSearch', this.searchPostForm);
-
         if (this.searchPostForm.title) {
         if (this.searchPostForm.title.length < 2) return;
         }
@@ -117,28 +107,8 @@ export class PostListComponent  {
         this.loadPostData();
     }
     onPostPageClick( $event ) {
-        //console.log('onPageClick::$event',$event);
         this.pageOption['currentPage'] = $event;
         this.loadPostData();
     }
-    // load( id ) {
-    //     this.share.post_config_id = id;
-    //     let req: _LIST = {
-    //         where: 'parent_idx=?',
-    //         bind: '0',
-    //         order: 'idx desc',
-    //         extra: {
-    //             post_config_id: this.share.post_config_id,
-    //             user: true,
-    //             meta: true,
-    //             file: true,
-    //             comment: true
-    //         }
-    //     };
-    //     this.postData.list( req ).subscribe((res: _POST_LIST_RESPONSE ) => {
-    //             console.log( res.data.posts );
-    //             this.share.posts = res.data.posts;
-    //     }, err => this.postData.alert(err));
-    // }
 
 }

@@ -73,26 +73,18 @@ import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
 import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
-import { AngularBackendComponentModule } from '../angular-backend/modules/angular-backend-components.module';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 
-import { AngularBackend } from './../angular-backend/angular-backend';
-// import { BackendAdminPage } from './../angular-backend/pages/admin/index/index';
-import { AngularBackendAdmin,
-  BackendAdminPage,
-  BackendAdminUserListPage,
-  BackendAdminUserEditPage
-} from './../angular-backend/angular-backend-admin';
-// import { EnhanceSample } from '../enhance/components/sample';
 import { LMS } from '../providers/lms';
+import { AngularBackendModule } from 'angular-backend';
+
+import { PageNavigationComponent } from '../components/pagination/pagination.component';
 
 const appRoutes:Routes = [
   { path: '', component: HomePage },
   { path: 'seconddesign', component:SecondDesignPage },
-  { path: 'thirddesign', component:ThirdDesignPage },
-  { path: 'admin/user', component: BackendAdminUserListPage },
-  { path: 'admin', component: BackendAdminPage }
+  { path: 'thirddesign', component:ThirdDesignPage }
 ];
 
 @NgModule({
@@ -146,7 +138,8 @@ const appRoutes:Routes = [
     PostListComponent,
     PostViewComponent,
     FileFormComponent,
-    ForumPostComponent
+    ForumPostComponent,
+    PageNavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -155,9 +148,7 @@ const appRoutes:Routes = [
     HttpModule,
     RouterModule.forRoot( appRoutes ),
     NgbModule.forRoot(),
-    AngularBackend,
-    AngularBackendAdmin,
-    AngularBackendComponentModule
+    AngularBackendModule.forRoot()
   ],
   providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
