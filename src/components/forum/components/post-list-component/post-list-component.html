@@ -15,8 +15,8 @@
              
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
-                <span  *ngIf="userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
-                <span  *ngIf="userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
+                <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
+                <span  *ngIf="userData && userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
               </td>
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">

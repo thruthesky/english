@@ -122,7 +122,6 @@ export class ReservationComponent implements OnInit {
         }
         while( this.books.length < this.maxDay ) { this.books.push( null ); } // fill the remaining days
         this.weeks = this.chunk(this.books );                             //Chunk Date
-        console.log('week:',this.weeks);
     }
     
 

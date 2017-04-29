@@ -56,7 +56,6 @@ export class PostListComponent  {
     loadUserData() {
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
-            console.log('User:',this.userData);
         }, error => {
             this.user.alert( error );
         } );
@@ -90,7 +89,6 @@ export class PostListComponent  {
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
         });
-        console.log('Posts:',this.posts);
 
         }, err => this.postData.alert( err ));
     }
