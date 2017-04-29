@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { App } from '../providers/app';
 
-
+import { Backend } from 'angular-backend';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -14,7 +14,9 @@ import {Observable} from 'rxjs/Observable';
 })
 export class AppComponent {
   
-  constructor( private app: App ) {
+  constructor( private app: App,
+               private backed:Backend ) {
+    // backed.setBackendUrl("http://backend.dev/index.php");
     app.setWidth( window.innerWidth );
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
   

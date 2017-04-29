@@ -1,0 +1,49 @@
+<div class="forum-view-modal">
+    <div class="modal-header">
+        <h5 class="modal-title">
+            <span class="modal-title">Post Information</span>
+        </h5>
+        <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+            <span aria-hidden="true">×</span>
+        </button>
+
+    </div>
+
+    <div class="modal-body">
+        <div class="form-container">
+                
+                <form *ngIf="post">
+                    <div class="files clearfix" *ngIf=" post.files ">
+                        <span class="info-title">
+                            Photos
+                        </span>
+                        <div class="w-25 float-left" *ngFor=" let file of post.files ">
+                        <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-title">
+                            Author
+                        </span>
+                        <input [(ngModel)]="post.name" name="teachers-name" type="text" class="form-control"  placeholder="Author's Name">
+                    </div>
+                    <div class="info-block">
+                        <span class="info-title">
+                            Date
+                        </span>
+                        <input [(ngModel)]="post.created" name="date" type="text" class="form-control" placeholder="Date">
+                    </div>
+                    
+                    <div>
+                        <span class="info-title">
+                            Content
+                        </span>
+                        <textarea rows="10" name="content" type="text" class="form-control">
+                            {{post.content}}
+                        </textarea>
+                    </div>
+                </form>
+            </div>
+
+    </div>
+</div>

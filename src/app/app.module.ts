@@ -55,7 +55,7 @@ import { ForgotPasswordComponent } from '../components/modals/forgot-password/fo
 import { FindIdModal } from '../components/modals/find-id/find-id';
 import { AsideComponent } from '../components/aside/aside';
 import { IntroComponent } from '../components/intro/intro';
-
+import { PostViewModal } from '../components/modals/post-view/post-view';
 
 import { ContactComponent } from '../components/contact/contact';
 import { ContactFormComponent} from '../components/contact/components/contact-form/contact-form';
@@ -120,6 +120,7 @@ const appRoutes:Routes = [
     FindIdModal,
     ClassInfoModal,
     LoginModal,
+    PostViewModal,
     AsideComponent,
     RegisterComponent,
     IntroComponent,
@@ -157,6 +158,7 @@ const appRoutes:Routes = [
     FindIdModal,
     LoginModal,
     ClassInfoModal,
+    PostViewModal,
     ForgotPasswordComponent,
     ForumPostComponent,
     ChangePasswordComponent

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShareService } from '../../../../providers/share-service';
 import { ForumPostComponent} from '../../../modals/forum-post/forum-post';
+import { PostViewModal} from '../../../modals/post-view/post-view';
 import { Subject } from 'rxjs/Subject';
 import {
     User,
@@ -84,11 +85,11 @@ export class PostListComponent  {
         this.posts = res.data.posts;
 
         this.pageOption.totalRecord = res.data.total;
-        
 
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
-            post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
+            post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
+        console.log('Post:',this.posts);
 
         }, err => this.postData.alert( err ));
     }
@@ -121,6 +122,12 @@ export class PostListComponent  {
     onPostPageClick( $event ) {
         this.pageOption['currentPage'] = $event;
         this.loadPostData();
+    }
+    onClickShow( data ) {
+        let modalRef = this.modal.open( PostViewModal );
+        modalRef.componentInstance['post'] = data;
+        modalRef.result.then( () => {
+        }).catch( e => console.log('exit ' + e ) );
     }
 
 }
