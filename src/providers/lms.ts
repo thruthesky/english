@@ -131,7 +131,6 @@ export class LMS {
                         }
                     }, err => {
                         error();
-                        // alert("error on class list by month");
                     });
                 },1000);
             }else {

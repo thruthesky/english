@@ -84,10 +84,9 @@ export class PostListComponent  {
         this.posts = res.data.posts;
 
         this.pageOption.totalRecord = res.data.total;
-        
 
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
-            post.created = ( new Date( parseInt(post.created) * 1000 ) ).toString();
+            post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
 
         }, err => this.postData.alert( err ));

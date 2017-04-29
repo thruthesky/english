@@ -2,8 +2,9 @@
     <table class="table table-striped table-bordered table-hover table-responsive">
         <thead class="table-inverse bg-info">
             <th>Title</th>
+            <th>Author</th>
             <th>Date</th>
-            <th>User</th>
+            
             <!--<th>Content</th>-->
             <!--<th>Action</th>-->
             <!--<th>Edit</th>
@@ -19,11 +20,12 @@
                 <span  *ngIf="userData && userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
               </td>
               <td>
-                <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
+                <input [disabled]="post.deleted == '1'" type="text" name="author" [(ngModel)]="post.name" placeholder="Author">
               </td>
               <td>
-                <input [disabled]="post.deleted == '1'" type="text" name="User" [(ngModel)]="post.name" placeholder="User">
+                <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
               </td>
+              
               <!--<td>
                 <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
               </td>-->
