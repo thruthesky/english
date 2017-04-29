@@ -7,7 +7,7 @@
         </thead>
       
          <tbody class="users">
-            <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}">
+            <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}"  (click)='onClickShow(post)'>
              
               <!--<td>
                 <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
@@ -28,8 +28,8 @@
                   <span type="text" name="title" placeholder="Title">
                     {{post.title}}
                   </span>
-                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
-                  <span  *ngIf="userData && userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
+                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
+                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-trash"></i></span>
                 </td>
                 <td>
                   <span  type="text" name="author" placeholder="Author">
