@@ -3,7 +3,8 @@
         <thead class="table-inverse bg-info">
             <th>Title</th>
             <th>Date</th>
-            <th>Content</th>
+            <th>User</th>
+            <!--<th>Content</th>-->
             <!--<th>Action</th>-->
             <!--<th>Edit</th>
             <th>Delete</th>-->
@@ -21,8 +22,11 @@
                 <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
               </td>
               <td>
-                <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
+                <input [disabled]="post.deleted == '1'" type="text" name="User" [(ngModel)]="post.name" placeholder="User">
               </td>
+              <!--<td>
+                <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
+              </td>-->
        
             </tr>
             </tbody>

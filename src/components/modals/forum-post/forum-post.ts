@@ -3,13 +3,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
     PostData,
+    User,
     File,
     NUMBERS,
     _FILE,
     _POST, _POST_CREATE,
     _POST_CREATE_RESPONSE,
     _POST_EDIT,
-    _POST_EDIT_RESPONSE
+    _POST_EDIT_RESPONSE,
+    _USER_RESPONSE,
+    _USER_DATA_RESPONSE
 } from 'angular-backend';
 import { ShareService } from '../../../providers/share-service';
 @Component({
@@ -30,16 +33,25 @@ export class ForumPostComponent implements OnInit {
     formGroup: FormGroup;
     files: Array<_FILE> = [];
 
-    
+    userData: _USER_RESPONSE = null;
     constructor(
         public share: ShareService,
         private fb: FormBuilder,
         public file: File,
         private postData: PostData,
-        private activeModal  : NgbActiveModal
+        private activeModal  : NgbActiveModal,
+        public  user         : User
     ) {
+        if ( this.user.logged ) this.loadUserData();
     }
-
+    loadUserData() {
+        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+            this.userData = res.data.user;
+            console.log("Post my user:",this.userData);
+        }, error => {
+            this.user.alert( error );
+        } );
+    }
     ngOnInit() {
         this.createForm();
     }
@@ -95,6 +107,7 @@ export class ForumPostComponent implements OnInit {
         let create = <_POST_CREATE> this.formGroup.value;
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
+        create.name = this.userData.name;
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
             console.log( res );
@@ -106,6 +119,7 @@ export class ForumPostComponent implements OnInit {
         let edit = <_POST_EDIT> this.formGroup.value;
         edit.idx = this.post.idx;
         edit.file_hooks = this.files.map( (f:_FILE) => f.idx );
+        edit.name = this.userData.name;
         console.log('post-form-conpoment::editPost()', edit);
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
             console.log( 'after edit: ', res );
