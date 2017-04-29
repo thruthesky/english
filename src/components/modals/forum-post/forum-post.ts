@@ -47,7 +47,6 @@ export class ForumPostComponent implements OnInit {
     loadUserData() {
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
-            console.log("Post my user:",this.userData);
         }, error => {
             this.user.alert( error );
         } );
@@ -120,7 +119,6 @@ export class ForumPostComponent implements OnInit {
         edit.idx = this.post.idx;
         edit.file_hooks = this.files.map( (f:_FILE) => f.idx );
         edit.name = this.userData.name;
-        console.log('post-form-conpoment::editPost()', edit);
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
             console.log( 'after edit: ', res );
             Object.assign( this.post, res.data ); // two-way binding.

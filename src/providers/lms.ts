@@ -33,7 +33,6 @@ export class LMS {
         try {
             let url = LMS_ENDPOINT_URL + "?function=teacher_list";
             this.http.get( url ).subscribe( re => {
-                // console.log(re);
                 let json = null;
                 try {
                     json = JSON.parse( re['_body'] );
@@ -42,7 +41,6 @@ export class LMS {
                     alert("Parse ERROR on lms::getTeachers()");
                 }
 
-                //console.log(json);
                 success( json['data'] );
             });
         }
@@ -55,11 +53,9 @@ export class LMS {
     register( data, success, failure: ( error : string ) => void ){
         data = data.value;
         let domain = this.getDomain();
-        console.log("res:", domain );
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
 
         this.http.get( url ).subscribe( re =>{
-            console.log( ' user_insert :: ' + re );
             if( re ) success( re );
             else failure( ' error on lms registration ' );
         })
@@ -91,12 +87,8 @@ export class LMS {
     update( data, success, failure: ( error: string) => void ){
         data = data.value;
         let domain = this.getDomain();
-        console.log("res:", domain );
-        console.log('data:',data);
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
-        console
         this.http.get( url ).subscribe( re =>{
-            console.log( ' user_update :: ' + re );
             if( re ) success( re );
             else failure( ' error on lms update user ' );
         })
@@ -109,7 +101,6 @@ export class LMS {
         } );
     }
     error( error ) {
-        console.log( error );
         return this.user.errorResponse( error );
     }
     getReservationsByMonthYear( data, success, error ) {
@@ -119,24 +110,19 @@ export class LMS {
                 this.loadUserData();
                 setTimeout(()=>{
                     let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
-                    console.log(this.userData);
                     let domain = this.getDomain();
-                    console.log("res:", domain );
                     let url = '';
                     if( this.userData && this.userData.id ) url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
                     else return error();
                     // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                     this.http.get( url ).subscribe( re =>{
-                        console.log("URI:",re['url']);
                         let json = null;
                         try {
-                            console.log('success:',json);
                             json = JSON.parse( re['_body'] );
                             if ( json['code'] ) {
                                 alert( json['message'] );
                             }
                             else {
-                                console.log(json);
                                 success( json['data'] );
                             }
                         }
@@ -153,6 +139,7 @@ export class LMS {
             }
         }catch(e) {
             console.log(e);
+            error();
         }
     }
 }
