@@ -4,7 +4,7 @@
             <th>Title</th>
             <th>Date</th>
             <th>Content</th>
-            <th>Action</th>
+            <!--<th>Action</th>-->
             <!--<th>Edit</th>
             <th>Delete</th>-->
         </thead>
@@ -14,6 +14,8 @@
              
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
+                <span  *ngIf="userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
+                <span  *ngIf="userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
               </td>
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
@@ -21,10 +23,7 @@
               <td>
                 <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
               </td>
-              <td>
-                <span  *ngIf="userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
-                <span  *ngIf="userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
-              </td>
+       
             </tr>
             </tbody>
     </table>
