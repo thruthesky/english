@@ -1,11 +1,14 @@
 @import '../../theme/variables';
 :host {
     /deep/ table {
-        td:first-child {
-            width:60%;
+        td:first-child, th:first-child  {
+            width:65%;
         }
-        th:first-child {
-            width:60%;
+        td:last-child, th:last-child  {
+            width:40%;
+        }
+        td, th {
+            width:20%;
         }
         
     }
