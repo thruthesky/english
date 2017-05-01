@@ -2,15 +2,8 @@
 :host {
     /deep/ table {
         td:first-child, th:first-child  {
-            width:65%;
+            width:50%;
         }
-        td:last-child, th:last-child  {
-            width:40%;
-        }
-        td, th {
-            width:20%;
-        }
-        
     }
     .inquiry-container {
         margin: 0 auto;
