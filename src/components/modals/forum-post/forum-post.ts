@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {
     PostData,
     User,
@@ -70,8 +70,9 @@ export class ForumPostComponent implements OnInit {
                 content: [ this.post.content ]
             });
         }
-        
-
+        if ( ! this.user.logged ) {
+            this.formGroup.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(3), Validators.maxLength(128)] ) );
+        }
     }
 
     onSubmit() {
@@ -106,7 +107,8 @@ export class ForumPostComponent implements OnInit {
         let create = <_POST_CREATE> this.formGroup.value;
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
-        create.name = this.userData.name;
+        if( this.user.logged ) create.name = this.userData.name;
+        else create.name = 'anonymous';
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
             console.log( res );
@@ -118,7 +120,8 @@ export class ForumPostComponent implements OnInit {
         let edit = <_POST_EDIT> this.formGroup.value;
         edit.idx = this.post.idx;
         edit.file_hooks = this.files.map( (f:_FILE) => f.idx );
-        edit.name = this.userData.name;
+        if( this.user.logged ) edit.name = this.userData.name;
+        else edit.name = 'anonymous';
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
             console.log( 'after edit: ', res );
             Object.assign( this.post, res.data ); // two-way binding.

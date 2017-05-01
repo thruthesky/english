@@ -36,19 +36,6 @@
           margin-top:1.5em;
         }
 
-        .login {
-          padding-top: .4em;
-          .btn {
-            margin: 0 0 20px;
-            padding: 7px 22px;
-            cursor: pointer;
-
-            &:focus {
-              color: white;
-            }
-          }
-        }
-
 
         // Wide
         @media all and (min-width: $breakpoint) {
