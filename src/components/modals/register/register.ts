@@ -67,10 +67,13 @@ export class RegisterComponent {
         this.modal.open( ChangePasswordComponent );
     }
     onChangeFileUpload( fileInput ) {
+        this.loading = true;
         let file = fileInput.files[0];
         this.file.uploadPrimaryPhoto( file ).subscribe(res => {
             this.primary_photo_idx = res.data.idx;
+            this.loading = false;
         }, err => {
+            this.loading = false;
             this.file.alert(err);
         });
     }
@@ -204,11 +207,15 @@ export class RegisterComponent {
     }
     onClickDeletePhoto() {
         console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
-
+        this.loading = true;
         this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
             console.log("file delete: ", res);
-            this.primary_photo_idx = <any> {};
-        }, err => this.file.alert(err) );
+            this.primary_photo_idx = null;
+            this.loading = false;
+        }, err => {
+            this.loading = false;
+            this.file.alert(err)
+        });
     }
     successUpdate( res: _USER_EDIT_RESPONSE) {
 
