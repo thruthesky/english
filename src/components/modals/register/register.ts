@@ -46,15 +46,14 @@ export class RegisterComponent {
         this.form = fb.group({
             name: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
             email: [ '', [ Validators.required, this.emailValidator ] ],
-            nickname: [],
-            mobile: [],
-            birthday: [],
-            gender: [],
-            id: [],
+            nickname: [ '', [Validators.required] ],
+            mobile: [ ],
+            birthday: [ ],
+            gender: [ ],
+            id: [ '', [Validators.required] ],
         });
 
         if ( ! this.user.logged ) {
-            this.form.addControl( 'id', new FormControl('', [ Validators.required, Validators.minLength(3), Validators.maxLength(32)] ) );
             this.form.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(128)] ) );
         }
         
@@ -251,6 +250,7 @@ export class RegisterComponent {
     id: '',
     password: '',
     name: '',
+    nickname: '',
     email: ''
   };
   validationMessages = {
@@ -263,6 +263,11 @@ export class RegisterComponent {
       'required':      'Name is required.',
       'minlength':     'Name must be at least 3 characters long.',
       'maxlength':     'Name cannot be more than 32 characters long.'
+    },
+    nickname: {
+      'required':      'Nick Name is required.',
+      'minlength':     'Nick Name must be at least 3 characters long.',
+      'maxlength':     'Nick Name cannot be more than 32 characters long.'
     },
     password: {
       'required': 'Password is required.',
@@ -277,5 +282,4 @@ export class RegisterComponent {
     }
     
   };
-
 }
