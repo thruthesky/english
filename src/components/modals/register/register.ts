@@ -69,9 +69,9 @@ export class RegisterComponent {
     onChangeFileUpload( fileInput ) {
         let file = fileInput.files[0];
         this.file.uploadPrimaryPhoto( file ).subscribe(res => {
-        this.primary_photo_idx = res.data.idx;
+            this.primary_photo_idx = res.data.idx;
         }, err => {
-        this.file.alert(err);
+            this.file.alert(err);
         });
     }
 
