@@ -33,10 +33,27 @@ export class LoginModal implements OnInit {
       private user : User ){ this.createForm(); }
   createForm() {
     this.form = this.fb.group({
-        id:['',[ Validators.required]],
-        password:['',[ Validators.required]]
+        id:['', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ]],
+        password:['', [ Validators.required, Validators.minLength(5), Validators.maxLength(128) ]]
     });
+    this.form.valueChanges
+            .debounceTime( 1000 )
+            .subscribe( res => this.onValueChanged( res ) );
   }
+  onValueChanged(data?: any) {
+        if ( ! this.form ) return;
+        const form = this.form;
+        for ( const field in this.formErrors ) {
+            this.formErrors[field] = '';        // clear previous error message (if any)
+            const control = form.get(field);
+            if ( control && control.dirty && ! control.valid ) {
+                const messages = this.validationMessages[field];
+                for ( const key in control.errors ) {
+                this.formErrors[field] += messages[key] + ' ';
+                }
+            }
+        }
+    }
   onClickDismiss(){
     this.activeModal.close('close');
   }
@@ -113,4 +130,20 @@ export class LoginModal implements OnInit {
       this.app.alert( name + ' is required ...' );
       return false;
   }
+  formErrors = {
+    id: '',
+    password: ''
+  };
+  validationMessages = {
+    id: {
+      'required':      'ID is required.',
+      'minlength':     'ID must be at least 3 characters long.',
+      'maxlength':     'ID cannot be more than 32 characters long.'
+    },
+    password: {
+      'required': 'Password is required.',
+      'minlength':     'Password must be at least 5 characters long.',
+      'maxlength':     'Password cannot be more than 128 characters long.'
+    },
+  };
 }
