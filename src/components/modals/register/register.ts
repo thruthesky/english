@@ -196,8 +196,6 @@ export class RegisterComponent {
     updateProfile( callback? ){
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
-        console.log("Edit form:",this.form.value);
-        console.log("Edit:",edit);
         delete edit['password'];
         if( edit['birthday']) {
         let date = this.splitBirthday( edit['birthday']);
@@ -209,6 +207,7 @@ export class RegisterComponent {
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
+            
         }, error => {
             this.error( error );
         } );
@@ -226,8 +225,7 @@ export class RegisterComponent {
         });
     }
     successUpdate( res: _USER_EDIT_RESPONSE) {
-
-        console.log("user update success: ", res );
+        if( res.data.admin == 1) this.user.deleteSessionInfo();      
         this.loading = false;
         this.activeModal.close();
     }
