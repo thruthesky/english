@@ -50,7 +50,7 @@
             <div *ngIf="formErrors.name" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.name }} </span>
             </div>   
-            <div class="input-group" *ngIf=" ! user.logged ">
+            <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle fa-fw"></i></span>
                 <input formControlName="email" name="email" type="email" class="form-control form-control-sm" placeholder="Email" (keydown)="onEnterRegister($event)">
             </div>

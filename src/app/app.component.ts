@@ -16,7 +16,7 @@ export class AppComponent {
   
   constructor( private app: App,
                private backed:Backend ) {
-    // backed.setBackendUrl("http://backend.dev/index.php");
+    backed.setBackendUrl("http://backend.dev/index.php");
     app.setWidth( window.innerWidth );
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
   

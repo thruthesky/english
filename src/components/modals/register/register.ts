@@ -41,8 +41,6 @@ export class RegisterComponent {
         private fb           : FormBuilder,
         private modal: NgbModal,
     ) {
-        if ( this.user.logged ) this.loadUserData();
-
         this.form = fb.group({
             name: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
             email: [ '', [ Validators.required, this.emailValidator ] ],
@@ -56,7 +54,7 @@ export class RegisterComponent {
         if ( ! this.user.logged ) {
             this.form.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(128)] ) );
         }
-        
+        if ( this.user.logged ) this.loadUserData();
         this.form.valueChanges
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
@@ -144,13 +142,20 @@ export class RegisterComponent {
         try {
             console.log(res);
             this.userData = res.data.user;
-            this.form.patchValue( this.userData );
-            console.log("chemy chemy:",this.form.value);
+            console.log("chemy chemy:",this.userData);
+            this.form.patchValue( {
+                id: this.userData.id,
+                name:this.userData.name,
+                nickname:this.userData.nickname,
+                mobile:this.userData.mobile,
+                gender:this.userData.gender,
+                email:this.userData.email?this.userData.email:''
+            } );
             let birthday = this.getConcatBirthdate();
-            this.form.patchValue( {birthday:birthday});
+            if( birthday )this.form.patchValue( {birthday:birthday});
             this.primary_photo_idx = this.userData.primary_photo.idx;
         }catch(e){
-
+            console.log(e);
         }
         
     }
@@ -191,12 +196,16 @@ export class RegisterComponent {
     updateProfile( callback? ){
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
+        console.log("Edit form:",this.form.value);
+        console.log("Edit:",edit);
         delete edit['password'];
+        if( edit['birthday']) {
         let date = this.splitBirthday( edit['birthday']);
-        delete edit['birthday'];
-        edit.birth_year = date[0];
-        edit.birth_month = date[1];
-        edit.birth_day = date[2];
+            delete edit['birthday'];
+            edit.birth_year = date[0];
+            edit.birth_month = date[1];
+            edit.birth_day = date[2];
+        }
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
