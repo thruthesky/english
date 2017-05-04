@@ -1,5 +1,5 @@
 <div class="post-list-container">
-    <table class="table table-striped table-bordered table-hover table-responsive">
+    <table class="table table-striped table-bordered table-hover">
         <thead class="table-inverse bg-info">
             <th>Title</th>
             <th>Author</th>
@@ -28,12 +28,14 @@
                   <span type="text" name="title" placeholder="Title">
                     {{post.title}}
                   </span>
-                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
-                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-trash"></i></span>
+                  <span  *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons" aria-hidden="true"></i></span>
+                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-trash icons"></i></span>
+                  <span  *ngIf="(userData && userData.idx == post.user_idx) ||(!user.logged && post.name == 'anonymous')" (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-pencil icons"></i></span>
                 </td>
                 <td>
                   <span  type="text" name="author" placeholder="Author">
                     {{post.name}}
+                    
                   </span>
                 </td>
                 <td>

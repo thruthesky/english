@@ -14,5 +14,8 @@
     <label for="file-box">Upload Photos</label>
     <input type="file" class="form-control-file" id="file-box" #file (change)="onChangeFile(file)">
     <small class="form-text text-muted">Please select a photo to upload</small>
+    <div style="text-align:center" *ngIf="loading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    </div>
 </div>
 

@@ -41,23 +41,20 @@ export class RegisterComponent {
         private fb           : FormBuilder,
         private modal: NgbModal,
     ) {
-        if ( this.user.logged ) this.loadUserData();
-
         this.form = fb.group({
             name: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
             email: [ '', [ Validators.required, this.emailValidator ] ],
-            nickname: [],
-            mobile: [],
-            birthday: [],
-            gender: [],
-            id: [],
+            nickname: [ '', [Validators.required] ],
+            mobile: [ ],
+            birthday: [ ],
+            gender: [ ],
+            id: [ '', [Validators.required] ],
         });
 
         if ( ! this.user.logged ) {
-            this.form.addControl( 'id', new FormControl('', [ Validators.required, Validators.minLength(3), Validators.maxLength(32)] ) );
             this.form.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(128)] ) );
         }
-        
+        if ( this.user.logged ) this.loadUserData();
         this.form.valueChanges
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
@@ -67,11 +64,14 @@ export class RegisterComponent {
         this.modal.open( ChangePasswordComponent );
     }
     onChangeFileUpload( fileInput ) {
+        this.loading = true;
         let file = fileInput.files[0];
         this.file.uploadPrimaryPhoto( file ).subscribe(res => {
-        this.primary_photo_idx = res.data.idx;
+            this.primary_photo_idx = res.data.idx;
+            this.loading = false;
         }, err => {
-        this.file.alert(err);
+            this.loading = false;
+            this.file.alert(err);
         });
     }
 
@@ -142,13 +142,20 @@ export class RegisterComponent {
         try {
             console.log(res);
             this.userData = res.data.user;
-            this.form.patchValue( this.userData );
-            console.log("chemy chemy:",this.form.value);
+            console.log("chemy chemy:",this.userData);
+            this.form.patchValue( {
+                id: this.userData.id,
+                name:this.userData.name,
+                nickname:this.userData.nickname,
+                mobile:this.userData.mobile,
+                gender:this.userData.gender,
+                email:this.userData.email?this.userData.email:''
+            } );
             let birthday = this.getConcatBirthdate();
-            this.form.patchValue( {birthday:birthday});
+            if( birthday )this.form.patchValue( {birthday:birthday});
             this.primary_photo_idx = this.userData.primary_photo.idx;
         }catch(e){
-
+            console.log(e);
         }
         
     }
@@ -190,29 +197,35 @@ export class RegisterComponent {
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
         delete edit['password'];
+        if( edit['birthday']) {
         let date = this.splitBirthday( edit['birthday']);
-        delete edit['birthday'];
-        edit.birth_year = date[0];
-        edit.birth_month = date[1];
-        edit.birth_day = date[2];
+            delete edit['birthday'];
+            edit.birth_year = date[0];
+            edit.birth_month = date[1];
+            edit.birth_day = date[2];
+        }
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
+            
         }, error => {
             this.error( error );
         } );
     }
     onClickDeletePhoto() {
         console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
-
+        this.loading = true;
         this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
             console.log("file delete: ", res);
-            this.primary_photo_idx = <any> {};
-        }, err => this.file.alert(err) );
+            this.primary_photo_idx = null;
+            this.loading = false;
+        }, err => {
+            this.loading = false;
+            this.file.alert(err)
+        });
     }
     successUpdate( res: _USER_EDIT_RESPONSE) {
-
-        console.log("user update success: ", res );
+        if( res.data.admin == 1) this.user.deleteSessionInfo();      
         this.loading = false;
         this.activeModal.close();
     }
@@ -244,6 +257,7 @@ export class RegisterComponent {
     id: '',
     password: '',
     name: '',
+    nickname: '',
     email: ''
   };
   validationMessages = {
@@ -256,6 +270,11 @@ export class RegisterComponent {
       'required':      'Name is required.',
       'minlength':     'Name must be at least 3 characters long.',
       'maxlength':     'Name cannot be more than 32 characters long.'
+    },
+    nickname: {
+      'required':      'Nick Name is required.',
+      'minlength':     'Nick Name must be at least 3 characters long.',
+      'maxlength':     'Nick Name cannot be more than 32 characters long.'
     },
     password: {
       'required': 'Password is required.',
@@ -270,5 +289,4 @@ export class RegisterComponent {
     }
     
   };
-
 }
