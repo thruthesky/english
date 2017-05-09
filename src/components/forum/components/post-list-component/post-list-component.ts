@@ -16,7 +16,9 @@ import {
     _DELETE_RESPONSE,
     _POST_COMMON_WRITE_FIELDS,
     _USER_RESPONSE,
-    _USER_DATA_RESPONSE
+    _USER_DATA_RESPONSE,
+    _POST_EDIT,
+    _POST_EDIT_RESPONSE
 } from 'angular-backend';
 @Component({
     selector: 'post-list-component',
@@ -63,7 +65,18 @@ export class PostListComponent  {
     }
     onClickEdit( _post ) {
         if( _post.deleted == '1' ) return;
-        console.log("My post:",_post);
+        if( this.user.logged ) this.showEditPostForm( _post );
+        else {
+            let password = prompt("Input Password");
+            let req: _POST_EDIT = { idx: _post.idx, password: password };
+            this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
+                // password match
+                console.log("res: ", res);
+                this.showEditPostForm( _post );
+            }, e => this.postData.alert( e ) );
+        }
+    }
+    showEditPostForm( _post ) {
         let modalRef = this.modal.open( ForumPostComponent );
         modalRef.componentInstance['post'] = _post;
         modalRef.result.then( () => {
