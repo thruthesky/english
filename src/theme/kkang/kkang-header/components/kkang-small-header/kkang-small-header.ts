@@ -19,7 +19,7 @@ export class KkangSmallHeaderComponent {
         public user: User,
         public app: App
     ) {
-// this.onClickMoreMenu();
+ this.onClickMoreMenu();
     }
 
     onClickLogout(){
