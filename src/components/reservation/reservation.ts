@@ -5,6 +5,7 @@ import { ClassInfoModal } from '../modals/class-info/class-info';
 import { User } from 'angular-backend';
 import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
 import { App } from '../../providers/app';
+import { ShareService } from '../../providers/share-service';
 @Component({
     selector: 'reservation-component',
     templateUrl: 'reservation.html',
@@ -31,7 +32,8 @@ export class ReservationComponent implements OnInit {
         private app     : App,
         private modal   : NgbModal,
         public user     : User,
-        private lms     : LMS
+        private lms     : LMS,
+        public share: ShareService
     ) {
         this.listenEvents();
     }
@@ -84,6 +86,7 @@ export class ReservationComponent implements OnInit {
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
+            console.log("Salt:",res);
             //Process gather data
             this.classinformation = {
                 first_class: res.first_class,
@@ -91,6 +94,7 @@ export class ReservationComponent implements OnInit {
                 no_of_past: res.no_of_past,
                 no_of_reservation: res.no_of_reservation
             };
+            this.share.class_info = this.classinformation;
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
                  LMS_URL + '/data');
