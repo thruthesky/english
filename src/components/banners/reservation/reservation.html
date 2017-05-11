@@ -8,5 +8,9 @@
             <strong>다음 수업:</strong>    {{share.class_info?.no_of_reservation}}
             <strong>지난 수업:</strong>    {{share.class_info?.next_class}}<br>
         </font>
+        <font class="desc" *ngIf="share && !share.class_info">
+            <strong>No Class Information</strong>
+            
+        </font>
     </div>
 </div>

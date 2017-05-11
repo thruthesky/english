@@ -8,5 +8,4 @@ import { ShareService } from '../../../providers/share-service';
 })
 export class ReservationBannerComponent {
     constructor( public share: ShareService ) { }
-    // classinformation:ClassInformation = null;
 }
