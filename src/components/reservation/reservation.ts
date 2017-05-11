@@ -33,14 +33,21 @@ export class ReservationComponent implements OnInit {
         private modal   : NgbModal,
         public user     : User,
         private lms     : LMS,
-        public share: ShareService
+        public share    : ShareService
     ) {
         this.listenEvents();
     }
     listenEvents(){
         this.app.myEvent.subscribe( item =>{
             if( item.eventType == 'login-success'  ){
-              this.getNewReservationData()
+              this.getNewReservationData();
+            }
+            if( item.eventType == 'logout-success'  ){
+                setTimeout(()=>{
+                    this.data = [];
+                    this.listCalendar(this.month, this.year);
+                    this.share.class_info = null;
+                },100);
             }
         });
     }
@@ -85,6 +92,7 @@ export class ReservationComponent implements OnInit {
     
     getNewReservationData() {
         this.calendarLoad = true;
+        console.log('hello');
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
             console.log("Salt:",res);
             //Process gather data
@@ -125,7 +133,9 @@ export class ReservationComponent implements OnInit {
             this.books.push( book );
         }
         while( this.books.length < this.maxDay ) { this.books.push( null ); } // fill the remaining days
+        this.weeks = [];
         this.weeks = this.chunk(this.books );                             //Chunk Date
+        
     }
     
 

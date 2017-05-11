@@ -5,7 +5,7 @@ import { RegisterComponent } from '../../../components/modals/register/register'
 
 import { User } from 'angular-backend';
 import { App } from '../../../providers/app';
-
+// import { ShareService } from '../../../providers/share-service';
 @Component({
     selector: 'kkang-header-component',
     templateUrl: 'kkang-header.html',
@@ -22,8 +22,9 @@ export class KkangHeaderComponent implements OnInit {
     more: boolean = false;
     constructor(
         public user        : User,
-        private modal       : NgbModal,
-        public app         : App
+        private modal      : NgbModal,
+        public app         : App,
+        // public share       : ShareService
     ) {
     
     }
@@ -35,18 +36,18 @@ export class KkangHeaderComponent implements OnInit {
         modalRef;
     }
 
-
-    
-    onClickGotoClassRoom(){
-    }
-
     onClickRegister() {
         let modalRef = this.modal.open ( RegisterComponent );
         modalRef;
     }
 
     onClickLogout() {
+    //   this.share.class_info = null;
+      this.app.myEvent.emit( {
+          eventType: "logout-success"
+      } );
       this.user.logout();
+      
     }
 
     onClickUpdateProfile(){

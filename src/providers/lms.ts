@@ -78,6 +78,9 @@ export class LMS {
         else if( hostname.indexOf("igoodtalk.com") != -1 ) {
             domain = 'igoodtalk.onlineenglish.kr';
         }
+         else if( hostname.indexOf('englishfordevelopers') != -1 ) {
+            domain = 'talkative.onlineenglish.kr';
+        }
         else {
             let parts = hostname.split( '.' );
             domain = parts[0] == 'www' ? parts[1] + '.onlineenglish.kr' : parts[0] + '.onlineenglish.kr';
