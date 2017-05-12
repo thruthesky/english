@@ -26,7 +26,10 @@
             <div class="panel" [class.active]="this.more">
                 <ul class="menus list-panel-menu fs-120">
                     <li class="menu" *ngIf=" ! user.logged " (click)="onClickLogin()">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span>
                         <span class="text">회원 로그인</span>
                         <small>Login</small>
                     </li>
@@ -47,20 +50,32 @@
                     <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+                            <i class="fa fa-language fa-stack-1x fa-inverse"></i>
                         </span>
                         <span class="text">수업 과정</span>
                         <small>Curriculum</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-users fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">영어 선생님 소개</span>
                         <small>English Teachers</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-delicious fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">무료 레벨테스트</span>
                         <small>Level Test</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-comments fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">수업 후기</span>
                         <small>Student Comments</small>
                     </li>
@@ -73,14 +88,26 @@
                         <small>My Reservations</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-credit-card fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">수업료</span>
                         <small>Tution Fees</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-question fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">질문과 답변</span>
                         <small>Q&amp;A Forum</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='contact' " (click)="onClickPanelMenu('contact')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-address-book fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
                         <span class="text">연락처</span>
                         <small>Contacts</small>
                     </li>
