@@ -37,7 +37,7 @@ export class RegisterComponent {
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
         public  user         : User,
-        private file         : File,
+        public file          : File,
         private fb           : FormBuilder,
         private modal: NgbModal,
     ) {

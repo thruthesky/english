@@ -79,7 +79,8 @@ import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 
-import { PageNavigationComponent } from '../components/pagination/pagination.component';
+// import { PageNavigationComponent } from '../components/pagination/pagination.component';
+import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
 
 const appRoutes:Routes = [
   { path: '', component: HomePage },
@@ -140,7 +141,6 @@ const appRoutes:Routes = [
     PostViewComponent,
     FileFormComponent,
     ForumPostComponent,
-    PageNavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -149,7 +149,8 @@ const appRoutes:Routes = [
     HttpModule,
     RouterModule.forRoot( appRoutes ),
     NgbModule.forRoot(),
-    AngularBackendModule.forRoot()
+    AngularBackendModule.forRoot(),
+    AngularBackendComponents
   ],
   providers: [ App, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],

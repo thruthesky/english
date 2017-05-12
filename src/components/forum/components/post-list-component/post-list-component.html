@@ -47,7 +47,7 @@
             </tbody>
     </table>
 </div>
-<page-navigation
+<!--<page-navigation
         [no_of_total_items]=" pageOption['totalRecord'] "
         [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
         [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "
@@ -55,17 +55,10 @@
         [show_prev_next] = " true "
         (pageClick)="onPostPageClick($event)"
 >
-</page-navigation>
-<!--<section *ngIf=" share.posts ">
-  <article *ngFor="let post of share.posts" >
-    
-    <post-view-component [post]=" post "></post-view-component>
-    
-    <ng-container *ngIf=" post.comments ">
-      <comment-view-component *ngFor=" let comment of post.comments "
-        [comment]=" comment ">
-      </comment-view-component>
-    </ng-container>
-
-  </article>
-</section>-->
+</page-navigation>-->
+<page-navigator-basic [no_of_total_items]=" pageOption['totalRecord'] "
+        [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
+        [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "
+        [no_of_current_page] = " pageOption['currentPage'] "
+        [show_prev_next] = " true "
+        (pageClick)="onPostPageClick($event)"></page-navigator-basic>

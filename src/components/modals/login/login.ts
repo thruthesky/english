@@ -94,20 +94,18 @@ export class LoginModal implements OnInit {
     });
   }
 
-
-  success( res: _USER_LOGIN_RESPONSE) {
-
-    this.loading = false;
-    this.activeModal.close('success');
+  success( res: _USER_LOGIN_RESPONSE ) {
+      this.app.myEvent.emit( {
+          eventType: "login-success"
+      } );
+      this.loading = false;
+      this.activeModal.close('success');
   }
-
   error( error ) {
     this.loading = false;
     this.result = error;
     return this.user.errorResponse( error );
-
   }
-
   onEnterLogin(event){
        if( event.keyCode == 13){
            this.onClickLogin();

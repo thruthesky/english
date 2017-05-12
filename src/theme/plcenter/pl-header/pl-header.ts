@@ -33,15 +33,6 @@ export class PlHeaderComponent implements OnInit {
 
     onClickLogin(){
         let modalRef = this.modal.open( LoginModal );
-        modalRef.result.then((res)=> {
-            if( res == 'success') {
-                this.app.myEvent.emit( {
-                    eventType:"login-success",
-                } );
-            }
-        },(reason) =>{
-             console.log("reason:",reason);
-        });
     }
 
 

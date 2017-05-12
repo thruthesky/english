@@ -11,15 +11,20 @@
 
     <div class="modal-body">
         <div class="form-container">
-                
                 <form *ngIf="post">
-                    <div class="files clearfix" *ngIf=" post.files ">
+                    <div class="files clearfix" *ngIf=" post.files && post.files.length > 0 ">
                         <span class="info-title">
                             Photos
                         </span>
                         <div class="w-25 float-left" *ngFor=" let file of post.files ">
                         <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
                         </div>
+                    </div>
+                    <div>
+                        <span class="info-title">
+                            Title
+                        </span>
+                        <input [(ngModel)]="post.title" name="title" type="text" class="form-control" placeholder="Title">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
@@ -39,7 +44,7 @@
                             Content
                         </span>
                         <textarea rows="10" name="content" type="text" class="form-control">
-                            {{post.content}}
+                            {{ post.content }}
                         </textarea>
                     </div>
                 </form>

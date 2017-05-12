@@ -8,7 +8,7 @@ import {Observable} from 'rxjs/Observable';
   selector: 'app-root',
   template: `
     <router-outlet (window:resize)="onResize($event)"></router-outlet>
-    <template ngbModalContainer></template>
+    <ng-template ngbModalContainer></ng-template>
   `,
   styleUrls: ['./app.component.scss']
 })
@@ -17,6 +17,7 @@ export class AppComponent {
   constructor( private app: App,
                private backed:Backend ) {
     // backed.setBackendUrl("http://backend.dev/index.php");
+    backed.setBackendUrl("https://englishfordevelopers.com/index.php");
     app.setWidth( window.innerWidth );
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
   
