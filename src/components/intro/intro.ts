@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
     styleUrls: ['./intro.scss']
 })
 export class IntroComponent {
+    showMore: boolean = false;
     constructor() {}
 }
