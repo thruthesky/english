@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
+import { App } from '../../providers/app';
 @Component({
     selector: 'footer-component',
     templateUrl: 'footer.html',
-    styleUrls: ['./footer.scss']
+    styleUrls: ['footer.scss']
 })
 export class FooterComponent {
+    constructor( private app: App) {}
+    onClickPanelMenu( name ) {
+        this.app.scrollTo( name );
+    }
 }

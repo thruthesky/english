@@ -36,18 +36,6 @@ import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
 import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
 
-import { KkangHeaderComponent } from '../theme/kkang/kkang-header/kkang-header';
-import { KkangFooterComponent } from '../theme/kkang/kkang-footer/kkang-footer';
-import { KkangSmallHeaderComponent } from '../theme/kkang/kkang-header/components/kkang-small-header/kkang-small-header';
-import { KkangBigHeaderComponent } from '../theme/kkang/kkang-header/components/kkang-big-header/kkang-big-header';
-
-
-import { PlFooterComponent } from '../theme/plcenter/pl-footer/pl-footer';
-import { PlHeaderComponent } from '../theme/plcenter/pl-header/pl-header';
-
-import { PlSmallHeaderComponent } from '../theme/plcenter/pl-header/components/pl-small-header/pl-small-header';
-import { PlBigHeaderComponent } from '../theme/plcenter/pl-header/components/pl-big-header/pl-big-header';
-
 import { ClassInfoModal } from '../components/modals/class-info/class-info';
 import { LoginModal } from '../components/modals/login/login';
 import { RegisterComponent } from '../components/modals/register/register';
@@ -78,8 +66,6 @@ import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
-
-// import { PageNavigationComponent } from '../components/pagination/pagination.component';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
 
 const appRoutes:Routes = [
@@ -108,16 +94,8 @@ const appRoutes:Routes = [
     SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
-    PlFooterComponent,
-    PlHeaderComponent,
-    PlSmallHeaderComponent,
-    PlBigHeaderComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    KkangHeaderComponent,
-    KkangFooterComponent,
-    KkangSmallHeaderComponent,
-    KkangBigHeaderComponent,
     FindIdModal,
     ClassInfoModal,
     LoginModal,
