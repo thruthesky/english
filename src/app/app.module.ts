@@ -36,10 +36,6 @@ import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
 import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
 
-import { HeadersComponent } from '../components/headers/headers';
-import { BigHeadersComponent } from '../components/headers/components/big-headers/big-headers';
-import { SmallHeadersComponent } from '../components/headers/components/small-headers/small-headers';
-
 import { KkangHeaderComponent } from '../theme/kkang/kkang-header/kkang-header';
 import { KkangFooterComponent } from '../theme/kkang/kkang-footer/kkang-footer';
 import { KkangSmallHeaderComponent } from '../theme/kkang/kkang-header/components/kkang-small-header/kkang-small-header';
@@ -93,7 +89,6 @@ const appRoutes:Routes = [
     HomePage,
     SecondDesignPage,
     ThirdDesignPage,
-    HeadersComponent,
     HeaderComponent,
     PaymentBannerComponent,
     InquiryBannerComponent,
@@ -107,8 +102,6 @@ const appRoutes:Routes = [
     SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
-    BigHeadersComponent,
-    SmallHeadersComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
     KkangHeaderComponent,

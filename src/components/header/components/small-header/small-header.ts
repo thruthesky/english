@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { App } from '../../../../providers/app';
 import { User } from 'angular-backend';
+import { App } from '../../../../providers/app';
 @Component({
     selector: 'small-header-component',
     templateUrl: 'small-header.html',
@@ -19,7 +19,7 @@ export class SmallHeaderComponent {
         public user: User,
         public app: App
     ) {
-
+        // this.onClickMoreMenu();
     }
 
     onClickLogout(){
