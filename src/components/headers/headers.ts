@@ -1,17 +1,17 @@
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginModal } from '../../../components/modals/login/login';
-import { RegisterComponent } from '../../../components/modals/register/register';
+import { LoginModal } from '../../components/modals/login/login';
+import { RegisterComponent } from '../../components/modals/register/register';
 
 import { User } from 'angular-backend';
-import { App } from '../../../providers/app';
-
+import { App } from '../../providers/app';
+// import { ShareService } from '../../../providers/share-service';
 @Component({
-    selector: 'pl-header-component',
-    templateUrl: 'pl-header.html',
-    styleUrls: ['./pl-header.scss']
+    selector: 'headers-component',
+    templateUrl: 'headers.html',
+    styleUrls: ['headers.scss']
 })
-export class PlHeaderComponent implements OnInit {
+export class HeadersComponent implements OnInit {
     event:any = {};
     random;
     ctr: number = 0;
@@ -22,22 +22,18 @@ export class PlHeaderComponent implements OnInit {
     more: boolean = false;
     constructor(
         public user        : User,
-        private modal       : NgbModal,
-        public app         : App
+        private modal      : NgbModal,
+        public app         : App,
+        // public share       : ShareService
     ) {
-        // this.onClickRegister();
-        
+    
     }
     ngOnInit() {}
 
 
     onClickLogin(){
         let modalRef = this.modal.open( LoginModal );
-    }
-
-
-    
-    onClickGotoClassRoom(){
+        modalRef;
     }
 
     onClickRegister() {
@@ -46,7 +42,12 @@ export class PlHeaderComponent implements OnInit {
     }
 
     onClickLogout() {
+    //   this.share.class_info = null;
+      this.app.myEvent.emit( {
+          eventType: "logout-success"
+      } );
       this.user.logout();
+      
     }
 
     onClickUpdateProfile(){

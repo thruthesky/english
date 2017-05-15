@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'angular-backend';
-import { App } from '../../../../../providers/app';
+import { App } from '../../../../providers/app';
 @Component({
-    selector: 'pl-big-header-component',
-    templateUrl: 'pl-big-header.html',
-    styleUrls: ['./pl-big-header.scss']
+    selector: 'small-headers-component',
+    templateUrl: 'small-headers.html',
+    styleUrls: ['small-headers.scss']
 })
-export class PlBigHeaderComponent {
-    // event:any = {};
+export class SmallHeadersComponent {
+    event:any = {};
     more: boolean = false;
     @Input() login: boolean;
     @Output() logout = new EventEmitter();
@@ -19,15 +19,17 @@ export class PlBigHeaderComponent {
         public user: User,
         public app: App
     ) {
-
+        // this.onClickMoreMenu();
     }
-    onClickLogout(){
 
+    onClickLogout(){
         this.logout.emit();
     }
     onClickUpdateProfile(){
         this.profile.emit();
     }
+
+
     onClickMoreMenu() {
         this.more = ! this.more;
     }
