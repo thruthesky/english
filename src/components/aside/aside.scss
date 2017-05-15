@@ -11,6 +11,27 @@
 }
 
 
+// layout font
+a font {
+    bottom: 0;
+    @media ( min-width: 490px ) {
+        bottom: .5em;
+    }
+    @media ( min-width: 680px ) {
+        bottom: 1em;
+    }
+    @media ( min-width: $md ) and ( max-width: $xl ) {
+        bottom: 0;
+    }
+    @media ( min-width: $xl ) {
+        bottom: .2em;
+        font-size: 13px!important;
+    }
+}
+
+
+
+// small size.
 :host aside {
         overflow: auto;
         display: block;
@@ -41,9 +62,9 @@
                     font {
                         text-decoration: none;
                         position: absolute;
+                        display: block;
                         right: 0;
                         left: 0;
-                        bottom:.5em;
                         color: #fff;
                         font-size: 12px;
                     }

@@ -62,3 +62,12 @@ npm install @ng-bootstrap/ng-bootstrap
 
 
 
+
+
+# Design
+
+* We will not consider the design(look) between 420px and 700px.
+
+
+
+
