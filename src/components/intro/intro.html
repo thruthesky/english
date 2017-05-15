@@ -1,13 +1,23 @@
 <section id="intro" class="part">
     <div class="intro-container">
-        <div class="info-title">화상영어를 선택하는 이유</div>
-        <div class="info-text">
-            인터넷만 되면 언제 어디서든 수업을 할 수 있는 화상영어는<br>
-            왔다 갔다 1시간 이상 소요되지만 대화는 1분도 못하는 학원 수업과는 달리 일대일 화상영어는 맞춤식 수업이라 1시간 내내 대화하며 학생이 부족한 부분을 집중적으로 관리 할 수 있어 듣고 말하기에 탁월한 효과가 있습니다.
+        <div class="info-title">굿톡 화상영어를 선택하는 이유</div>
+        <div class="info-text pt-2 px-4">
+영어 학원 왔다 갔다 한시간. 그룹 수업시간 내내 1분도 영어로 말 못해!<br>
+10년을 해도 안되는 비 효율적인 방식을 계속 고집하겠습니까?
+<span *ngIf="!showMoreText" class="hidden-sm-up" (click)="showMoreText=!showMoreText">
+더보기...
+</span>
+<span [class.hidden-xs-down]="!showMoreText">
+굿톡 화상영어는 인터넷만 되면 언제 어디서든 수업을 할 수 있으며
+영어 학원이나 동영상 시청 강의와는 틀리게
+일대일 맞춤식 수업이라 학생이 부족한 부분을 집중적으로 관리 해 드리며
+수업시간 내내 영어로 말할 수 있어 말하기 능력을 획기적으로 높여드립니다. 
+</span>
         </div>
-        <div class="intro-img">
-            <img src="assets/img/intro.png">
-        </div>
+
+
+            <img class="w-100 px-4" src="assets/img/intro.png">
+        
         <div class="row intro-content">
             <div class="col-md-3 inner-intro">
                 <div class="img-icon">
