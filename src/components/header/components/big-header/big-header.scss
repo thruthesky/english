@@ -1,6 +1,10 @@
 @import '../../../../theme/variables';
 
 
+header > nav {
+    height: $header-height;
+    overflow: hidden;
+}
 header > nav > div > .d-flex {
     margin: 0 auto;
     max-width: $lg;
@@ -16,9 +20,6 @@ header > nav > div > .d-flex {
     }
     font-size: .9rem;
 }
-header .top img {
-        width: 28px;
-}
 .bottom {
     .text {
         font-size: 1.2em;
@@ -27,7 +28,12 @@ header .top img {
         font-size: 11px;
     }
 }
-
+.top img {
+    width: 28px;
+}
+.logo img {
+    width: 220px;
+}
 
 
 // @import '../../../../theme/variables.scss';

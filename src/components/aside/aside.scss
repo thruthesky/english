@@ -116,7 +116,7 @@ a div {
         .sidebar {
             z-index: 1;
             position: fixed;
-            top: 9em;
+            top: $header-height + $gutter * 2;
             left: 1.5em;
             right: auto;
             bottom: auto;

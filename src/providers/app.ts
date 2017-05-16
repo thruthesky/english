@@ -1,10 +1,11 @@
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
-export const HEADER_HEIGHT: number = 120;
+
 @Injectable()
 export class App {
     public myEvent: EventEmitter<any>;
     width: number = 0;
     scrollId: string = null;
+    headerHeight = 10;
     constructor( private ngZone: NgZone ) {
         this.myEvent = new EventEmitter();
     }
@@ -15,7 +16,24 @@ export class App {
         this.width = width;
         this.renderPage();
         // console.log("setWidth(): ", this.width);
+
+
+        this.makeSureHeaderHeight();
+        setTimeout( () => this.makeSureHeaderHeight(), 5000 );
+        setTimeout( () => this.makeSureHeaderHeight(), 15000 );
+
     }
+
+
+    makeSureHeaderHeight() {
+        
+        let header = document.querySelector( 'header nav' );
+        if ( ! header ) return;
+        console.log(header);
+        console.log( header.clientHeight );
+        this.headerHeight = header.clientHeight;
+    }
+
     renderPage() {
         this.ngZone.run(() => {
             // console.log('ngZone.run()');
@@ -33,7 +51,7 @@ export class App {
     }
 
     get marginTop() {
-        return HEADER_HEIGHT;
+        return this.headerHeight;
         // let margin_top = HEADER_HEIGHT;
         // if ( this.widthSize == 'big' ) margin_top += BIG_HEADER_HEIGHT;
         // return margin_top;
@@ -111,7 +129,7 @@ export class App {
                 if ( parts[i]['id'] == id ) {
                     console.log("parts:i, ", parts[i]);
                     //  window.scrollTo( 0, parts[i]['top'] - HEADER_HEIGHT+1 );
-                    this.scrollToY( parts[i]['top'] - HEADER_HEIGHT + 1, 2000, 'easeInOutQuint' );
+                    this.scrollToY( parts[i]['top'] - this.headerHeight, 2000, 'easeInOutQuint' );
 
                     break;
                 }

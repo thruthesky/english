@@ -1,32 +1,38 @@
 <section id="curriculum" class="part">
-    <div class="curriculum-container">
-        <div class="info-text">
+    <div class="">
+
+
+        <div class="mb-3 mb-md-4 mb-lg-5 mw-md-18 mx-auto p-3 fs-200 text-center" style="background-color: rgba(255, 255, 255, .7)">
             화상영어 교재 안내
         </div>
-        <div class="more-text">
-            <span>교재 더보기</span>
-        </div>
-        
-        <div class="collection" *ngIf="books">    
-            <div class="row">
-                <div class="col-md-3 col-sm-4 col-xs-6 col-6 mybook" *ngFor="let book of books">
-                    <div class="inner-row">
-                        <img class="book-image" src="{{ book.img }}">
-                        <div class="title">
-                            {{ book.title }}
-                        </div>
-                        <div class="desc">
-                            {{ book.desc }}
+
+
+        <div class="bg-lightgrey p-3 pr-0" *ngIf="books">
+            <div class="row pl-3">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6 p-0 pr-3 mb-3" *ngFor="let book of books">
+                    <div class="bg-white rounded-top">
+                        <img class="w-100 rounded-top" src="{{ book.img }}">
+                        <div class="p-2 p-md-3">
+                            <div class="fs-120 pt-2 pb-3">
+                                {{ book.title }}
+                            </div>
+                            <div class="desc grey">
+                                {{ book.desc }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="load" (click)="onClickShowMore()">
-                <div class="load-more" >
+
+            <div class="load bg-skyblue white p-2 text-center fs-120" (click)="onClickShowMore()">
+                <div class="load-more">
                     <font *ngIf="showBook">감추기</font>
                     <font *ngIf="!showBook">더 보기</font>
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </section>

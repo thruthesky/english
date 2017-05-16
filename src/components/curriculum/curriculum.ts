@@ -86,7 +86,7 @@ const BOOKS: BOOKS = [
         },
         {
             img:"assets/img/book13.jpg",
-            title:"석달에 끝내는 300 핵심 패턴",
+            title:"3개월 완성 300 패턴",
             desc:`영어 표현에서 반복적으로 쓰이는 문장을 간추려 석달 동안 공부하는 교재로 반복 연습을 통해 영어 표현을 몸에 
                 베이게 하여 말하기 영어 실력 향상.`
         },
@@ -203,7 +203,7 @@ const BOOKS: BOOKS = [
         {
             img:"assets/img/book36.jpg",
             title:"Nate The Grate",
-            desc:`어린이를 위한 스토리북. 여러가지 사건을 해결하느라 정신 없이 뛰어다니는 Nate와 Sludge에 대한 이야기. 중급 영어 실력을 가진 초등학생에게 알`
+            desc:`어린이를 위한 스토리북. 여러가지 사건을 해결하느라 정신 없이 뛰어다니는 Nate와 Sludge에 대한 이야기.`
         },
         {
             img:"assets/img/book37.jpg",

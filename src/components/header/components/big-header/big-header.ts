@@ -20,6 +20,10 @@ export class BigHeaderComponent {
     ) {
 
     }
+
+    ngOnInit() {
+    }
+
     onClickLogout(){
 
         this.logout.emit();
