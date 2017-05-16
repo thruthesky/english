@@ -1,69 +1,91 @@
 @import '../../theme/variables';
 
-
-$color_pallete7:#2c3e50;
-
-:host {
-    display: block;
-    background-color: #EDEDED;
-    padding: 3em 0;
-    .intro-container {
-        margin-left: auto;
-        margin-right: auto; 
-        width: 100%;
-        max-width: $lg_breakpoint;
-        display: block;
-        .intro-content {
-            margin:0;
-            @media (min-width:$md_breakpoint) {
-                padding: 1em;
-            }
-        }
-        .info-title {
-            color: $color_pallete7;
-            text-align: center;
-            font-size: 1.8em;
-        }
-        .info-text {
-            margin-bottom: 1.875rem;
-            font-size: 1.1em;
-            color: $color_pallete7;
-            text-align: center;
-            padding:0 .5em;
-        }
-        .inner-intro {
-            padding: 1em;
-            img {
-                height: auto;
-                width: 100%;
-                min-width: 80px;
-                max-width: 100px;
-            }
-        }
-        .img-icon {
-            text-align: center;
-        }
-        .title {
-            text-align: center;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: $color_pallete7;
-        }
-        .desc {
-            text-align: center;
-            font-size: .9em;
-            color: #2c3e50;
+.text {
+    .title {
+        padding-bottom: .5em;
+        font-size: 1.5rem;
+        @media ( min-width: $lg ) {
+            font-size: 2em;
         }
     }
 }
-@media all and (max-width: $breakpoint) {
-    :host {
-        position: relative;
-        margin: 0 auto;
-        max-width: 980px;
-        .intro-container {
-            padding: 0;
-        width: 100%;
+.row {
+    .title {
+        margin-top: .4em;
+    }
+    .desc {
+        margin-bottom: .6em;
+    }
+    img {
+        @media (min-width:$sm) {
+            width: 160px;
+        }
+        @media ( min-width: $md ) {
+            width: auto;
         }
     }
 }
+
+// $color_pallete7:#2c3e50;
+
+// :host {
+//     .intro-container {
+//         margin-left: auto;
+//         margin-right: auto; 
+//         width: 100%;
+//         max-width: $lg_breakpoint;
+//         display: block;
+//         .intro-content {
+//             margin:0;
+//             @media (min-width:$md_breakpoint) {
+//                 padding: 1em;
+//             }
+//         }
+//         .info-title {
+//             color: $color_pallete7;
+//             text-align: center;
+//             font-size: 1.8em;
+//         }
+//         .info-text {
+//             margin-bottom: 1.875rem;
+//             font-size: 1.1em;
+//             color: $color_pallete7;
+//             text-align: center;
+//             padding:0 .5em;
+//         }
+//         .inner-intro {
+//             padding: 1em;
+//             img {
+//                 height: auto;
+//                 width: 100%;
+//                 min-width: 80px;
+//                 max-width: 100px;
+//             }
+//         }
+//         .img-icon {
+//             text-align: center;
+//         }
+//         .title {
+//             text-align: center;
+//             font-size: 1.1em;
+//             font-weight: bold;
+//             color: $color_pallete7;
+//         }
+//         .desc {
+//             text-align: center;
+//             font-size: .9em;
+//             color: #2c3e50;
+//         }
+//     }
+// }
+// @media all and (max-width: $breakpoint) {
+//     :host {
+//         position: relative;
+//         margin: 0 auto;
+//         max-width: 980px;
+//         .intro-container {
+//             padding: 0;
+//         width: 100%;
+//         }
+//     }
+// }

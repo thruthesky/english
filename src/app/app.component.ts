@@ -21,11 +21,19 @@ export class AppComponent {
     app.setWidth( window.innerWidth );
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
   
+
+
     Observable.fromEvent(window, 'scroll')
           .debounceTime(100)
           .subscribe((event) => {
             app.scrolled( event );
           });
+
+
+
+
+
+
   }
   ngOnInit() {
     setTimeout( () => this.app.scrolled( event ), 10);

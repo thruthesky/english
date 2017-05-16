@@ -12,8 +12,16 @@
 
 
 // layout font
-a font {
+a div {
+
+    position: absolute;
+    display: block;
+    right: 0;
+    left: 0;
+
     bottom: 0;
+    font-size: 11px;
+    color: white;
     @media ( min-width: 490px ) {
         bottom: .5em;
     }
@@ -65,8 +73,6 @@ a font {
                         display: block;
                         right: 0;
                         left: 0;
-                        color: #fff;
-                        font-size: 12px;
                     }
                     .chrome {
                         color:#3a2123;
