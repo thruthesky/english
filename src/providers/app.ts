@@ -29,8 +29,8 @@ export class App {
         
         let header = document.querySelector( 'header nav' );
         if ( ! header ) return;
-        console.log(header);
-        console.log( header.clientHeight );
+        //console.log(header);
+        //console.log( header.clientHeight );
         this.headerHeight = header.clientHeight;
     }
 

@@ -24,14 +24,14 @@
                     <tr valign="top">
                         <td>전공</td>
                         <td>
-                            <div class="h-3 of-hidden" [class.h-6]=" teacher.show_more_greeting ">
+                            <div class="h-1 of-hidden" [class.h-auto]=" teacher.show_more_greeting " [class.of-auto]=" teacher.show_more_greeting ">
                                 {{ teacher.major }}
                             </div>
                         </td>
                     </tr>
                 </table>
 
-                <div class="my-4" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting">
+                <div class="my-3" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting">
                     <div class="mh-4 of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [innerHTML]=" teacher.greeting "></div>
                     
                     <div *ngIf="!teacher.show_more_greeting">... show more</div>
@@ -40,9 +40,9 @@
                 </div>
 
                 <div class="youtube-wrapper">
-                    <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="p-relative">
+                    <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="p-relative text-center">
                         <img [src]="teacher.img_youtube" class="mw-100">
-                        <i class="p-absolute b-block t-50 l-50 fs-3rem orange fa fa-play-circle" style="margin-top: -1.5rem; margin-left: -1.5rem;"
+                        <i class="p-absolute b-block t-50 l-50 fs-3rem fa fa-play-circle" style="margin-top: -1.5rem; margin-left: -1.5rem; color: #ce1515;"
                             aria-hidden="true"></i>
                     </div>
                     <div *ngIf="teacher.play_video" class="youtube-player">
