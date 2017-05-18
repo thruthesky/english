@@ -3,6 +3,9 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { App } from '../../providers/app';
 import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
+
+import {} from 'jquery';
+
 @Component( {
     selector: 'home-page',
     templateUrl: 'home.html',
@@ -15,9 +18,12 @@ export class HomePage implements AfterViewInit {
     constructor(
         public app: App,
         private lms: LMS
-            ) {
+            )
+    {
             this.lms.getTeachers( teachers => this.teachers = teachers );
-        }
+
+
+    }
 
 
     ngAfterViewInit() {

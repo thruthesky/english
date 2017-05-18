@@ -45,7 +45,10 @@ export class HeaderComponent implements OnInit {
       this.app.myEvent.emit( {
           eventType: "logout-success"
       } );
-      this.user.logout();
+
+      //this.user.logout();
+
+      this.app.logout( a => {} );
       
     }
 

@@ -1,4 +1,14 @@
 import { Injectable, NgZone, EventEmitter } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { User } from 'angular-backend';
+export interface SOCIAL_LOGIN {
+    providerId: string;
+    uid: string;
+    displayName: string;
+    email: string;
+    photoURL: string;
+};
 
 @Injectable()
 export class App {
@@ -6,7 +16,13 @@ export class App {
     width: number = 0;
     scrollId: string = null;
     headerHeight = 10;
-    constructor( private ngZone: NgZone ) {
+    constructor(
+        private ngZone: NgZone,
+
+        public afAuth: AngularFireAuth,
+        private backendUser: User
+
+     ) {
         this.myEvent = new EventEmitter();
     }
     /**
@@ -245,4 +261,33 @@ export class App {
 
 
 
+
+    getSocialLogin() {
+        let currentUser = firebase.auth().currentUser;
+        if (currentUser) {
+            let user: SOCIAL_LOGIN = {} as SOCIAL_LOGIN;
+            // console.log("currentUser: ", currentUser);
+            currentUser['providerData'].forEach((profile) => {
+                user.providerId = profile.providerId;
+                user.uid = profile.uid;
+                user.displayName = profile.displayName;
+                user.email = profile.email;
+                user.photoURL = profile.photoURL;
+            });
+            return user;
+        }
+        else return null;
+
+    }
+
+
+    logout( callback ) {
+        
+        this.afAuth.auth.signOut()
+            .then( (v) => {
+                this.backendUser.logout();
+                callback(v);
+            });
+            
+    }
 }

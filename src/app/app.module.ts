@@ -9,6 +9,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RouterModule, Routes } from '@angular/router';
 
+
+// Angular & angularfire
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+
+
+
+//
 import { App } from '../providers/app';
 import { ShareService } from '../providers/share-service';
 
@@ -127,6 +137,9 @@ const appRoutes:Routes = [
     HttpModule,
     RouterModule.forRoot( appRoutes ),
     NgbModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularBackendModule.forRoot(),
     AngularBackendComponents
   ],
