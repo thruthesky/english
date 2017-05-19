@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModal } from '../../components/modals/login/login';
 import { RegisterComponent } from '../../components/modals/register/register';
@@ -16,8 +16,7 @@ export class HeaderComponent implements OnInit {
     ctr: number = 0;
     uid;
 
-    @Output() onLogin = new EventEmitter();
-    @Output() onLogout = new EventEmitter();
+
     more: boolean = false;
     constructor(
         public user        : User,

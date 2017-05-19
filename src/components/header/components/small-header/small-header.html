@@ -4,9 +4,13 @@
 
             <div class="d-flex justify-content-between p-2">
                 <div class="icons p-1">
-                    <span><img src="assets/img/kkang/k.png"></span>
-                    <span (click)="onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
-                    <span><img src="assets/img/kkang/b.png"></span>
+                    <span><img (click)="app.onClickLoginWithKakao()" src="assets/img/kakao_btn_small.png"></span>
+                    <span (click)="app.onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
+                    <!--<span (click)="onClickLogin()"><img src="assets/img/kkang/naver-id.png"></span>                    -->
+
+                    <span id="naver_id_login"></span>
+                    
+
                 </div>
                 <div class="p-2 fs-130">
                     무료 레벨 테스트
@@ -25,13 +29,13 @@
             </div>
             <div class="panel" [class.active]="this.more">
                 <ul class="menus list-panel-menu fs-120">
-                    <li class="menu" *ngIf=" ! user.logged " (click)="onClickLogin()">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="text">회원 로그인</span>
-                        <small>Login</small>
+                    <li class="menu" *ngIf=" ! user.logged ">
+                        
+                        Login with: <span (click)="onClickLoginWithNaver()">Naver</span>,
+                          <span (click)="app.onClickLoginWithKakaoTalk()">KakaoTalk</span>,
+                          <span (click)="app.onClickLoginWithFacebook()">Facebook</span>,
+                           <span (click)="onClickLogin()">SiteLogin</span>
+
                     </li>
                     <li class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
                         <span class="fa-stack fa-lg">

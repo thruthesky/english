@@ -102,7 +102,7 @@ export class PostListComponent  {
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
-        console.log('Post:',this.posts);
+        // console.log('Post:',this.posts);
 
         }, err => this.postData.alert( err ));
     }

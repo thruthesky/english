@@ -18,6 +18,35 @@
   <app-root>Loading...</app-root>
 
 
+  <script src="assets/js/kakao.min.js"></script>
+  <script src="assets/js/naverLogin_implicit-1.0.3-min.js"></script>
   <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script>
+    
+// Naver Id Login Object initialization
+var naver_id_login = new window['naver_id_login']("RQ5aql3x2TQKjwi2Pkh4", "https://englishfordevelopers.com/");
+
+
+ 
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('f1c28c13d21b295e1cdce515884477de');
+
+        /*
+        // 카카오 로그인 버튼을 생성합니다.
+        Kakao.Auth.createLoginButton({
+          container: '#kakao-login-btn',
+          success: function(authObj) {
+            alert(JSON.stringify(authObj));
+          },
+          fail: function(err) {
+             alert(JSON.stringify(err));
+          }
+        });
+        */
+        
+</script>
+
+
+
 </body>
 </html>

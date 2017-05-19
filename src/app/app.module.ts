@@ -80,8 +80,7 @@ import { AngularBackendComponents } from '../angular-backend-components/angular-
 
 const appRoutes:Routes = [
   { path: '', component: HomePage },
-  { path: 'seconddesign', component:SecondDesignPage },
-  { path: 'thirddesign', component:ThirdDesignPage }
+  { path: '**', component: HomePage }
 ];
 
 @NgModule({

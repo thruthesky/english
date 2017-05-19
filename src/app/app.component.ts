@@ -17,8 +17,8 @@ export class AppComponent {
   constructor(private app: App,
     private backed: Backend) {
     // backed.setBackendUrl("http://backend.dev/index.php");
-    //backed.setBackendUrl("https://englishfordevelopers.com/index.php");
-    backed.setBackendUrl("http://backend.org/index.php");
+    backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    //backed.setBackendUrl("http://backend.org/index.php");
     app.setWidth(window.innerWidth);
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
 
@@ -30,15 +30,15 @@ export class AppComponent {
         app.scrolled(event);
       });
 
+      app.checkLoginWithNaver();
 
   }
 
 
   ngOnInit() {
 
-
-
     setTimeout(() => this.app.scrolled(event), 10);
+
   }
   onDevinceReady() {
     console.log("yes, I am running in cordova.");

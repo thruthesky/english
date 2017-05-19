@@ -160,6 +160,9 @@ export class RegisterComponent {
         
     }
     getConcatBirthdate( ) {
+        if ( ! this.userData.birth_year ) return '';
+        if ( ! this.userData.birth_month ) return '';
+        if ( ! this.userData.birth_day ) return '';
         if( this.userData.birth_month.length < 2 ) this.userData.birth_month = "0"+ this.userData.birth_month;
         if( this.userData.birth_day.length < 2 ) this.userData.birth_day = "0"+ this.userData.birth_day;
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" +this.userData.birth_day;

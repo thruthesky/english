@@ -9,7 +9,7 @@ import { App } from '../../../../providers/app';
 export class BigHeaderComponent {
     more: boolean = false;
     @Input() login: boolean;
-    @Output() logout = new EventEmitter();
+    @Output() logout = new EventEmitter(); // @todo ambiguious, where does it go?
     @Output() onLogin = new EventEmitter();
     @Output() register = new EventEmitter();
     @Output() profile = new EventEmitter();
