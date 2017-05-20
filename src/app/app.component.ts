@@ -16,6 +16,8 @@ export class AppComponent {
 
   constructor(private app: App,
     private backed: Backend) {
+
+      console.log("User session_id: ", app.user.getSessionId());
     // backed.setBackendUrl("http://backend.dev/index.php");
     backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
     //backed.setBackendUrl("http://backend.org/index.php");

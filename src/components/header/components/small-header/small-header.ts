@@ -57,8 +57,4 @@ export class SmallHeaderComponent {
     }
 
 
-    onClickLoginWithNaver() {
-        let a = document.querySelector('#naver_id_login a');
-        a['click']();
-    }
 }

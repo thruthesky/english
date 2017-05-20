@@ -321,15 +321,16 @@ export class App {
         let naver_id_login = window['naver_id_login'];
         let naver_access_token = naver_id_login.oauthParams.access_token;
         if (naver_access_token) {
-            console.log("removing hash");
+            console.log(`Has access token: ${naver_access_token} Going to remove hash`);
             history.pushState('', document.title, window.location.pathname);
         }
+
 
         // user has logged in with naver id.
         if (naver_access_token) naver_id_login.get_naver_userprofile(() => {
             console.log("Got naver user profile");
             console.log("nickname: ", naver_id_login.getProfileData('nickname'));
-            console.log("age: ", naver_id_login.getProfileData('age'));
+            //console.log("age: ", naver_id_login.getProfileData('age'));
 
             let nickname = naver_id_login.getProfileData('nickname');
             let id = naver_id_login.getProfileData('id');
@@ -341,6 +342,12 @@ export class App {
             };
             this.socialLoginSuccessHandler();
         });
+    }
+
+
+    onClickLoginWithNaver() {
+        let a = document.querySelector('#naver_id_login a');
+        a['click']();
     }
 
 
@@ -439,4 +446,33 @@ export class App {
         // this.app.zoneRun();
     }
 
+
+    getUniqueId() {
+        let str = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5));
+        return str.substr( 2 );
+
+    }
+
+
+    /**
+     * This is a unique id of each user(web browser).
+     * This will not be regenerated.
+     * So, you can use it to track a user.
+     * 
+     */
+    getClientId() {
+
+        let uid = localStorage.getItem('client-uid');
+        if ( uid ) return uid;
+        else {
+            uid = this.getUniqueId();
+            localStorage.setItem('client-uid', uid);
+            return uid;
+        }
+    }
+
+    isAdmin() : boolean {
+        if ( this.user.logged && this.user.info.id == 'admin' ) return true;
+        else return false;
+    }
 }

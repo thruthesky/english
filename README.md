@@ -71,3 +71,25 @@ npm install @ng-bootstrap/ng-bootstrap
 
 
 
+
+
+# 기능
+
+소셜 로그인: 네이버, 카카오, 페이스북 로그인 기능
+
+접속자 마케팅 : 실시간 채팅. 방문자가 있을 때, 알림.
+
+회원 관리, 게시판, 수업 관리
+
+
+
+# Chat functionality.
+
+* There are many chats on chat box.
+* When users chat, chat messages are display on global space.
+* User may have name if they have logged in.
+* If admin wants to talk to user, he clicks on user name ( or chat message of the user. )
+    * 1:1 chat box will be opened. only the chat messages of the user will be displayed.
+    * admin and user begin to chat.
+    * if they don't chat for 1 minutes, then the 1:1 chat box will be closed and show global chat box.
+    * while they are chatting, if another user chat to admin, an alert message will be dispaly on the current 1:1 chat box.

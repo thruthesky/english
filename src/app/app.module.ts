@@ -74,6 +74,9 @@ import { FileFormComponent } from '../components/forum/components/file-form-comp
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 
+import { ChatComponent } from '../components/chat/chat';
+import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
+
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
@@ -128,6 +131,8 @@ const appRoutes:Routes = [
     PostViewComponent,
     FileFormComponent,
     ForumPostComponent,
+    ChatComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
