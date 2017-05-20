@@ -1,10 +1,118 @@
 <div class="reservation">
 
+    <div class="reservation-container p-relative ">
+        <div class="date-container d-flex justify-content-between my-3">
+            <div class="btn btn-success prev-month" on-mouseleave="showPrevious=false">
+                <span class="show-list" (click)="showPrevious=!showPrevious">
+                    <i *ngIf="showPrevious" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i *ngIf="!showPrevious" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+                </span>
+                <div on-mouseover="showPrevious=true" (click)="onClickPrev()"><span>{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
+
+                <div class="prev-months" *ngIf="showPrevious">
+                    <ul>
+                        <li class="prev" *ngFor="let prev of prevMonths | slice:2" (click)="selectNewDate({m:prev.m,Y:prev.Y})"> {{ prev.m }} {{ prev.Y }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn btn-success this-month" on-mouseleave="showYear=false">
+
+                <span class="show-list" (click)="showYear=!showYear">
+                    <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                    <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+                </span>
+                <div on-mouseover="showYear=true"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
+
+                <div class="this-months" *ngIf="showYear">
+                    <ul>
+                        <li class="this-year" *ngFor="let year of listOfYears" (click)="selectNewDate({m:year.m,Y:year.Y})"> {{ year.m }} {{ year.Y }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="btn btn-success next-month" on-mouseleave="showNext=false">
+                <span class="show-list" (click)="showNext=!showNext">
+                <i *ngIf="showNext" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                <i *ngIf="!showNext" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+            </span>
+                <div on-mouseover="showNext=true" (click)="onClickNext()"><span>{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>
+                <div class="next-months" *ngIf="showNext">
+                    <ul>
+                        <li class="next" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y})"> {{ next.m }} {{ next.Y }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <th class="bg-slategrey text-white calendar-day-head">Sun</th>
+                <th class="bg-slategrey text-white calendar-day-head">Mon</th>
+                <th class="bg-slategrey text-white calendar-day-head">Tue</th>
+                <th class="bg-slategrey text-white calendar-day-head">Wed</th>
+                <th class="bg-slategrey text-white calendar-day-head">Thu</th>
+                <th class="bg-slategrey text-white calendar-day-head">Fri</th>
+                <th class="bg-slategrey text-white calendar-day-head">Sat</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let week of weeks">
+                    <td *ngFor="let day of week;" class="bg-whitesmoke h-5 calendar-day">
+                        <div *ngIf="day" class="info-container">
+                            <span class="my-date">{{day?.myDate}}</span>
+                            <div>
+                                <div *ngFor="let info of day;">
+                                    <div *ngIf="info?.icon" class="rounded teacher-icon" (click)="onClickClassInfo(info)" [innerHTML]="info?.icon" on-mouseover="info.display = true"
+                                        on-mouseleave="info.display = false"></div>
+                                    <div class="teacher-nick">{{info?.teacher?.mb_nick}}</div>
+                                    <div class="class-info" *ngIf="info?.display && info?.teacher">
+                                        <div>
+                                            <span>
+                                            Teacher's Name: {{ info?.teacher?.mb_nick }}
+                                        </span>
+
+                                        </div>
+                                        <div>
+                                            <span>
+                                            Date: {{ info?.date }}
+                                        </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                            Book: {{ info?.book }}
+                                        </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                            Teacher's Comment: {{ info?.rate_comment }}
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="!user.logged" class="mx-auto p-absolute d-block b-0 w-100 reminder-image"> <img class="d-block w-60 mx-auto " src="assets/img/reservation-banner.png">
+            <div class="mx-auto p-absolute d-block w-100 l-50 text-white reminder-text" style="top:30%">수업 시간표를 보시려면 로그인을 하세요.</div>
+        </div>
+        <div *ngIf="this.calendarLoad" class="calendar-loader">
+            <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="reservation">
+
     <div class="reservation-container">
         <div class="date-container d-flex justify-content-between my-3">
 
 
-            <div class="prev-month" on-mouseleave="showPrevious=false">
+            <div class="btn btn-success prev-month" on-mouseleave="showPrevious=false">
                 <span class="show-list" (click)="showPrevious=!showPrevious">
                     <i *ngIf="showPrevious" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                     <i *ngIf="!showPrevious" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
@@ -19,7 +127,7 @@
             </div>
 
 
-            <div class="this-month" on-mouseleave="showYear=false">
+            <div class="btn btn-success this-month" on-mouseleave="showYear=false">
 
                 <span class="show-list" (click)="showYear=!showYear">
                     <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
@@ -37,7 +145,7 @@
             </div>
             
 
-            <div class="next-month" on-mouseleave="showNext=false">
+            <div class="btn btn-success next-month" on-mouseleave="showNext=false">
                 <span class="show-list" (click)="showNext=!showNext">
                 <i *ngIf="showNext" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                 <i *ngIf="!showNext" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
@@ -112,4 +220,4 @@
             <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
         </div>
     </div>
-</div>
+</div>-->
