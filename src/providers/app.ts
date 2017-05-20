@@ -25,7 +25,7 @@ export class App {
         private ngZone: NgZone,
 
         public afAuth: AngularFireAuth,
-        private user: User
+        public user: User
 
     ) {
         this.myEvent = new EventEmitter();
@@ -308,7 +308,7 @@ export class App {
 
     initializeNaverLogin() {
         let naver_id_login = window['naver_id_login'];
-        naver_id_login.setButton("white", 2, 40);
+        naver_id_login.setButton("green", 1, 28);
         naver_id_login.setDomain(".englishfordevelopers.com");
         naver_id_login.init_naver_id_login();
     }
