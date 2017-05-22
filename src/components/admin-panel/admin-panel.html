@@ -1,7 +1,7 @@
 <section id="admin-panel-component">
 
-    <div class="p-absolute b-0 mw-100">
-        <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 bg-white blue': config, 'mb-3': username }">
+    <div class="config p-absolute b-0 w-16" [class.bg-white]="config" >
+        <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
             <span class="fa-stack fa-lg" (click)=" config = ! config ">
             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
             <i class="fa fa-stack-1x fa-inverse" [class.fa-gear]=" !config " [class.fa-times]=" config "></i>
@@ -29,21 +29,25 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
-                    <div class="">
+                    <div class="col-auto" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
+                    <div class="col-auto">
                         <input type='radio' name="per" value="line">채팅
                         <input type='radio' name="per" value="user">사용자
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-auto">
+                        <span *ngIf="minimized" (click)=" minimized = false ">Maximize</span>
+                        <span *ngIf=" !minimized " (click)=" minimized = true ">Minifize</span>
+                    </div>
+                </div>
             </div><!-- .container -->
-
-
-            
         </div>
     </div>
 
 
-    <div class="chat p-3 bg-lightgrey">
+    <div class="chat p-3 bg-lightgrey" [class.d-none]="minimized">
 
 
         <div class="display">

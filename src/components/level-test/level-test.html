@@ -1,12 +1,12 @@
-
+<div class="content-wrapper">
     <div class="level-test-form level-test-theme">
         <h2 class="p-4 text-center">레벨테스트 신청서</h2>
         <div class="pb-3 text-center">
             * 레벨테스트 신청은 회원 가입하지 않아도 가능합니다.
         </div>
 
-            <div class="container">
-        <form>
+        <div class="container">
+            <form>
 
                 <!--<div class="row form-group">
                         <label class="col-sm-4 col-lg-3" for="student_id">아이디</label>
@@ -18,37 +18,37 @@
 
 
                 <div *ngIf="! app.user.logged" class="row form-group">
-                        <label class="col-sm-4 col-lg-3" for="student_name">이름</label>
+                    <label class="col-sm-4 col-lg-3" for="student_name">이름</label>
                     <div class="col-sm-8 col-lg-9">
                         <input type="text" class="form-control" name="student_name" maxlength="64" id="student_name" tabindex="101" placeholder="이름">
                     </div>
                 </div>
 
                 <div class="row form-group">
-                        <label class="col-sm-4 col-lg-3" for="date">날짜를 선택하세요<span>*</span></label>
-               
-               
-                    
+                    <label class="col-sm-4 col-lg-3" for="date">날짜를 선택하세요<span>*</span></label>
+
+
+
                     <div class="col-sm-8 col-lg-9">
                         <input class="form-control" type="date" name="date" id="date" maxlength="64" tabindex="101" placeholder="공휴일,주말을 제외한 주중에만 테스트가 가능합니다.">
                     </div>
                 </div>
                 <div class="row form-group">
-                    
-                        <label class="col-sm-4 col-lg-3" for="time">시간선택<span>*</span></label>
-              
-              
-                    
+
+                    <label class="col-sm-4 col-lg-3" for="time">시간선택<span>*</span></label>
+
+
+
                     <div class="col-sm-8 col-lg-9">
                         <select class="form-control" name="time">
                             <option value="3:00pm">3:00 PM</option><option value="3:30pm">3:30 PM</option><option value="4:00pm">4:00 PM</option><option value="4:30pm">4:30 PM</option><option value="5:00pm">5:00 PM</option><option value="5:30pm">5:30 PM</option><option value="6:00pm">6:00 PM</option><option value="6:30pm">6:30 PM</option><option value="7:00pm">7:00 PM</option><option value="7:30pm">7:30 PM</option><option value="8:00pm">8:00 PM</option><option value="8:30pm">8:30 PM</option><option value="9:00pm">9:00 PM</option><option value="9:30pm">9:30 PM</option><option value="10:00pm">10:00 PM</option><option value="10:30pm">10:30 PM</option><option value="11:00pm">11:00 PM</option><option value="11:30pm">11:30 PM</option>                        </select>
                     </div>
                 </div>
                 <div class="row form-group">
-                    
-                        <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
-                 
-                 
+
+                    <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
+
+
                     <div class="col-sm-8 col-lg-9">
                         <input class="form-control" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
                     </div>
@@ -65,10 +65,10 @@
                 </div>-->
 
                 <div class="row form-group">
-                    
-                        <label class="col-sm-4 col-lg-3" for="post_content">내용<span>*</span></label>
-              
-              
+
+                    <label class="col-sm-4 col-lg-3" for="post_content">내용<span>*</span></label>
+
+
                     <div class="col-sm-8 col-lg-9">
                         <textarea class="form-control" name="post_content" id="post_content" tabindex="101" rows="5" placeholder="Your comment here..."></textarea>
                     </div>
@@ -78,7 +78,8 @@
                         <button class="btn btn-danger w-100" type="button">무료 레벨 테스트 신청하기</button>
                     </div>
                 </div>
-        </form>
-    
-            </div>
+            </form>
+
+        </div>
     </div>
+</div>

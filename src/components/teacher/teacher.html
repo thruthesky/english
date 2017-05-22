@@ -1,64 +1,66 @@
 <section id="teacher" class="part bg-black white">
-    <h2 class="p-4 white text-center">강사 소개</h2>
+    <div class="content-wrapper">
+        <h2 class="p-4 white text-center">강사 소개</h2>
 
-    <div class="container">
+        <div class="container">
 
-        <div *ngIf="teachers" class="row">
-            <div class="col-sm-6 col-lg-4 mt-5" *ngFor=" let teacher of teachers; let i = index">
-                <div class="mx-auto mw-12 mh-12 rounded-circle of-hidden b-white" style="border-width: 3px;">
-                    <img class="w-100" src="{{ lms.url }}/{{ teacher.photo }}">
-                </div>
-                <h3 class="my-3 text-center white">
-                    {{ teacher.id }}
-                </h3>
-
-                <table class="fs-1rem">
-                    <tr>
-                        <td class="w-25">경력</td>
-                        <td>{{ teacher.teaching_year }} years</td>
-                    </tr>
-                    <tr>
-                        <td>나이</td>
-                        <td>{{ teacher.age }}</td>
-                    </tr>
-                    <tr valign="top">
-                        <td>전공</td>
-                        <td>
-                            <div class="h-1 of-hidden" [class.h-auto]=" teacher.show_more_greeting " [class.of-auto]=" teacher.show_more_greeting ">
-                                {{ teacher.major }}
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
-                <div class="my-3" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting">
-                    <div class="mh-4 of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [innerHTML]=" teacher.greeting "></div>
-                    
-                    <div *ngIf="!teacher.show_more_greeting">... show more</div>
-                    <div *ngIf="teacher.show_more_greeting">... hide</div>
-
-                </div>
-
-                <div class="youtube-wrapper">
-                    <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="p-relative text-center">
-                        <img [src]="teacher.img_youtube" class="mw-100">
-                        <i class="p-absolute b-block t-50 l-50 fs-3rem fa fa-play-circle" style="margin-top: -1.5rem; margin-left: -1.5rem; color: #ce1515;"
-                            aria-hidden="true"></i>
+            <div *ngIf="teachers" class="row">
+                <div class="col-sm-6 col-lg-4 mt-5" *ngFor=" let teacher of teachers; let i = index">
+                    <div class="mx-auto mw-12 mh-12 rounded-circle of-hidden b-white" style="border-width: 3px;">
+                        <img class="w-100" src="{{ lms.url }}/{{ teacher.photo }}">
                     </div>
-                    <div *ngIf="teacher.play_video" class="youtube-player">
-                        <object>
+                    <h3 class="my-3 text-center white">
+                        {{ teacher.id }}
+                    </h3>
+
+                    <table class="fs-1rem">
+                        <tr>
+                            <td class="w-25">경력</td>
+                            <td>{{ teacher.teaching_year }} years</td>
+                        </tr>
+                        <tr>
+                            <td>나이</td>
+                            <td>{{ teacher.age }}</td>
+                        </tr>
+                        <tr valign="top">
+                            <td>전공</td>
+                            <td>
+                                <div class="h-1 of-hidden" [class.h-auto]=" teacher.show_more_greeting " [class.of-auto]=" teacher.show_more_greeting ">
+                                    {{ teacher.major }}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="my-3" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting">
+                        <div class="mh-4 of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [innerHTML]=" teacher.greeting "></div>
+
+                        <div *ngIf="!teacher.show_more_greeting">... show more</div>
+                        <div *ngIf="teacher.show_more_greeting">... hide</div>
+
+                    </div>
+
+                    <div class="youtube-wrapper">
+                        <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="p-relative text-center">
+                            <img [src]="teacher.img_youtube" class="mw-100">
+                            <i class="p-absolute b-block t-50 l-50 fs-3rem fa fa-play-circle" style="margin-top: -1.5rem; margin-left: -1.5rem; color: #ce1515;"
+                                aria-hidden="true"></i>
+                        </div>
+                        <div *ngIf="teacher.play_video" class="youtube-player">
+                            <object>
                         <param name="movie" [value]='teacher.url_youtube'/>
                         <embed class="youtube-video" [src]='teacher.url_youtube'  type="text/html" />
                     </object>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="load mt-4 text-center" (click)="onClickShowMore()">
-            <div class="load-more p-3 bg-blue">
-                <div *ngIf="showMore">감추기</div>
-                <div *ngIf="!showMore">더 보기</div>
+            <div class="load mt-4 text-center" (click)="onClickShowMore()">
+                <div class="load-more p-3 bg-blue">
+                    <div *ngIf="showMore">감추기</div>
+                    <div *ngIf="!showMore">더 보기</div>
+                </div>
             </div>
         </div>
     </div>

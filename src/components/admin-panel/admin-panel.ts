@@ -129,4 +129,14 @@ export class AdminPanelComponent implements OnInit {
         return line;
     }
 
+    get minimized() {
+        let min = localStorage.getItem('minimized') ? true : false;
+        
+        //console.log( 'min: ', min );
+        return min;
+    }
+    set minimized(b) {
+        localStorage.setItem('minimized', (b ? 'y' : ''));
+    }
+
 }
