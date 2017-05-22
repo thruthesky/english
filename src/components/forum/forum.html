@@ -1,16 +1,21 @@
-<main class="forum">
-    <div class="inquiry-container">
-      <div class="top">
-          <div class="forum-description"><font>This is QnA Forum.</font></div>
-      </div>
-      <div class="bottom">
-          <div class="post-new-button"  (click)="onClickPost()">
-              <span>
-                  <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
-              </span>
-          </div>
-      </div>
-      <post-list-component #postListComponent>
-      </post-list-component>
+<section id="inquiry" class="part">
+    <inquiry-banner-component></inquiry-banner-component>
+    <div class="content-wrapper">
+        <main class="forum">
+            <div class="inquiry-container">
+            <div class="top">
+                <div class="forum-description"><font>This is QnA Forum.</font></div>
+            </div>
+            <div class="bottom">
+                <div class="post-new-button"  (click)="onClickPost()">
+                    <span>
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
+                    </span>
+                </div>
+            </div>
+            <post-list-component #postListComponent>
+            </post-list-component>
+            </div>
+        </main>
     </div>
-</main>
+</section>
