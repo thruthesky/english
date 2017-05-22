@@ -1,6 +1,11 @@
 # English
 
 
+# TODOs
+
+See github isuess or overv.io
+
+
 
 #Errors
 * -in lms class id required

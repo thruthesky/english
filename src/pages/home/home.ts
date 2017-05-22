@@ -4,7 +4,6 @@ import { App } from '../../providers/app';
 import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
 
-import {} from 'jquery';
 
 @Component( {
     selector: 'home-page',

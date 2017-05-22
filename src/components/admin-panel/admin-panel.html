@@ -1,45 +1,82 @@
 <section id="admin-panel-component">
 
-
-    <div class="chat p-4 bg-lightgrey">
-
-        <div class="opener">
-            관리자 화면 - Admin Panel
+    <div class="p-absolute b-0 mw-100">
+        <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 bg-white blue': config, 'mb-3': username }">
+            <span class="fa-stack fa-lg" (click)=" config = ! config ">
+            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+            <i class="fa fa-stack-1x fa-inverse" [class.fa-gear]=" !config " [class.fa-times]=" config "></i>
+        </span>
+            <span *ngIf=" config ">Admin Options</span>
         </div>
-        <div class="closer">
-            관리자 화면입니다. 닫기[x]
+        <div class="p-2 bg-slategrey" [class.d-none]=" ! config ">
+            <div class="container">
+                <div class="row form-group">
+                    <label class="col-auto col-form-label" for="adminNoOfLines">채팅창 높이</label>
+                    <div class="col-auto">
+                        <select class="form-control" id="adminNoOfLines" name="adminNoOfLines" [value]="getOptionChatNoOfLines" (change)="onChangeNoOfLines($event)">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="7">7</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
+                    <div class="">
+                        <input type='radio' name="per" value="line">채팅
+                        <input type='radio' name="per" value="user">사용자
+                    </div>
+                </div>
+            </div><!-- .container -->
+
+
+            
         </div>
+    </div>
+
+
+    <div class="chat p-3 bg-lightgrey">
 
 
         <div class="display">
-            <div class="messages">
-                <ul *ngIf=" ! username ">
-                    <li class="message" *ngFor="let m of all_message | async" (click)=" onClickUser(m.user) ">
-                        {{ m.user }} : {{ m.message }}
+            <div class="messages h-15">
+                <ul *ngIf=" ! username " class="list-style-none">
+                    <li class="message" *ngFor="let m of all_message | async">
+                        <span (click)=" onClickUser(m.user) ">{{ m.user }}</span> : {{ m.message }}
                     </li>
                 </ul>
-                <ul *ngIf=" username ">
+                <ul *ngIf=" username " class="list-style-none">
                     <li class="message" *ngFor="let m of user_message | async">
                         {{ m.user }} : {{ m.message }}
                     </li>
                 </ul>
             </div>
-            <div class="input">
+            <div class="input ml-5">
                 <div [class.d-none]=" username ">To chat, click username.</div>
                 <div [class.d-none]=" ! username ">
                     <form (ngSubmit)="onSubmitMessage()">
-                        <input name="message" [(ngModel)]="form.message">
+                        <input name="message" [(ngModel)]="form.message" style="width: 80%;">
 
                         <span class="fa-stack fa-lg" (click)=" onClickChatClose() ">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-close fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="count">{{ secondCountDownForChatClose }}</span>
-                        {{ someoneTalking | json }}
+                        <!--<span class="count">{{ secondCountDownForChatClose }}</span>-->
                         <div class="alert alert-info" role="alert" [class.d-none]=" ! someoneTalking">
                             <strong>Someone Talking</strong>
                         </div>
                     </form>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" [style.width]=" 99 - secondCountDownForChatClose + '%' "></div>
+                    </div>
                 </div>
             </div>
         </div>

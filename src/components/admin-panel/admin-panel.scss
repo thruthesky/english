@@ -2,4 +2,20 @@
     position: fixed;
     z-index: 987654321;
     bottom: 1em;
+    max-width: 360px;
+}
+
+
+.messages {
+    overflow: none;
+    overflow-y: scroll;
+}
+
+
+.progress {
+    background-color: lightslategray;
+}
+.progress-bar {
+    height: 1px;
+    background-color: darkblue;
 }
