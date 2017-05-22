@@ -472,7 +472,7 @@ export class App {
     }
 
     isAdmin() : boolean {
-        if ( this.user.logged && this.user.info.id == 'admin' ) return true;
+        if ( this.user.logged && this.user.info.admin ) return true;
         else return false;
     }
 }
