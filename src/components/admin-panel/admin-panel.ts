@@ -37,9 +37,6 @@ export class AdminPanelComponent implements OnInit {
         console.log("Chat User id: ", this.uid);
         this.all_message = db.list('/messages/all/');
         this.all_message.subscribe(res => {
-            //console.log(res);
-            // let obj = res.val();
-
             let node = res.pop();
             let user = node['user'];
 
@@ -71,27 +68,27 @@ export class AdminPanelComponent implements OnInit {
                 this.scrollMessageBox();
             });
 
-        this.last_message = db.list('/messages/last/', {
+this.last_message = db.list('/messages/last/', {
+    query: {
+        limitToLast: 2,
+        orderByChild: 'time'
+    }
+});
+this.last_message.subscribe(res => {
+    console.log(res);
+    for (let user of res) {
+        console.log("user: ", user.$key);
+        db.list('/messages/users/' + user.$key, {
             query: {
-                limitToLast: 2,
-                orderByChild: 'time'
+                limitToLast: 1
+            }
+        }).subscribe(res => {
+            if (res && res[0] && res[0].message) {
+                console.log("User chat: ", res[0].message, " Talk count: ", user.count);
             }
         });
-        this.last_message.subscribe(res => {
-            console.log(res);
-            for (let user of res) {
-                console.log("user: ", user.$key);
-                db.list('/messages/users/' + user.$key, {
-                    query: {
-                        limitToLast: 1
-                    }
-                }).subscribe(res => {
-                    if (res && res[0] && res[0].message) {
-                        console.log("User chat: ", res[0].message, " Talk count: ", user.count);
-                    }
-                });
-            }
-        });
+    }
+});
 
     }
 
