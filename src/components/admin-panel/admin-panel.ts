@@ -36,19 +36,31 @@ export class AdminPanelComponent implements OnInit {
         this.uid = this.app.getClientId();
         console.log("Chat User id: ", this.uid);
         this.all_message = db.list('/messages/all/');
-        this.all_message.$ref.on('value', snapshot => {
-            let obj = snapshot.val();
-
-            let key = Object.keys(obj).pop();
-            let user = obj[key]['user'];
+        this.all_message.subscribe(res => {
+            let node = res.pop();
+            let user = node['user'];
 
             if (this.username && this.username != user) {
 
-                console.log(`${this.username} : ${user}`);
+                //     console.log(`${this.username} : ${user}`);
                 this.someoneTalking = true;
             }
             this.scrollMessage.next();
         });
+
+        // this.all_message.$ref.on('value', snapshot => {
+        //     let obj = snapshot.val();
+
+        //     let key = Object.keys(obj).pop();
+        //     let user = obj[key]['user'];
+
+        //     if (this.username && this.username != user) {
+
+        //         console.log(`${this.username} : ${user}`);
+        //         this.someoneTalking = true;
+        //     }
+        //     this.scrollMessage.next();
+        // });
 
         this.scrollMessage
             .debounceTime(100)
@@ -56,23 +68,27 @@ export class AdminPanelComponent implements OnInit {
                 this.scrollMessageBox();
             });
 
-        this.last_message = db.list('/messages/last/', {
+this.last_message = db.list('/messages/last/', {
+    query: {
+        limitToLast: 2,
+        orderByChild: 'time'
+    }
+});
+this.last_message.subscribe(res => {
+    console.log(res);
+    for (let user of res) {
+        console.log("user: ", user.$key);
+        db.list('/messages/users/' + user.$key, {
             query: {
-                limitToLast: 2,
-                orderByChild: 'time'
+                limitToLast: 1
+            }
+        }).subscribe(res => {
+            if (res && res[0] && res[0].message) {
+                console.log("User chat: ", res[0].message, " Talk count: ", user.count);
             }
         });
-        this.last_message.subscribe( res => {
-            console.log(res);
-            for( let user of res ) {
-                console.log("user: ", user.$key);
-                db.list('/messages/users/' + user.$key, { query: {
-                    limitToLast: 1
-                }} ).subscribe( res => {
-                    console.log("User chat: ", res[0].message, " Talk count: ", user.count);
-                });
-            }
-        });
+    }
+});
 
     }
 
@@ -150,7 +166,7 @@ export class AdminPanelComponent implements OnInit {
 
     get minimized() {
         let min = localStorage.getItem('minimized') ? true : false;
-        
+
         //console.log( 'min: ', min );
         return min;
     }
