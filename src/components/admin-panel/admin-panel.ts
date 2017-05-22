@@ -16,6 +16,7 @@ export class AdminPanelComponent implements OnInit {
     uid: string = null;
     all_message: FirebaseListObservable<any[]>;
     user_message: FirebaseListObservable<any[]>;
+    last_message: FirebaseListObservable<any[]>;
     form = {
         message: ''
     };
@@ -54,6 +55,24 @@ export class AdminPanelComponent implements OnInit {
             .subscribe(res => {
                 this.scrollMessageBox();
             });
+
+        this.last_message = db.list('/messages/last/', {
+            query: {
+                limitToLast: 2,
+                orderByChild: 'time'
+            }
+        });
+        this.last_message.subscribe( res => {
+            console.log(res);
+            for( let user of res ) {
+                console.log("user: ", user.$key);
+                db.list('/messages/users/' + user.$key, { query: {
+                    limitToLast: 1
+                }} ).subscribe( res => {
+                    console.log("User chat: ", res[0].message, " Talk count: ", user.count);
+                });
+            }
+        });
 
     }
 

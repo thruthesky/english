@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { App } from './../../providers/app';
 @Component({
     moduleId: module.id,
@@ -12,6 +12,7 @@ export class ChatComponent implements OnInit {
     uid: string = null;
     user_message: FirebaseListObservable<any[]>;
     all_message: FirebaseListObservable<any[]>;
+    last_message: FirebaseListObservable<any[]>;
     form = {
         message: ''
     };
@@ -34,29 +35,38 @@ export class ChatComponent implements OnInit {
             }
         });
 
-        this.user_message.subscribe( res => {
+        this.user_message.subscribe(res => {
 
-            console.log(res);
-            if ( this.firstList ) {
+            //console.log(res);
+            if (this.firstList) {
                 this.firstList = false;
             }
             else {
                 this.onClickMaximize();
             }
-                
-            
 
         });
 
 
         this.all_message = db.list('/messages/all/');
+        this.last_message = db.list('/messages/last/');
     }
-    
+
     ngOnInit() { }
     onSubmitMessage() {
         console.log("onSubmitMessage()");
-        this.user_message.push( { user: this.uid, message: this.form.message } );
-        this.all_message.push( { user: this.uid, message: this.form.message } );
+        this.user_message.push({ user: this.uid, message: this.form.message });
+        this.all_message.push({ user: this.uid, message: this.form.message });
+
+        let $node = this.last_message.$ref['child'](this.uid);
+        $node.once("value", snapshot => {
+            let node = snapshot.val();
+            node.count++;
+            $node.set({
+                time: Math.floor(Date.now() / 1000),
+                count: node.count
+            });
+        });
         this.form.message = '';
     }
 
