@@ -16,7 +16,8 @@
                     </div>
                 </div>-->
 
-                <div class="row form-group">
+
+                <div *ngIf="! app.user.logged" class="row form-group">
                         <label class="col-sm-4 col-lg-3" for="student_name">이름</label>
                     <div class="col-sm-8 col-lg-9">
                         <input type="text" class="form-control" name="student_name" maxlength="64" id="student_name" tabindex="101" placeholder="이름">
