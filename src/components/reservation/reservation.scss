@@ -1,3 +1,12 @@
+:host {
+    /deep/ .teacher-icon {
+        img {
+            width: 3em;
+            height: auto;
+            
+        }
+    }
+}
 // @import './../../theme/variables';
 
 // @mixin nav_setting() {
