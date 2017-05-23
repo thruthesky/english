@@ -46,14 +46,15 @@ export class AdminPanelComponent implements OnInit {
 
     this.uid = this.app.getClientId();
     console.log("Chat User id: ", this.uid);
-    this.all_message = db.list('/messages/all/');
+    this.all_message = db.list('/messages/all/', { query: { limitToLast: 100 }});
     this.all_message.subscribe(res => {
+      console.log(res);
       let node = res.pop();
       let user = node['user'];
 
       if (this.username && this.username != user) {
 
-        //     console.log(`${this.username} : ${user}`);
+        console.log(`who: ${this.username} : ${user}`);
         this.someoneTalking = true;
       }
       this.scrollMessage.next();
@@ -91,7 +92,7 @@ export class AdminPanelComponent implements OnInit {
       this.user_last_list =  [];
       for (let user of res) {
         console.log("user: ", user.$key);
-        db.list('/messages/users/' + user.$key, {
+        let lastMessageSubscription = db.list('/messages/users/' + user.$key, {
           query: {
             limitToLast: 1
           }
@@ -102,6 +103,7 @@ export class AdminPanelComponent implements OnInit {
             this.user_last_list.push(lm);
             console.log("User chat: ", res[0].message, " Talk count: ", user.count);
           }
+          lastMessageSubscription.unsubscribe();
         });
       }
 

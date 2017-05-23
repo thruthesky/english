@@ -4,11 +4,14 @@
 header > nav {
     height: $header-height;
     overflow: hidden;
+    background-color: slategrey;
+    background: rgba( 0, 0, 0, .8 );
 }
 header > nav > div > .d-flex {
     margin: 0 auto;
-    max-width: $lg;
+    max-width: $lg + 32px;
 }
+/*
 .item {
     color: #eee;
     small {
@@ -31,9 +34,9 @@ header > nav > div > .d-flex {
 .logo img {
     width: 220px;
 }
-
+*/
 .active {
-    color: #d81d1d;
+    color: brown;
 }
 
 // @import '../../../../theme/variables.scss';

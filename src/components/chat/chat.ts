@@ -21,7 +21,8 @@ export class ChatComponent implements OnInit {
   max: boolean = false;
 
   firstList = true;
-  userData: _USER_RESPONSE = null;
+  //userData: _USER_RESPONSE = null;
+  userId: string = null;
 
   constructor(public db: AngularFireDatabase,
               public app: App,
@@ -29,7 +30,8 @@ export class ChatComponent implements OnInit {
 
     this.uid = this.app.getClientId();
     console.log("Chat User id: ", this.uid);
-    if (user.logged) this.loadUserData();
+    //if (user.logged) this.loadUserData();
+    if ( user.logged ) this.userId = user.info.id;
 
     this.user_message = db.list('/messages/users/' + this.uid, {
       query: {
@@ -61,12 +63,13 @@ export class ChatComponent implements OnInit {
     console.log("onSubmitMessage()");
     let msg = {
       user: this.uid,
+      name: this.userId,
       message: this.form.message
     };
 
-    if (this.userData && this.userData.name) {
-      msg['name'] = this.userData.name;
-    }
+    // if (this.userData && this.userData.name) {
+    //   msg['name'] = this.userData.name;
+    // }
 
     this.user_message.push(msg);
     this.all_message.push(msg);
@@ -90,15 +93,15 @@ export class ChatComponent implements OnInit {
     this.form.message = '';
   }
 
-  loadUserData() {
-    this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
-      console.log('UserLogged:: ', res);
-      this.userData = res.data.user;
+  // loadUserData() {
+  //   this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
+  //     console.log('UserLogged:: ', res);
+  //     this.userData = res.data.user;
 
-    }, error => {
-      this.user.alert(error);
-    });
-  }
+  //   }, error => {
+  //     this.user.alert(error);
+  //   });
+  // }
 
 
   onClickMinimize() {
