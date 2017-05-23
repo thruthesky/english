@@ -1,6 +1,6 @@
 <section id="admin-panel-component">
 
-    <div class="config p-absolute b-0 w-16" [class.bg-white]="config" >
+    <div class="config p-absolute b-0 w-16" [ngClass]="{'bg-white w-16': config}" >
         <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
             <span class="fa-stack fa-lg" (click)=" config = ! config ">
             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
@@ -31,8 +31,8 @@
                 <div class="row form-group">
                     <div class="col-auto" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
                     <div class="col-auto">
-                        <input type='radio' name="per" value="line">채팅
-                        <input type='radio' name="per" value="user">사용자
+                        <input type='radio' name="per" [(ngModel)]="chatDisplay" value="line" (change)="setChatDisplay( 'line' )">채팅
+                        <input type='radio' name="per" [(ngModel)]="chatDisplay" value="user" (change)="setChatDisplay( 'user' )">사용자
                     </div>
                 </div>
 
@@ -54,12 +54,15 @@
             <div class="messages h-15">
                 <ul *ngIf=" ! username " class="list-style-none">
                     <li class="message" *ngFor="let m of all_message | async">
-                        <span (click)=" onClickUser(m.user) ">{{ m.user }}</span> : {{ m.message }}
+                        <span (click)=" onClickUser(m.user) ">{{ m.name ? m.name : m.user }}</span> : {{ m.message }}
+                    </li>
+                    <li class="lm-message" *ngFor="let lm of user_last_list">
+                      <span (click)=" onClickUser(lm.user) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }}
                     </li>
                 </ul>
                 <ul *ngIf=" username " class="list-style-none">
                     <li class="message" *ngFor="let m of user_message | async">
-                        {{ m.user }} : {{ m.message }}
+                        {{ m.name ? m.name : m.user }} : {{ m.message }}
                     </li>
                 </ul>
             </div>

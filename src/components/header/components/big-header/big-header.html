@@ -1,14 +1,17 @@
 <header class="big">
     <nav class="navbar fixed-top px-0 pb-0 bg-slategrey">
         <div class="top">
-            
+
             <div class="d-flex justify-content-between py-2 px-4 px-lg-0">
-                <div class="">
-                    <img src="assets/img/kkang/f.png">
-                    <img src="assets/img/kkang/k.png">
-                    <img src="assets/img/kkang/b.png">
+                <div class="icons p-1">
+                    <!--<img src="assets/img/kkang/f.png">-->
+                    <!--<img src="assets/img/kkang/k.png">-->
+                    <!--<img src="assets/img/kkang/b.png">-->
+                  <span id="naver_id_login"></span>
+                  <span><img (click)="app.onClickLoginWithKakao()" src="assets/img/kakao_btn_small.png"></span>
+                  <span (click)="app.onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
                 </div>
-                
+
                 <ul class="list-style-none list-float-left text-center pointers">
 
                     <li class="item mr-3" *ngIf="! user.logged " (click)="onClickRegister()">
@@ -81,7 +84,7 @@
                         </li>
 
                     </ul>
-                    
+
             </div>
         </div>
     </nav>
