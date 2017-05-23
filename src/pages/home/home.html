@@ -1,22 +1,19 @@
-
-<header-component
-></header-component>
+<header-component>
+</header-component>
 
 <section id="content" [class]="app.widthSize">
         <aside-component></aside-component>
         <intro-component></intro-component>
         <curriculum-component></curriculum-component>
-        <teacher-component [teachers]="teachers" ></teacher-component>
+        <teacher-component [teachers]="teachers"></teacher-component>
         <level-test-component></level-test-component>
         <comment-component></comment-component>
         <reservation-component></reservation-component>
         <payment-component></payment-component>
         <forum-component></forum-component>
-        <contact-component></contact-component>
 </section>
 
 <chat-component *ngIf=" ! app.isAdmin() "></chat-component>
 <admin-panel-component *ngIf=" app.isAdmin() "></admin-panel-component>
 
 <footer-component></footer-component>
-
