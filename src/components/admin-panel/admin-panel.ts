@@ -39,9 +39,6 @@ export class AdminPanelComponent implements OnInit {
     console.log("Chat User id: ", this.uid);
     this.all_message = db.list('/messages/all/');
     this.all_message.subscribe(res => {
-      //console.log(res);
-      // let obj = res.val();
-
       let node = res.pop();
       let user = node['user'];
 
@@ -74,38 +71,31 @@ export class AdminPanelComponent implements OnInit {
       });
 
 
-  }
-
-  ngOnInit() {
-    this.last_message = this.db.list('/messages/last/', {
+    this.last_message = db.list('/messages/last/', {
       query: {
-        limitToLast: 5,
+        limitToLast: 2,
         orderByChild: 'time'
       }
     });
     this.last_message.subscribe(res => {
-      //console.log(res);
-      this.user_last_list = [];
+      console.log(res);
       for (let user of res) {
-        //console.log("user: ", user.$key);
-        this.db.list('/messages/users/' + user.$key, {
+        console.log("user: ", user.$key);
+        db.list('/messages/users/' + user.$key, {
           query: {
             limitToLast: 1
           }
-        }).subscribe( res => {
-          let lm = res[0];
-          //console.log('lm', lm);
-          if( lm ) lm['count'] = user.count ? user.count : '';
-          if ( lm ) this.user_last_list.push( lm );
-          // if ( res && res[0] && res[0].message) {
-          //   console.log("User chat: ", res[0].message, " Talk count: ", user.count);
-          // }
+        }).subscribe(res => {
+          if (res && res[0] && res[0].message) {
+            console.log("User chat: ", res[0].message, " Talk count: ", user.count);
+          }
         });
       }
-      console.log( "this.userlastlist:: ", this.user_last_list);
-      console.log("lastmessage::", this.last_message );
     });
 
+  }
+
+  ngOnInit() {
     this.setChatNoOfLines();
     this.setChatDisplay();
   }

@@ -97,7 +97,7 @@ export class PostListComponent  {
         this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
         this.posts = res.data.posts;
 
-        this.pageOption.totalRecord = parseInt(res.data.total);
+        this.pageOption.totalRecord = res.data.total;
 
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();

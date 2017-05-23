@@ -3,16 +3,19 @@
         <div class="top">
 
             <div class="d-flex justify-content-between py-2 px-4 px-lg-0">
-                <div class="icons p-1">
-                    <!--<img src="assets/img/kkang/f.png">-->
-                    <!--<img src="assets/img/kkang/k.png">-->
-                    <!--<img src="assets/img/kkang/b.png">-->
-                  <span id="naver_id_login"></span>
-                  <span><img (click)="app.onClickLoginWithKakao()" src="assets/img/kakao_btn_small.png"></span>
-                  <span (click)="app.onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
+                <div class="">
+                    <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
+                    <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
+                    <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
                 </div>
 
                 <ul class="list-style-none list-float-left text-center pointers">
+
+
+                    <li class="item mr-3" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
+                        <div class="text">관리자</div>
+                        <small>ADMIN</small>
+                    </li>
 
                     <li class="item mr-3" *ngIf="! user.logged " (click)="onClickRegister()">
                         <div class="text">무료 레벨테스트</div>
@@ -29,15 +32,19 @@
                         <small>PROFILE</small>
                     </li>
 
-                    <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
+                    <li class="item mr-3" *ngIf=" ! user.logged " (click)="onClickLogin()">
                         <div class="text">회원로그인</div>
                         <small>LOGIN</small>
                     </li>
 
-                    <li class="item" *ngIf=" user.logged " (click)="onClickLogout()">
+                    <li class="item mr-3" *ngIf=" user.logged " (click)="onClickLogout()">
                         <div class="text">로그아웃</div><small>LOGOUT</small>
                     </li>
 
+                    <li class="item" (click)="onClickPanelMenu('contact')">
+                        <div class="text">연락처</div>
+                        <small>CONTACT</small>
+                    </li>
                 </ul>
             </div>
 
@@ -49,38 +56,34 @@
                 <div class="logo" (click)="onClickPanelMenu('intro')">
                     <img src="assets/img/logo-1.png">
                 </div>
-                    <ul class="list-style-none list-float-left text-center">
+                    <ul class="list-style-none list-float-left text-center pointers">
                         <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
                             <div class="text">수업과정</div>
                             <small>CURRICULUM</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
                             <div class="text">영어선생님 </div>
                             <small>TEACHER</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
                             <div class="text">레벨테스트</div>
                             <small>LEVEL TEST</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
                             <div class="text">수업후기</div>
                             <small>COMMENT</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
                             <div class="text">나의수업</div>
                             <small>MY CLASS</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
                             <div class="text">수업료</div>
                             <small>ENROLLMENT</small>
                         </li>
-                        <li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                        <li class="menu ml-3" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
                             <div class="text">질문답변</div>
                             <small>Q&amp;A</small>
-                        </li>
-                        <li class="menu" [class.active]=" app.scrollId =='contact' " (click)="onClickPanelMenu('contact')">
-                            <div class="text">연락처</div>
-                            <small>CONTACT</small>
                         </li>
 
                     </ul>

@@ -28,13 +28,13 @@ header > nav > div > .d-flex {
         font-size: 11px;
     }
 }
-.top img {
-    width: 28px;
-}
 .logo img {
     width: 220px;
 }
 
+.active {
+    color: #d81d1d;
+}
 
 // @import '../../../../theme/variables.scss';
 // :host .big .navbar {
