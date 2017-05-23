@@ -19,8 +19,8 @@ export class AppComponent {
 
       console.log("User session_id: ", app.user.getSessionId());
     // backed.setBackendUrl("http://backend.dev/index.php");
-    //backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
-    backed.setBackendUrl("http://backend.org/index.php");
+    backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    //backed.setBackendUrl("http://backend.org/index.php");
     app.setWidth(window.innerWidth);
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
 
