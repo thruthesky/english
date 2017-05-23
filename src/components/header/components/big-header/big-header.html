@@ -1,15 +1,15 @@
 <header class="big">
     <nav class="navbar fixed-top px-0 py-0 bg-slategrey">
         <div class="top py-2">
-            
             <div class="d-flex justify-content-between py-2 px-4 px-lg-0">
                 <div class="">
                     <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
                     <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
                     <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
                 </div>
-                
+
                 <ul class="list-style-none list-float-left d-flex align-items-center text-center pointers">
+
 
                     <li class="item mr-3" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
                         <div class="text">관리자</div>
@@ -70,7 +70,7 @@
                         </li>
 
                     </ul>
-                    
+
             </div>
         </div>
     </nav>
