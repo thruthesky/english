@@ -53,12 +53,16 @@
         <div class="display">
             <div class="messages h-15">
                 <ul *ngIf=" ! username " class="list-style-none">
+                  <ng-container *ngIf="chatDisplay == 'line'">
                     <li class="message" *ngFor="let m of all_message | async">
                         <span (click)=" onClickUser(m.user) ">{{ m.name ? m.name : m.user }}</span> : {{ m.message }}
                     </li>
+                  </ng-container>
+                  <ng-container *ngIf="chatDisplay == 'user'">
                     <li class="lm-message" *ngFor="let lm of user_last_list">
                       <span (click)=" onClickUser(lm.user) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }}
                     </li>
+                  </ng-container>
                 </ul>
                 <ul *ngIf=" username " class="list-style-none">
                     <li class="message" *ngFor="let m of user_message | async">

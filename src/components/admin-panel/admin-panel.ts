@@ -5,6 +5,15 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import {} from 'jquery';
+
+export interface USER_LAST_LIST {
+  user?: string,
+  message?: string,
+  name?: string,
+  count?: string
+};
+
+
 @Component({
   moduleId: module.id,
   selector: 'admin-panel-component',
@@ -30,7 +39,7 @@ export class AdminPanelComponent implements OnInit {
   config: boolean = false; // toogle admin config box.
   chatDisplay: string = 'line';
 
-  user_last_list = [];
+  user_last_list : Array<USER_LAST_LIST> = [];
 
   constructor(public db: AngularFireDatabase,
               public app: App) {
@@ -73,12 +82,13 @@ export class AdminPanelComponent implements OnInit {
 
     this.last_message = db.list('/messages/last/', {
       query: {
-        limitToLast: 2,
+        limitToLast: 5,
         orderByChild: 'time'
       }
     });
     this.last_message.subscribe(res => {
       console.log(res);
+      this.user_last_list =  [];
       for (let user of res) {
         console.log("user: ", user.$key);
         db.list('/messages/users/' + user.$key, {
@@ -86,11 +96,16 @@ export class AdminPanelComponent implements OnInit {
             limitToLast: 1
           }
         }).subscribe(res => {
-          if (res && res[0] && res[0].message) {
+          let lm = res[0];
+          if (lm && lm.message) {
+            lm['count'] = user.count ? user.count : '';
+            this.user_last_list.push(lm);
             console.log("User chat: ", res[0].message, " Talk count: ", user.count);
           }
         });
       }
+
+      console.log('lastmessage:: ', this.user_last_list);
     });
 
   }
