@@ -26,8 +26,8 @@ import { ShareService } from '../providers/share-service';
 import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
-import { SecondDesignPage } from '../pages/second-design/second-design';
-import { ThirdDesignPage } from '../pages/third-design/third-design';
+// import { SecondDesignPage } from '../pages/second-design/second-design';
+// import { ThirdDesignPage } from '../pages/third-design/third-design';
 
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
@@ -55,9 +55,9 @@ import { AsideComponent } from '../components/aside/aside';
 import { IntroComponent } from '../components/intro/intro';
 import { PostViewModal } from '../components/modals/post-view/post-view';
 
-import { ContactComponent } from '../components/contact/contact';
-import { ContactFormComponent} from '../components/contact/components/contact-form/contact-form';
-import { ContactInformationComponent} from '../components/contact/components/contact-information/contact-information';
+//import { ContactComponent } from '../components/contact/contact';
+//import { ContactFormComponent} from '../components/contact/components/contact-form/contact-form';
+//import { ContactInformationComponent} from '../components/contact/components/contact-information/contact-information';
 import { CurriculumComponent } from '../components/curriculum/curriculum';
 import { PaymentComponent } from '../components/payment/payment';
 import { TeacherComponent } from '../components/teacher/teacher';
@@ -91,8 +91,8 @@ const appRoutes:Routes = [
     AppComponent,
     // EnhanceSample,
     HomePage,
-    SecondDesignPage,
-    ThirdDesignPage,
+    // SecondDesignPage,
+    // ThirdDesignPage,
     HeaderComponent,
     PaymentBannerComponent,
     InquiryBannerComponent,
@@ -115,9 +115,9 @@ const appRoutes:Routes = [
     AsideComponent,
     RegisterComponent,
     IntroComponent,
-    ContactInformationComponent,
+//    ContactInformationComponent,
     IntroComponent,
-    ContactComponent,
+//    ContactComponent,
     CurriculumComponent,
     PaymentComponent,
     TeacherComponent,
@@ -125,7 +125,7 @@ const appRoutes:Routes = [
     CommentComponent,
     ReservationComponent,
     FooterComponent,
-    ContactFormComponent,
+//    ContactFormComponent,
     ForumComponent,
     PostListComponent,
     PostViewComponent,

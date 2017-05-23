@@ -1,15 +1,13 @@
-<small-header-component  *ngIf=" app.widthSize == 'small' " [login]="login"
+<small-header-component  *ngIf=" app.widthSize == 'small' "
                          (logout)="onClickLogout()"
                          (onLogin)="onClickLogin()"
                          (register)="onClickRegister()"
                          (profile)="onClickUpdateProfile()"
-                         (classroom)="onClickGotoClassRoom()"
 ></small-header-component>
-<big-header-component *ngIf=" app.widthSize == 'big' " [login]="login"
+<big-header-component *ngIf=" app.widthSize == 'big' "
                       (logout)="onClickLogout()"
                       (onLogin)="onClickLogin()"
                       (register)="onClickRegister()"
                       (profile)="onClickUpdateProfile()"
-                      (classroom)="onClickGotoClassRoom()"
 ></big-header-component>
 
