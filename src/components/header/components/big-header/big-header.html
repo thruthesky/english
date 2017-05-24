@@ -1,34 +1,34 @@
 <header class="big">
     <nav class="navbar fixed-top px-0 py-0">
         <div class="">
-            <div class="d-flex justify-content-between py-2 px-4 px-lg-0">
+            <div class="d-flex justify-content-between px-4 px-lg-0">
 
 
-                    <div class="logo d-flex align-items-center fs-2rem white" (click)="onClickPanelMenu('intro')">
-                       <i class="fa fa-comments" aria-hidden="true"></i> 굿톡화상영어
-                    </div>
-                    
-                <ul class="list-style-none list-float-left d-flex align-items-center text-center pointers fs-120 white">
+                <div class="logo d-flex align-items-center fs-2rem white pointer" (click)="onClickPanelMenu('intro')">
+                    <img class="" style="height: 46px;" src="assets/images/logo/logo24.png">
+                </div>
 
-                    <li class="menu ml-3" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                <ul class="main-menu list-style-none list-float-left d-flex align-items-center text-center pointers fs-120 white">
+
+                    <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
                         <div class="text">레벨테스트</div>
                     </li>
-                    <li class="menu ml-3" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+                    <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
                         <div class="text">수업과정</div>
                     </li>
-                    <li class="menu ml-3" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                    <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
                         <div class="text">영어선생님 </div>
                     </li>
-                    <li class="menu ml-3" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                    <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
                         <div class="text">수업후기</div>
                     </li>
-                    <li class="menu ml-3" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                    <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
                         <div class="text">수업료</div>
                     </li>
 
-                    <li *ngIf=" user.logged " class="menu ml-3" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
-                            <div class="text">나의수업</div>
-                        </li>
+                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                        <div class="text">나의수업</div>
+                    </li>
                     <!--<li class="menu ml-3" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
                             <div class="text">질문답변</div>
                         </li>-->
@@ -36,7 +36,7 @@
 
 
                 <div>
-                    <ul class="list-style-none list-float-left d-flex align-items-center text-center pointers fs-80 white">
+                    <ul class="list-style-none list-float-left pt-1 text-center pointers fs-80 white">
                         <li class="item mr-1" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
                             <div class="text">관리자</div>
                         </li>
@@ -53,10 +53,12 @@
                             <div class="text">로그아웃</div>
                         </li>
                     </ul>
-                    <span id="naver_id_login"></span>
-                    <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
-                    <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/img/kkang/f.png" style="width: 29px; height: 29px;">
-<!--
+                    <span class="d-none" id="naver_id_login"></span>
+                    <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
+
+                    <!--<img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
+                    <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/f.png" style="width: 28px; height: 28px; border-radius: 3px;">-->
+                    <!--
                     <div class="d-none" id="naver_id_login"></div>
                     <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
                     <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">

@@ -27,7 +27,7 @@ export class LoginModal implements OnInit {
     form: FormGroup;
     constructor(
         public activeModal: NgbActiveModal,
-        private app: App,
+        public app: App,
         private modal: NgbModal,
         private fb: FormBuilder,
         private user: User) {
