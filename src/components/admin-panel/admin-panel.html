@@ -59,9 +59,10 @@
                     </li>
                   </ng-container>
                   <ng-container *ngIf="chatDisplay == 'user'">
-                    <li class="lm-message" *ngFor="let lm of user_last_list">
-                      <span (click)=" onClickUser(lm.user) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }}
-                    </li>
+                    {{last_message|json}}
+                    <!--<li class="lm-message" *ngFor="let lm of last_message">-->
+                      <!--&lt;!&ndash;<span (click)=" onClickUser(lm.user) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }}&ndash;&gt;-->
+                    <!--</li>-->
                   </ng-container>
                 </ul>
                 <ul *ngIf=" username " class="list-style-none">

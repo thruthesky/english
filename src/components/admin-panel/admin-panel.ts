@@ -53,11 +53,11 @@ export class AdminPanelComponent implements OnInit {
       let user = node['user'];
 
       if (this.username && this.username != user) {
-
         console.log(`who: ${this.username} : ${user}`);
         this.someoneTalking = true;
       }
       this.scrollMessage.next();
+
     });
 
     // this.all_message.$ref.on('value', snapshot => {
@@ -87,28 +87,33 @@ export class AdminPanelComponent implements OnInit {
         orderByChild: 'time'
       }
     });
-    this.last_message.subscribe(res => {
-      console.log(res);
-      this.user_last_list =  [];
-      for (let user of res) {
-        console.log("user: ", user.$key);
-        let lastMessageSubscription = db.list('/messages/users/' + user.$key, {
-          query: {
-            limitToLast: 1
-          }
-        }).subscribe(res => {
-          let lm = res[0];
-          if (lm && lm.message) {
-            lm['count'] = user.count ? user.count : '';
-            this.user_last_list.push(lm);
-            console.log("User chat: ", res[0].message, " Talk count: ", user.count);
-          }
-          lastMessageSubscription.unsubscribe();
-        });
-      }
-
-      console.log('lastmessage:: ', this.user_last_list);
+    this.last_message.subscribe( res => {
+      console.log("last_message:: ", res);
     });
+
+    // this.last_message.subscribe(res => {
+    //   console.log(res);
+    //   this.user_last_list =  [];
+    //   for (let user of res) {
+    //     console.log("user: ", user.$key);
+    //     let lastMessageSubscription = db.list('/messages/users/' + user.$key, {
+    //       query: {
+    //         limitToLast: 1
+    //       }
+    //     }).subscribe(res => {
+    //       let lm = res[0];
+    //       if (lm && lm.message) {
+    //         lm['count'] = user.count ? user.count : '';
+    //         this.user_last_list.push(lm);
+    //         console.log("User chat: ", res[0].message, " Talk count: ", user.count);
+    //       }
+    //       lastMessageSubscription.unsubscribe();
+    //     });
+    //   }
+    //
+    //   console.log('lastmessage:: ', this.user_last_list);
+    // });
+
 
   }
 
