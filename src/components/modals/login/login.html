@@ -3,62 +3,68 @@
 
   <div class="modal-header">
 
-      <h5 class="modal-title">
-        <font class="modal-title">login</font>
-      </h5>
-      <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+    <h5 class="modal-title">
+      <font class="modal-title">login</font>
+    </h5>
+    <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
         <span aria-hidden="true">×</span>
       </button>
-      
+
   </div>
-  
-    <div class="modal-body">
-      <div class="form-container"> 
-        <form [formGroup]="form" novalidate>
-            <div>
+
+  <div class="modal-body">
+    <div class="form-container">
+      <form [formGroup]="form" novalidate>
+        <div>
 
 
-            <p class="form-title">Please login.</p>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="User ID">
-            </div>
-            <div *ngIf="formErrors.id" class="alert alert-danger">
-                <span class="errors"> {{ formErrors.id }} </span>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-                <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="Password" (keydown)="onEnterLogin($event)">
-            </div>
-            <div *ngIf="formErrors.password" class="alert alert-danger">
-                <span class="errors"> {{ formErrors.password }} </span>
-            </div> 
-          
-            <div class="error alert alert-danger" role="alert" *ngIf="result.message">
-                <button type="button" class="close" (click)="result.message=null">
+          <p class="form-title">Please login.</p>
+        </div>
+
+        <div class="d-none" id="naver_id_login"></div>
+        <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
+        <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
+        <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+          <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="User ID">
+        </div>
+        <div *ngIf="formErrors.id" class="alert alert-danger">
+          <span class="errors"> {{ formErrors.id }} </span>
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+          <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="Password"
+            (keydown)="onEnterLogin($event)">
+        </div>
+        <div *ngIf="formErrors.password" class="alert alert-danger">
+          <span class="errors"> {{ formErrors.password }} </span>
+        </div>
+
+        <div class="error alert alert-danger" role="alert" *ngIf="result.message">
+          <button type="button" class="close" (click)="result.message=null">
                     <span aria-hidden="true">&times;</span>
-                </button>
-                {{ result?.message }}
-            </div>
-            <div  class="button-signin">
-                <button type="button"class="btn btn-danger form-control" (click)="onClickLogin()">
+                </button> {{ result?.message }}
+        </div>
+        <div class="button-signin">
+          <button type="button" class="btn btn-danger form-control" (click)="onClickLogin()">
                   <i *ngIf="loading" class='fa fa-spinner fa-pulse'></i>
                   Log in
                 </button>
-              </div>
-            <hr/>
-              <p class="info">
-                아직 문단열파워잉글리시 회원이 아니세요?
-              </p>
-              
-              <div  class="button-signup">
-                <button type="button"class="btn btn-warning form-control" (click)="onClickRegister()">
+        </div>
+        <hr/>
+        <p class="info">
+          아직 문단열파워잉글리시 회원이 아니세요?
+        </p>
+
+        <div class="button-signup">
+          <button type="button" class="btn btn-warning form-control" (click)="onClickRegister()">
                   Sign Up
                 </button>
-              </div>
-        </form>
-      </div> 
+        </div>
+      </form>
     </div>
+  </div>
 
 </div>

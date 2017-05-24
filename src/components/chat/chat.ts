@@ -1,83 +1,117 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { App } from './../../providers/app';
+import {Component, OnInit} from '@angular/core';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {User, _USER_DATA_RESPONSE, _USER_RESPONSE} from 'angular-backend';
+import {App} from './../../providers/app';
 @Component({
-    moduleId: module.id,
-    selector: 'chat-component',
-    templateUrl: 'chat.html',
-    styleUrls: ['./chat.scss']
+  moduleId: module.id,
+  selector: 'chat-component',
+  templateUrl: 'chat.html',
+  styleUrls: ['./chat.scss']
 })
 
 export class ChatComponent implements OnInit {
-    uid: string = null;
-    user_message: FirebaseListObservable<any[]>;
-    all_message: FirebaseListObservable<any[]>;
-    last_message: FirebaseListObservable<any[]>;
-    form = {
-        message: ''
+  uid: string = null;
+  user_message: FirebaseListObservable<any[]>;
+  all_message: FirebaseListObservable<any[]>;
+  last_message: FirebaseListObservable<any[]>;
+  form = {
+    message: ''
+  };
+  min: boolean = true;
+  max: boolean = false;
+
+  firstList = true;
+  //userData: _USER_RESPONSE = null;
+  userId: string = null;
+
+  constructor(public db: AngularFireDatabase,
+              public app: App,
+              private user: User) {
+
+    this.uid = this.app.getClientId();
+    console.log("Chat User id: ", this.uid);
+    //if (user.logged) this.loadUserData();
+    if ( user.logged ) this.userId = user.info.id;
+
+    this.user_message = db.list('/messages/users/' + this.uid, {
+      query: {
+        limitToLast: 10,
+        orderByKey: true
+      }
+    });
+
+    this.user_message.subscribe(res => {
+
+      //console.log(res);
+      if (this.firstList) {
+        this.firstList = false;
+      }
+      else {
+        this.onClickMaximize();
+      }
+
+    });
+
+    this.all_message = db.list('/messages/all/');
+    this.last_message = db.list('/messages/last/');
+  }
+
+  ngOnInit() {
+  }
+
+  onSubmitMessage() {
+    console.log("onSubmitMessage()");
+    let msg = {
+      user: this.uid,
+      name: this.userId,
+      message: this.form.message
     };
-    min: boolean = true;
-    max: boolean = false;
 
-    firstList = true;
-    constructor(
-        public db: AngularFireDatabase,
-        public app: App
-    ) {
+    // if (this.userData && this.userData.name) {
+    //   msg['name'] = this.userData.name;
+    // }
 
-        this.uid = this.app.getClientId();
-        console.log("Chat User id: ", this.uid);
+    this.user_message.push(msg);
+    this.all_message.push(msg);
 
-        this.user_message = db.list('/messages/users/' + this.uid, {
-            query: {
-                limitToLast: 10,
-                orderByKey: true
-            }
-        });
+    let $node = this.last_message.$ref['child'](this.uid);
 
-        this.user_message.subscribe(res => {
+    $node.once("value", snapshot => {
+      let node = snapshot.val();
+      let count = 1;
 
-            //console.log(res);
-            if (this.firstList) {
-                this.firstList = false;
-            }
-            else {
-                this.onClickMaximize();
-            }
+      if (node && node['count']) {
+        count = node['count'] + 1;
+      }
 
-        });
+      $node.set({
+        time: Math.floor(Date.now() / 1000),
+        count: count
+      });
 
+    });
+    this.form.message = '';
+  }
 
-        this.all_message = db.list('/messages/all/');
-        this.last_message = db.list('/messages/last/');
-    }
+  // loadUserData() {
+  //   this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
+  //     console.log('UserLogged:: ', res);
+  //     this.userData = res.data.user;
 
-    ngOnInit() { }
-    onSubmitMessage() {
-        console.log("onSubmitMessage()");
-        this.user_message.push({ user: this.uid, message: this.form.message });
-        this.all_message.push({ user: this.uid, message: this.form.message });
-
-        let $node = this.last_message.$ref['child'](this.uid);
-        $node.once("value", snapshot => {
-            let node = snapshot.val();
-            node.count++;
-            $node.set({
-                time: Math.floor(Date.now() / 1000),
-                count: node.count
-            });
-        });
-        this.form.message = '';
-    }
+  //   }, error => {
+  //     this.user.alert(error);
+  //   });
+  // }
 
 
-    onClickMinimize() {
-        this.min = true;
-        this.max = false;
-    }
-    onClickMaximize() {
-        this.min = false;
-        this.max = true;
-    }
+  onClickMinimize() {
+    this.min = true;
+    this.max = false;
+  }
+
+  onClickMaximize() {
+    this.min = false;
+    this.max = true;
+  }
 
 }

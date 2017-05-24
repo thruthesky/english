@@ -4,8 +4,8 @@
     .title {
         padding-bottom: .5em;
         font-size: 1.5rem;
-        @media ( min-width: $lg ) {
-            font-size: 2em;
+        @media ( min-width: $md ) {
+            font-size: 2.5rem;
         }
     }
 }

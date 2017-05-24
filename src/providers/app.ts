@@ -40,6 +40,8 @@ export class App {
 
 
         this.makeSureHeaderHeight();
+        setTimeout(() => this.makeSureHeaderHeight(), 1000);
+        setTimeout(() => this.makeSureHeaderHeight(), 3000);
         setTimeout(() => this.makeSureHeaderHeight(), 5000);
         setTimeout(() => this.makeSureHeaderHeight(), 15000);
 

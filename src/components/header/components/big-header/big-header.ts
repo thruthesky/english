@@ -22,6 +22,7 @@ export class BigHeaderComponent {
     }
 
     ngOnInit() {
+      this.app.initializeNaverLogin();
     }
 
     onClickLogout(){

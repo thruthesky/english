@@ -16,7 +16,7 @@
             <div class="message">
                 <ul>
                     <li *ngFor="let item of user_message | async">
-                        {{ item | json }}
+                        <span>{{ item.name ? item.name : item.user }}</span> : {{ item.message }}
                     </li>
                 </ul>
             </div>

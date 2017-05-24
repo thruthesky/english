@@ -1,94 +1,78 @@
 <header class="big">
-    <nav class="navbar fixed-top px-0 pb-0 bg-slategrey">
-        <div class="top">
-            
-            <div class="d-flex justify-content-between py-2 px-4 px-lg-0">
-                <div class="">
+    <nav class="navbar fixed-top px-0 py-0">
+        <div class="">
+            <div class="d-flex justify-content-between px-4 px-lg-0">
+
+
+                <div class="logo d-flex align-items-center fs-2rem white pointer" (click)="onClickPanelMenu('intro')">
+                    <img class="" style="height: 46px;" src="assets/images/logo/logo24.png">
+                </div>
+
+                <ul class="main-menu list-style-none list-float-left d-flex align-items-center text-center pointers fs-120 white">
+
+                    <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+                        <div class="text">레벨테스트</div>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+                        <div class="text">수업과정</div>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+                        <div class="text">영어선생님 </div>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+                        <div class="text">수업후기</div>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+                        <div class="text">수업료</div>
+                    </li>
+
+                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                        <div class="text">나의수업</div>
+                    </li>
+                    <!--<li class="menu ml-3" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                            <div class="text">질문답변</div>
+                        </li>-->
+                </ul>
+
+
+                <div>
+                    <ul class="list-style-none list-float-left pt-1 text-center pointers fs-80 white">
+                        <li class="item mr-1" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
+                            <div class="text">관리자</div>
+                        </li>
+                        <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
+                            <div class="text">회원가입</div>
+                        </li>
+                        <li class="item mr-1" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
+                            <div class="text">회원 정보</div>
+                        </li>
+                        <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
+                            <div class="text">로그인</div>
+                        </li>
+                        <li class="item" *ngIf=" user.logged " (click)="onClickLogout()">
+                            <div class="text">로그아웃</div>
+                        </li>
+                    </ul>
+                    <span class="d-none" id="naver_id_login"></span>
+                    <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
+
+                    <!--<img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
+                    <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/f.png" style="width: 28px; height: 28px; border-radius: 3px;">-->
+                    <!--
+                    <div class="d-none" id="naver_id_login"></div>
                     <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
                     <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
                     <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
+                    -->
+
                 </div>
-                
-                <ul class="list-style-none list-float-left text-center pointers">
 
 
-                    <li class="item mr-3" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
-                        <div class="text">관리자</div>
-                        <small>ADMIN</small>
-                    </li>
 
-                    <li class="item mr-3" *ngIf="! user.logged " (click)="onClickRegister()">
-                        <div class="text">무료 레벨테스트</div>
-                        <small>FREE LEVELTEST</small>
-                    </li>
-
-                    <li class="item mr-3" *ngIf="! user.logged " (click)="onClickRegister()">
-                        <div class="text">회원가입</div>
-                        <small>REGISTER</small>
-                    </li>
-
-                    <li class="item mr-3" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
-                        <div class="text">회원 정보</div>
-                        <small>PROFILE</small>
-                    </li>
-
-                    <li class="item mr-3" *ngIf=" ! user.logged " (click)="onClickLogin()">
-                        <div class="text">회원로그인</div>
-                        <small>LOGIN</small>
-                    </li>
-
-                    <li class="item mr-3" *ngIf=" user.logged " (click)="onClickLogout()">
-                        <div class="text">로그아웃</div><small>LOGOUT</small>
-                    </li>
-
-                    <li class="item" (click)="onClickPanelMenu('contact')">
-                        <div class="text">연락처</div>
-                        <small>CONTACT</small>
-                    </li>
-                </ul>
             </div>
 
         </div>
 
 
-        <div class="bottom bg-lightgrey py-3">
-            <div class="d-flex justify-content-between px-4 px-lg-0">
-                <div class="logo" (click)="onClickPanelMenu('intro')">
-                    <img src="assets/img/logo-1.png">
-                </div>
-                    <ul class="list-style-none list-float-left text-center pointers">
-                        <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
-                            <div class="text">수업과정</div>
-                            <small>CURRICULUM</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
-                            <div class="text">영어선생님 </div>
-                            <small>TEACHER</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
-                            <div class="text">레벨테스트</div>
-                            <small>LEVEL TEST</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
-                            <div class="text">수업후기</div>
-                            <small>COMMENT</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
-                            <div class="text">나의수업</div>
-                            <small>MY CLASS</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
-                            <div class="text">수업료</div>
-                            <small>ENROLLMENT</small>
-                        </li>
-                        <li class="menu ml-3" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
-                            <div class="text">질문답변</div>
-                            <small>Q&amp;A</small>
-                        </li>
-
-                    </ul>
-                    
-            </div>
-        </div>
     </nav>
 </header>

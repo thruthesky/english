@@ -4,11 +4,28 @@
 header > nav {
     height: $header-height;
     overflow: hidden;
+    background-color: slategrey;
+    background: rgba( 0, 0, 0, .8 );
 }
 header > nav > div > .d-flex {
     margin: 0 auto;
-    max-width: $lg;
+    max-width: $lg + 32px;
 }
+.big .main-menu {
+    margin-left: 3em;
+}
+.big .menu {
+    margin: 0 0 0 .2em;
+    padding: .9em 0;
+    @media ( min-width: $lg ) {
+
+    margin-left: 1em;
+    }
+}
+.active {
+    color: yellow;
+}
+/*
 .item {
     color: #eee;
     small {
@@ -31,10 +48,7 @@ header > nav > div > .d-flex {
 .logo img {
     width: 220px;
 }
-
-.active {
-    color: #d81d1d;
-}
+*/
 
 // @import '../../../../theme/variables.scss';
 // :host .big .navbar {

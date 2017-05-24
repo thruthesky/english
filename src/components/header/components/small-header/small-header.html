@@ -4,10 +4,7 @@
 
             <div class="d-flex justify-content-between p-2">
                 <div class="icons p-1">
-
                     <span id="naver_id_login"></span>
-
-
                     <span><img (click)="app.onClickLoginWithKakao()" src="assets/img/kakao_btn_small.png"></span>
                     <span (click)="app.onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
                     <!--<span (click)="onClickLogin()"><img src="assets/img/kkang/naver-id.png"></span>                    -->
@@ -55,7 +52,7 @@
                         <small>Register</small>
                     </li>
                     <li class="menu" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
-                        
+
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
