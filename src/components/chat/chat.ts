@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { FirebaseListObservable} from 'angularfire2/database';
 import {User, _USER_DATA_RESPONSE, _USER_RESPONSE} from 'angular-backend';
 import {App} from './../../providers/app';
+import {FirebaseChat} from './../../providers/firebase';
+
 @Component({
   moduleId: module.id,
   selector: 'chat-component',
@@ -24,20 +26,27 @@ export class ChatComponent implements OnInit {
   //userData: _USER_RESPONSE = null;
   userId: string = null;
 
-  constructor(public db: AngularFireDatabase,
+  constructor(
               public app: App,
-              private user: User) {
+              private user: User,
+              private fc: FirebaseChat
+  ) {
 
     this.uid = this.app.getClientId();
     console.log("Chat User id: ", this.uid);
     //if (user.logged) this.loadUserData();
-    if ( user.logged ) this.userId = user.info.id;
+    if (user.logged) this.userId = user.info.id;
 
-    this.user_message = db.list('/messages/users/' + this.uid, {
-      query: {
-        limitToLast: 10,
-        orderByKey: true
-      }
+    // this.user_message = db.list('/messages/users/' + this.uid, {
+    //   query: {
+    //     limitToLast: 10,
+    //     orderByKey: true
+    //   }
+    // });
+
+    this.user_message = this.fc.getUserMessage( this.uid, {
+      limitToLast: 10,
+      orderByKey: true
     });
 
     this.user_message.subscribe(res => {
@@ -52,8 +61,11 @@ export class ChatComponent implements OnInit {
 
     });
 
-    this.all_message = db.list('/messages/all/');
-    this.last_message = db.list('/messages/last/');
+    // this.all_message = db.list('/messages/all/');
+    // this.last_message = db.list('/messages/last/');
+
+    this.all_message = this.fc.getAllMessageList();
+    this.last_message = this.fc.getLastMessage();
   }
 
   ngOnInit() {
@@ -61,6 +73,9 @@ export class ChatComponent implements OnInit {
 
   onSubmitMessage() {
     console.log("onSubmitMessage()");
+
+    if (this.form.message.length == 0) return;
+
     let msg = {
       user: this.uid,
       name: this.userId,
@@ -75,7 +90,6 @@ export class ChatComponent implements OnInit {
     this.all_message.push(msg);
 
     let $node = this.last_message.$ref['child'](this.uid);
-
     $node.once("value", snapshot => {
       let node = snapshot.val();
       let count = 1;
@@ -86,7 +100,10 @@ export class ChatComponent implements OnInit {
 
       $node.set({
         time: Math.floor(Date.now() / 1000),
-        count: count
+        count: count,
+        user: msg.user,
+        name: msg.name,
+        message: msg.message
       });
 
     });
