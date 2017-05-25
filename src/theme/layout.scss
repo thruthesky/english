@@ -17,3 +17,8 @@ section#content {
     margin-top: $header-height;
     box-sizing: border-box;
 }
+
+section#content.small {
+    margin-top: $small-header-height;
+    box-sizing: border-box;
+}

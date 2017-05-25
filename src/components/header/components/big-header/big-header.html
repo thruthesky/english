@@ -35,8 +35,8 @@
                 </ul>
 
 
-                <div>
-                    <ul class="list-style-none list-float-left pt-1 text-center pointers fs-80 white">
+                <div class="">
+                    <ul class="list-style-none list-float-left text-center pointers fs-80" style="color: #bbb;">
                         <li class="item mr-1" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
                             <div class="text">관리자</div>
                         </li>
@@ -54,7 +54,8 @@
                         </li>
                     </ul>
                     <span class="d-none" id="naver_id_login"></span>
-                    <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
+                    
+                    <div><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
 
                     <!--<img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
                     <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/f.png" style="width: 28px; height: 28px; border-radius: 3px;">-->

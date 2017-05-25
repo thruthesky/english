@@ -1,14 +1,68 @@
 @import '../../theme/variables';
-
-.text {
-    .title {
-        padding-bottom: .5em;
-        font-size: 1.5rem;
-        @media ( min-width: $md ) {
-            font-size: 2.5rem;
+@mixin shadow($x) {
+    text-shadow: 1px 1px 2px rgba(1,1,1, $x), 0 0 14px rgba(1,1,1, $x), 0 0 4px rgba(1,1,1, $x);
+}
+#intro {
+    background-image: url('./../../assets/images/intro/phone.jpg');
+    background-repeat: no-repeat;
+    background-size: auto 280px;
+    background-position: 60% 0;
+    @media ( min-width: $md ) {
+        background-repeat: repeat-x;
+        background-size: auto 520px;
+        background-position: center 0;
+        .content-wrapper > .text {
+            height: 520px;
         }
     }
 }
+h1 {
+    font-weight: 300;
+}
+.text .title {
+        //text-shadow: 1px 1px 1px black;
+        padding-bottom: .5em;
+        @include shadow(.7);
+        font-size: 1.5rem;
+        color: white;
+        @media ( min-width: $md ) {
+            font-size: 3rem;
+            line-height: 3.6rem;
+        }
+
+}
+.text .sub {
+    margin: 2.2em 0 0 0;
+    padding: 0;
+    width: 220px;
+    color: white;
+    font-size: 1.1em;
+    @include shadow(.5);
+    @media (min-width: $md) {
+        margin: 4em 0 0 1em;
+        width: 500px;
+        text-align: center;
+        font-size: 1.2em;
+        .text {
+            display: inline-block;
+            padding: .2em;
+        }
+    }
+}
+
+.text .button {
+    margin-top: 1.4em; .hidden-sm-down { margin-top: 1em; }
+    button {
+        .hidden-sm-down { padding: 1em 2em; }
+        border-radius: 3px;
+        background-color: rgba(238, 29, 17, 0.7);
+        border: 0;
+        color: white;
+        font-size: 1.1em;
+        padding: .6em 1.2em;
+    }
+}
+
 .row {
     .title {
         margin-top: .4em;
