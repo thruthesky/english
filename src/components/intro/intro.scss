@@ -7,6 +7,9 @@
     background-repeat: no-repeat;
     background-size: auto 280px;
     background-position: 60% 0;
+        .content-wrapper > .text {
+            height: 280px;
+        }
     @media ( min-width: $md ) {
         background-repeat: repeat-x;
         background-size: auto 520px;
@@ -60,6 +63,15 @@ h1 {
         color: white;
         font-size: 1.1em;
         padding: .6em 1.2em;
+    }
+}
+
+.bottom-text {
+    h1 {
+        font-size: 3em;
+        @media ( min-width: $md ) {
+            font-size: 3.6em;
+        }
     }
 }
 
