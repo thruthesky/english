@@ -11,6 +11,20 @@ header > nav > div > .d-flex {
     margin: 0 auto;
     max-width: $lg + 32px;
 }
+.big .main-menu {
+    margin-left: 3em;
+}
+.big .menu {
+    margin: 0 0 0 .2em;
+    padding: .9em 0;
+    @media ( min-width: $lg ) {
+
+    margin-left: 1em;
+    }
+}
+.active {
+    color: yellow;
+}
 /*
 .item {
     color: #eee;
@@ -35,9 +49,6 @@ header > nav > div > .d-flex {
     width: 220px;
 }
 */
-.active {
-    color: brown;
-}
 
 // @import '../../../../theme/variables.scss';
 // :host .big .navbar {
