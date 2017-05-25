@@ -25,8 +25,5 @@ $xl: 1200px;
 $gutter: 8px;
 
 
-$header-height: 64px; // @attention - this value must match on header.ts
-$header-top-height: 36px;
-$header-bottom-height: $header-height - $header-top-height;
-
-
+$header-height: 64px; // 
+$small-header-height: 98px;
