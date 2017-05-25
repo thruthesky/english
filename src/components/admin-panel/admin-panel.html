@@ -55,14 +55,13 @@
                 <ul *ngIf=" ! username " class="list-style-none">
                   <ng-container *ngIf="chatDisplay == 'line'">
                     <li class="message" *ngFor="let m of all_message | async">
-                        <span (click)=" onClickUser(m.user) ">{{ m.name ? m.name : m.user }}</span> : {{ m.message }}
+                        <span (click)=" onClickUser(m) ">{{ m.name ? m.name : m.user }}</span> : {{ m.message }}
                     </li>
                   </ng-container>
                   <ng-container *ngIf="chatDisplay == 'user'">
-                    {{last_message|json}}
-                    <!--<li class="lm-message" *ngFor="let lm of last_message">-->
-                      <!--&lt;!&ndash;<span (click)=" onClickUser(lm.user) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }}&ndash;&gt;-->
-                    <!--</li>-->
+                    <li class="lm-message" *ngFor="let lm of last_message | async">
+                      <span (click)=" onClickUser( lm ) ">{{ lm.name ? lm.name : lm.user }}</span> : {{ lm.message }} {{lm.count}}
+                    </li>
                   </ng-container>
                 </ul>
                 <ul *ngIf=" username " class="list-style-none">

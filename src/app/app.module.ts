@@ -77,6 +77,7 @@ import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 import { ChatComponent } from '../components/chat/chat';
 import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
 
+import { FirebaseChat } from '../providers/firebase';
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
@@ -147,7 +148,7 @@ const appRoutes:Routes = [
     AngularBackendModule.forRoot(),
     AngularBackendComponents
   ],
-  providers: [ App, LMS, NgbActiveModal, ShareService ],
+  providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterComponent,

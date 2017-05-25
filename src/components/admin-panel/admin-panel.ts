@@ -1,18 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import {FirebaseListObservable} from 'angularfire2/database';
 import {App} from './../../providers/app';
+import {FirebaseChat} from './../../providers/firebase';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
-import {debounceTime} from 'rxjs/operator/debounceTime';
 import {} from 'jquery';
-
-export interface USER_LAST_LIST {
-  user?: string,
-  message?: string,
-  name?: string,
-  count?: string
-};
-
 
 @Component({
   moduleId: module.id,
@@ -31,6 +23,7 @@ export class AdminPanelComponent implements OnInit {
   };
 
   username = '';      // username to chat.
+  userSenderId = '';
   secondCountDownForChatClose: number = 100;
   observableForChatClose;
   scrollMessage: Subject<any> = new Subject();
@@ -39,25 +32,29 @@ export class AdminPanelComponent implements OnInit {
   config: boolean = false; // toogle admin config box.
   chatDisplay: string = 'line';
 
-  user_last_list : Array<USER_LAST_LIST> = [];
+  userId: string = null;
 
-  constructor(public db: AngularFireDatabase,
-              public app: App) {
+  constructor(public app: App,
+              private fc: FirebaseChat) {
 
     this.uid = this.app.getClientId();
+    if (app.user.logged) this.userId = app.user.info.id;
     console.log("Chat User id: ", this.uid);
-    this.all_message = db.list('/messages/all/', { query: { limitToLast: 100 }});
+    this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      console.log(res);
+      console.log('all_message:: ', res);
+      console.log('this.all_message:: ', this.all_message);
       let node = res.pop();
-      let user = node['user'];
 
-      if (this.username && this.username != user) {
-        console.log(`who: ${this.username} : ${user}`);
-        this.someoneTalking = true;
+      if (node && node.user) {
+        let user = node.user;
+
+        if (this.username && user && this.username != user) {
+          console.log(`who: ${this.username} : ${user}`);
+          this.someoneTalking = true;
+        }
+        this.scrollMessage.next();
       }
-      this.scrollMessage.next();
-
     });
 
     // this.all_message.$ref.on('value', snapshot => {
@@ -81,14 +78,10 @@ export class AdminPanelComponent implements OnInit {
       });
 
 
-    this.last_message = db.list('/messages/last/', {
-      query: {
-        limitToLast: 5,
-        orderByChild: 'time'
-      }
-    });
-    this.last_message.subscribe( res => {
+    this.last_message = this.fc.getLastMessage();
+    this.last_message.subscribe(res => {
       console.log("last_message:: ", res);
+      console.log('this.last_message:: ', this.last_message);
     });
 
     // this.last_message.subscribe(res => {
@@ -125,15 +118,44 @@ export class AdminPanelComponent implements OnInit {
   onSubmitMessage() {
     console.log("onSubmitMessage()");
 
-    this.user_message.push({user: 'admin', message: this.form.message});
+    if (this.form.message.length == 0) return;
+
+    let msg = {
+      user: this.uid,
+      name: this.userId,
+      message: this.form.message
+    };
+
+    this.user_message.push(msg);
+
+    let $node = this.last_message.$ref['child'](this.username);
+    $node.once("value", snapshot => {
+      let node = snapshot.val();
+      let count = 1;
+
+      if (node && node['count']) {
+        count = node['count'] + 1;
+      }
+
+      $node.set({
+        time: Math.floor(Date.now() / 1000),
+        count: count,
+        user: this.username,
+        name: this.userSenderId,
+        message: `[${this.userId}]` + msg.message
+      });
+
+    });
+
 
     this.form.message = '';
     this.countDownForChatClose();
   }
 
-  onClickUser(user) {
-    this.username = user;
-    this.user_message = this.db.list('/messages/users/' + user);
+  onClickUser(lastMessage) {
+    this.username = lastMessage.user;
+    this.userSenderId = lastMessage.name ? lastMessage.name : '';
+    this.user_message = this.fc.getUserMessage(this.username);
     this.user_message.$ref.on('value', snapshot => {
       // console.log(snapshot);
       this.countDownForChatClose();
@@ -191,7 +213,7 @@ export class AdminPanelComponent implements OnInit {
 
   scrollMessageBox() {
     let $messages = $('.messages');
-    if($messages && $messages[0].scrollHeight ){
+    if ($messages && $messages[0].scrollHeight) {
       $messages.animate({scrollTop: $messages[0].scrollHeight}, 300);
     }
   }
