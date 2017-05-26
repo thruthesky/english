@@ -5,9 +5,10 @@
 // layout of small curriclum-component
 :host {
     display: block;
-    background-repeat: no-repeat;
-    background-image: url("/assets/img/course.jpg");
-    background-color: slategrey;
+    background-repeat: repeat-x;
+    background-image: url("/assets/images/curriculum/tmp-1.png");
+    background-size: auto 280px;
+    background-position: 100% 0;
 }
 
 .desc {
