@@ -30,7 +30,6 @@ import { HomePage } from '../pages/home/home';
 // import { ThirdDesignPage } from '../pages/third-design/third-design';
 
 import { PaymentBannerComponent } from '../components/banners/payment/payment';
-import { LevelTestBannerComponent } from '../components/banners/level-test/level-test';
 import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
 import { ContactBannerComponent } from '../components/banners/contact/contact';
 import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
@@ -99,7 +98,6 @@ const appRoutes:Routes = [
     InquiryBannerComponent,
     ContactBannerComponent,
     ReservationBannerComponent,
-    LevelTestBannerComponent,
     SecondLevelTestBannerComponent,
     SecondPaymentBannerComponent,
     SecondInquiryBannerComponent,
