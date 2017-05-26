@@ -273,7 +273,8 @@ export class AdminPanelComponent implements OnInit {
     }
   }
 
-  getUserIconText( name ){
+
+  getUserIcon( name ){
     let arName = name.split('@');
     if( arName[1] ){
       if( arName[1] == 'kakaotalk.com'){
@@ -287,22 +288,5 @@ export class AdminPanelComponent implements OnInit {
       }
     }
   }
-
-  getUserIconClass( name ){
-    let arName = name.split('@');
-    let style = "bold p-1 ";
-    if( arName[1] ){
-      if( arName[1] == 'kakaotalk.com'){
-        return style += "bg-yellow";
-      }
-      else if( arName[1] == 'facebook.com'){
-        return style += "bg-blue white";
-      }
-      else if( arName[1] == 'naver.com'){
-        return style += "bg-green white";
-      }
-    }
-  }
-
 
 }

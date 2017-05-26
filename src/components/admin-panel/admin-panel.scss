@@ -19,3 +19,23 @@
     height: 1px;
     background-color: darkblue;
 }
+
+.K,.N,.F {
+  border: 1px solid black;
+  padding: .1em .2em;
+  font-weight: bold;
+}
+
+.K {
+  background-color: yellow;
+}
+
+.N {
+  background-color: green;
+  color: white;
+}
+
+.F {
+  background-color: blue;
+  color: white;
+}
