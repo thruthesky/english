@@ -75,8 +75,8 @@
           </ng-container>
           <ng-container *ngIf="chatDisplay == 'user'">
             <li class="lm-message" *ngFor="let lm of last_message | async">
-              <span *ngIf="lm.name" [class]=" getUserIconClass( lm.name )" >
-                {{ getUserIconText( lm.name ) }}
+              <span *ngIf="lm.name" [class]=" getUserIcon( lm.name )" >
+                {{ getUserIcon( lm.name ) }}
               </span>
               <span (click)=" onClickUser( lm ) ">
                 {{ getUserName( lm ) }}</span> : {{ lm.message }} {{lm.count}}
