@@ -14,9 +14,9 @@
 
         <div>
             <div class="message">
-                <ul>
-                    <li *ngFor="let item of user_message | async">
-                        <span>{{ item.name ? item.name : item.user }}</span> : {{ item.message }}
+                <ul class="list-style-none">
+                    <li *ngFor="let m of user_message | async">
+                        <span>{{ m.user == uid ? "Me" : "Admin" }}</span> : {{ m.message }}
                     </li>
                 </ul>
             </div>
