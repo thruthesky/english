@@ -1,6 +1,6 @@
-<section id="teacher" class="part bg-black white">
+<section id="teacher" class="part bg-lightgrey">
     <div class="content-wrapper">
-        <h2 class="p-4 white text-center">강사 소개</h2>
+        <h2 class="my-5 p-4 text-center">강사 소개</h2>
 
         <div class="container">
 
@@ -9,7 +9,7 @@
                     <div class="mx-auto mw-12 mh-12 rounded-circle of-hidden b-white" style="border-width: 3px;">
                         <img class="w-100" src="{{ lms.url }}/{{ teacher.photo }}">
                     </div>
-                    <h3 class="my-3 text-center white">
+                    <h3 class="my-3 text-center">
                         {{ teacher.id }}
                     </h3>
 
@@ -57,7 +57,7 @@
             </div>
 
             <div class="load mt-4 text-center" (click)="onClickShowMore()">
-                <div class="load-more p-3 bg-blue">
+                <div class="load-more p-3 bg-blue white">
                     <div *ngIf="showMore">감추기</div>
                     <div *ngIf="!showMore">더 보기</div>
                 </div>

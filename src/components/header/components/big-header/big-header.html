@@ -37,8 +37,10 @@
 
                 <div class="">
                     <ul class="list-style-none list-float-left text-center pointers fs-80" style="color: #bbb;">
-                        <li class="item mr-1" *ngIf=" app.isAdmin() " (click)="onClickRegister()">
-                            <div class="text">관리자</div>
+                        <li class="item mr-1" *ngIf=" app.isAdmin() ">
+                            <div class="text">
+                                <a href="http://www.englishfordevelopers.com/view/admin/page/index.html" target="_blank">관리자</a>
+                                </div>
                         </li>
                         <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>

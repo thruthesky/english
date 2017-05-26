@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { App } from './../../providers/app';
 interface BOOK {
     img: string;
     title: string;
@@ -60,6 +60,29 @@ const BOOKS: BOOKS = [
             desc:`총 3 레벨로 초급 단계로 리딩에 자신감을 부족한 아이한테 아이 스스로 학습해 나갈수 있도록 해준다.
                 단어로만 대답하는 학생에게 짧은 문장을 통해 영어 표현의 관심도를 높임.`
         },
+
+        {
+            img:"assets/img/book24.jpg",
+            title:"Debate Club",
+            desc:`중급 이상의 영어 실력을 갖춘 학생들을 위한 토론 교재. 다양한 사황을 적합하게 도입한 학습교재로 실질직인 토론수업이 이뤄질 수 있도록 한 debate 연습 교재.`
+        },
+
+        {
+            img:"assets/img/book15.jpg",
+            title:"Express Ways",
+            desc:`기능적, 상황적 대화와 문법을 함께 다루어 자연스러운 언어소개를 위해 실생활 상황을 사용 한 교재이다. 역할놀이, 비평적인 사고 및 문제해결등 상호작용의 학습에 중점을 둔 교재.`
+        },
+        {
+            img:"assets/img/book16.jpg",
+            title:"Exploring English",
+            desc:`의사전달 (말하기,쓰기)을 중심으로 언어의 4가지 기능을 종합적으로 학습할 수 있도록 한 교재. 학습자의 수준과 목적에 학습할 수 있으며 롤 플레이를 통해 자연스럽게 수업을 진행.`
+        },
+
+        {
+            img:"assets/img/book19.jpg",
+            title:"Super Kids",
+            desc:`New Superkids Super Kids New Edition은 입증된 교육 방식을 교재로 엮어 놓은 것으로 영어교재에서 가르쳐야 할 중요한 개념들을 한 눈에 쉽게 볼 수 있는 종합적인 교재입니다.`
+        },
         {
             img:"assets/img/book9.jpg",
             title:"NEAT 교재",
@@ -96,16 +119,6 @@ const BOOKS: BOOKS = [
             desc:`Cambridge IELTS는 아이엘츠교재(IELTS교재)의 BIBLE이라고 할 수 있을 정도로 가장 시험경향에 맞고 문제도 잘 만들었습니다. IELTS를 준비하는 많은 수험생들은 꼭 봐야 할 교재입니다.`
         },
         {
-            img:"assets/img/book15.jpg",
-            title:"Express Ways",
-            desc:`기능적, 상황적 대화와 문법을 함께 다루어 자연스러운 언어소개를 위해 실생활 상황을 사용 한 교재이다. 역할놀이, 비평적인 사고 및 문제해결등 상호작용의 학습에 중점을 둔 교재.`
-        },
-        {
-            img:"assets/img/book16.jpg",
-            title:"Exploring English",
-            desc:`의사전달 (말하기,쓰기)을 중심으로 언어의 4가지 기능을 종합적으로 학습할 수 있도록 한 교재. 학습자의 수준과 목적에 학습할 수 있으며 롤 플레이를 통해 자연스럽게 수업을 진행.`
-        },
-        {
             img:"assets/img/book17.jpg",
             title:"It's Speaking",
             desc:`영어 말하기 / 쓰기에 익숙하지 않은 중급 레벨의 중학생과 고등학생들에게 적합한 교재로 Speaking 교재는 생각보다 어렵지 않으며 Writing 은 쉽게 영작을 할 수 있도록 해 준다.`
@@ -114,11 +127,6 @@ const BOOKS: BOOKS = [
             img:"assets/img/book18.jpg",
             title:"Business One:One",
             desc:`1:1 비지니스 영어 강의를 위해 보다 상세하고 구체적으로 쓰여진 Business 전문 교재입니다. 학습자 중심의 교과 구성으로 비지니스 영어를 배우고자 하는 학생들에 좋은 교재입니다.`
-        },
-        {
-            img:"assets/img/book19.jpg",
-            title:"Super Kids",
-            desc:`New Superkids Super Kids New Edition은 입증된 교육 방식을 교재로 엮어 놓은 것으로 영어교재에서 가르쳐야 할 중요한 개념들을 한 눈에 쉽게 볼 수 있는 종합적인 교재입니다.`
         },
         {
             img:"assets/img/book20.jpg",
@@ -139,11 +147,6 @@ const BOOKS: BOOKS = [
             img:"assets/img/book23.jpg",
             title:"Communicating in Business",
             desc:`비즈니스 상황에서 많이 사용되는 어휘, 회화 중심으로 구성된 교재. 비즈니스 관련 전화, 프리젠테이션, 회의, 협상 등에 필요한 어휘와 표현을 습득.`
-        },
-        {
-            img:"assets/img/book24.jpg",
-            title:"Debate Club",
-            desc:`중급 이상의 영어 실력을 갖춘 학생들을 위한 토론 교재. 다양한 사황을 적합하게 도입한 학습교재로 실질직인 토론수업이 이뤄질 수 있도록 한 debate 연습 교재.`
         },
         {
             img:"assets/img/book25.jpg",
@@ -229,11 +232,12 @@ export class CurriculumComponent {
     showBook:boolean = false;
     books: BOOKS = null; // container of books to display on browser.
     first_8_books: BOOKS = null; // first_8
-    constructor() {
+    constructor( public app: App ) {
         this.takeSomeTemporaryBooks();
     }
     takeSomeTemporaryBooks() {
-        this.books = BOOKS.slice( 0, 8 );
+        if ( this.app.widthSize == 'big' ) this.books = BOOKS.slice( 0, 12 );
+        else this.books = BOOKS.slice( 0, 8 );
     }
     onClickShowMore() {
         this.showBook = !this.showBook;
@@ -242,6 +246,7 @@ export class CurriculumComponent {
         }
         else {
             this.takeSomeTemporaryBooks();
+            this.app.scrollTo('curriculum');
         }
     }
 }

@@ -24,13 +24,13 @@
                         </span>
                         <input [(ngModel)]="classInfo.date" name="date" type="text" class="form-control" placeholder="Date">
                     </div>
-                    <div class="info-block">
+                    <div class="info-block" *ngIf="classInfo.book">
                         <span class="info-title">
                             Book
                         </span>
                         <input [(ngModel)]="classInfo.book" name="book" type="text" class="form-control" placeholder="Book">
                     </div>
-                    <div>
+                    <div *ngIf="classInfo.rate_comment">
                         <span class="info-title">
                             Teacher's Comment
                         </span>
