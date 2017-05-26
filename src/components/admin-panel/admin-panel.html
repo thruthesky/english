@@ -76,8 +76,8 @@
           <ng-container *ngIf="chatDisplay == 'user'">
             <li class="lm-message" *ngFor="let lm of last_message | async">
               <span *ngIf="lm.name" class="bold"
-                    [ngClass]="{'bg-yellow': getUserIcon( lm.name ) == 'K',
-                     'bg-blue white': getUserIcon( lm.name )=='F',
+                    [ngClass]="{'p-1 bg-yellow': getUserIcon( lm.name ) == 'K',
+                     'p-1 bg-blue white': getUserIcon( lm.name )=='F',
                      'bg-green white': getUserIcon( lm.name )=='N'
                      }">
                 {{ getUserIcon( lm.name ) }}
