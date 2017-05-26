@@ -30,9 +30,10 @@ export class AdminPanelComponent implements OnInit {
   someoneTalking: boolean = false;
 
   config: boolean = false; // toogle admin config box.
-  chatDisplay: string = 'line';
+  chatDisplay: string = 'user';
 
   userId: string = null;
+  initial = true;
 
   constructor(public app: App,
               private fc: FirebaseChat) {
@@ -47,7 +48,15 @@ export class AdminPanelComponent implements OnInit {
       let node = res.pop();
 
       if (node && node.user) {
+        console.log('node', node);
         let user = node.user;
+        console.log(`${this.minimized} && ${this.initial} `);
+        if( this.minimized && !this.initial ) {
+          this.minimized = false ;
+          this.initial = true;
+
+        }
+        else this.initial = false;
 
         if (this.username && user && this.username != user) {
           console.log(`who: ${this.username} : ${user}`);
@@ -55,21 +64,8 @@ export class AdminPanelComponent implements OnInit {
         }
         this.scrollMessage.next();
       }
+
     });
-
-    // this.all_message.$ref.on('value', snapshot => {
-    //     let obj = snapshot.val();
-
-    //     let key = Object.keys(obj).pop();
-    //     let user = obj[key]['user'];
-
-    //     if (this.username && this.username != user) {
-
-    //         console.log(`${this.username} : ${user}`);
-    //         this.someoneTalking = true;
-    //     }
-    //     this.scrollMessage.next();
-    // });
 
     this.scrollMessage
       .debounceTime(100)
@@ -193,6 +189,12 @@ export class AdminPanelComponent implements OnInit {
     this.setChatNoOfLines(event.target.value);
   }
 
+  onChangeNoOfWidth(event) {
+    this.setChatNoOfWidth(event.target.value);
+  }
+
+
+
   setChatNoOfLines(line?) {
     if (line) {
       localStorage.setItem('chatNoOfLines', line);
@@ -203,12 +205,25 @@ export class AdminPanelComponent implements OnInit {
     this.scrollMessage.next();
   }
 
+  setChatNoOfWidth(line?) {
+    if (line) {
+      localStorage.setItem('chatNoOfWidth', line);
+    }
+    else line = this.getOptionChatNoOfLines;
+    let $messages = $('.messages');
+    $messages.css('width', line + 'em');
+    this.scrollMessage.next();
+  }
+
   setChatDisplay(display?) {
     //console.log('display::',display);
     if (display) {
       localStorage.setItem('chatDisplay', display);
     }
-    else this.chatDisplay = this.getChatDisplay;
+    else {
+      let display = this.getChatDisplay;
+      if( display ) this.chatDisplay = display;
+    }
   }
 
   scrollMessageBox() {
@@ -221,6 +236,12 @@ export class AdminPanelComponent implements OnInit {
   get getOptionChatNoOfLines() {
     let line;
     line = localStorage.getItem('chatNoOfLines');
+    if (!line) line = 15;
+    return line;
+  }
+  get getOptionChatNoOfWidth() {
+    let line;
+    line = localStorage.getItem('chatNoOfWidth');
     if (!line) line = 15;
     return line;
   }
@@ -239,6 +260,32 @@ export class AdminPanelComponent implements OnInit {
 
   get getChatDisplay() {
     return localStorage.getItem('chatDisplay');
+  }
+
+  getUserName( lm ){
+
+    if ( lm['name'] ) {
+      let arName = lm['name'].split('@');
+      return arName[0];
+    }
+    else {
+      return lm['user'];
+    }
+  }
+
+  getUserIcon( name ){
+    let arName = name.split('@');
+    if( arName[1] ){
+      if( arName[1] == 'kakaotalk.com'){
+        return 'K';
+      }
+      else if( arName[1] == 'facebook.com'){
+        return 'F';
+      }
+      else if( arName[1] == 'naver.com'){
+        return 'N'
+      }
+    }
   }
 
 
