@@ -1,130 +1,139 @@
 <section id="level-test" class="part bg-lightblue">
-<level-test-banner-component></level-test-banner-component>
-<div class="content-wrapper">
+  <level-test-banner-component></level-test-banner-component>
+  <div class="content-wrapper">
     <div class="level-test-form level-test-theme">
-        <h2 class="p-4 text-center">레벨테스트 신청서</h2>
-        <div class="pb-3 text-center">
-            * 레벨테스트 신청은 회원 가입하지 않아도 가능합니다.
-        </div>
+      <h2 class="p-4 text-center">레벨테스트 신청서</h2>
+      <div class="pb-3 text-center">
+        * 레벨테스트 신청은 회원 가입하지 않아도 가능합니다.
+      </div>
 
-        <div class="container">
-            <form>
+      <div class="container">
+        <form [formGroup]="form" novalidate>
 
-                <div *ngIf="! app.user.logged" class="row form-group">
-                    <label class="col-sm-4 col-lg-3" for="student_name">이름</label>
-                    <div class="col-sm-8 col-lg-9">
-                        <input type="text" class="form-control" name="student_name" maxlength="64" id="student_name" tabindex="101" placeholder="이름">
-                    </div>
-                </div>
-<!--
-                <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3" for="date">날짜를 선택하세요<span>*</span></label>
-
-
-
-                    <div class="col-sm-8 col-lg-9">
-                        <input class="form-control" type="date" name="date" id="date" maxlength="64" tabindex="101" placeholder="공휴일,주말을 제외한 주중에만 테스트가 가능합니다.">
-                    </div>
-                </div>
-                <div class="row form-group">
-
-                    <label class="col-sm-4 col-lg-3" for="time">시간선택<span>*</span></label>
+          <div *ngIf="! app.user.logged" class="row form-group">
+            <label class="col-sm-4 col-lg-3" for="studentName">이름</label>
+            <div class="col-sm-8 col-lg-9">
+              <input formControlName="studentName" type="text" class="form-control" name="studentName" maxlength="64" id="studentName" tabindex="101" placeholder="이름">
+              <div *ngIf="formErrors.studentName" class="alert alert-danger">
+                <span class="errors"> {{ formErrors.studentName }} </span>
+              </div>
+            </div>
+          </div>
+          <!--
+                          <div class="row form-group">
+                              <label class="col-sm-4 col-lg-3" for="date">날짜를 선택하세요<span>*</span></label>
 
 
 
-                    <div class="col-sm-8 col-lg-9">
-                        <select class="form-control" name="time">
-                            <option value="3:00pm">3:00 PM</option><option value="3:30pm">3:30 PM</option><option value="4:00pm">4:00 PM</option><option value="4:30pm">4:30 PM</option><option value="5:00pm">5:00 PM</option><option value="5:30pm">5:30 PM</option><option value="6:00pm">6:00 PM</option><option value="6:30pm">6:30 PM</option><option value="7:00pm">7:00 PM</option><option value="7:30pm">7:30 PM</option><option value="8:00pm">8:00 PM</option><option value="8:30pm">8:30 PM</option><option value="9:00pm">9:00 PM</option><option value="9:30pm">9:30 PM</option><option value="10:00pm">10:00 PM</option><option value="10:30pm">10:30 PM</option><option value="11:00pm">11:00 PM</option><option value="11:30pm">11:30 PM</option>                        </select>
-                    </div>
-                </div>-->
-                <div class="row form-group">
-                    
-                        <label class="col-sm-4 col-lg-3" for="name">이름</label>
-                        
-                    
-                    <div class="col-sm-8 col-lg-9">
-                        <input class="form-control" type="text" name="name" maxlength="64" id="name" tabindex="101" placeholder="이름">
-                    </div>
-                </div>
-                
-                <div class="row form-group">
+                              <div class="col-sm-8 col-lg-9">
+                                  <input class="form-control" type="date" name="date" id="date" maxlength="64" tabindex="101" placeholder="공휴일,주말을 제외한 주중에만 테스트가 가능합니다.">
+                              </div>
+                          </div>
+                          <div class="row form-group">
 
-                    <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
-
-
-                    <div class="col-sm-8 col-lg-9">
-                        <input class="form-control" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
-                    </div>
-                </div>
-
-                <!--<div class="row form-group">
-                    
-                        <label class="col-sm-4 col-lg-3" for="kakao">카카오톡아이디</label>
-                        
-                    
-                    <div class="col-sm-8 col-lg-9">
-                        <input class="form-control" type="text" name="kakao" maxlength="64" id="kakao" tabindex="101" placeholder="카카오톡아이디">
-                    </div>
-                </div>-->
-<!--
-                <div class="row form-group">
-
-                    <label class="col-sm-4 col-lg-3" for="post_content">내용<span>*</span></label>
-
-
-                    <div class="col-sm-8 col-lg-9">
-                        <textarea class="form-control" name="post_content" id="post_content" tabindex="101" rows="5" placeholder="Your comment here..."></textarea>
-                    </div>
-                </div>
-                -->
+                              <label class="col-sm-4 col-lg-3" for="time">시간선택<span>*</span></label>
 
 
 
+                              <div class="col-sm-8 col-lg-9">
+                                  <select class="form-control" name="time">
+                                      <option value="3:00pm">3:00 PM</option><option value="3:30pm">3:30 PM</option><option value="4:00pm">4:00 PM</option><option value="4:30pm">4:30 PM</option><option value="5:00pm">5:00 PM</option><option value="5:30pm">5:30 PM</option><option value="6:00pm">6:00 PM</option><option value="6:30pm">6:30 PM</option><option value="7:00pm">7:00 PM</option><option value="7:30pm">7:30 PM</option><option value="8:00pm">8:00 PM</option><option value="8:30pm">8:30 PM</option><option value="9:00pm">9:00 PM</option><option value="9:30pm">9:30 PM</option><option value="10:00pm">10:00 PM</option><option value="10:30pm">10:30 PM</option><option value="11:00pm">11:00 PM</option><option value="11:30pm">11:30 PM</option>                        </select>
+                              </div>
+                          </div>-->
+          <div class="row form-group">
+            <label class="col-sm-4 col-lg-3" for="name">이름</label>
+            <div class="col-sm-8 col-lg-9">
+              <input formControlName="name"  class="form-control" type="text" name="name" maxlength="64" id="name" tabindex="101" placeholder="이름">
+              <div *ngIf="formErrors.name" class="alert alert-danger">
+                <span class="errors"> {{ formErrors.name }} </span>
+              </div>
+            </div>
+          </div>
 
-        <span *ngFor="let day of days" class="d-inline-block p-2 bg-slategrey" [ngClass]="{ 'active bg-yellow' : day.date == selectedDay }" (click)=" selectedDay = day.date ">
-            {{ day.date }}
-            ({{ day.day }})
-        </span>
+          <div class="row form-group">
+            <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
+            <div class="col-sm-8 col-lg-9">
+              <input formControlName="phone" class="form-control" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
+              <div *ngIf="formErrors.phone" class="alert alert-danger">
+                <span class="errors"> {{ formErrors.phone }} </span>
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row form-group">
+
+                  <label class="col-sm-4 col-lg-3" for="kakao">카카오톡아이디</label>
 
 
-      <p>
-          <input type='radio' name="time">오후 3시
-          <input type='radio' name="time">3시 30분<br>
+              <div class="col-sm-8 col-lg-9">
+                  <input class="form-control" type="text" name="kakao" maxlength="64" id="kakao" tabindex="101" placeholder="카카오톡아이디">
+              </div>
+          </div>-->
+          <!--
+                          <div class="row form-group">
 
-          <input type='radio' name="time">오후 4시
-          <input type='radio' name="time">4시 30분<br>
+                              <label class="col-sm-4 col-lg-3" for="post_content">내용<span>*</span></label>
 
-          <input type='radio' name="time">오후 5시
-          <input type='radio' name="time">5시 30분<br>
 
-          <input type='radio' name="time">오후 6시
-          <input type='radio' name="time">5시 30분<br>
+                              <div class="col-sm-8 col-lg-9">
+                                  <textarea class="form-control" name="post_content" id="post_content" tabindex="101" rows="5" placeholder="Your comment here..."></textarea>
+                              </div>
+                          </div>
+                          -->
 
-          <input type='radio' name="time">오후 7시
-          <input type='radio' name="time">7시 30분<br>
 
-          <input type='radio' name="time">오후 8시
-          <input type='radio' name="time">8시 30분<br>
+          <div class="btn-group" data-toggle="buttons">
+            <label *ngFor="let day of days" class="btn d-inline-block p-2 bg-slategrey" [ngClass]="{ 'active bg-yellow' : day.date == selectedDay }" (click)=" selectedDay = day.date ">
+              <input formControlName="date" value="{{day.date}}({{ day.day }})" type='radio' name="date">{{ day.date }}({{ day.day }})
+            </label>
+          </div>
+          <div *ngIf="formErrors.date" class="alert alert-danger">
+            <span class="errors"> {{ formErrors.date }} </span>
+          </div>
 
-          <input type='radio' name="time">오후 9시
-          <input type='radio' name="time">9시 30분<br>
-          
-          <input type='radio' name="time">오후 10시
-          <input type='radio' name="time">10시 30분<br>
+          <p>
+            <input formControlName="time" value="3" type='radio' name="time">오후 3시
+            <input formControlName="time" value="3:30" type='radio' name="time">3시 30분<br>
 
-          <input type='radio' name="time">오후 11시
-          <input type='radio' name="time">11시 30분<br>
-      </p>
-      
+            <input formControlName="time" value="4" type='radio' name="time">오후 4시
+            <input formControlName="time" value="4:30" type='radio' name="time">4시 30분<br>
 
-                <div class="row line-submit justify-content-sm-center">
-                    <div class="col-sm-8 col-lg-9 offset-sm-4 offset-lg-3">
-                        <button class="btn btn-danger w-100" type="button">무료 레벨 테스트 신청하기</button>
-                    </div>
-                </div>
-            </form>
+            <input formControlName="time" value="5" type='radio' name="time">오후 5시
+            <input formControlName="time" value="5:30" type='radio' name="time">5시 30분<br>
 
-        </div>
+            <input formControlName="time" value="6" type='radio' name="time">오후 6시
+            <input formControlName="time" value="6:30" type='radio' name="time">5시 30분<br>
+
+            <input formControlName="time" value="7" type='radio' name="time">오후 7시
+            <input formControlName="time" value="7:30" type='radio' name="time">7시 30분<br>
+
+            <input formControlName="time" value="8" type='radio' name="time">오후 8시
+            <input formControlName="time" value="8:30" type='radio' name="time">8시 30분<br>
+
+            <input formControlName="time" value="9" type='radio' name="time">오후 9시
+            <input formControlName="time" value="9:30" type='radio' name="time">9시 30분<br>
+
+            <input formControlName="time" value="10" type='radio' name="time">오후 10시
+            <input formControlName="time" value="10:30" type='radio' name="time">10시 30분<br>
+
+            <input formControlName="time" value="11" type='radio' name="time">오후 11시
+            <input formControlName="time" value="11:30" type='radio' name="time">11시 30분<br>
+          </p>
+          <div *ngIf="formErrors.time" class="alert alert-danger">
+            <span class="errors"> {{ formErrors.time }} </span>
+          </div>
+
+          <div *ngIf="!formValid" class="alert alert-danger">
+            <span class="errors"> Fill All the Required Information </span>
+          </div>
+          <div class="row line-submit justify-content-sm-center">
+            <div class="col-sm-8 col-lg-9 offset-sm-4 offset-lg-3">
+              <button class="btn btn-danger w-100" type="button" (click)="onClickSubmitLevelTest()">무료 레벨 테스트 신청하기</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
     </div>
-</div>
+  </div>
 </section>

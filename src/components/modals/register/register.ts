@@ -75,7 +75,7 @@ export class RegisterComponent {
         });
     }
 
-  
+
     onEnterRegister(event){
         if( event.keyCode == 13){
             if( this.user.logged ) this.updateProfile( callback => this.updateLMSprofile() );
@@ -102,12 +102,12 @@ export class RegisterComponent {
         for ( const field in this.formErrors ) {
         this.formErrors[field] = '';        // clear previous error message (if any)
         const control = form.get(field);
-        if ( control && control.dirty && ! control.valid ) {
-            const messages = this.validationMessages[field];
-            for ( const key in control.errors ) {
-            this.formErrors[field] += messages[key] + ' ';
-            }
-        }
+          if ( control && control.dirty && ! control.valid ) {
+              const messages = this.validationMessages[field];
+              for ( const key in control.errors ) {
+              this.formErrors[field] += messages[key] + ' ';
+              }
+          }
         }
     }
     loadUserData() {
@@ -136,7 +136,7 @@ export class RegisterComponent {
             this.error( error );
         } );
 
-    }    
+    }
 
     getDataSuccess( res:any ) {
         try {
@@ -157,7 +157,7 @@ export class RegisterComponent {
         }catch(e){
             console.log(e);
         }
-        
+
     }
     getConcatBirthdate( ) {
         if ( ! this.userData.birth_year ) return '';
@@ -210,7 +210,7 @@ export class RegisterComponent {
         this.user.edit( edit ).subscribe( (res: any) => {
             callback();
             this.successUpdate( res );
-            
+
         }, error => {
             this.error( error );
         } );
@@ -228,7 +228,7 @@ export class RegisterComponent {
         });
     }
     successUpdate( res: _USER_EDIT_RESPONSE) {
-        if( res.data.admin == 1) this.user.deleteSessionInfo();      
+        if( res.data.admin == 1) this.user.deleteSessionInfo();
         this.loading = false;
         this.activeModal.close();
     }
@@ -290,6 +290,6 @@ export class RegisterComponent {
       'maxlength':     'Email cannot be more than 32 characters long.',
       'malformed':    'Email must be in valid format. valudator error'
     }
-    
+
   };
 }
