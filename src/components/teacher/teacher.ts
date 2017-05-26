@@ -79,7 +79,6 @@ export class TeacherComponent {
         this.showMore = !this.showMore;
         if (this.showMore) {
             this.teachers = this.whole_teacher;
-            console.log('Teachersu:', this.teachers);
         }
         else {
             this.teachers = this.first_9_teachers;
