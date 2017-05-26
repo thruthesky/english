@@ -37,10 +37,13 @@ export class TeacherComponent {
                 if (teacher.greeting.match(/<img[^>]*>|<br.*>|&nbsp;/g)) teacher.greeting = teacher.greeting.replace(/<img[^>]*>|<br.*>|&nbsp;/g, "");//remove br tag img tag or &nbsp
                 if (teacher.greeting.match(/(<([^>]+)>)/g)) teacher.greeting = teacher.greeting.replace(/(<([^>]+)>)/g, "");
                 teacher.img_youtube = teacher.url_youtube.replace(/embed/g, "vi");
-                teacher.img_youtube = teacher.img_youtube.replace(/youtube.com/g, "img.youtube.com") + "/mqdefault.jpg";
+                teacher.img_youtube = teacher.img_youtube.match(/youtube.com/g, "img.youtube.com")? teacher.img_youtube.replace(/youtube.com/g, "img.youtube.com") + "/mqdefault.jpg":'assets/images/teacher/no-video.jpg';
                 teacher.img_youtube = this.sanitizer.bypassSecurityTrustUrl(teacher.img_youtube);//to fix unsafe
-                teacher.url_youtube = teacher.url_youtube + "?autoplay=1&autohide=1&controls=0&border=0&scrolling=no";
-                teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube);//to fix unsafe
+                if( teacher.url_youtube ) {
+                    teacher.url_youtube = teacher.url_youtube + "?autoplay=1&autohide=1&controls=0&border=0&scrolling=no";
+                    teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube);//to fix unsafe
+                }
+                else teacher.url_youtube = false;
             });
         }
         this.first_9_teachers = this.teachers.filter(this.firstDisplayTeacherIndex);
@@ -49,7 +52,7 @@ export class TeacherComponent {
 
 
         this.teachers = this.first_9_teachers;
-
+        
     }
 
     firstDisplayTeacherIndex(query, i) {
@@ -76,6 +79,7 @@ export class TeacherComponent {
         this.showMore = !this.showMore;
         if (this.showMore) {
             this.teachers = this.whole_teacher;
+            console.log('Teachersu:', this.teachers);
         }
         else {
             this.teachers = this.first_9_teachers;

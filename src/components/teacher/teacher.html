@@ -39,8 +39,12 @@
                         <div *ngIf="teacher.show_more_greeting">... hide</div>
 
                     </div>
-
-                    <div class="youtube-wrapper">
+                    <div *ngIf="!teacher.url_youtube" class="youtube-wrapper">
+                        <div>
+                            <img [src]="teacher.img_youtube" class="mw-100">
+                        </div>
+                    </div>
+                    <div *ngIf="teacher.url_youtube" class="youtube-wrapper">
                         <div *ngIf="!teacher.play_video" (click)="teacher.play_video = true" class="p-relative text-center">
                             <img [src]="teacher.img_youtube" class="mw-100">
                             <i class="p-absolute b-block t-50 l-50 fs-3rem fa fa-play-circle" style="margin-top: -1.5rem; margin-left: -1.5rem; color: #ce1515;"
