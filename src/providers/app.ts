@@ -13,8 +13,12 @@ export interface SOCIAL_LOGIN {
     email: string;
 };
 
+
+
 @Injectable()
 export class App {
+    DAYS = [ '일', '월', '화', '수', '목', '금', '토' ];
+
     public myEvent: EventEmitter<any>;
     width: number = 0;
     scrollId: string = null;
