@@ -29,10 +29,10 @@ import { HomePage } from '../pages/home/home';
 // import { SecondDesignPage } from '../pages/second-design/second-design';
 // import { ThirdDesignPage } from '../pages/third-design/third-design';
 
-import { PaymentBannerComponent } from '../components/banners/payment/payment';
+//import { PaymentBannerComponent } from '../components/banners/payment/payment';
 import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
 import { ContactBannerComponent } from '../components/banners/contact/contact';
-import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
+//import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
 
 
 import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
@@ -94,10 +94,10 @@ const appRoutes:Routes = [
     // SecondDesignPage,
     // ThirdDesignPage,
     HeaderComponent,
-    PaymentBannerComponent,
+//    PaymentBannerComponent,
     InquiryBannerComponent,
     ContactBannerComponent,
-    ReservationBannerComponent,
+    //ReservationBannerComponent,
     SecondLevelTestBannerComponent,
     SecondPaymentBannerComponent,
     SecondInquiryBannerComponent,

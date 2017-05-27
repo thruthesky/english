@@ -1,0 +1,13 @@
+@import './variables';
+@mixin layout-center() {
+    padding: 2em 1em 4em;
+    @media ( min-width: $md ) {
+        padding: 4em 1em 8em;
+    }
+    @media ( min-width: $lg ) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    margin: 0 auto;
+    max-width: $lg;
+}

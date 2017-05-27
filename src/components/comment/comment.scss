@@ -1,74 +1,40 @@
-// @import '../../theme/variables';
+@import './../../theme/mixins';
+.part .content-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    border-top: 1px solid slategrey;
+    .comments {
+        @include layout-center();
+    }
+}
 
-// :host {
-//     display: block;
-//     background-color: #F7CD47;;
-//     .comment-container {
-//         padding: 3em 0;
-//         padding-bottom:0;
-//         margin-left: auto;
-//         margin-right: auto; 
-//         width: 100%;
-//         max-width: $lg_breakpoint;
-//         display: block;
-//         .row {
-//             margin:0;
-//         }
-//         .comment-content {
-//             padding: 2em;
-//         }
-//         .img-comment {
-//             padding: 1em;
-//             padding-bottom: 0;
-//             text-align: center;
-//             img {
-//                 margin:0 auto;
-//                 width: 50%;
-//                 position: relative;
-//             }
-//         }
-//         @media all and (min-width: $breakpoint) {
-//             .img-comment {
-//                 img {
-//                     position: absolute;
-//                     width: 250px;
-//                     max-height: auto;
-//                     height: auto;
-//                     bottom: 0;
-//                     left: 1em;
-//                 }
-//             }
-//         }
-//         .title-row {
-//             display: inline-block;
-//             font-size: 41px;
-//             color: #2d2d2d;
-//             margin-bottom: 1.4rem;
-//         }
-//         .inner {
-//             height: 130px;
-//             overflow-y: hidden;
-//             margin-bottom: 15px;
-//             @media(min-width:$md_breakpoint) {
-//                 height: 175px;
-//             }
-//             .picture-text {
-//                 margin-bottom: 14px;
-//                 display: inline-block;
-//                 img {
-//                     vertical-align: middle;
-//                     border-radius: 100%;
-//                 }
-//             }
-//             .name-text {
-//                 display: inline-block;
-//                 font-size: 18px;
-//                 font-weight: bold;
-//             }
-//             .comment-text {
-//                 color: #2c3e50;
-//             }
-            
-//         }
-//     }
-// }
+
+.text {
+    @include layout-center();
+
+    padding-top: 4rem;
+    @media ( min-width: $md ) {
+        padding-bottom: 4rem!important;
+    }
+    h1 {
+        margin: .1rem 0;
+        @media (min-width: $md ) { margin: .4rem 0; }
+        text-align: center;
+        font-size: 3rem;
+    }
+}
+
+
+    span.highlight {
+        color: black;
+    }
+
+
+.menu {
+    @include layout-center();
+    padding-top: 2rem;
+    padding-bottom: 2rem!important;
+    line-height: 1.6em;
+}
