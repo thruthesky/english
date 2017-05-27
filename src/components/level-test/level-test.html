@@ -1,47 +1,15 @@
 <section id="level-test" class="part">
     <div class="content-wrapper">
         <div class="title-text">
-            <h2 class="p-4 text-center">무료 레벨테스트 신청</h2>
-            <div class="pb-3 text-center">
-
+            <h1 class="">무료 레벨테스트 신청</h1>
+            <div class="pb-3 text-center white">
                 레벨테스트는 25분간 진행됩니다.<br> * 레벨테스트 신청은 회원 가입하지 않아도 가능합니다.
             </div>
         </div>
         <div class="container">
 
             <form [formGroup]="form" novalidate>
-<!--
-                <div *ngIf="! app.user.logged" class="row form-group">
-                    <label class="col-sm-4 col-lg-3" for="studentName">이름</label>
-                    <div class="col-sm-8 col-lg-9">
-                        <input formControlName="studentName" type="text" class="form-control" name="studentName" maxlength="64" id="studentName"
-                            tabindex="101" placeholder="이름">
-                        <div *ngIf="formErrors.studentName" class="alert alert-danger">
-                            <span class="errors"> {{ formErrors.studentName }} </span>
-                        </div>
-                    </div>
-                </div>-->
-                <!--
-                          <div class="row form-group">
-                              <label class="col-sm-4 col-lg-3" for="date">날짜를 선택하세요<span>*</span></label>
 
-
-
-                              <div class="col-sm-8 col-lg-9">
-                                  <input class="form-control" type="date" name="date" id="date" maxlength="64" tabindex="101" placeholder="공휴일,주말을 제외한 주중에만 테스트가 가능합니다.">
-                              </div>
-                          </div>
-                          <div class="row form-group">
-
-                              <label class="col-sm-4 col-lg-3" for="time">시간선택<span>*</span></label>
-
-
-
-                              <div class="col-sm-8 col-lg-9">
-                                  <select class="form-control" name="time">
-                                      <option value="3:00pm">3:00 PM</option><option value="3:30pm">3:30 PM</option><option value="4:00pm">4:00 PM</option><option value="4:30pm">4:30 PM</option><option value="5:00pm">5:00 PM</option><option value="5:30pm">5:30 PM</option><option value="6:00pm">6:00 PM</option><option value="6:30pm">6:30 PM</option><option value="7:00pm">7:00 PM</option><option value="7:30pm">7:30 PM</option><option value="8:00pm">8:00 PM</option><option value="8:30pm">8:30 PM</option><option value="9:00pm">9:00 PM</option><option value="9:30pm">9:30 PM</option><option value="10:00pm">10:00 PM</option><option value="10:30pm">10:30 PM</option><option value="11:00pm">11:00 PM</option><option value="11:30pm">11:30 PM</option>                        </select>
-                              </div>
-                          </div>-->
                 <div class="row form-group">
                     <label class="col-sm-4 col-lg-3" for="name">이름</label>
                     <div class="col-sm-8 col-lg-9">
@@ -62,26 +30,9 @@
                     </div>
                 </div>
 
-                <!--<div class="row form-group">
-
-                  <label class="col-sm-4 col-lg-3" for="kakao">카카오톡아이디</label>
-
-
-              <div class="col-sm-8 col-lg-9">
-                  <input class="form-control" type="text" name="kakao" maxlength="64" id="kakao" tabindex="101" placeholder="카카오톡아이디">
-              </div>
-          </div>-->
-                <!--
-                          <div class="row form-group">
-
-                              <label class="col-sm-4 col-lg-3" for="post_content">내용<span>*</span></label>
-
-
-                              <div class="col-sm-8 col-lg-9">
-                                  <textarea class="form-control" name="post_content" id="post_content" tabindex="101" rows="5" placeholder="Your comment here..."></textarea>
-                              </div>
-                          </div>
-                          -->
+                <div class="row form-group">
+                    <label class="col-sm-4 col-lg-3">날짜/시간 선택</label>
+                    <div class="col-sm-8 col-lg-9">
 
 
                 <div class="btn-group" data-toggle="buttons">
@@ -90,6 +41,10 @@
               <input formControlName="date" value="{{day.date}}({{ day.day }})" type='radio' name="date">{{ day.date }}({{ day.day }})
             </label>
                 </div>
+
+
+
+
                 <div *ngIf="formErrors.date" class="alert alert-danger">
                     <span class="errors"> {{ formErrors.date }} </span>
                 </div>
@@ -122,6 +77,11 @@
                     <input formControlName="time" value="11" type='radio' name="time">오후 11시
                     <input formControlName="time" value="11:30" type='radio' name="time">11시 30분<br>
                 </p>
+                    </div>
+                </div>
+
+
+
                 <div *ngIf="formErrors.time" class="alert alert-danger">
                     <span class="errors"> {{ formErrors.time }} </span>
                 </div>
