@@ -2,4 +2,6 @@ var fs = require('fs');
 
 var dirs = fs.readdirSync( 'src' );
 
-console.log( dirs );
+for( var f of dirs ) {
+    console.log(f);
+}
