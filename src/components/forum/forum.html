@@ -1,43 +1,20 @@
-<section id="inquiry" class="part bg-white">
-    <inquiry-banner-component></inquiry-banner-component>
-    <div class="content-wrapper">
-        <main class="forum">
-            <div class="inquiry-container">
-            <div class="top">
-                <div class="mt-1 pb-1 forum-description fs-2rem" style="border-bottom: 1px solid #dfdfdf;"><font>This is QnA Forum.</font></div>
-            </div>
-            <div class="bottom" style="overflow:hideen">
-                <div class="rounded post-new-button my-1 py-1 px-3 float-right" style="background-color:#e67e22" (click)="onClickPost()">
-                    <span class="text-white">
+<section id="forum" class="part">
+
+    <div class="content-wrapper" style="padding-top: 0;">
+
+        <div class="title" style="padding-top: 3rem;">
+            <h1 class="pl-5">
+                질문과 답변
+            </h1>
+        </div>
+        <div class="bottom" style="overflow:hideen">
+            <div class="rounded post-new-button my-1 py-1 px-3 float-right" style="background-color:#e67e22" (click)="onClickPost()">
+                <span class="text-white">
                         <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
                     </span>
-                </div>
             </div>
-            <post-list-component #postListComponent>
-            </post-list-component>
-            </div>
-        </main>
+        </div>
+        <post-list-component #postListComponent></post-list-component>
+
     </div>
 </section>
-
-<!--<section id="inquiry" class="part bg-white">
-    <inquiry-banner-component></inquiry-banner-component>
-    <div class="content-wrapper">
-        <main class="forum">
-            <div class="inquiry-container">
-            <div class="top">
-                <div class="forum-description"><font>This is QnA Forum.</font></div>
-            </div>
-            <div class="bottom">
-                <div class="post-new-button"  (click)="onClickPost()">
-                    <span>
-                        <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
-                    </span>
-                </div>
-            </div>
-            <post-list-component #postListComponent>
-            </post-list-component>
-            </div>
-        </main>
-    </div>
-</section>-->
