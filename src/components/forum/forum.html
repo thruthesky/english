@@ -1,18 +1,24 @@
 <section id="forum" class="part">
 
-    <div class="content-wrapper" style="padding-top: 0;">
-
-        <div class="title" style="padding-top: 3rem;">
-            <h1 class="pl-5">
+    <div class="header">
+        <div class="title text-forum">
+            <h1 class="">
                 질문과 답변
             </h1>
+            질문 게시판입니다. 궁금한 점이 있으시면 질문 작성을 해 주세요.
         </div>
-        <div class="bottom" style="overflow:hideen">
-            <div class="rounded post-new-button my-1 py-1 px-3 float-right" style="background-color:#e67e22" (click)="onClickPost()">
-                <span class="text-white">
-                        <i class="fa fa-pencil-square" aria-hidden="true"></i> Post
-                    </span>
-            </div>
+    </div>
+    <div class="content-wrapper">
+
+
+        <div class="d-flex justify-content-end">
+            <button class="btn mb-2 bg-forum border-0 text-forum" (click)="onClickPost()">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x white" aria-hidden="true"></i>
+                    <i class="fa fa-pencil fa-stack-1x color-forum" aria-hidden="true"></i>
+                </span>
+                질문하기
+            </button>
         </div>
         <post-list-component #postListComponent></post-list-component>
 

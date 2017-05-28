@@ -54,6 +54,8 @@ export class LevelTestComponent {
       time: ['', [Validators.required]]
     });
 
+    
+
 
     for (let i = 0; i < 100; i++) {
       let d = (new Date);

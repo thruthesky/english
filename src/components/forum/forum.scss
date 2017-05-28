@@ -1,5 +1,7 @@
 @import '../../theme/variables';
 @import './../../theme/mixins';
+
+$bg-forum: #ffe1bf;
 :host {
     /deep/ table {
         td:first-child, th:first-child  {
@@ -15,24 +17,42 @@
 
 
 
+.content-wrapper {
+    padding: .4rem 1em 0;
+}
 
 
 
+// #forum {
+//     background-image: url('./../../assets/images/forum/forum-title-background.jpg');
+//     background-repeat: repeat-x;
+//     background-size: auto 200px;
+//     background-position: 60% 0;
+// }
+.bg-forum {
+    background-color: $bg-forum;
+}
+.color-forum {
+    color: #b9690f;
+}
+.text-forum {
+    color: #844703;
+}
+.header {
+    background-color: $bg-forum;
+}
+.title {
+    margin: 0 auto;
+    padding: 4em 1em;
+    max-width: $lg;
+    font-size: 1rem;
+    h1 {
+        margin-bottom: 1rem;
+    }
+}
 
-#forum {
-    background-image: url('./../../assets/images/forum/forum-title-background.jpg');
-    background-repeat: repeat-x;
-    background-size: auto 200px;
-    background-position: 60% 0;
-        .content-wrapper .title {
-            height: 200px;
-            color: white;
-            background-color: rgba( 222, 222, 222, .4 );
 
-            h1 {
-                @include shadow(.4);
-            }
-            @include shadow(.4);
-        }
-        
+post-list-component {
+    display: block;
+    min-height: 400px;
 }

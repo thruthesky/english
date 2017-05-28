@@ -1,0 +1,55 @@
+@import './../../theme/mixins';
+#teacher {
+    position: relative;
+}
+.movie {
+    position: absolute;
+    z-index: 100;
+    min-width: 1024px;
+    left: -100%;
+
+    background-color: rgba(1,1,1,1);
+    @media ( min-width: 400px ) {
+        left: -80%;
+    }
+    @media ( min-width: 450px ) {
+        left: -70%;
+    }
+    @media ( min-width: 450px ) {
+        left: -40%;
+    }
+    @media ( min-width: $sm ) {
+        top: 0;
+        left: 0;
+        right:0;
+        min-width: auto;
+        width: 100%;
+    }
+    video {
+        display:block;
+        width: 100%;
+    }
+}
+.content-wrapper {
+    position: relative;
+    z-index: 999;
+}
+
+
+.text {
+    color: white;
+    @include shadow(.7);
+}
+
+h1 {
+    margin: 0;
+    padding: 80px 0 70px;
+    background-color: rgba( 100, 100, 100, 0.3);
+    @include shadow(.3);
+}
+
+
+.desc {
+    padding: 2rem 1em;
+    background-color: rgba( 100, 100, 100, 0.3);
+}
