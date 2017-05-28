@@ -50,32 +50,32 @@
                 </div>
 
                 <p>
-                    <input formControlName="time" value="3" type='radio' name="time">오후 3시
-                    <input formControlName="time" value="3:30" type='radio' name="time">3시 30분<br>
+                    <input formControlName="time" value="3" type='radio' name="time"> 오후 3시
+                    <input formControlName="time" value="3:30" type='radio' name="time"> 3시 30분<br>
 
-                    <input formControlName="time" value="4" type='radio' name="time">오후 4시
-                    <input formControlName="time" value="4:30" type='radio' name="time">4시 30분<br>
+                    <input formControlName="time" value="4" type='radio' name="time"> 오후 4시
+                    <input formControlName="time" value="4:30" type='radio' name="time"> 4시 30분<br>
 
-                    <input formControlName="time" value="5" type='radio' name="time">오후 5시
-                    <input formControlName="time" value="5:30" type='radio' name="time">5시 30분<br>
+                    <input formControlName="time" value="5" type='radio' name="time"> 오후 5시
+                    <input formControlName="time" value="5:30" type='radio' name="time"> 5시 30분<br>
 
-                    <input formControlName="time" value="6" type='radio' name="time">오후 6시
-                    <input formControlName="time" value="6:30" type='radio' name="time">5시 30분<br>
+                    <input formControlName="time" value="6" type='radio' name="time"> 오후 6시
+                    <input formControlName="time" value="6:30" type='radio' name="time"> 5시 30분<br>
 
-                    <input formControlName="time" value="7" type='radio' name="time">오후 7시
-                    <input formControlName="time" value="7:30" type='radio' name="time">7시 30분<br>
+                    <input formControlName="time" value="7" type='radio' name="time"> 오후 7시
+                    <input formControlName="time" value="7:30" type='radio' name="time"> 7시 30분<br>
 
-                    <input formControlName="time" value="8" type='radio' name="time">오후 8시
-                    <input formControlName="time" value="8:30" type='radio' name="time">8시 30분<br>
+                    <input formControlName="time" value="8" type='radio' name="time"> 오후 8시
+                    <input formControlName="time" value="8:30" type='radio' name="time"> 8시 30분<br>
 
-                    <input formControlName="time" value="9" type='radio' name="time">오후 9시
-                    <input formControlName="time" value="9:30" type='radio' name="time">9시 30분<br>
+                    <input formControlName="time" value="9" type='radio' name="time"> 오후 9시
+                    <input formControlName="time" value="9:30" type='radio' name="time"> 9시 30분<br>
 
-                    <input formControlName="time" value="10" type='radio' name="time">오후 10시
-                    <input formControlName="time" value="10:30" type='radio' name="time">10시 30분<br>
+                    <input formControlName="time" value="10" type='radio' name="time"> 오후 10시
+                    <input formControlName="time" value="10:30" type='radio' name="time"> 10시 30분<br>
 
-                    <input formControlName="time" value="11" type='radio' name="time">오후 11시
-                    <input formControlName="time" value="11:30" type='radio' name="time">11시 30분<br>
+                    <input formControlName="time" value="11" type='radio' name="time"> 오후 11시
+                    <input formControlName="time" value="11:30" type='radio' name="time"> 11시 30분<br>
                 </p>
                     </div>
                 </div>
@@ -92,9 +92,10 @@
                 <div class="row line-submit justify-content-sm-center">
                     <div class="col-sm-8 col-lg-9 offset-sm-4 offset-lg-3">
 
-                        <ng-container *ngIf=" form.name ">
-                        {{ form.name }} 님
+                        <ng-container *ngIf=" form.get('name').value ">
+                        {{ form.get('name').value }} 님
                         </ng-container>
+                        
                         월/일(금) 일 오후 3시 수업을 신청하시겠습니까?
                  
                         <button class="btn btn-danger w-100" type="button" (click)="onClickSubmitLevelTest()">무료 레벨 테스트 신청하기</button>

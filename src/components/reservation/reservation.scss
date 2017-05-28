@@ -1,3 +1,6 @@
+@import './../../theme/variables';
+@import './../../theme/mixins';
+
 :host {
     /deep/ .teacher-icon {
         img {
@@ -9,6 +12,28 @@
 }
 
 
+#reservation {
+    background-image: url('./../../assets/images/reservation/reservation-2.jpg');
+    background-size: cover;
+
+    padding-bottom: 5em;
+    @media ( min-width: $md ) {
+
+    padding-bottom: 10em;
+    }
+}
+
+.text {
+    margin: 3em 0 6em;
+    padding: 5em 0 3em;
+    background-color: rgba( 255, 255, 255, .4 );
+    color: white;
+    @include shadow(.4);
+}
+h1 {
+    margin-bottom: 1em;
+    @include shadow(.4);
+}
 strong {
     display: inline-block;
     width: 6em;
