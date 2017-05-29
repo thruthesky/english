@@ -10,10 +10,9 @@
             <div><strong>다음 수업</strong>  : {{share.class_info?.next_class}}</div>
             <div><strong>지난 수업</strong> : {{share.class_info?.no_of_past}} </div>
         </div>
-        <font class="desc" *ngIf="share && !share.class_info">
+        <span class="desc" *ngIf="share && !share.class_info">
             <strong>No Class Information</strong>
-            
-        </font>
+        </span>
     </div>
 </div>
 
