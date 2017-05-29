@@ -10,26 +10,24 @@
     }
 }
 
-
 .text {
     @include layout-center();
-
     padding-top: 4rem;
     @media ( min-width: $md ) {
         padding-bottom: 4rem!important;
     }
     h1 {
         margin: .1rem 0;
-        @media (min-width: $md ) { margin: .4rem 0; }
         text-align: center;
         font-size: 3rem;
+        @media (min-width: $md ) { margin: .4rem 0; }
     }
 }
 
 
-    span.highlight {
-        color: black;
-    }
+span.highlight {
+    color: black;
+}
 
 
 .menu {
