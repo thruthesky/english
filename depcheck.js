@@ -1,5 +1,6 @@
 var fs = require('fs');
 var dir = require('node-dir');
+var gm = require('gm').subClass({imageMagick: true});
 dir.files('src', function (err, files) {
     if (err) throw err;
     var count = 0;
@@ -29,6 +30,22 @@ dir.files('src', function (err, files) {
     console.log("Unused Images: " + C.length );
     for (let f of C) {
         console.log(f);
+    }
+
+
+    console.log("\nWrong filesize ...");
+    for( let a of A ) {
+        gm(a).size( (err, size) => {
+            gm(a).filesize( (err, filesize) => {
+                if ( err ) console.log("error: ", err);
+                else {
+                    filesize = parseInt(filesize.replace('B', ''));
+                    if ( filesize > 100000 ) console.log(`Filesize BIG: ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
+                    else if ( size.width < 300 && filesize > 30000 ) console.log(`Filesize small but bigger than 50K. ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
+                    // console.log(`${a}: ${size.width} x ${size.height} = ${ size.width * size.height }. filesize: ${filesize}`);
+                }
+            } );
+        } );
     }
 });
 

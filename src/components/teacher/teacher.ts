@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { App } from './../../providers/app';
 
 @Component({
     selector: 'teacher-component',
@@ -16,7 +17,7 @@ export class TeacherComponent {
     whole_teacher: any = [];
     first_9_teachers;
     rest_teacher;
-    constructor(public lms: LMS, public sanitizer: DomSanitizer) {
+    constructor( public app: App, public lms: LMS, public sanitizer: DomSanitizer ) {
     }
     ngOnChanges(changes) {
         if (changes['teachers']) {

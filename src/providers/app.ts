@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 
 
+import * as config from './../app/config';
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -17,6 +18,8 @@ export interface SOCIAL_LOGIN {
 
 @Injectable()
 export class App {
+
+    config = config;
     DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
     public myEvent: EventEmitter<any>;
