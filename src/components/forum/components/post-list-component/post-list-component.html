@@ -8,22 +8,7 @@
       
          <tbody class="users">
             <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}"  (click)='onClickShow(post)'>
-             
-              <!--<td>
-                <input [disabled]="post.deleted == '1'" type="text" name="title" [(ngModel)]="post.title" placeholder="Title">
-                <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickEdit( post )" class="text-center" role="button"><i class="fa fa-pencil"></i></span>
-                <span  *ngIf="userData && userData.idx == post.user_idx"(click)="onClickDelete( post )" class="text-center" role="button"><i class="fa fa-trash"></i></span>
-              </td>
-              <td>
-                <input [disabled]="post.deleted == '1'" type="text" name="author" [(ngModel)]="post.name" placeholder="Author">
-              </td>
-              <td>
-                <input [disabled]="post.deleted == '1'" type="text" name="created" [(ngModel)]="post.created" placeholder="Date">
-              </td>-->
-              
-              <!--<td>
-                <input [disabled]="post.deleted == '1'" type="text" name="content" [(ngModel)]="post.content" placeholder="Content">
-              </td>-->
+            
               <td>
                   <span type="text" name="title" placeholder="Title">
                     {{post.title}}
@@ -47,15 +32,6 @@
             </tbody>
     </table>
 </div>
-<!--<page-navigation
-        [no_of_total_items]=" pageOption['totalRecord'] "
-        [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
-        [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "
-        [no_of_current_page] = " pageOption['currentPage'] "
-        [show_prev_next] = " true "
-        (pageClick)="onPostPageClick($event)"
->
-</page-navigation>-->
 <page-navigator-basic [no_of_total_items]=" pageOption['totalRecord'] "
         [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
         [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "

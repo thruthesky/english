@@ -26,20 +26,6 @@ import { ShareService } from '../providers/share-service';
 import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
-// import { SecondDesignPage } from '../pages/second-design/second-design';
-// import { ThirdDesignPage } from '../pages/third-design/third-design';
-
-//import { PaymentBannerComponent } from '../components/banners/payment/payment';
-//import { InquiryBannerComponent } from '../components/banners/inquiry/inquiry';
-import { ContactBannerComponent } from '../components/banners/contact/contact';
-//import { ReservationBannerComponent } from '../components/banners/reservation/reservation';
-
-
-import { SecondPaymentBannerComponent } from '../components/banners/second-payment/second-payment';
-import { SecondLevelTestBannerComponent } from '../components/banners/second-level-test/second-level-test';
-import { SecondInquiryBannerComponent } from '../components/banners/second-inquiry/second-inquiry';
-import { SecondContactBannerComponent } from '../components/banners/second-contact/second-contact';
-import { SecondReservationBannerComponent } from '../components/banners/second-reservation/second-reservation';
 
 import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
@@ -54,9 +40,6 @@ import { AsideComponent } from '../components/aside/aside';
 import { IntroComponent } from '../components/intro/intro';
 import { PostViewModal } from '../components/modals/post-view/post-view';
 
-//import { ContactComponent } from '../components/contact/contact';
-//import { ContactFormComponent} from '../components/contact/components/contact-form/contact-form';
-//import { ContactInformationComponent} from '../components/contact/components/contact-information/contact-information';
 import { CurriculumComponent } from '../components/curriculum/curriculum';
 import { PaymentComponent } from '../components/payment/payment';
 import { TeacherComponent } from '../components/teacher/teacher';
@@ -89,20 +72,8 @@ const appRoutes:Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    // EnhanceSample,
     HomePage,
-    // SecondDesignPage,
-    // ThirdDesignPage,
     HeaderComponent,
-//    PaymentBannerComponent,
-    //InquiryBannerComponent,
-    ContactBannerComponent,
-    //ReservationBannerComponent,
-    SecondLevelTestBannerComponent,
-    SecondPaymentBannerComponent,
-    SecondInquiryBannerComponent,
-    SecondContactBannerComponent,
-    SecondReservationBannerComponent,
     BigHeaderComponent,
     SmallHeaderComponent,
     ForgotPasswordComponent,
@@ -114,9 +85,7 @@ const appRoutes:Routes = [
     AsideComponent,
     RegisterComponent,
     IntroComponent,
-//    ContactInformationComponent,
     IntroComponent,
-//    ContactComponent,
     CurriculumComponent,
     PaymentComponent,
     TeacherComponent,
@@ -124,7 +93,6 @@ const appRoutes:Routes = [
     CommentComponent,
     ReservationComponent,
     FooterComponent,
-//    ContactFormComponent,
     ForumComponent,
     PostListComponent,
     PostViewComponent,
