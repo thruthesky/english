@@ -4,21 +4,30 @@
     display: block;
     background-repeat: repeat-x;
     background-image: url("/assets/images/level-test/level-test-title-7.jpg");
-    background-size: auto 240px;
+    background-size: auto 200px;
+    @media ( min-width: $md ) {
+        background-size: auto 240px;
+    }
     background-position: 100% 0;
 }
 .content-wrapper {
     padding-top: 0;
 }
 .title-text {
-    height: 240px;
-        color: darkslategrey;
+    height: 200px;
+    @media ( min-width: $md ) {
+        height: 240px;
+    }
+    color: darkslategrey;
     background-color: rgba( 255, 255, 255, .8 );
 }
 
 
 h1 {
-    padding: 3rem 0;
+    padding: 3rem 0 2rem;
+    @media (min-width: $md) {
+        padding-bottom: 3rem;
+    }
     text-align: center;
 
     font-size: 2rem;
