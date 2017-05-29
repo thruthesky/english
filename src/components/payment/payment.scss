@@ -5,15 +5,14 @@
     background-repeat: repeat-x;
     background-size: auto 200px;
     background-position: 60% 0;
-        .content-wrapper .title {
-            height: 200px;
-            color: white;
-            background-color: rgba( 1, 1, 1, .4 );
+    .content-wrapper .title {
+        height: 200px;
+        color: white;
+        background-color: rgba( 1, 1, 1, .4 );
 
-            h1 {
-                @include shadow(.4);
-            }
+        h1 {
             @include shadow(.4);
         }
-        
+        @include shadow(.4);
+    }
 }
