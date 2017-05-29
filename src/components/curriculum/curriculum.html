@@ -1,14 +1,11 @@
 <section id="curriculum" class="part">
     <div class="content-wrapper">
-
-
         <div class="mb-3 mb-md-4 mb-lg-5 mw-md-18 mx-auto p-3 text-center white" style="background-color: rgba(0, 0, 0, .3)">
             <h1>굿톡 화상영어 교재</h1>
             <div class="mt-2 fs-1rem white">
                 굿톡에서는 전 세계적으로 영어 교육에 가장 많이 쓰이고 잘 짜여진 엄선된 교재를 사용하고 있습니다.
             </div>
         </div>
-
         <div class="bg-lightgrey p-3 pr-0" *ngIf="books">
             <div class="row pl-3">
                 <div class="col-md-3 col-sm-4 col-xs-6 col-6 p-0 pr-3 mb-3" *ngFor="let book of books">
@@ -25,7 +22,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="load bg-skyblue white p-2 text-center fs-120" (click)="onClickShowMore()">
                 <div class="load-more">
                     <span *ngIf="showBook">감추기</span>
@@ -33,8 +29,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </section>
