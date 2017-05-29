@@ -8,7 +8,7 @@ import * as config from './../../app/config';
 })
 export class FooterComponent {
     config = config;
-    constructor( private app: App) {}
+    constructor( public app: App) {}
     onClickPanelMenu( name ) {
         this.app.scrollTo( name );
     }
