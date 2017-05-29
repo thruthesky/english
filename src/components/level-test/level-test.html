@@ -14,7 +14,7 @@
                     <label class="col-sm-4 col-lg-3" for="name">이름</label>
                     <div class="col-sm-8 col-lg-9">
                         <input formControlName="name" class="form-control" type="text" name="name" maxlength="64" id="name" tabindex="101" placeholder="이름">
-                        <div *ngIf="formErrors.name" class="alert alert-danger">
+                        <div *ngIf="formErrors.name" class="alert alert-danger mt-1">
                             <span class="errors"> {{ formErrors.name }} </span>
                         </div>
                     </div>
@@ -24,32 +24,24 @@
                     <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
                     <div class="col-sm-8 col-lg-9">
                         <input formControlName="phone" class="form-control" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
-                        <div *ngIf="formErrors.phone" class="alert alert-danger">
+                        <div *ngIf="formErrors.phone" class="alert alert-danger mt-1">
                             <span class="errors"> {{ formErrors.phone }} </span>
                         </div>
                     </div>
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 pt-3">날짜 선택</label>
+                    <label class="col-sm-4 col-lg-3 p-3">날짜 선택</label>
                     <div class="col-sm-8 col-lg-9">
-
-
                         <div class="btn-group pointer" data-toggle="buttons">
-                            <label *ngFor="let day of days" class="btn d-inline-block p-3 bg-lightgrey" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"
+                            <label *ngFor="let day of days" class="btn d-inline-block p-3 mb-0 bg-lightgrey" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"
                                 (click)=" selectedDay = day.date ">
                                     <input formControlName="date" value="{{day.date}} ({{ day.day }})" type='radio' name="date">{{ day.date }} ({{ day.day }})
                             </label>
-
                         </div>
-
-
-
-
-                        <div *ngIf="formErrors.date" class="alert alert-danger">
+                        <div *ngIf="formErrors.date" class="alert alert-danger mt-1">
                             <span class="errors"> {{ formErrors.date }} </span>
                         </div>
-
                     </div>
                 </div>
 
@@ -64,16 +56,17 @@
                                 </tr>
                             </table>
                         </div>
+                        <div *ngIf="formErrors.time" class="alert alert-danger mt-1">
+                          <span class="errors"> {{ formErrors.time }} </span>
+                        </div>
                     </div>
                 </div>
 
-                <div *ngIf="formErrors.time" class="alert alert-danger">
-                    <span class="errors"> {{ formErrors.time }} </span>
-                </div>
 
-                <div *ngIf="!formValid" class="alert alert-danger">
-                    <span class="errors"> Fill All the Required Information </span>
-                </div>
+
+                <!--<div *ngIf="!formValid" class="alert alert-danger">-->
+                    <!--<span class="errors"> Fill All the Required Information </span>-->
+                <!--</div>-->
 
 
                 <div class="row line-submit justify-content-sm-center">
