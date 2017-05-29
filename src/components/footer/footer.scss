@@ -1,14 +1,7 @@
 @import "../../theme/variables.scss";
 :host {
     .copyright {
-        .footer-content {
-            width: 100%;
-            text-align: center;
-            @media(min-width:$maxbreakpoint) {
-                text-align: left;
-                width: auto;
-            }
-        }
+        
         .logo-picture {
             @media (min-width:$lg_breakpoint) {
                 padding: 2em 0;
@@ -16,6 +9,14 @@
             }
             img {
                 max-width: 15em;
+            }
+        }
+        .footer-content {
+            width: 100%;
+            text-align: center;
+            @media(min-width:$maxbreakpoint) {
+                text-align: left;
+                width: auto;
             }
         }
         .btn-img {
@@ -26,81 +27,3 @@
         }
     }
 }
-
-
-
-
-
-
-
-// @import "../../theme/variables.scss";
-// :host {
-//     .copyright {
-//         position: relative;
-//         padding: 2em 0 4em;
-//         background-color: #fbfbfb;
-//         border-top: 1px solid #dbd7d7;
-//         .container {
-//             margin: 0 auto;
-//             width: 100%;
-//             max-width: $lg_breakpoint;
-//         }
-    
-//         .logo-picture {
-//             margin: 0 auto;
-//             width: 100%;  
-//             text-align: center;
-//             @media (min-width:$lg_breakpoint) {
-//                 padding: 2em 0;
-//                 margin: 0 0 0 5em;
-//             }
-//             img {
-//                 cursor: pointer;
-//                 width: 100%;
-//                 max-width: 15em;
-//             }
-//         }
-//         .btn-img {
-//             position: absolute;
-//             top: 0;
-//             right: 0;
-//             @media(min-width:$lg_breakpoint) {
-//                 position: relative;
-//                 padding: 1em 1em 0 3em;
-//             }
-//             img {
-//                 cursor: pointer;
-//                 position: absolute;
-//                 top: 0;
-//                 right: 20px;
-//                 @media(min-width:$lg_breakpoint) {
-//                     position: relative;
-//                 }   
-//             }            
-//         }
-//         .footer-content {
-//             padding: 1em;
-//             width: 100%;
-//             color: #383838;
-//             font-size: 0.75em;
-//             line-height: 1.6rem;
-//             text-align: center;
-//             @media(min-width:$maxbreakpoint) {
-//                 // padding-left:1em; 
-//                 text-align: left;
-//                 width: auto;
-//             }
-            
-//         }
-//         .copyright-content {
-//             position: absolute;
-//             bottom: 0;
-//             padding: .8em;
-//             width: 100%;
-//             font-size: .7em;
-//             text-align: center;
-//             background-color: #c0c0c0;
-//             color: #fff;
-//         }
-//     }
-// }
