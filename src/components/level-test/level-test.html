@@ -31,52 +31,39 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3">날짜/시간 선택</label>
+                    <label class="col-sm-4 col-lg-3 pt-3">날짜 선택</label>
                     <div class="col-sm-8 col-lg-9">
 
 
-                <div class="btn-group" data-toggle="buttons">
-                    <label *ngFor="let day of days" class="btn d-inline-block p-3 bg-lightgrey" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"
-                        (click)=" selectedDay = day.date ">
-              <input formControlName="date" value="{{day.date}} ({{ day.day }})" type='radio' name="date">{{ day.date }} ({{ day.day }})
-            </label>
+                        <div class="btn-group pointer" data-toggle="buttons">
+                            <label *ngFor="let day of days" class="btn d-inline-block p-3 bg-lightgrey" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"
+                                (click)=" selectedDay = day.date ">
+                                    <input formControlName="date" value="{{day.date}} ({{ day.day }})" type='radio' name="date">{{ day.date }} ({{ day.day }})
+                            </label>
+
+                        </div>
+
+
+
+
+                        <div *ngIf="formErrors.date" class="alert alert-danger">
+                            <span class="errors"> {{ formErrors.date }} </span>
+                        </div>
+
+                    </div>
                 </div>
 
-
-
-
-                <div *ngIf="formErrors.date" class="alert alert-danger">
-                    <span class="errors"> {{ formErrors.date }} </span>
-                </div>
-
-                <p>
-                    <input formControlName="time" value="3" type='radio' name="time"> 오후 3시
-                    <input formControlName="time" value="3:30" type='radio' name="time"> 3시 30분<br>
-
-                    <input formControlName="time" value="4" type='radio' name="time"> 오후 4시
-                    <input formControlName="time" value="4:30" type='radio' name="time"> 4시 30분<br>
-
-                    <input formControlName="time" value="5" type='radio' name="time"> 오후 5시
-                    <input formControlName="time" value="5:30" type='radio' name="time"> 5시 30분<br>
-
-                    <input formControlName="time" value="6" type='radio' name="time"> 오후 6시
-                    <input formControlName="time" value="6:30" type='radio' name="time"> 5시 30분<br>
-
-                    <input formControlName="time" value="7" type='radio' name="time"> 오후 7시
-                    <input formControlName="time" value="7:30" type='radio' name="time"> 7시 30분<br>
-
-                    <input formControlName="time" value="8" type='radio' name="time"> 오후 8시
-                    <input formControlName="time" value="8:30" type='radio' name="time"> 8시 30분<br>
-
-                    <input formControlName="time" value="9" type='radio' name="time"> 오후 9시
-                    <input formControlName="time" value="9:30" type='radio' name="time"> 9시 30분<br>
-
-                    <input formControlName="time" value="10" type='radio' name="time"> 오후 10시
-                    <input formControlName="time" value="10:30" type='radio' name="time"> 10시 30분<br>
-
-                    <input formControlName="time" value="11" type='radio' name="time"> 오후 11시
-                    <input formControlName="time" value="11:30" type='radio' name="time"> 11시 30분<br>
-                </p>
+                <div class="row form-group">
+                    <div class="col-sm-4 col-lg-3">시간 선택</div>
+                    <div class="col-sm-8 col-lg-9">
+                        <div class="form-check py-3 bg-lightgrey">
+                            <table>
+                                <tr *ngFor="let i of [ 3, 4, 5, 6, 7, 8, 9, 10 ] ">
+                                    <td><label class="py-1 form-check-label" for="time-{{i}}"><input formControlName="time" class="form-check-inline" type="radio" name="time" value="오후 {{ i }}시" id="time-{{i}}"> &nbsp;오후 {{ i }}시</label></td>
+                                    <td><label class="py-1 form-check-label" for="time-{{i}}30"><input formControlName="time" class="form-check-inline" type="radio" name="time" value="오후 {{ i }}시 30분" id="time-{{i}}30"> &nbsp;오후 {{ i }}시 30분</label></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -88,16 +75,16 @@
                     <span class="errors"> Fill All the Required Information </span>
                 </div>
 
-                 
+
                 <div class="row line-submit justify-content-sm-center">
                     <div class="col-sm-8 col-lg-9 offset-sm-4 offset-lg-3">
 
                         <ng-container *ngIf=" form.get('name').value ">
-                        {{ form.get('name').value }} 님
+                            <b>{{ form.get('name').value }}</b>님
                         </ng-container>
-                        
-                        월/일(금) 일 오후 3시 수업을 신청하시겠습니까?
-                 
+
+                        <b>{{selectedDay}} ({{ getDay(selectedDay) }})일</b> <b>{{ form.get('time').value }}</b> 수업을 신청하시겠습니까?
+
                         <button class="btn btn-danger w-100" type="button" (click)="onClickSubmitLevelTest()">무료 레벨 테스트 신청하기</button>
                     </div>
                 </div>

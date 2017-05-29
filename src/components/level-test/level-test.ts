@@ -62,8 +62,10 @@ export class LevelTestComponent {
       let d = (new Date);
       let newDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;
-      console.log(newDate.toString());
-      this.days.push({date: newDate.getMonth() + '-' + newDate.getDate(), day: app.DAYS[newDate.getDay()]});
+      //console.log(newDate.toString());
+      let date = newDate.getMonth() + '-' + newDate.getDate();
+      this.days.push({date: date, day: app.DAYS[newDate.getDay()]});
+      if ( ! this.selectedDay ) this.selectedDay = date;
       if (this.days.length >= 5) break;
     }
 
@@ -75,6 +77,10 @@ export class LevelTestComponent {
 
       } );
 
+  }
+
+  getDay( date ) {
+    return this.days.find( v => v['date'] == date ).day;
   }
 
   onClickSubmitLevelTest(){
