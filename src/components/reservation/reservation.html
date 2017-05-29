@@ -10,10 +10,12 @@
             <div><strong>다음 수업</strong>  : {{share.class_info?.next_class}}</div>
             <div><strong>지난 수업</strong> : {{share.class_info?.no_of_past}} </div>
         </div>
-        <font class="desc" *ngIf="share && !share.class_info">
-            <strong>No Class Information</strong>
-            
-        </font>
+        <div class="pl-5 desc" *ngIf="share && !share.class_info">
+            예약된 수업 정보가 없습니다.
+            <ng-container *ngIf=" ! app.user.logged ">
+                로그인을 하십시오.
+            </ng-container>
+        </div>
     </div>
 </div>
 
@@ -59,27 +61,21 @@
                 </div>
             </div>
 
-            <table class="table table-bordered">
-                <thead>
-                    <th class="bg-slategrey text-white calendar-day-head">Sun</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Mon</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Tue</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Wed</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Thu</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Fri</th>
-                    <th class="bg-slategrey text-white calendar-day-head">Sat</th>
+            <table class="schedule-table" width="100%">
+                <thead class="text-white">
+                    <th class="normal" *ngFor=" let d of app.DAYS; let i = index " [attr.day]=" i ">{{ d }}</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let week of weeks">
-                        <td *ngFor="let day of week;" class="bg-whitesmoke h-5 calendar-day">
-                            <div *ngIf="day" class="info-container">
-                                <span class="my-date">{{day?.myDate}}</span>
+                    <tr valign="top" *ngFor="let week of weeks">
+                        <td *ngFor="let day of week; let i = index" [attr.day]=" i ">
+                            <div *ngIf="day" class="info-container" [ngClass]="{ has: day.length, none: ! day.length }">
+                                    <div class="date">{{day?.myDate}}</div>
                                 <div>
                                     <div *ngFor="let info of day;">
                                         <div *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" (click)="onClickClassInfo(info)" [innerHTML]="info?.icon" on-mouseover="info.display = true"
                                             on-mouseleave="info.display = false"></div>
                                         <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
-                                        <div class="p-absolute p-2 bg-success text-white class-info" *ngIf="info?.display && info?.teacher">
+                                        <div class="p-absolute p-2 bg-success  class-info" *ngIf="info?.display && info?.teacher">
                                             <div>
                                                 <span>
                                                 Teacher's Name: {{ info?.teacher?.mb_nick }}
@@ -111,9 +107,9 @@
                     </tr>
                 </tbody>
             </table>
-            <div *ngIf="!user.logged" class="mx-auto p-absolute d-block b-0 w-100 reminder-image"> <img class="d-block w-75 mx-auto " src="assets/img/reservation-banner.png">
-                <div class="mx-auto p-absolute d-block text-center fs-170 text-white reminder-text" style="width:40%; top:20%; left:40%">수업 시간표를 보시려면 로그인을 하세요.</div>
-            </div>
+            <!--<div *ngIf="!user.logged" class="mx-auto p-absolute d-block b-0 w-100 reminder-image"> <img class="d-block w-75 mx-auto " src="assets/img/reservation-banner.png">
+                <div class="mx-auto p-absolute d-block text-center fs-170  reminder-text" style="width:40%; top:20%; left:40%">수업 시간표를 보시려면 로그인을 하세요.</div>
+            </div>-->
             <div *ngIf="this.calendarLoad" class="calendar-loader">
                 <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
             </div>

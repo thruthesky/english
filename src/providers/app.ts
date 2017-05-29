@@ -17,7 +17,7 @@ export interface SOCIAL_LOGIN {
 
 @Injectable()
 export class App {
-    DAYS = [ '일', '월', '화', '수', '목', '금', '토' ];
+    DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
     public myEvent: EventEmitter<any>;
     width: number = 0;
@@ -459,7 +459,7 @@ export class App {
 
     getUniqueId() {
         let str = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5));
-        return str.substr( 2 );
+        return str.substr(2);
 
     }
 
@@ -473,7 +473,7 @@ export class App {
     getClientId() {
 
         let uid = localStorage.getItem('client-uid');
-        if ( uid ) return uid;
+        if (uid) return uid;
         else {
             uid = this.getUniqueId();
             localStorage.setItem('client-uid', uid);
@@ -481,8 +481,8 @@ export class App {
         }
     }
 
-    isAdmin() : boolean {
-        if ( this.user.logged && this.user.info.admin ) return true;
+    isAdmin(): boolean {
+        if (this.user.logged && this.user.info.admin) return true;
         else return false;
     }
 }

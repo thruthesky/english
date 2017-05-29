@@ -29,18 +29,21 @@
                     <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
                         <div class="text">나의수업</div>
                     </li>
-                    <!--<li class="menu ml-3" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
-                            <div class="text">질문답변</div>
+                    <!--<li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
+                            <div class="text">질문</div>
                         </li>-->
                 </ul>
 
 
-                <div class="">
+                <div class="text-center">
                     <ul class="list-style-none list-float-left text-center pointers fs-80" style="color: #bbb;">
                         <li class="item mr-1" *ngIf=" app.isAdmin() ">
                             <div class="text">
                                 <a href="http://www.englishfordevelopers.com/view/admin/page/index.html" target="_blank">관리자</a>
                                 </div>
+                        </li>
+                        <li class="item mr-1" (click)="onClickPanelMenu('forum')">
+                            <div class="text">질문하기</div>
                         </li>
                         <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>

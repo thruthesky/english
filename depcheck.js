@@ -26,7 +26,7 @@ dir.files('src', function (err, files) {
     var A = files.filter( v => /\.(jpg|gif|png|psd)/.test( v ) );
     var B = usedImages;
     var C = A.filter( a => B.findIndex( b => a.indexOf( b ) != -1 ) == -1 );
-    console.log("Unused Images: ");
+    console.log("Unused Images: " + C.length );
     for (let f of C) {
         console.log(f);
     }

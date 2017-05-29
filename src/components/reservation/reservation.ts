@@ -29,7 +29,7 @@ export class ReservationComponent implements OnInit {
     showNext: boolean = false;
     showYear: boolean = false;
     constructor(
-        private app     : App,
+        public app     : App,
         private modal   : NgbModal,
         public user     : User,
         private lms     : LMS,
