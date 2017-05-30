@@ -10,6 +10,7 @@ import {FirebaseChat} from './../../providers/firebase';
 })
 export class LevelTestComponent {
 
+  uid:string;
   days = [];
   selectedDay;
   form: FormGroup;
@@ -45,6 +46,9 @@ export class LevelTestComponent {
               private fb: FormBuilder,
               private fc: FirebaseChat
   ) {
+
+
+    this.uid = this.app.getClientId();
 
     this.form = fb.group({
       studentName: [this.app.user.info.id, [Validators.required]],
@@ -89,15 +93,23 @@ export class LevelTestComponent {
     // console.log("this.form::", this.form.status);
     // console.log("formError::", this.formErrors);
     // console.log("form.value::", this.form.value);
-    //
-    // if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
-    // if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
-    // if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
-    this.onValueChanged();
+
+    if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
+    if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
+    if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
 
     if(this.form.status == 'INVALID') return this.formValid = false;
 
-    this.fc.sendLevelTest(this.form.value);
+    this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
+      console.log('message::', res);
+      this.app.confirmation("Message Sent Success");
+      this.form.reset();
+    }, err => {
+      console.log('messageError', err);
+    }).catch( e => {
+      console.log('ErrorOnCatch', e);
+    });
+
     this.formValid  = true;
   }
 

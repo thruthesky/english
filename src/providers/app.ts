@@ -6,6 +6,8 @@ import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 
 
 import * as config from './../app/config';
+import {Alert} from "./bootstrap/alert/alert";
+import { FirebaseChat } from "./firebase";
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -13,6 +15,13 @@ export interface SOCIAL_LOGIN {
     name: string;
     email: string;
 };
+
+export interface ALERT_OPTION {
+  title: string;
+  content: string;
+  'class'?: string;
+  timeout?: number;
+}
 
 
 
@@ -28,12 +37,14 @@ export class App {
     headerHeight = 10;
     socialLogin: SOCIAL_LOGIN = null;
 
+    fc;
+
     constructor(
         private ngZone: NgZone,
-
+        private alertService: Alert,
         public afAuth: AngularFireAuth,
-        public user: User
-
+        public user: User,
+        private fc: FirebaseChat
     ) {
         this.myEvent = new EventEmitter();
     }
@@ -133,8 +144,8 @@ export class App {
     }
 
     /**
-     * Returns the array of 'section#names' and its top position in the document. 
-     * 
+     * Returns the array of 'section#names' and its top position in the document.
+     *
      */
     getParts() {
         let nodes = document.querySelectorAll('section.part');
@@ -203,15 +214,15 @@ export class App {
 
 
     /**
-    * 
-    * 
+    *
+    *
     * @code
     *          this.scrollToY( parts[i]['top'] - HEADER_HEIGHT );
     *          scrollToY(0, 1500, 'easeInOutQuint');
     * @endcode
-    * 
+    *
     * @attention the speed and ease does not look like working.
-    * @param speed - 
+    * @param speed -
     * @param easing - easeOutSine, easeInOutSine, easeInOutQuint
     */
     scrollToY(scrollTargetY, speed?, easing?) {
@@ -448,7 +459,10 @@ export class App {
             email: user.email,
             name: user.name
         };
-        this.user.register(req).subscribe(r => this.backendSuccess(r), e => this.backendFailed(e));
+        this.user.register(req).subscribe( r => {
+          this.fc.newRegisteredUser( req );
+          this.backendSuccess(r);
+        }, e => this.backendFailed(e));
     }
 
 
@@ -471,7 +485,7 @@ export class App {
      * This is a unique id of each user(web browser).
      * This will not be regenerated.
      * So, you can use it to track a user.
-     * 
+     *
      */
     getClientId() {
 
@@ -487,5 +501,25 @@ export class App {
     isAdmin(): boolean {
         if (this.user.logged && this.user.info.admin) return true;
         else return false;
+    }
+
+
+    private showModal( option: ALERT_OPTION ) {
+      //alert( this.t );
+      // option.title = this.t( option.title );
+      // option.content = this.t( option.content );
+      //alert(option.content);
+      this.alertService.open( option, () => {
+        console.info("alert OK");
+      });
+    }
+
+    confirmation( content ) {
+      let option: ALERT_OPTION = {
+        title: "Success",
+        content: content,
+        class: 'confirmation'
+      };
+      this.showModal( option );
     }
 }

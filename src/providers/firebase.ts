@@ -5,15 +5,14 @@ import { App } from './app';
 export class FirebaseChat {
 
 
-  level_test: FirebaseListObservable<any[]>;
-  uid:string;
+
+  new_user: FirebaseListObservable<any[]>;
+
+
   constructor(
-    private db: AngularFireDatabase,
-    private app: App
+    private db: AngularFireDatabase
   ){
 
-    this.uid = this.app.getClientId();
-    this.level_test = this.db.list('/messages/level_test/' + this.uid);
 
   }
 
@@ -56,17 +55,29 @@ export class FirebaseChat {
     return this.db.list('/messages/last/', {query});
   }
 
-  sendLevelTest(data){
-      console.log('data', data);
-    this.level_test.push(data).then( res => {
-      console.log('message::', res);
-    }, err => {
-      console.log('messageError', err);
-    }).catch( e => {
-      console.log('ErrorOnCatch', e);
-    });
-
+  sendLevelTest(data, uid){
+    console.log('sendLevelTest', data);
+    return this.db.list('/level_test/inquiry/' + uid).push(data);
   }
+
+  newRegisteredUser( req ){
+    let msg = {
+      id: req.id,
+      email: req.email,
+      name: req.name
+    };
+    this.new_user = this.db.list('/users/' + msg.id);
+
+    this.new_user.push( msg ).then( res => {
+      console.log('newRegisteredUser::', res);
+    }, err => {
+      console.log('newRegisteredUserError', err);
+    }).catch( e => {
+      console.log('newRegisteredUserErrorOnCatch', e);
+    });
+  }
+
+
 
 
 }

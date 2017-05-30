@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
+import { BootstrapModule } from '../providers/bootstrap/bootstrap';
 
 
 //
@@ -115,7 +116,8 @@ const appRoutes:Routes = [
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
     AngularBackendModule.forRoot(),
-    AngularBackendComponents
+    AngularBackendComponents,
+    BootstrapModule
   ],
   providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService ],
   bootstrap: [AppComponent],
