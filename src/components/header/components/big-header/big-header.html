@@ -26,8 +26,8 @@
                         <div class="text">수업료</div>
                     </li>
 
-                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
-                        <div class="text">나의수업</div>
+                    <li class="menu" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
+                        <div class="text">질문하기</div>
                     </li>
                     <!--<li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
                             <div class="text">질문</div>
@@ -42,8 +42,8 @@
                                 <a href="http://www.englishfordevelopers.com/view/admin/page/index.html" target="_blank">관리자</a>
                                 </div>
                         </li>
-                        <li class="item mr-1" (click)="onClickPanelMenu('forum')">
-                            <div class="text">질문하기</div>
+                        <li class="item mr-1" (click)="onClickPanelMenu('reservation')">
+                            <div class="text">나의수업</div>
                         </li>
                         <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>

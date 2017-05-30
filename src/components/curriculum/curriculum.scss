@@ -1,26 +1,71 @@
 @import './../../theme/variables';
+@import './../../theme/mixins';
 
-:host {
-    display: block;
-    background-repeat: repeat-x;
-    background-image: url("/assets/images/curriculum/tmp-2.png");
-    background-size: auto 320px;
+.text {
+    margin-bottom: 4em;
+    text-align: center;
+    @media ( min-width: $md ) {
+        
+    }
+    .title {
+        margin-bottom: .3em;
+        font-size: 1.6em;
+    }
+    h1 {
+        font-size: 2.2em;  @media ( min-width: $md ) { font-size: 3.2em; }
+        margin-bottom: .3em;
+        line-height: 120%;
+    }
+    .desc {
+        margin-bottom: 1em;
+        line-height: 160%;
+        font-weight: 100;
+        font-size: 1.4em;
+    }
+}
+
+
+.container {
+    padding: 0;
+    line-height: 200%;
+    font-weight: 100;
+    font-size: 1.4em; @media ( min-width: $md ) { font-size: 1.2em; }
+
+    .sub-title {
+        margin-bottom: .4em;
+        font-weight: 300;
+        font-size: 1.5em;
+    }
+    h2 {
+        margin: .35em 0 1em;
+        font-size: 2.5em;
+        font-weight: normal;
+    }
+
+    h3 {
+        margin-bottom: .4em;
+    }
+
+
+    hr {
+        margin: 1em 0;
+        border-color: white;
+    }
+
+}
+
+
+.left {
+    background-image: url('./../../assets/images/curriculum/watch.jpg');
+    background-repeat: no-repeat;
+    background-size: auto 480px;
     background-position: 100% 0;
+    background-color: #e3e3e3;
+    padding: 1.6em;
 }
 
-.desc {
-    height: 12em;
-    overflow: hidden;
-    font-size: 13px;
-    @media ( min-width: $md ) {
-        height: 10em;
-        font-size: 14px;
-    }
-}
-
-h1 {
-    font-size: 2rem;
-    @media ( min-width: $md ) {
-        font-size: 3.2rem;
-    }
+.right {
+    color: white;
+    background-image: url('./../../assets/images/curriculum/woman.jpg');
+    padding: 1.6em;
 }
