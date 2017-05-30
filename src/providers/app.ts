@@ -37,8 +37,6 @@ export class App {
     headerHeight = 10;
     socialLogin: SOCIAL_LOGIN = null;
 
-    fc;
-
     constructor(
         private ngZone: NgZone,
         private alertService: Alert,
