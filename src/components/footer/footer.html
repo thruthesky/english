@@ -5,7 +5,7 @@
                 <div class="logo-picture my-0 mx-auto w-100 text-center col-md-3">
                     <img class="pointer" (click)="onClickPanelMenu('intro')" src="/assets/images/logo/logo24.png">
                 </div> 
-                <div class="col-auto footer-content p-1" style="font-size:0.66rem; line-height:1.6rem;">
+                <div class="col-auto footer-content p-1" style="margin-bottom:6rem;font-size:1rem; line-height:1.6rem;">
                         상호 온라인영어 대표자명 송재호 주소 경상남도 김해시 한림면 신천리 284<br>
                         사업자등록번호 615-90-87907 통신판매신고번호 2008-경남김해-0051 <br>
                         고객센터 070-7893-1741 이메일 thruthesky@gmail.com<br>
@@ -16,8 +16,39 @@
                 </div> 
             </div>
         </div>
-        <div class="p-absolute b-0 p-2 w-100 fs-1rem text-center" style="background-color: #c0c0c0; color: #fff;">
+        <div class="p-absolute b-0 p-2 w-100 mt-3 p-5 fs-1rem  text-center" style="background-color: #c0c0c0; color: #fff;">
             {{ app.config.footer.copyright }}
         </div>
     </div>
 </footer>
+
+
+
+
+
+
+
+
+<!--<footer>
+    <div class="p-relative pt-4 px-0 copyright" style="padding-bottom:4em; border-top: 1px solid #dbd7d7; background-color: #fbfbfb;">
+        <div class="container">
+            <div class="row">
+                <div class="logo-picture my-0 mx-auto w-100 text-center col-md-3">
+                    <img class="pointer" src="/assets/images/logo/logo24.png">
+                </div>
+                <div class="col-auto footer-content p-1" style="font-size:0.66rem; line-height:1.6rem;">
+                    {{ app.config.footer.info }}
+                </div>
+                <div class="t-0 r-0 col-md-2 btn-img">
+                    <img class="p-absolute pointer t-0 r-1rem" src="/assets/images/footer/btn-to-top.png" (click)="onClickPanelMenu('intro')">
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="mt-3 p-5 w-100 fs-1rem text-center copyright-content" style="background-color: #c0c0c0; color: #fff;">
+            {{ app.config.footer.copyright }}
+        </div>-->
+        <!--<div class="p-absolute b-0 p-2 w-100 fs-1rem text-center" style="background-color: #c0c0c0; color: #fff;">
+            {{ app.config.footer.copyright }}
+        </div>
+    </div>
+</footer>-->
