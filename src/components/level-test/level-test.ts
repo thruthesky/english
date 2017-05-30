@@ -55,7 +55,7 @@ export class LevelTestComponent {
     });
 
 
-    
+
 
 
     for (let i = 0; i < 100; i++) {
@@ -64,19 +64,21 @@ export class LevelTestComponent {
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;
       //console.log(newDate.toString());
       let date = newDate.getMonth() + '-' + newDate.getDate();
-      this.days.push({date: date, day: app.DAYS[newDate.getDay()]});
-      if ( ! this.selectedDay ) this.selectedDay = date;
+      let day = {date: date, day: app.DAYS[newDate.getDay()]};
+      this.days.push(day);
+      if ( ! this.selectedDay ) {
+        this.selectedDay = date;
+        this.form.patchValue({date: day.date + " (" + day.day + ")" });
+      }
       if (this.days.length >= 5) break;
     }
 
 
     this.form.valueChanges
       .debounceTime(1000)
-      .subscribe( res => {
-        this.onValueChanged(res);
-
+      .subscribe( () => {
+        this.onValueChanged();
       } );
-
   }
 
   getDay( date ) {
@@ -85,17 +87,22 @@ export class LevelTestComponent {
 
   onClickSubmitLevelTest(){
     console.log("this.form::", this.form.status);
-
     console.log("formError::", this.formErrors);
+    console.log("form.value::", this.form.value);
+
+    if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
+    if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
+    if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
+
     if(this.form.status == 'INVALID') return this.formValid = false;
 
-    this.fc.sendLevelTest(this.form.value)
+    this.fc.sendLevelTest(this.form.value);
     this.formValid  = true;
   }
 
 
 
-  onValueChanged(data?: any) {
+  onValueChanged() {
     if (!this.form) return;
     this.formValid = true;
     const form = this.form;
