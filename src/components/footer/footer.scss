@@ -13,10 +13,14 @@
         }
         .footer-content {
             width: 100%;
+            font-size:.76rem;
             text-align: center;
             @media(min-width:$maxbreakpoint) {
                 text-align: left;
                 width: auto;
+            }
+            @media(min-width:$sm) {
+                font-size:1rem;
             }
         }
         .btn-img {
