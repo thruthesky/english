@@ -86,13 +86,14 @@ export class LevelTestComponent {
   }
 
   onClickSubmitLevelTest(){
-    console.log("this.form::", this.form.status);
-    console.log("formError::", this.formErrors);
-    console.log("form.value::", this.form.value);
-
-    if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
-    if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
-    if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
+    // console.log("this.form::", this.form.status);
+    // console.log("formError::", this.formErrors);
+    // console.log("form.value::", this.form.value);
+    //
+    // if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
+    // if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
+    // if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
+    this.onValueChanged();
 
     if(this.form.status == 'INVALID') return this.formValid = false;
 
