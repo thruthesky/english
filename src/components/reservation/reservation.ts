@@ -94,7 +94,7 @@ export class ReservationComponent implements OnInit {
         this.calendarLoad = true;
         console.log('hello');
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-            console.log("Salt:",res);
+           
             //Process gather data
             this.classinformation = {
                 first_class: res.first_class,
@@ -135,10 +135,10 @@ export class ReservationComponent implements OnInit {
             else book = { myDate: i };
             this.books.push( book );
         }
-        while( this.books.length < this.maxDay ) { this.books.push( null ); } // fill the remaining days
+        while( !(<number>this.books.length % 7 == 0 )) { this.books.push( null ); }
         this.weeks = [];
-        this.weeks = this.chunk(this.books );                             //Chunk Date
-        
+        this.weeks = this.chunk(this.books );       
+        console.log("Display Reservation Info:",this.weeks);
     }
     
 
