@@ -8,7 +8,9 @@
         
     }
     .title {
+        color: slategrey;
         margin-bottom: .3em;
+        font-weight: normal;
         font-size: 1.6em;
     }
     h1 {
@@ -71,6 +73,7 @@
 
 
 
+
 .bottom {
     margin: 5em 0 10em;
     font-weight: 100;
@@ -86,6 +89,7 @@
         font-weight: 100;
     }
 
+
     td.wrapper {
         display: block;
         @media ( min-width: $md ) {
@@ -94,7 +98,7 @@
         }
     }
     .high .left {
-        background-image: url('/assets/tmp/6.jpg');
+        background-image: url('./../../assets/images/curriculum/woman-subway.jpg');
         background-repeat: no-repeat;
         background-size: auto 360px;
         background-position: 100% 0;
@@ -112,9 +116,15 @@
         text-align: center;
     }
 
+    .low {
+        h3 {
+            margin-top: 2em;
+            font-size: 1.8rem;
+        }
+    }
 
     .low .right {
-        background-image: url('/assets/tmp/7.jpg');
+        background-image: url('./../../assets/images/curriculum/woman-bed.jpg');
         background-repeat: no-repeat;
         background-size: auto 360px;
         height: 360px;

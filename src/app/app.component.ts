@@ -4,6 +4,9 @@ import { App } from '../providers/app';
 import { Backend } from 'angular-backend';
 import { Observable } from 'rxjs/Observable';
 
+
+
+
 @Component({
   selector: 'app-root',
   template: `
@@ -14,17 +17,18 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent {
 
-  constructor(private app: App,
-    private backed: Backend) {
+  constructor (
+    private app: App,
+    private backed: Backend
+  ) {
 
-      console.log("User session_id: ", app.user.getSessionId());
+
+    // console.log("User session_id: ", app.user.getSessionId());
     // backed.setBackendUrl("http://backend.dev/index.php");
     backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
     //backed.setBackendUrl("http://backend.org/index.php");
     app.setWidth(window.innerWidth);
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
-
-
 
     Observable.fromEvent(window, 'scroll')
       .debounceTime(100)
@@ -35,6 +39,7 @@ export class AppComponent {
       app.checkLoginWithNaver();
 
   }
+
 
 
   ngOnInit() {
