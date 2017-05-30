@@ -1,33 +1,66 @@
 <section id="curriculum" class="part">
     <div class="content-wrapper">
-        <div class="mb-3 mb-md-4 mb-lg-5 mw-md-18 mx-auto p-3 text-center white" style="background-color: rgba(0, 0, 0, .3)">
-            <h1>{{ app.config.name }} 화상영어 교재</h1>
-            <div class="mt-2 fs-1rem white">
-                {{ app.config.name }}에서는 전 세계적으로 영어 교육에 가장 많이 쓰이고 잘 짜여진 엄선된 교재를 사용하고 있습니다.
+
+        <div class="text">
+            <div class="title">수업방식</div>
+            <h1>
+                가장 완벽한 일대일 맞춤<br>수업을 위한 두가지 방법
+            </h1>
+            <div class="desc">
+            여러분이 언제 어디에 있든 영어회화할 수 있도록 기획된 {{ app.config.name }}의 완벽한 두 가지 수업방식.<br>
+            이제 여러분이 영어를 마스터 할 차례입니다.
             </div>
         </div>
-        <div class="bg-lightgrey p-3 pr-0" *ngIf="books">
-            <div class="row pl-3">
-                <div class="col-md-3 col-sm-4 col-xs-6 col-6 p-0 pr-3 mb-3" *ngFor="let book of books">
-                    <div class="bg-white rounded-top">
-                        <img class="w-100 rounded-top" src="{{ book.img }}">
-                        <div class="p-2 p-md-3">
-                            <div class="fs-120 pt-2 pb-3">
-                                {{ book.title }}
-                            </div>
-                            <div class="desc grey">
-                                {{ book.desc }}
-                            </div>
-                        </div>
-                    </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="left col-md-6">
+                    <div class="sub-title">규칙적으로 완벽하게</div>
+                    <h2>맞춤수업</h2>
+
+
+                    <h3>학습 스케쥴</h3>
+                    언제 어디서든 매일 같은 시간에 외국인강사와 1:1 영어회화 수업을 할 수 있습니다.<br> 스케줄은 주3회, 주5회 선택 가능하며 담임 강사와 일대일 말하기수업을 진행합니다.
+
+                    <hr>
+                    <h3>학습 서비스</h3>
+                    갑작스런 약속이 생겨도 수업 취소가 가능하므로<br> 100% 보강 수업을 진행할 수 있죠.<br> 온라인 교재가 무료로 제공되며,<br> 선생님이 매 수업마다 평가를 해 드립니다.
+
                 </div>
-            </div>
-            <div class="load bg-skyblue white p-2 text-center fs-120 pointer" (click)="onClickShowMore()">
-                <div class="load-more">
-                    <span *ngIf="showBook">감추기</span>
-                    <span *ngIf="!showBook">더 보기</span>
+                <div class="right col-md-6">
+                    <div class="sub-title">완벽한 코드 맞춤</div>
+                    <h2>맞춤강사</h2>
+
+                    <h3>무제한 강사 매칭</h3>
+                    아시나요?<br> 영어로 처음 말하는 것이 얼마나 어색하고 불편한지?<br>
+                    <hr> 영어 선생님이 마무리 강의를 잘한다고 해도 학생이 받아들이지 못하는 경우가 있습니다.<br> 자신과 코드가 맞는 강사와 일대일 수업을 할 때<br> 비로소, 얼어 붙어 있던 말문이
+                    트이기 시작합니다.
+                    <hr> {{ app.config.name }}에서는 무제한으로 영어 선생님을 매칭시켜 학생에게 꼭 맞는 선생님과 완벽한 일대일 맞춤 수업을 진행합니다.
                 </div>
             </div>
         </div>
+
+
+        <div class="text bottom">
+            <div class="title">학습 편리성</div>
+            <h1>
+                언제 어디서나 여러분이 있는<br>바로 그 곳에서 일대일 화상 수업
+            </h1>
+            <div class="desc">
+                {{ app.config.name }}의 목표는 최고의 일대일 맞춤 수업 영어 교육을 경험하게 하는 것입니다.<br>
+                여러분이 어디에 있든 아무런 불편함 없이 {{ app.config.name }}을 즐길 수 있습니다.
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <h2>내가 있는 곳에서<br>나만의 핸드폰으로</h2>
+            </div>
+        </div>
+
+
+    <img src="../../assets/tmp/5.jpg">
     </div>
 </section>

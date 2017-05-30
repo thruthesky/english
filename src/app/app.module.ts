@@ -55,6 +55,8 @@ import { PostViewComponent } from '../components/forum/components/post-view-comp
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
+import { BooksComponent } from '../components/books/books';
+
 
 import { ChatComponent } from '../components/chat/chat';
 import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
@@ -99,7 +101,8 @@ const appRoutes:Routes = [
     FileFormComponent,
     ForumPostComponent,
     ChatComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+@import './../../theme/variables';
+
+:host {
+    display: block;
+    background-repeat: repeat-x;
+    background-image: url("/assets/images/curriculum/tmp-2.png");
+    background-size: auto 320px;
+    background-position: 100% 0;
+}
+
+.desc {
+    height: 12em;
+    overflow: hidden;
+    font-size: 13px;
+    @media ( min-width: $md ) {
+        height: 10em;
+        font-size: 14px;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    @media ( min-width: $md ) {
+        font-size: 3.2rem;
+    }
+}
