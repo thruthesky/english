@@ -67,6 +67,7 @@ import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
 
+
 const appRoutes:Routes = [
   { path: '', component: HomePage },
   { path: '**', component: HomePage }

@@ -8,7 +8,9 @@
         
     }
     .title {
+        color: slategrey;
         margin-bottom: .3em;
+        font-weight: normal;
         font-size: 1.6em;
     }
     h1 {
@@ -52,25 +54,80 @@
         border-color: white;
     }
 
+    .left {
+        background-image: url('./../../assets/images/curriculum/watch.jpg');
+        background-repeat: no-repeat;
+        background-size: auto 480px;
+        background-position: 100% 0;
+        background-color: #e3e3e3;
+        padding: 1.6em;
+    }
+
+    .right {
+        color: white;
+        background-image: url('./../../assets/images/curriculum/woman.jpg');
+        padding: 1.6em;
+    }
+
 }
 
 
-.left {
-    background-image: url('./../../assets/images/curriculum/watch.jpg');
-    background-repeat: no-repeat;
-    background-size: auto 480px;
-    background-position: 100% 0;
-    background-color: #e3e3e3;
-    padding: 1.6em;
-}
-
-.right {
-    color: white;
-    background-image: url('./../../assets/images/curriculum/woman.jpg');
-    padding: 1.6em;
-}
 
 
-.text.bottom {
-    margin-top: 5em;
+.bottom {
+    margin: 5em 0 10em;
+    font-weight: 100;
+    h2 {
+        margin-top: 1em; @media ( min-width: $md ) { margin-top: 0; }
+        margin-bottom: .6em;
+        font-size: 2.4em;
+        font-weight: 100;
+    }
+
+    h3 {
+        font-size: 1.8em;
+        font-weight: 100;
+    }
+
+
+    td.wrapper {
+        display: block;
+        @media ( min-width: $md ) {
+            display: table-cell;
+            width: 50%;
+        }
+    }
+    .high .left {
+        background-image: url('./../../assets/images/curriculum/woman-subway.jpg');
+        background-repeat: no-repeat;
+        background-size: auto 360px;
+        background-position: 100% 0;
+        height: 360px;
+    }
+    .right {
+        padding-left: 1em;
+    }
+    .desc {
+        margin-bottom: 1em;
+        font-size: 1.4em;
+    }
+    .icons {
+        margin-top: 1em;
+        text-align: center;
+    }
+
+    .low {
+        h3 {
+            margin-top: 2em;
+            font-size: 1.8rem;
+        }
+    }
+
+    .low .right {
+        background-image: url('./../../assets/images/curriculum/woman-bed.jpg');
+        background-repeat: no-repeat;
+        background-size: auto 360px;
+        height: 360px;
+    }
+
 }
