@@ -44,15 +44,19 @@
                             <div class="popover-text">
 
 
-                                <button class="btn" (click)="onClickLogout(); p.close()">
+                                <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogout(); p.close()">
                             <div class="text">회원가입</div>
                         </button>
-                                <button class="btn" (click)="onClickLogout(); p.close()">
+                                <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogout(); p.close()">
                             <div class="text">로그인</div>
                         </button>
 
                                 <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
                             <div class="text">나의수업</div>
+                        </button>
+
+                                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+                            <div class="text">강의실 입장</div>
                         </button>
 
 

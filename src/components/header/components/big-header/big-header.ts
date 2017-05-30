@@ -26,8 +26,8 @@ export class BigHeaderComponent {
     }
 
     ngAfterViewInit() {
-        let mm = <HTMLElement>document.querySelector('.more-menu');
-        mm.click();
+        // let mm = <HTMLElement>document.querySelector('.more-menu');
+        // mm.click();
     }
 
     onClickLogout(){
