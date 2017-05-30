@@ -294,7 +294,7 @@ export class RegisterComponent {
       'required':     'Email is required.',
       'minlength':     'Email must be at least 8 characters long.',
       'maxlength':     'Email cannot be more than 32 characters long.',
-      'malformed':    'Email must be in valid format. valudator error'
+      'malformed':    'Email must be in valid format. validator error'
     }
 
   };

@@ -26,7 +26,7 @@ export class ForumPostComponent implements OnInit {
     edited = new EventEmitter<_POST>();
     cancel = new EventEmitter<void>();
 
-    post_config_id: string;
+    post_config_id: string = 'qna';
     post: _POST = <_POST>{};
 
 

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import { App } from './app';
 @Injectable()
 export class FirebaseChat {
 
@@ -66,7 +65,7 @@ export class FirebaseChat {
       email: req.email,
       name: req.name
     };
-    this.new_user = this.db.list('/users/' + msg.id);
+    this.new_user = this.db.list('/users/');
 
     this.new_user.push( msg ).then( res => {
       console.log('newRegisteredUser::', res);
