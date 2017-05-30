@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { App } from '../../../providers/app';
+import { FirebaseChat } from '../../../providers/firebase';
 
 import { LMS } from '../../../providers/lms';
 import { ChangePasswordComponent } from '../change-password/change-password';
@@ -39,6 +40,7 @@ export class RegisterComponent {
         public  user         : User,
         public file          : File,
         private fb           : FormBuilder,
+        private fc           : FirebaseChat,
         private modal: NgbModal,
     ) {
         this.form = fb.group({
@@ -89,8 +91,6 @@ export class RegisterComponent {
 
     onClickRegister() {
         this.register( callback => this.lmsRegister() );
-
-
     }
     onClickUpdate() {
         this.updateProfile( callback => this.updateLMSprofile() );
@@ -121,6 +121,11 @@ export class RegisterComponent {
     register( callback? ) {
         this.loading = true;
         let register = <_USER_CREATE> this.form.value;
+        let msg = {
+          id: register.id,
+          email: register.email,
+          name: register.name
+        };
         register.file_hooks = [ this.primary_photo_idx ];
         if( register['birthday']) {
             let date = this.splitBirthday( register['birthday']);
@@ -131,6 +136,7 @@ export class RegisterComponent {
         }
         this.user.register( register ).subscribe( (res: _USER_CREATE_RESPONSE ) => {
             //this.successRegister( res );
+            this.fc.newRegisteredUser( msg );
             callback();
         }, error => {
             this.error( error );
