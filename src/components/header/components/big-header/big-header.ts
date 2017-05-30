@@ -25,6 +25,11 @@ export class BigHeaderComponent {
       this.app.initializeNaverLogin();
     }
 
+    ngAfterViewInit() {
+        let mm = <HTMLElement>document.querySelector('.more-menu');
+        mm.click();
+    }
+
     onClickLogout(){
 
         this.logout.emit();

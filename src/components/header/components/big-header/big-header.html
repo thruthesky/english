@@ -29,6 +29,60 @@
                     <li class="menu" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
                         <div class="text">질문하기</div>
                     </li>
+
+
+
+                    <li class="menu p-relative">
+                        <ng-template #popContent>
+                            <div class="popover-title white"  (click)="p.close()">
+                                <div class="d-flex justify-content-between">
+                                    <div>{{ app.config.name }}</div>
+                                    <div><i class="fa fa-times" aria-hidden="true"></i></div>
+                                </div>
+
+                            </div>
+                            <div class="popover-text">
+
+
+                                <button class="btn" (click)="onClickLogout(); p.close()">
+                            <div class="text">회원가입</div>
+                        </button>
+                                <button class="btn" (click)="onClickLogout(); p.close()">
+                            <div class="text">로그인</div>
+                        </button>
+
+                                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+                            <div class="text">나의수업</div>
+                        </button>
+
+
+                                <button class="btn" (click)="onClickPanelMenu('books'); p.close()">
+                            <div class="text">교재안내</div>
+                        </button>
+
+
+                                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+                            <div class="text">회원정보</div>
+                        </button>
+
+
+
+
+                                <button class="btn" *ngIf=" user.logged " (click)="onClickLogout(); p.close()">
+                            <div class="text">로그아웃</div>
+                        </button>
+                                <button type="button" class="btn" (click)="p.close()">
+                                닫기
+                            </button>
+
+
+                            </div>
+                        </ng-template>
+                        <div class="more-menu p-absolute fa-stack fa-lg" style="top: -8px;" placement="bottom" [ngbPopover]="popContent" #p="ngbPopover">
+                            <i class="fa fa-circle fa-stack-2x black" aria-hidden="true"></i>
+                            <i class="fa fa-bars fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </div>
+                    </li>
                     <!--<li class="menu" [class.active]=" app.scrollId =='inquiry' " (click)="onClickPanelMenu('inquiry')">
                             <div class="text">질문</div>
                         </li>-->
@@ -40,26 +94,26 @@
                         <li class="item mr-1" *ngIf=" app.isAdmin() ">
                             <div class="text">
                                 <a href="http://www.englishfordevelopers.com/view/admin/page/index.html" target="_blank">관리자</a>
-                                </div>
+                            </div>
                         </li>
-                        <li class="item mr-1" (click)="onClickPanelMenu('reservation')">
+                        <li class="item mr-1" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation')">
                             <div class="text">나의수업</div>
                         </li>
                         <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>
                         </li>
                         <li class="item mr-1" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
-                            <div class="text">회원 정보</div>
+                            <div class="text">강의실입장</div>
                         </li>
                         <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
                             <div class="text">로그인</div>
                         </li>
-                        <li class="item" *ngIf=" user.logged " (click)="onClickLogout()">
+                        <!--<li class="item" *ngIf=" user.logged " (click)="onClickLogout()">
                             <div class="text">로그아웃</div>
-                        </li>
+                        </li>-->
                     </ul>
                     <span class="d-none" id="naver_id_login"></span>
-                    
+
                     <div><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
 
                     <!--<img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
