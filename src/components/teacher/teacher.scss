@@ -1,6 +1,8 @@
 @import './../../theme/mixins';
 #teacher {
     position: relative;
+    overflow:hidden;
+    padding-bottom: 6em;
 }
 .movie {
     position: absolute;

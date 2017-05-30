@@ -1,4 +1,7 @@
 @import './../../theme/mixins';
+#comment {
+    margin-bottom: 12em;
+}
 .part .content-wrapper {
     margin: 0;
     padding: 0;
@@ -7,6 +10,7 @@
     border-top: 1px solid slategrey;
     .comments {
         @include layout-center();
+        padding-bottom: 0!important;
     }
 }
 

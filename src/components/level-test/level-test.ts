@@ -70,7 +70,7 @@ export class LevelTestComponent {
         this.selectedDay = date;
         this.form.patchValue({date: day.date + " (" + day.day + ")" });
       }
-      if (this.days.length >= 5) break;
+      if (this.days.length >= 3) break;
     }
 
 

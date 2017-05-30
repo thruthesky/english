@@ -10,6 +10,11 @@
     }
     background-position: 100% 0;
 }
+
+#level-test {
+    margin-bottom: 6em; @media ( min-width: $md ) { margin-bottom: 1em; }
+}
+
 .content-wrapper {
     padding-top: 0;
 }
@@ -34,4 +39,10 @@ h1 {
     @media ( min-width: $md ) {
         font-size: 3.2rem;
     }
+}
+
+
+button {
+    color: white;
+    background-color: rgba(202, 16, 5, 0.84);
 }

@@ -1,6 +1,11 @@
 @import '../../../../theme/variables';
 
 
+nav {
+    .bottom {
+        background: rgba( 0, 0, 0, .88 );
+    }
+}
 .top {
     border-top:.2em solid #006bb6;
     border-bottom: .1em solid #d7d7d7;
@@ -37,5 +42,11 @@
         font-weight: bold;
         font-family: Helvetica, sans-serif!important;
         font-style: italic;
+    }
+    li {
+
+      &:hover {
+        background: rgba( 0, 0, 0, .92 );
+      }
     }
 }
