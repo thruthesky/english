@@ -1,7 +1,7 @@
 <section id="chat-component">
 
 
-    <div class="chat max p-2 bg-lightgrey" *ngIf="max">
+    <div class="chat max p-2 bg-lightblue" *ngIf="max">
 
 
         <div class="opener">
@@ -15,8 +15,8 @@
         <div>
             <div class="message">
                 <ul class="list-style-none">
-                    <li *ngFor="let m of user_message | async">
-                        <span>{{ m.user == uid ? "Me" : "Admin" }}</span> : {{ m.message }}
+                    <li class="d-flex" [ngClass]="{'justify-content-end': m.user == uid } " *ngFor="let m of user_message | async">
+                        <span class="p-2 m-1 rounded" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } " >{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                     </li>
                 </ul>
             </div>

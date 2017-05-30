@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
 import {App} from './../../providers/app';
 import {FirebaseChat} from './../../providers/firebase';
+import {User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE, _POST} from "angular-backend";
+import {ShareService} from "../../providers/share-service";
 
 @Component({
   selector: 'level-test-component',
@@ -16,7 +18,6 @@ export class LevelTestComponent {
   form: FormGroup;
   formValid = true;
   formErrors = {
-    studentName: '',
     name: '',
     phone: '',
     date: '',
@@ -24,9 +25,6 @@ export class LevelTestComponent {
   };
 
   validationMessages = {
-    studentName: {
-      'required': 'Student is required.',
-    },
     name: {
       'required': 'Name is required.',
     },
@@ -40,22 +38,26 @@ export class LevelTestComponent {
       'required': 'time is required.',
     }
 
+
   };
 
   constructor(public app: App,
+              private user: User,
               private fb: FormBuilder,
-              private fc: FirebaseChat
+              private fc: FirebaseChat,
+              private postData: PostData,
+              public share: ShareService,
   ) {
 
 
     this.uid = this.app.getClientId();
 
+
     this.form = fb.group({
-      studentName: [this.app.user.info.id, [Validators.required]],
-      name: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      date: ['', [Validators.required]],
-      time: ['', [Validators.required]]
+      name:   ['', [Validators.required]],
+      phone:  ['', [Validators.required]],
+      date:   ['', [Validators.required]],
+      time:   ['', [Validators.required]]
     });
 
 
@@ -90,7 +92,7 @@ export class LevelTestComponent {
   }
 
   onClickSubmitLevelTest(){
-    // console.log("this.form::", this.form.status);
+    console.log("onClickSubmitLevelTest::", this.form.value);
     // console.log("formError::", this.formErrors);
     // console.log("form.value::", this.form.value);
 
@@ -100,18 +102,41 @@ export class LevelTestComponent {
 
     if(this.form.status == 'INVALID') return this.formValid = false;
 
-    this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
-      console.log('message::', res);
-      this.app.confirmation("Message Sent Success");
-      this.form.reset();
-    }, err => {
-      console.log('messageError', err);
-    }).catch( e => {
-      console.log('ErrorOnCatch', e);
-    });
+    this.createPost();
 
     this.formValid  = true;
   }
+
+
+
+  createPost() {
+    console.log('createPost::');
+    let p = this.form.value.name + " " + this.form.value.date + " " + this.form.value.time;
+    let create = <_POST_CREATE> {
+      title: p,
+      content: p,
+      post_config_id: 'qna'
+    };
+    if( this.user.logged ) create.name = this.user.info.name;
+    else {
+      create.password = this.form.value.name+this.form.value.phone;
+      create.name = 'anonymous';
+    }
+    this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
+      this.share.posts.unshift( res.data );
+      this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
+        console.log('message::', res);
+        this.app.confirmation("Message Sent Success");
+        this.form.reset();
+      }, err => {
+        console.log('messageError', err);
+      }).catch( e => {
+        console.log('ErrorOnCatch', e);
+      });
+      console.log( res );
+    }, err => this.postData.alert( err ) );
+  }
+
 
 
 
