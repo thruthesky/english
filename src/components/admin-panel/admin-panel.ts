@@ -24,6 +24,7 @@ export class AdminPanelComponent implements OnInit {
 
   username = '';      // username to chat.
   userSenderId = '';
+  userLoginName: string;
   secondCountDownForChatClose: number = 100;
   observableForChatClose;
   scrollMessage: Subject<any> = new Subject();
@@ -37,9 +38,11 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(public app: App,
               private fc: FirebaseChat) {
-
     this.uid = this.app.getClientId();
-    if (app.user.logged) this.userId = app.user.info.id;
+    if (app.user.logged) {
+      this.userId = app.user.info.id;
+      this.userLoginName = app.user.info.name;
+    }
     console.log("Chat User id: ", this.uid);
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
