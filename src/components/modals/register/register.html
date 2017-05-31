@@ -82,15 +82,6 @@
                 <input formControlName="birthday" name="birthday" type="date" class="birthday" (keydown)="onEnterRegister($event)">
             </div>
 
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-venus-mars fa-fw"></i></span>
-                <select class="custom-select form-control" formControlName="gender" name="gender" (keydown)="onEnterRegister($event)">
-                    <option value="">Select Gender</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                    
-                </select>
-            </div>
 
             <div class="error alert alert-danger" role="alert" *ngIf="result.message">
                 <button type="button" class="close" (click)="result.message=null">
