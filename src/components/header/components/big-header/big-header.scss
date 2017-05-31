@@ -7,19 +7,23 @@ header > nav {
     background-color: slategrey;
     background: rgba( 0, 0, 0, .8 );
 }
-header > nav > div > .d-flex {
+
+header > nav > .d-flex {
     margin: 0 auto;
+    width: 110%;
     max-width: $lg + 32px;
 }
+
+
 .big .main-menu {
     margin-left: 3em;
 }
+
 .big .menu {
     margin: 0 0 0 .2em;
     padding: 1em 0 .9em;
     @media ( min-width: $lg ) {
-
-    margin-left: 1em;
+        margin-left: 1em;
     }
 }
 .active {
