@@ -20,7 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "enhance/scss/enhancer.scss"
+        "enhance/scss/enhancer.scss",
+        "assets/bootstrap-v4/bootstrap.min.css",
+        "assets/font-awesome-v4/css/font-awesome.min.css"
       ],
       "scripts": [
       ],

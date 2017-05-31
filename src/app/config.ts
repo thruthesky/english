@@ -12,3 +12,5 @@ export let footer = {
                     업태 서비스 종목 온라인강의 개인정보관리책임자 송재호`,
     copyright: "ⓒ 2017 개발자를 위한 화상영어 - 프로가 되기 위한 첫 걸음"
 };
+
+export let user_profile = "assets/images/user/user.jpg";
