@@ -6,7 +6,7 @@ import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 
 
 import * as config from './../app/config';
-import {Alert} from "./bootstrap/alert/alert";
+import { Alert } from "./bootstrap/alert/alert";
 import { FirebaseChat } from "./firebase";
 
 export interface SOCIAL_LOGIN {
@@ -501,7 +501,6 @@ export class App {
         else return false;
     }
 
-
     private showModal( option: ALERT_OPTION ) {
       //alert( this.t );
       // option.title = this.t( option.title );
@@ -512,11 +511,11 @@ export class App {
       });
     }
 
-    confirmation( content ) {
+    alertModal(content = "Confirmation Success" , title = "Success" ) {
       let option: ALERT_OPTION = {
-        title: "Success",
+        title: title,
         content: content,
-        class: 'confirmation'
+        class: 'alert-modal'
       };
       this.showModal( option );
     }

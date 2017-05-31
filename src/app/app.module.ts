@@ -56,6 +56,8 @@ import { PostViewComponent } from '../components/forum/components/post-view-comp
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
+import { CommentReviewComponent } from '../components/modals/comment-review/comment-review';
+
 import { BooksComponent } from '../components/books/books';
 
 import { LevelTestButtonComponent } from '../components/level-test-button/level-test-button';
@@ -104,6 +106,7 @@ const appRoutes:Routes = [
     PostViewComponent,
     FileFormComponent,
     ForumPostComponent,
+    CommentReviewComponent,
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
@@ -133,6 +136,7 @@ const appRoutes:Routes = [
     PostViewModal,
     ForgotPasswordComponent,
     ForumPostComponent,
+    CommentReviewComponent,
     ChangePasswordComponent
   ]
 })
