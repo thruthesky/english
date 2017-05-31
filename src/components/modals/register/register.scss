@@ -1,13 +1,15 @@
 
 :host{
-
     @mixin button-size() {
         margin: 0 0 20px;
         padding: 7px 22px;
         width: 135px;
         height: 34px;
     }
-
+    input[type=file], /* FF, IE7+, chrome (except button) */
+    input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+        cursor: pointer; 
+    }
     // Module -- Component -- Narrow
     .register-modal {
         .modal-header {

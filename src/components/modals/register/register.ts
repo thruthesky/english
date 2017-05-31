@@ -34,7 +34,7 @@ export class RegisterComponent {
     primary_photo_idx: number = null;
     form: FormGroup;
     constructor (
-        private app          : App,
+        public  app          : App,
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
         public  user         : User,
