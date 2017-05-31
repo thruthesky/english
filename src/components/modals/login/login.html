@@ -4,7 +4,7 @@
   <div class="modal-header">
 
     <h5 class="modal-title">
-      <span class="modal-title">login</span>
+      <span class="modal-title">회원 로그인</span>
     </h5>
     <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
         <span aria-hidden="true">×</span>
@@ -15,11 +15,7 @@
   <div class="modal-body">
     <div class="form-container">
       <form [formGroup]="form" novalidate>
-        <div>
-
-
-          <p class="form-title">Please login.</p>
-        </div>
+        
 
         <div class="d-none" id="naver_id_login"></div>
         <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
@@ -48,19 +44,25 @@
                 </button> {{ result?.message }}
         </div>
         <div class="button-signin">
-          <button type="button" class="btn btn-danger form-control" (click)="onClickLogin()">
+          <button type="button"
+          
+                    class="btn btn-secondary btn-block border-0 rounded-0 py-3 bg-slategrey white"
+
+          (click)="onClickLogin()">
                   <i *ngIf="loading" class='fa fa-spinner fa-pulse'></i>
-                  Log in
+                  로그인
                 </button>
         </div>
-        <hr/>
-        <p class="info">
-          아직 문단열파워잉글리시 회원이 아니세요?
-        </p>
+        <hr class="my-3">
+        <div class="text-center">
+          아직 {{ app.config.name }} 회원이 아니세요?
+        </div>
 
         <div class="button-signup">
-          <button type="button" class="btn btn-warning form-control" (click)="onClickRegister()">
-                  Sign Up
+          <button type="button" class="btn btn-block border-0 slategrey"
+            style="background-color: transparent;"
+            (click)="onClickRegister()">
+                  회원 가입 하기
                 </button>
         </div>
       </form>

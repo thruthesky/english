@@ -30,12 +30,12 @@ export class HeaderComponent implements OnInit {
 
 
     onClickLogin(){
-        let modalRef = this.modal.open( LoginModal );
+        let modalRef = this.modal.open( LoginModal, { windowClass: 'enhance-modal'} );
         modalRef;
     }
 
     onClickRegister() {
-        let modalRef = this.modal.open ( RegisterComponent );
+        let modalRef = this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' } );
         modalRef;
     }
 
@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
 
     onClickUpdateProfile(){
         // console.log('uid ' + JSON.stringify(this.user.loginUser));
-        let modalRef = this.modal.open( RegisterComponent );
+        let modalRef = this.modal.open( RegisterComponent, { windowClass: 'enhance-modal' } );
         modalRef.result.then(() => {}).catch( () =>console.log('exit '));
     }
 

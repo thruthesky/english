@@ -4,11 +4,11 @@
   <div class="modal-header">
 
       <h5 class="modal-title">
-        <span class="modal-title" *ngIf=" ! user.logged ">Register</span>
-        <span class="modal-title" *ngIf="   user.logged ">Profile Update</span>        
+        <span class="modal-title" *ngIf=" ! user.logged ">회원 가입</span>
+        <span class="modal-title" *ngIf="   user.logged ">회원 정보 변경</span>        
       </h5>
       <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
-        <span aria-hidden="true">×</span>
+        <span class="white" aria-hidden="true">×</span>
       </button>
       
   </div>
@@ -16,73 +16,85 @@
     <div class="modal-body">
       <div class="form-container"> 
         <form [formGroup]="form" novalidate>
-            <div>
-            <p class="form-title" *ngIf=" ! user.logged ">Please Signup.</p>
-            <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
-            </div>
-            
+
+
+            <ng-container *ngIf=" user.logged ">
             <div class="form_image" *ngIf=" primary_photo_idx ">
                 <span (click)="onClickDeletePhoto()" class="fa-stack fa-lg pointer" style="position: absolute; right: .6em; bottom: .6em;">
                     <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
                     <i class="fa fa-trash fa-stack-1x"></i>
                 </span>
                 <img src="{{ file.url( primary_photo_idx ) }}">
-                
             </div>
             <div div class="input-group">
                 <input class="form-control-file" #userfile type="file" (change)="onChangeFileUpload( userfile )">
             </div>
+            </ng-container>
+
+
             <div class="input-group"  *ngIf=" ! user.logged ">
-                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="User ID" (keydown)="onEnterRegister($event)">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="회원 아이디" (keydown)="onEnterRegister($event)">
             </div>
+            <small *ngIf=" ! user.logged " class="form-text text-muted">회원 아이디를 입력하세요.</small>
+
+
             <div *ngIf="formErrors.id" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.id }} </span>
             </div>
-            <div class="row user-id" *ngIf=" user.logged ">
-                {{ user.info.id }}
+
+            <div class="row user-id pt-4" *ngIf=" user.logged ">
+               회원아이디 : {{ getUserId( user.info.id ) }}
             </div>
             
             <div class="input-group" *ngIf=" ! user.logged ">
-                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-                <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="Password" (keydown)="onEnterRegister($event)">
+                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="비밀번호" (keydown)="onEnterRegister($event)">
             </div>
+            <small *ngIf=" ! user.logged " class="form-text text-muted">비밀번호를 입력하세요.</small>
             <div *ngIf="formErrors.password" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.password }} </span>
-            </div> 
+            </div>
+            
+
+
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
-                <input formControlName="name" name="name" type="text" class="form-control form-control-sm" placeholder="Name" (keydown)="onEnterRegister($event)">
+                <input formControlName="name" name="name" type="text" class="form-control form-control-sm" placeholder="이름" (keydown)="onEnterRegister($event)">
             </div>
+            <small class="form-text text-muted">이름을 입력하세요.</small>
             <div *ngIf="formErrors.name" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.name }} </span>
-            </div>   
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user-circle fa-fw"></i></span>
-                <input formControlName="email" name="email" type="email" class="form-control form-control-sm" placeholder="Email" (keydown)="onEnterRegister($event)">
             </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-at fa-fw"></i></span>
+                <input formControlName="email" name="email" type="email" class="form-control form-control-sm" placeholder="이메일" (keydown)="onEnterRegister($event)">
+            </div>
+            <small class="form-text text-muted">이메일을 입력하세요.</small>
             <div *ngIf="formErrors.email" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.email }} </span>
             </div>   
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-vcard fa-fw"></i></span>
-                <input formControlName="nickname" name="nickname" type="text" class="form-control form-control-sm" placeholder="Nickname" (keydown)="onEnterRegister($event)">
+                <input formControlName="nickname" name="nickname" type="text" class="form-control form-control-sm" placeholder="영어 닉네임" (keydown)="onEnterRegister($event)">
             </div>
+            <small class="form-text text-muted">닉네임을 입력하세요. 잠깐! 닉네임은 영어로 입력하세요.</small>
             <div *ngIf="formErrors.nickname" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.nickname }} </span>
             </div>   
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-mobile fa-fw"></i></span>
-                <input formControlName="mobile" name="mobile" type="text" class="form-control form-control-sm" placeholder="Mobile" (keydown)="onEnterRegister($event)">
+                <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+                <input formControlName="mobile" name="mobile" type="text" class="form-control form-control-sm" placeholder="전화번호" (keydown)="onEnterRegister($event)">
             </div>
+            <small class="form-text text-muted">전화번호를 입력하세요. 숫자만 입력 가능.</small>
             
-            <div class="input-group">
+            <!--<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                 <input formControlName="birthday" name="birthday" type="date" class="birthday" (keydown)="onEnterRegister($event)">
-            </div>
+            </div>-->
 
-            <div class="input-group">
+            <!--<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-venus-mars fa-fw"></i></span>
                 <select class="custom-select form-control" formControlName="gender" name="gender" (keydown)="onEnterRegister($event)">
                     <option value="">Select Gender</option>
@@ -90,7 +102,7 @@
                     <option value="F">Female</option>
                     
                 </select>
-            </div>
+            </div>-->
 
             <div class="error alert alert-danger" role="alert" *ngIf="result.message">
                 <button type="button" class="close" (click)="result.message=null">
@@ -102,12 +114,21 @@
             <div class="row">
             
               <div class="col-md-12 register" >
-                <button *ngIf=" ! user?.logged " type="button" class="btn btn-primary btn-sm form-control" (click)="onClickRegister()">
+                <button *ngIf=" ! user?.logged " type="button"
+                    class="btn btn-secondary btn-block rounded-0 py-3 white"
+                    style="background-color: #8fa3ad;"
+                    (click)="onClickRegister()">
                     <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
-                    Register
+                    회원 가입
                     </button>
-                <button *ngIf=" user?.logged " type="button" class="control btn btn-info btn-sm form-control" (click)="onClickUpdate()">Update</button>
-                <button *ngIf=" user?.logged " type="button" class="control btn btn-primary btn-sm form-control" (click)="onClickChangePasswordr()">Change Password</button>
+                <button *ngIf=" user?.logged " type="button"
+                class="btn btn-secondary btn-block rounded-0 py-3 white"
+                    style="background-color: #8fa3ad;"
+                (click)="onClickUpdate()">회원 정보 수정</button>
+                <button *ngIf=" user?.logged " type="button"
+                class="btn btn-block rounded-0 py-3 slategrey"
+                style="background-color: transparent;"
+                (click)="onClickChangePassword()">비밀번호 변경하기</button>
               </div>
             </div>
             

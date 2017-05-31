@@ -80,6 +80,9 @@
 .bottom {
     margin: 1em 0 10em;
     font-weight: 100;
+    .text {
+        padding: 1em;
+    }
     h2 {
         margin-top: 1em; @media ( min-width: $md ) { margin-top: 0; }
         margin-bottom: .6em;

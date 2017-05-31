@@ -61,9 +61,16 @@ export class RegisterComponent {
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
     }
-    onClickChangePasswordr(){
+
+    getUserId( id ) {
+        if ( /\@naver\.com$/.test( id ) ) id = `네이버 로그인`;
+        else if ( /\@kakaotalk\.com$/.test( id ) ) id = `카카오톡 로그인`;
+        else if ( /\@facebook\.com$/.test( id ) ) id = `페이스북 로그인`;
+        return id;
+    }
+    onClickChangePassword(){
         this.activeModal.close();
-        this.modal.open( ChangePasswordComponent );
+        this.modal.open( ChangePasswordComponent, { windowClass: 'enhance-modal' } );
     }
     onChangeFileUpload( fileInput ) {
         this.loading = true;

@@ -31,8 +31,6 @@ dir.files('src', function (err, files) {
     for (let f of C) {
         console.log(f);
     }
-
-
     console.log("\nWrong filesize ...");
     for( let a of A ) {
         gm(a).size( (err, size) => {
