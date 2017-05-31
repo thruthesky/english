@@ -13,9 +13,7 @@
         </td>
       </tr>
     </table>
-      <p class="card-text">
-        {{ post.content }}
-      </p>
+      <p class="card-text">{{ post.content }}</p>
 
       <div class="files clearfix" *ngIf=" post.files ">
         <div class="w-25 float-left" *ngFor=" let file of post.files ">

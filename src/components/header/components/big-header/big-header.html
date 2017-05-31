@@ -44,14 +44,14 @@
                             <div class="popover-text">
 
 
-                                <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogout(); p.close()">
+                                <button class="btn" *ngIf=" ! user.logged " (click)="onClickRegister(); p.close()">
                             <div class="text">회원가입</div>
                         </button>
                                 <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogout(); p.close()">
                             <div class="text">로그인</div>
                         </button>
 
-                                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+                                <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation'); p.close()">
                             <div class="text">나의수업</div>
                         </button>
 
@@ -65,7 +65,7 @@
                         </button>
 
 
-                                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+                                <button class="profile btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
                             <div class="text">회원정보</div>
                         </button>
 
@@ -103,7 +103,7 @@
                         <li class="item mr-1" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation')">
                             <div class="text">나의수업</div>
                         </li>
-                        <li class="item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
+                        <li class="register item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>
                         </li>
                         <li class="item mr-1" *ngIf=" user.logged " (click)="onClickUpdateProfile()">

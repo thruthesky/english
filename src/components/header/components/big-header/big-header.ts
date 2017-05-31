@@ -26,8 +26,8 @@ export class BigHeaderComponent {
     }
 
     ngAfterViewInit() {
-        // let mm = <HTMLElement>document.querySelector('.more-menu');
-        // mm.click();
+        // this.onClickRegister();
+        // this.onClickLogin();
     }
 
     onClickLogout(){
@@ -44,10 +44,10 @@ export class BigHeaderComponent {
         this.more = false;
         this.app.scrollTo( name );
     }
-    onClickLogin(){
+    onClickLogin() {
         this.onLogin.emit();
     }
-    onClickGotoClassRoom(){
+    onClickGotoClassRoom() {
         this.classroom.emit();
     }
 

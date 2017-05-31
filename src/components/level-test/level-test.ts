@@ -76,7 +76,7 @@ export class LevelTestComponent {
         this.selectedDay = date;
         this.form.patchValue({date: day.date + " (" + day.day + ")" });
       }
-      if (this.days.length >= 5) break;
+      if (this.days.length >= 3) break;
     }
 
 
@@ -111,7 +111,7 @@ export class LevelTestComponent {
 
   createPost() {
     console.log('createPost::');
-    let p = this.form.value.name + " " + this.form.value.date + " " + this.form.value.time;
+    let p = "레벨 테스트 신청: " + this.form.value.name + "님께서 " + this.form.value.date + " " + this.form.value.time + "에 레벨테스트를 신청하였습니다.";
     let create = <_POST_CREATE> {
       title: p,
       content: p,

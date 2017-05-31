@@ -10,11 +10,17 @@
     }
     background-position: 100% 0;
 }
+
+#level-test {
+    margin-bottom: 6em; @media ( min-width: $md ) { margin-bottom: 1em; }
+}
+
 .content-wrapper {
     padding-top: 0;
 }
 .title-text {
     height: 200px;
+    font-weight: 200;
     @media ( min-width: $md ) {
         height: 240px;
     }
@@ -26,12 +32,30 @@
 h1 {
     padding: 3rem 0 2rem;
     @media (min-width: $md) {
-        padding-bottom: 3rem;
+        padding-top: 5rem;
+        padding-bottom: 1rem;
     }
     text-align: center;
-
+    font-weight: 200;
     font-size: 2rem;
     @media ( min-width: $md ) {
         font-size: 3.2rem;
+    }
+}
+
+
+button {
+    color: white;
+    background-color: rgba(202, 16, 5, 0.84);
+}
+
+
+
+.times {
+    label {
+        font-size: 1.4em;
+        @media (min-width: $md) {
+            font-size: 1.1em;
+        }
     }
 }

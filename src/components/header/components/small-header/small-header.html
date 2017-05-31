@@ -1,25 +1,24 @@
 <header class="small">
-    <nav class="navbar fixed-top p-0" style="background-color: #f3f3f3;">
-        <div class="top">
-
+    <nav class="navbar fixed-top p-0">
+        <div class="top  bg-snow">
             <div class="d-flex justify-content-between p-2">
                 <div class="icons p-1">
                     <span id="naver_id_login"></span>
-                    <span><img (click)="app.onClickLoginWithKakao()" src="assets/img/kakao_btn_small.png"></span>
-                    <span (click)="app.onClickLoginWithFacebook()"><img src="assets/img/kkang/f.png"></span>
+                    <span><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
+                    <span (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
                     <!--<span (click)="onClickLogin()"><img src="assets/img/kkang/naver-id.png"></span>                    -->
 
                 </div>
-                <div class="p-2 fs-130">
+                <div class="p-2 fs-130" (click)="onClickPanelMenu('level-test')">
                     무료 레벨 테스트
                 </div>
             </div>
 
         </div>
-        <div class="bottom bg-white">
+        <div class="bottom white">
             <div class="d-flex justify-content-between p-2">
                 <div class="logo" (click)="onClickPanelMenu('intro')">
-                    <img src="assets/img/logo-1.png" class="ml-1" style="height: 32px;">
+                    <img src="./../../../../assets/images/logo/logo24.png" class="ml-1" style="height: 32px;">
                 </div>
                 <div class="" (click)="onClickMoreMenu()">
                     <i class="icon pointer fa fa-bars fa-2x p-1"></i>
@@ -34,7 +33,7 @@
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-sign-in fa-stack-1x fa-inverse"></i>
                             </span>
-                            <span class="text">로그인</span>
+                        <span class="text">로그인</span>
                         </span>
 
                         <span>
@@ -76,6 +75,14 @@
                         </span>
                         <span class="text">수업 과정</span>
                         <small>Curriculum</small>
+                    </li>
+                    <li class="menu" [class.active]=" app.scrollId =='books' " (click)="onClickPanelMenu('books')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-language fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="text">교재 안내</span>
+                        <small>Books</small>
                     </li>
                     <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
                         <span class="fa-stack fa-lg">
