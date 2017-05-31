@@ -16,7 +16,7 @@
             <div class="message">
                 <ul class="list-style-none">
                     <li class="d-flex" [ngClass]="{'justify-content-end': m.user == uid } " *ngFor="let m of user_message | async">
-                        <span class="p-2 m-1 rounded" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } " >{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
+                        <span class="p-2 mb-1 rounded" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } " >{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                     </li>
                 </ul>
             </div>

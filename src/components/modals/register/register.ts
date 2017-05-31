@@ -49,7 +49,6 @@ export class RegisterComponent {
             nickname: [ '', [Validators.required] ],
             mobile: [ ],
             birthday: [ ],
-            gender: [ ],
             id: [ '', [Validators.required] ],
         });
 
@@ -161,7 +160,6 @@ export class RegisterComponent {
                 name:this.userData.name,
                 nickname:this.userData.nickname,
                 mobile:this.userData.mobile,
-                gender:this.userData.gender,
                 email:this.userData.email?this.userData.email:''
             } );
             let birthday = this.getConcatBirthdate();
