@@ -126,7 +126,7 @@ export class LevelTestComponent {
       this.share.posts.unshift( res.data );
       this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
         console.log('message::', res);
-        this.app.confirmation("Message Sent Success");
+        this.app.alertModal("Message Sent Success");
         this.form.reset();
       }, err => {
         console.log('messageError', err);
