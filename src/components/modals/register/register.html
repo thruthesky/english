@@ -1,7 +1,5 @@
 <div class="register-modal">
-<button type="button" class="close p-absolute fs-2rem" style="right:.5rem" aria-hidden="true" (click)="onClickDismiss()">
-    <span class="white" aria-hidden="true">×</span>
-</button>
+
 
   <div class="modal-header" style="border-top: 2.5rem solid #4b5d6f;">
 
@@ -9,7 +7,9 @@
         <span class="modal-title" *ngIf=" ! user.logged ">회원 가입</span>
         <span class="modal-title" *ngIf=" user.logged ">회원 정보 변경</span>        
       </h5>
-      
+      <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+        <span aria-hidden="true">×</span>
+      </button>
       
   </div>
   
