@@ -13,7 +13,7 @@
   <div class="modal-body">
     <div class="form-container">
 
-      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
+      <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()" novalidate>
         <div>
           <p class="form-title">Testimonial</p>
         </div>
@@ -22,7 +22,7 @@
           <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
         </div>
         <div class="row">
-          <div class="col-md-6 post" ><button type="button"class="input-group btn btn-primary form-control" (click)="onSubmit()">Post</button></div>
+          <div class="col-md-6 post" ><button type="button"class="input-group btn btn-primary form-control" (click)="onClickSubmit()">Post Review</button></div>
         </div>
         <hr/>
       </form>
