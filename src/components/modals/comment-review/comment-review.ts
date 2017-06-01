@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {_FILE, _POST_CREATE, _POST_CREATE_RESPONSE, _USER_RESPONSE, PostData, User} from "angular-backend";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
+import { App } from '../../../providers/app';
+import {
+  _DELETE_RESPONSE, _FILE, _POST_CREATE, _POST_CREATE_RESPONSE, _USER_RESPONSE, PostData,
+  User,
+  File,
+} from "angular-backend";
 import {ShareService} from "../../../providers/share-service";
 
 
@@ -13,19 +19,42 @@ export class CommentReviewComponent {
 
 
   formGroup: FormGroup;
-  userData: _USER_RESPONSE = null;
   files: Array<_FILE> = [];
 
+  loading     : boolean = false;
+  primary_photo_idx: number = null;
+  photoError: string = null;
+
+  formValid = true;
+  validationMessages = {
+    content: {
+      'required': 'Comment is required.',
+    },
+  };
+
+  formErrors = {
+    content: '',
+  };
+
   constructor(
+    public  app          : App,
     private fb: FormBuilder,
     public activeModal: NgbActiveModal,
     private user: User,
     private postData: PostData,
-    public share: ShareService
+    public share: ShareService,
+    public file          : File,
   ){
     this.formGroup = this.fb.group({
-      content: []
+      content: ['', Validators.required]
     });
+
+
+    this.formGroup.valueChanges
+      .debounceTime(1000)
+      .subscribe( () => {
+        this.onValueChanged();
+      } );
   }
 
 
@@ -34,16 +63,72 @@ export class CommentReviewComponent {
   }
 
   onClickSubmit(){
+
+    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
+    if ( ! this.primary_photo_idx ) {
+      return this.photoError = "Photo is required"
+    }
+
+
     let create = <_POST_CREATE> this.formGroup.value;
     create.post_config_id = 'review';
-    create.file_hooks = this.files.map( (f:_FILE) => f.idx );
-    if( this.user.logged ) create.name = this.userData.name;
-    else create.name = 'anonymous';
+    create.file_hooks = [ this.primary_photo_idx ];
+    if( this.user.logged ) create.name = this.user.info.name;
+    else {
+      this.activeModal.close();
+      this.app.alertModal( "To write comment you must log-in", "Must Log-in first");
+    }
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
-      this.share.posts.unshift( res.data );
       console.log( res );
       this.activeModal.close();
+      this.app.alertModal( "Success Write Comment");
     }, err => this.postData.alert( err ) );
   }
+
+  onClickDeletePhoto() {
+    console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
+    this.loading = true;
+    this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
+      console.log("file delete: ", res);
+      this.primary_photo_idx = null;
+      this.loading = false;
+    }, err => {
+      this.loading = false;
+      this.file.alert(err)
+    });
+  }
+
+  onChangeFileUpload( fileInput ) {
+    this.loading = true;
+    this.photoError = null;
+    let file = fileInput.files[0];
+    this.file.uploadPostFile( file ).subscribe(res => {
+      this.primary_photo_idx = res.data.idx;
+      this.loading = false;
+    }, err => {
+      this.loading = false;
+      this.file.alert(err);
+    });
+  }
+
+
+  onValueChanged() {
+
+    console.log(this.formGroup.value);
+    if (!this.formGroup) return;
+    this.formValid = true;
+    const form = this.formGroup;
+    for (const field in this.formErrors) {
+      this.formErrors[field] = '';        // clear previous error message (if any)
+      const control = form.get(field);
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }
+    }
+  }
+
 
 }
