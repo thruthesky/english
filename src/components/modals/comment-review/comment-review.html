@@ -12,17 +12,34 @@
 
   <div class="modal-body">
     <div class="form-container">
+      <form [formGroup]="formGroup" (ngSubmit)="onClickSubmit()" novalidate>
+        <div class="form-group form_image p-relative w-25 ml-auto mr-auto" style="overflow: hidden">
+          <span class="fa-stack fa-lg" style="position: absolute; left: 1rem; bottom: .6rem;">
+              <i class="fa fa-circle fa-stack-2x black"></i>
+              <i class="fa fa-camera fa-stack-1x text-white"></i>
+          </span>
+          <span *ngIf="primary_photo_idx" (click)="onClickDeletePhoto()" class="fa-stack fa-lg" style="position: absolute; left: 4rem; bottom: .6rem; z-index:101">
+              <i class="fa fa-circle fa-stack-2x black"></i>
+              <i class="fa fa-trash fa-stack-1x text-white"></i>
+          </span>
+          <img class="mw-100" *ngIf="primary_photo_idx" src="{{ file.url( primary_photo_idx ) }}">
+          <img class="mw-100" *ngIf="!primary_photo_idx" src="{{ app.config.user_profile }}">
+          <div class="p-absolute t-0 l-0 w-100 h-100" style="z-index:100; font-size: 10rem; opacity: .001">
+            <input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">
+          </div>
+        </div>
 
-      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-        <div>
-          <p class="form-title">Testimonial</p>
+        <div *ngIf="photoError" class="alert alert-danger mt-1">
+          <span class="errors"> {{ photoError }} </span>
         </div>
-        <file-form-component [files]=" files " [form]="formGroup"></file-form-component>
         <div class="input-group">
-          <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
+          <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Your comment here..." rows="3"></textarea>
         </div>
-        <div class="row">
-          <div class="col-md-6 post" ><button type="button"class="input-group btn btn-primary form-control" (click)="onSubmit()">Post</button></div>
+        <div *ngIf="formErrors.content" class="alert alert-danger mt-1">
+          <span class="errors"> {{ formErrors.content }} </span>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6 post" ><button type="button" class="input-group btn btn-primary form-control pointer" (click)="onClickSubmit()">Post Review</button></div>
         </div>
         <hr/>
       </form>

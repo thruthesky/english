@@ -2,24 +2,22 @@
 
 
   <div class="modal-header" style="border-top: 2.5rem solid #4b5d6f;">
-
       <h5 class="modal-title">
         <span class="modal-title" *ngIf=" ! user.logged ">회원 가입</span>
-        <span class="modal-title" *ngIf=" user.logged ">회원 정보 변경</span>        
+        <span class="modal-title" *ngIf=" user.logged ">회원 정보 변경</span>
       </h5>
       <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
         <span aria-hidden="true">×</span>
       </button>
-      
   </div>
-  
+
     <div class="modal-body">
-      <div class="form-container"> 
+      <div class="form-container">
         <form [formGroup]="form" novalidate>
 
             <div>
             <p class="form-title" *ngIf=" ! user.logged ">Please Signup.</p>
-            <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
+            <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>
             </div>
             
             <div class="form-group form_image my-0 mx-auto" style="max-width:15rem" *ngIf=" user.logged ">
@@ -53,7 +51,7 @@
             <div class="row user-id pt-4" *ngIf=" user.logged ">
                회원아이디 : {{ getUserId( user.info.id ) }}
             </div>
-            
+
             <div class="input-group" *ngIf=" ! user.logged ">
                 <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
                 <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="비밀번호" (keydown)="onEnterRegister($event)">
@@ -62,7 +60,7 @@
             <div *ngIf="formErrors.password" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.password }} </span>
             </div>
-            
+
 
 
             <div class="input-group">
@@ -80,7 +78,7 @@
             <small class="form-text text-muted">이메일을 입력하세요.</small>
             <div *ngIf="formErrors.email" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.email }} </span>
-            </div>   
+            </div>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-vcard fa-fw"></i></span>
                 <input formControlName="nickname" name="nickname" type="text" class="form-control form-control-sm" placeholder="영어 닉네임" (keydown)="onEnterRegister($event)">
@@ -88,14 +86,14 @@
             <small class="form-text text-muted">닉네임을 입력하세요. 잠깐! 닉네임은 영어로 입력하세요.</small>
             <div *ngIf="formErrors.nickname" class="alert alert-danger">
                 <span class="errors"> {{ formErrors.nickname }} </span>
-            </div>   
+            </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
                 <input formControlName="mobile" name="mobile" type="text" class="form-control form-control-sm" placeholder="전화번호" (keydown)="onEnterRegister($event)">
             </div>
             <small class="form-text text-muted">전화번호를 입력하세요. 숫자만 입력 가능.</small>
-            
+
             <!--<div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
                 <input formControlName="birthday" name="birthday" type="date" class="birthday" (keydown)="onEnterRegister($event)">
@@ -108,10 +106,10 @@
                     <option value="">Select Gender</option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
-                    
+
                 </select>
             </div>-->
-            
+
 
             <div class="error alert alert-danger" role="alert" *ngIf="result.message">
                 <button type="button" class="close" (click)="result.message=null">
@@ -119,9 +117,9 @@
                 </button>
                 {{ result?.message }}
             </div>
-            
+
             <div class="row">
-            
+
               <div class="col-md-12 register" >
                 <button *ngIf=" ! user?.logged " type="button"
                     class="btn btn-secondary btn-block rounded-0 py-3 white"
@@ -140,9 +138,9 @@
                 (click)="onClickChangePassword()">비밀번호 변경하기</button>
               </div>
             </div>
-            
+
         </form>
-      </div> 
+      </div>
     </div>
 
 </div>

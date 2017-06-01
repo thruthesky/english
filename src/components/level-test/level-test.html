@@ -24,7 +24,7 @@
                 <div class="row form-group">
                     <label class="col-sm-4 col-lg-3" for="phone">핸드폰번호</label>
                     <div class="col-sm-8 col-lg-9">
-                        <input formControlName="phone" class="form-control rounded-0" type="number" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
+                        <input formControlName="phone" class="form-control rounded-0" type="tel" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
                         <div *ngIf="formErrors.phone" class="alert alert-danger mt-1">
                             <span class="errors"> {{ formErrors.phone }} </span>
                         </div>

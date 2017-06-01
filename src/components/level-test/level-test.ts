@@ -29,7 +29,8 @@ export class LevelTestComponent {
       'required': 'Name is required.',
     },
     phone: {
-      'required': 'phone is required.',
+      'required': 'Phone is required.',
+      'pattern': 'Numbers and Dashes only'
     },
     date: {
       'required': 'Date is required.',
@@ -55,7 +56,7 @@ export class LevelTestComponent {
 
     this.form = fb.group({
       name:   ['', [Validators.required]],
-      phone:  ['', [Validators.required]],
+      phone:  ['', [Validators.required, Validators.pattern("^[0-9-]+$")]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
     });
@@ -141,6 +142,9 @@ export class LevelTestComponent {
 
 
   onValueChanged() {
+
+
+    console.log(this.form.value);
     if (!this.form) return;
     this.formValid = true;
     const form = this.form;
