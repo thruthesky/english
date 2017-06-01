@@ -22,19 +22,20 @@
             <p class="form-title" *ngIf="   user.logged ">Update Profile.</p>            
             </div>
             
-            <div class="form-group form_image " *ngIf=" user.logged ">
-                <span class="fa-stack fa-lg" style="position: absolute; left: 1rem; bottom: .6rem;">
+            <div class="form-group form_image my-0 mx-auto" style="max-width:15rem" *ngIf=" user.logged ">
+                <span class="fa-stack fa-lg" style="position: absolute; z-index:100; left: 1rem; bottom: .6rem;">
                     <i class="fa fa-circle fa-stack-2x" style="color:#000"></i>
                     <i class="fa fa-camera fa-stack-1x text-white"></i>
                 </span>
-                <span *ngIf="primary_photo_idx" (click)="onClickDeletePhoto()" class="fa-stack fa-lg" style="position: absolute; left: 4rem; bottom: .6rem; z-index:101">
+                <span *ngIf="primary_photo_idx" (click)="onClickDeletePhoto()" class="fa-stack fa-lg" style="position: absolute; z-index:100; left: 4rem; bottom: .6rem; z-index:101">
                     <i class="fa fa-circle fa-stack-2x" style="color:#000"></i>
                     <i class="fa fa-trash fa-stack-1x text-white"></i>
                 </span>
                 <img *ngIf="primary_photo_idx" src="{{ file.url( primary_photo_idx ) }}">
-                <img *ngIf="!primary_photo_idx" src="{{ app.config.user_profile }}">
-                <div class="p-absolute t-0 l-0 w-100 h-100" style="z-index:100; font-size: 10rem; opacity: .001">
-                    <input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">
+                <img *ngIf="!primary_photo_idx" class="h-auto my-0 mx-auto d-block p-relative" style="max-width: 15em" src="{{ app.config.user_profile }}" >
+                <div class="p-absolute t-0 l-0 w-100 h-100" style="max-width:15em; z-index:100; font-size: 10rem; opacity: .001">
+                    <input #userfile type="file" (change)="onChangeFileUpload( userfile )" class="my-0 mx-auto" style="display:block; width:100%; max-width:15rem;">
+                    <!--<input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">-->
                 </div>
             </div>
 
