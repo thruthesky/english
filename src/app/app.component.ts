@@ -49,6 +49,7 @@ export class AppComponent {
     setTimeout(() => this.app.scrolled(event), 10);
 
   }
+
   onDevinceReady() {
     console.log("yes, I am running in cordova.");
   }
