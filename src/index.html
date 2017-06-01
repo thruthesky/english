@@ -15,20 +15,28 @@
 
 
 <body>
-  <app-root-x>
+  <app-root>
     
     <style>
-      #app-shell {
-        background-image: url("assets/images/loader/shell.jpg");
+      body {
+        background-image: url("assets/images/loader/shell-xs.jpg");
         background-repeat: no-repeat;
-
+        background-position: center 0;
+        height: 953px;
+      }
+      @media all and ( min-width: 768px ) {
+        body {
+          background-image: url("assets/images/loader/shell.jpg");
+        }
       }
       #app-shell .loader {
-        margin: 120px auto 0;
+        margin: 240px auto 0;
+        padding: 10px 20px 20px;
         min-width: 300px;
         max-width: 400px;
         text-align: center;
         font-family: "AppleGothic", "Malgun Gothic";
+        background-color: rgba( 255, 255, 255, .8 );
       }
       #app-shell .loader .ani {
         padding: 16px;
@@ -36,8 +44,8 @@
     </style>
     <div id="app-shell">
       <div class="loader">
-        <div class="ani"><img src="assets/images/loader/loader.gif"></div>
-        홈페이지를 로딩합니다. 잠시만 기다려 주세요.
+          <div class="ani"><img src="assets/images/loader/loader.gif"></div>
+          홈페이지를 로딩합니다. 잠시만 기다려 주세요.
       </div>
     </div>
 
