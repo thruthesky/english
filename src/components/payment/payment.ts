@@ -8,6 +8,11 @@ export class PaymentComponent implements AfterViewInit {
     
   ngAfterViewInit() {
     let pay = <HTMLElement> document.querySelector(".menu.payment");
-    pay.click();
+    let click = () => pay.click();
+    setTimeout( click, 1000 );
+  }
+
+  onClickPay() {
+    console.log("payment begin");
   }
 }
