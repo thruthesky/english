@@ -46,6 +46,7 @@
   "devDependencies": {
     "@angular/cli": "^1.0.0",
     "@angular/compiler-cli": "^4.0.0",
+    "@angularclass/hmr": "^1.2.2",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
