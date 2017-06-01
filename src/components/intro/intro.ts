@@ -6,5 +6,8 @@ import { App } from './../../providers/app';
     styleUrls: ['./intro.scss']
 })
 export class IntroComponent {
-    constructor( public app: App ) {}
+    
+    constructor( public app: App ) {
+    }
+    
 }

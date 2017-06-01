@@ -32,6 +32,7 @@ export class LoginModal implements OnInit {
         private fb: FormBuilder,
         private user: User) {
             this.createForm();
+
     }
 
     ngOnInit() {

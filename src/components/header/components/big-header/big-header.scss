@@ -10,8 +10,12 @@ header > nav {
 
 header > nav > .d-flex {
     margin: 0 auto;
-    width: 110%;
+    width: 100%;
+    @media ( min-width: $lg + 32 ) {
+
     max-width: $lg + 32px;
+    
+    }
 }
 
 
@@ -21,7 +25,7 @@ header > nav > .d-flex {
 
 .big .menu {
     margin: 0 0 0 .2em;
-    padding: 1em 0 .9em;
+    padding: 0;
     @media ( min-width: $lg ) {
         margin-left: 1em;
     }
@@ -31,7 +35,7 @@ header > nav > .d-flex {
 }
 
 .big .item {
-    padding: .4em 0 .1em;
+    padding: .2em 0 0;
 }
 
 
@@ -68,3 +72,4 @@ header > nav > .d-flex {
         }
     }
 }
+

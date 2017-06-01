@@ -10,7 +10,7 @@
         <level-test-component></level-test-component>
         <comment-component></comment-component>
         <payment-component></payment-component>
-        <reservation-component></reservation-component>
+        <reservation-component *ngIf="user.logged"></reservation-component>
         <forum-component></forum-component>
 </section>
 
