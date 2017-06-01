@@ -22,8 +22,8 @@
         font-family: "AppleGothic", "Malgun Gothic";
       }
       .shell-menu {
-        padding: .4em;
-        height: 3.4em;
+        padding: .5em;
+        height: 3.6em;
         overflow: hidden;
         background-color: rgba( 0, 0, 0, .8 );
         color: white;
@@ -60,11 +60,19 @@
       .shell-icon-bars {
         position: relative;
         display: inline-block;
-        margin: .1em 0 0;
+        margin: .2em 0 0;
         background-color: white;
         border-radius: 50%;
         width: 34px;
         height: 34px;
+      }
+      .shell-icon-bars svg {
+        position: absolute;
+        top: 7px;
+        left: 25%;
+        width: 18px;
+        height: 20px;
+        background-color: white;
       }
     </style>
     <div id="app-shell">
@@ -84,7 +92,7 @@
             </td>
             <td>
               <span class="shell-icon-bars">
-                <svg class="" style="position: absolute; top: 20%; left: 25%; width: 18px; background-color: white;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M436 120H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h424c6.6 0 12 5.4 12 12v32c0 6.6-5.4 12-12 12zm12 316v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12zm0-164v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M436 120H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h424c6.6 0 12 5.4 12 12v32c0 6.6-5.4 12-12 12zm12 316v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12zm0-164v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12z"/></svg>
               </span>
             </td>
           </tr>

@@ -1,5 +1,5 @@
 <header class="big">
-    <nav class="navbar fixed-top px-0 py-0">
+    <nav class="navbar fixed-top pt-1 py-0">
             <div class="d-flex justify-content-between px-4 px-lg-0">
 
 
@@ -69,8 +69,6 @@
                         </button>
 
 
-
-
                                 <button class="btn" *ngIf=" user.logged " (click)="onClickLogout(); p.close()">
                             <div class="text">로그아웃</div>
                         </button>
@@ -91,9 +89,8 @@
                         </li>-->
                 </ul>
 
-
-                <div class="text-center">
-                    <ul class="list-style-none list-float-left text-center pointers fs-80" style="color: #bbb;">
+                <div class="right">
+                    <ul class="list-style-none list-float-left pointers fs-80 clearfix" style="color: #bbb;">
                         <li class="item mr-1" *ngIf=" app.isAdmin() ">
                             <div class="text">
                                 <a href="http://www.englishfordevelopers.com/view/admin/page/index.html" target="_blank">관리자</a>
@@ -116,7 +113,6 @@
                         </li>-->
                     </ul>
                     <span class="d-none" id="naver_id_login"></span>
-
                     <div><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
 
                     <!--<img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/img/kakao_btn_small.png" style="width: 28px; height: 28px;">
