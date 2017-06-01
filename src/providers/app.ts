@@ -8,6 +8,9 @@ import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 import * as config from './../app/config';
 import { Alert } from "./bootstrap/alert/alert";
 import { FirebaseChat } from "./firebase";
+import { RequiredInfoComponent } from "../components/modals/required-info/required-info";
+
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -42,7 +45,8 @@ export class App {
         private alertService: Alert,
         public afAuth: AngularFireAuth,
         public user: User,
-        private fc: FirebaseChat
+        private fc: FirebaseChat,
+        private modal      : NgbModal,
     ) {
         this.myEvent = new EventEmitter();
     }
@@ -423,6 +427,7 @@ export class App {
     backendSuccess(res: _USER_LOGIN_RESPONSE) {
         console.log("Backend login or register success: " + res);
         this.renderPage();
+        this.showRequiredInfoModal();
         //this.router.navigateByUrl('/');
     }
     backendFailed(e) {
@@ -518,5 +523,9 @@ export class App {
         class: 'alert-modal'
       };
       this.showModal( option );
+    }
+
+    showRequiredInfoModal() {
+      this.modal.open ( RequiredInfoComponent, { windowClass: 'required-info-modal' } );
     }
 }
