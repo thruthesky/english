@@ -11,6 +11,7 @@ import { FirebaseChat } from "./firebase";
 import { RequiredInfoComponent } from "../components/modals/required-info/required-info";
 
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {RegisterComponent} from "../components/modals/register/register";
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -526,6 +527,7 @@ export class App {
     }
 
     showRequiredInfoModal() {
-      this.modal.open ( RequiredInfoComponent, { windowClass: 'required-info-modal' } );
+      this.modal.open ( RegisterComponent, { windowClass: 'required-info-modal' } );
+      
     }
 }
