@@ -27,7 +27,7 @@ export class HomePage implements AfterViewInit {
             this.lms.getTeachers( teachers => this.teachers = teachers );
 
 
-            this.app.showRequiredInfoModal();
+            //this.app.showRequiredInfoModal();
     }
 
 

@@ -25,14 +25,14 @@
                     <i class="fa fa-trash fa-stack-1x text-white"></i>
                 </span>
                 <img *ngIf="primary_photo_idx" src="{{ file.url( primary_photo_idx ) }}">
-                <img *ngIf="!primary_photo_idx" class="h-auto my-0 mx-auto d-block p-relative" style="max-width: 15em" src="{{ app.config.user_profile }}" >
+                <img *ngIf="!primary_photo_idx" class="h-auto my-0 mx-auto d-block p-relative" style="max-width: 15em" src="{{ user_profile }}" >
                 <div class="p-absolute t-0 l-0 w-100 h-100" style="max-width:15em; z-index:100; font-size: 10rem; opacity: .001">
                     <input #userfile type="file" (change)="onChangeFileUpload( userfile )" class="my-0 mx-auto">
                     <!--<input #userfile type="file" (change)="onChangeFileUpload( userfile )" class="my-0 mx-auto" style="display:block; width:100%; max-width:15rem;">-->
                     <!--<input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">-->
                 </div>
             </div>
-            
+
 
             <div class="input-group" *ngIf=" ! user.logged ">
                 <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>

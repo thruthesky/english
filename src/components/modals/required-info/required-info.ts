@@ -18,19 +18,22 @@ export class RequiredInfoComponent {
     private modal      : NgbModal
   ) {
 
+    this.loadUserData();
+
   }
   onClickDismiss(){
     this.activeModal.close();
   }
 
   onClickUpdate() {
-    // this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' } );
-    // this.activeModal.close('close::toUpdate');
+    this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' } );
+    this.activeModal.close('close::toUpdate');
 
   }
 
   loadUserData() {
     this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+      console.log('requiredInfo::', res);
       this.userData = res.data.user;
     }, error => {
       this.user.alert( error );
