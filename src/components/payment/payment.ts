@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { App } from './../../providers/app';
 import { User } from 'angular-backend';
-import { DomSanitizer,SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FirebaseChat } from './../../providers/firebase';
 @Component({
   selector: 'payment-component',
@@ -10,20 +11,54 @@ import { FirebaseChat } from './../../providers/firebase';
 export class PaymentComponent implements AfterViewInit {
 
 
-  iframeUrl:SafeResourceUrl;
+  amounts = {
+    "25": 120000,
+    "50": 216000 
+  };
+  customAmount = '';
+  minutes = "25";
+  days = "5";
+  daysRate = {
+    "5" : 100,
+    "4" : 90,
+    "3" : 80
+  };
+  months = "1";
 
-  constructor(public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat ) {
+
+  iframeUrl: SafeResourceUrl;
+
+  constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
+
+
+    // console.log( this.money_format( 2590000).replace(/,/g, "") );
+    // console.log( this.money_format( 123000000).replace(/,/g, "") );
     
-    firebaseDatabase.push("payment", { 'message': 'begin' });
-window.addEventListener('message', (e) => {
-			console.log(e.data);
-      
+
+
+    window.addEventListener('message', (e) => {
+      console.log(e.data);
+      let msg = <string>e.data;
+      if ( ! /^payment\-/.test(msg) ) return;
       firebaseDatabase.push("payment", {
+        status: msg,
         id: user.info.id
       })
-		}, false);
+    }, false);
 
   }
+  money_format( amount ) : string {
+    if ( ! amount ) return "0";
+    let n = parseInt( amount );
+    if ( ! n ) return "0";
+
+    return n.toString().split('').reverse().reduce( (t, v, i, a ) => {
+      return t = t + v.toString() + ( i < a.length -1 && (i+1) % 3 == 0 ? ',' : '' );
+    }, '' ).split('').reverse().join('');
+    
+    
+  }
+  
   ngAfterViewInit() {
     // let pay = <HTMLElement> document.querySelector(".menu.payment");
     // let click = () => pay.click();
@@ -32,6 +67,14 @@ window.addEventListener('message', (e) => {
 
   }
 
+  getAmount() {
+    let amount: string = "";
+    if ( this.minutes == "0" ) {
+      amount = this.money_format( this.customAmount );
+    }
+    else amount = this.money_format( this.amounts[this.minutes] * this.daysRate[this.days] / 100 *  ( parseInt( this.months ) ) );
+    return amount;
+  }
   onClickPayment() {
     console.log("payment begin");
 
@@ -40,7 +83,9 @@ window.addEventListener('message', (e) => {
       return;
     }
 
-    let amount = 4000;
+
+
+    let amount = this.getAmount().replace(/,/g, '');
     this.user.data(this.user.info.id).subscribe((res) => {
       console.log(res);
 
@@ -51,11 +96,16 @@ window.addEventListener('message', (e) => {
 
       let url = `https://www.englishfordevelopers.com/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
-      this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl( url );
+      this.app.scrollTo('paymentIframe');
+      //alert("200 만 넘어가니 에러 있음");
+      setTimeout(() => {
+        this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+      }, 300);
+      
 
       console.log("iframeUrl: ", this.iframeUrl);
 
-     
+
       // let w = window.innerWidth;
       // let h = window.innerHeight;
       // w = Math.round(w * 50 / 100);
