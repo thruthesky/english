@@ -166,9 +166,6 @@ export class LoginModal implements OnInit {
     onClickKakaoLogin() {
       this.app.onClickLoginWithKakao();
       this.activeModal.close('close::kakao');
-
-
-      this.app.user.data()
     }
 
 
