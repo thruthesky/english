@@ -40,7 +40,7 @@ export class ReservationComponent implements OnInit {
     listenEvents(){
         this.app.myEvent.subscribe( item =>{
             if( item.eventType == 'login-success'  ){
-              this.getNewReservationData();
+                this.getNewReservationData();
             }
             if( item.eventType == 'logout-success'  ){
                 setTimeout(()=>{
