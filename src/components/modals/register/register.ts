@@ -38,7 +38,7 @@ export class RegisterComponent {
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
         public  user         : User,
-        public file          : File,
+        public  file          : File,
         private fb           : FormBuilder,
         private fc           : FirebaseChat,
         private modal: NgbModal,
@@ -267,10 +267,10 @@ export class RegisterComponent {
     }
 
     mobileValidator(c: AbstractControl): { [key: string]: any } {
-        if ( c.value.length < 11 ) {
+        if ( c.value.length < 9 ) {
         return { 'minlength' : '' };
         }
-        if ( c.value.length > 14 ) {
+        if ( c.value.length > 15 ) {
         return { 'maxlength' : '' };
         }
         let re = new RegExp( /^(\d+-?)+\d+$/ ).test( <string> c.value );
@@ -314,8 +314,8 @@ export class RegisterComponent {
     },
     mobile: {
       'required':     'Mobile is required.',
-      'minlength':    'Mobile must be at least 11 characters long.',
-      'maxlength':    'Mobile cannot be more than 14 characters long.',
+      'minlength':    'Mobile must be at least 9 characters long.',
+      'maxlength':    'Mobile cannot be more than 15 characters long.',
       'malformed':    'Mobile must be in valid format. validator error'
     }
 
