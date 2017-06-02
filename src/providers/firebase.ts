@@ -28,6 +28,12 @@ export class FirebaseChat {
   }
 
 
+  push( path, data ) {
+    console.log('push', data);
+    return this.db.list('/' + path ).push(data);
+  }
+
+
   getUserMessage( uid, req? ): FirebaseListObservable<any[]>{
     let query = {};
     if( req  ) {
