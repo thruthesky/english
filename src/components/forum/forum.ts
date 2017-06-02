@@ -36,7 +36,7 @@ export class ForumComponent {
    
   }
   onClickPost() {
-    let modalRef = this.modal.open( ForumPostComponent );
+    let modalRef = this.modal.open( ForumPostComponent, { windowClass: 'enhance-modal'} );
     modalRef.componentInstance['post_config_id'] = this.post_config_id;
     modalRef.result.then( () => {
       this.postListComponent.loadPostData( );

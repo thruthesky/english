@@ -77,7 +77,7 @@ export class PostListComponent  {
         }
     }
     showEditPostForm( _post ) {
-        let modalRef = this.modal.open( ForumPostComponent );
+        let modalRef = this.modal.open( ForumPostComponent, { windowClass: 'enhance-modal'} );
         modalRef.componentInstance['post'] = _post;
         modalRef.result.then( () => {
         }).catch( e => console.log('exit ' + e ) );

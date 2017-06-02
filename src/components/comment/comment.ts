@@ -54,7 +54,7 @@ export class CommentComponent {
 
     if ( ! this.app.user.logged ) return this.app.alertModal( "Please Login First...", "User must log-in first" );
 
-    let modalRef = this.modal.open( CommentReviewComponent );
+    let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal' } );
     modalRef.result.then( res => {
       console.log(res);
     }).catch( e => console.log('exit ' + e ) );
@@ -70,6 +70,10 @@ export class CommentComponent {
   }
 
   loadPostData( page = 1 ) {
+
+
+      this.app.scrollTo('comment');
+      
     this.posts = [];
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;
