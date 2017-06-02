@@ -57,6 +57,7 @@ import { FileFormComponent } from '../components/forum/components/file-form-comp
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 import { CommentReviewComponent } from '../components/modals/comment-review/comment-review';
+import { RequiredInfoComponent } from '../components/modals/required-info/required-info';
 
 import { BooksComponent } from '../components/books/books';
 
@@ -107,6 +108,7 @@ const appRoutes:Routes = [
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,
+    RequiredInfoComponent,
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
@@ -137,6 +139,7 @@ const appRoutes:Routes = [
     ForgotPasswordComponent,
     ForumPostComponent,
     CommentReviewComponent,
+    RequiredInfoComponent,
     ChangePasswordComponent
   ]
 })

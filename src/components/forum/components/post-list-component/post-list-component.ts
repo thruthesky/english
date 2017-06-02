@@ -8,9 +8,9 @@ import { Subject } from 'rxjs/Subject';
 import {
     User,
     PostData,
-    _LIST, 
+    _LIST,
     _POST_LIST_RESPONSE,
-    _POST, 
+    _POST,
     _POSTS,
     _FILE,
     _DELETE_RESPONSE,
@@ -29,7 +29,7 @@ export class PostListComponent  {
     post_config_id: string = '';
     posts: _POSTS = [];
     pageOption = {
-        limitPerPage: 3,
+        limitPerPage: 10,
         currentPage: 1,
         limitPerNavigation: 4, //
         totalRecord: 0
