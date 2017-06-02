@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {RegisterComponent} from "../register/register";
 
 @Component({
   selector: 'required-info-component',
@@ -8,8 +9,19 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class RequiredInfoComponent {
 
 
-  constructor() {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private modal      : NgbModal
+  ) {
 
+  }
+  onClickDismiss(){
+    this.activeModal.close();
+  }
+
+  onClickUpdate() {
+    this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' } );
+    this.activeModal.close('close::toUpdate');
   }
 
 

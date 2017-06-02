@@ -15,12 +15,12 @@
   <div class="modal-body">
     <div class="form-container">
       <form [formGroup]="form" novalidate>
-        
+
 
         <div class="d-none" id="naver_id_login"></div>
-        <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
-        <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
-        <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
+        <img (click)="onClickNaverLogin()" class="h-2" src="assets/images/social-login/naver-3.png">
+        <img (click)="onClickKakaoLogin()" class="h-2" src="assets/images/social-login/kakao-3.png">
+        <img (click)="onClickFacebookLogin()" class="h-2" src="assets/images/social-login/facebook-3.png">
 
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
@@ -45,7 +45,7 @@
         </div>
         <div class="button-signin">
           <button type="button"
-          
+
                     class="btn btn-secondary btn-block border-0 rounded-0 py-3 bg-slategrey white"
 
           (click)="onClickLogin()">
