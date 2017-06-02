@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { App } from '../../../providers/app';
+//import { App } from '../../../providers/app';
+import { user_profile } from '../../../app/config';
 import { FirebaseChat } from '../../../providers/firebase';
 
 import { LMS } from '../../../providers/lms';
@@ -33,23 +34,23 @@ export class RegisterComponent {
     userData: _USER_RESPONSE = null;
     primary_photo_idx: number = null;
     form: FormGroup;
+
+    user_profile = user_profile;
     constructor (
-        public  app          : App,
         private activeModal  : NgbActiveModal,
         private lms          : LMS,
         public  user         : User,
-        public file          : File,
+        public  file          : File,
         private fb           : FormBuilder,
         private fc           : FirebaseChat,
         private modal: NgbModal,
     ) {
         this.form = fb.group({
-            name: [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
-            email: [ '', [ Validators.required, this.emailValidator ] ],
-            nickname: [ '', [Validators.required] ],
-            mobile: [ ],
-            birthday: [ ],
-            id: [ '', [Validators.required] ],
+            name:     [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],
+            email:    [ '', [ Validators.required, this.emailValidator ] ],
+            nickname: [ '', [ Validators.required ] ],
+            mobile:   [ '', [ Validators.required, this.mobileValidator ] ],
+            id:       [ '', [ Validators.required ] ],
         });
 
         if ( ! this.user.logged ) {
@@ -251,28 +252,40 @@ export class RegisterComponent {
     }
 
 
-    validateError( name ) {
-        this.app.alert( name + ' is required ...' );
-        return false;
-    }
+    // validateError( name ) {
+    //     this.app.alert( name + ' is required ...' );
+    //     return false;
+    // }
     emailValidator(c: AbstractControl): { [key: string]: any } {
-    if ( c.value.length < 8 ) {
-      return { 'minlength' : '' };
+        if ( c.value.length < 8 ) {
+        return { 'minlength' : '' };
+        }
+        if ( c.value.length > 64 ) {
+        return { 'maxlength' : '' };
+        }
+        let re = new RegExp( /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ ).test( <string> c.value );
+        if ( re ) return;
+        else return { 'malformed': '' };
     }
-    if ( c.value.length > 64 ) {
-      return { 'maxlength' : '' };
-    }
-    let re = new RegExp( /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/ ).test( <string> c.value );
-    if ( re ) return;
-    else return { 'malformed': '' };
-  }
 
+    mobileValidator(c: AbstractControl): { [key: string]: any } {
+        if ( c.value.length < 9 ) {
+        return { 'minlength' : '' };
+        }
+        if ( c.value.length > 15 ) {
+        return { 'maxlength' : '' };
+        }
+        let re = new RegExp( /^(\d+-?)+\d+$/ ).test( <string> c.value );
+        if ( re ) return;
+        else return { 'malformed': '' };
+    }
   formErrors = {
     id: '',
     password: '',
     name: '',
     nickname: '',
-    email: ''
+    email: '',
+    mobile: ''
   };
   validationMessages = {
     id: {
@@ -297,9 +310,15 @@ export class RegisterComponent {
     },
     email: {
       'required':     'Email is required.',
-      'minlength':     'Email must be at least 8 characters long.',
-      'maxlength':     'Email cannot be more than 32 characters long.',
+      'minlength':    'Email must be at least 8 characters long.',
+      'maxlength':    'Email cannot be more than 32 characters long.',
       'malformed':    'Email must be in valid format. validator error'
+    },
+    mobile: {
+      'required':     'Mobile is required.',
+      'minlength':    'Mobile must be at least 9 characters long.',
+      'maxlength':    'Mobile cannot be more than 15 characters long.',
+      'malformed':    'Mobile must be in valid format. validator error'
     }
 
   };

@@ -113,8 +113,6 @@ export class CommentReviewComponent {
 
 
   onValueChanged() {
-
-    console.log(this.formGroup.value);
     if (!this.formGroup) return;
     this.formValid = true;
     const form = this.formGroup;

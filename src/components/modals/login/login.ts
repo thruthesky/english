@@ -151,4 +151,24 @@ export class LoginModal implements OnInit {
             'maxlength': 'Password cannot be more than 128 characters long.'
         },
     };
+
+
+    onClickNaverLogin() {
+      this.app.onClickLoginWithNaver();
+      this.activeModal.close('close::naver');
+    }
+
+    onClickFacebookLogin() {
+      this.app.onClickLoginWithFacebook();
+      this.activeModal.close('close::facebook');
+    }
+
+    onClickKakaoLogin() {
+      this.app.onClickLoginWithKakao();
+      this.activeModal.close('close::kakao');
+    }
+
+
+
+
 }
