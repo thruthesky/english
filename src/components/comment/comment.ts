@@ -72,8 +72,8 @@ export class CommentComponent {
   loadPostData( page = 1 ) {
 
 
-      this.app.scrollTo('comment');
-      
+    this.app.scrollTo('comment');
+
     this.posts = [];
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;

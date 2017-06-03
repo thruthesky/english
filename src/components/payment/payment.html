@@ -45,16 +45,15 @@
                         <div class="d-flex mx-3 flex-column">
                             <label for="day_5">
                             <input id="day_5" type="radio" name="days" [(ngModel)]="days" value="5">
-                            주 5 회 {{ money_format( amounts[minutes] * daysRate[5] / 100 * months ) }} 원
-
+                            주 5 회 {{ getAmountByMonths(5) }} 원
                         </label>
                             <label for="day_4">
                             <input id="day_4" type="radio" name="days" [(ngModel)]="days" value="4">
-                            주 4 회 {{ money_format( amounts[minutes] * daysRate[4] / 100 * months ) }} 원
+                            주 4 회 {{ getAmountByMonths(4) }} 원
                         </label>
                             <label for="day_3">
                             <input id="day_3" type="radio" name="days" [(ngModel)]="days" value="3">
-                            주 3 회 {{ money_format( amounts[minutes] * daysRate[3] / 100 * months ) }} 원                
+                            주 3 회 {{ getAmountByMonths(3) }} 원                
                         </label>
                         </div>
                         <div class="mt-2 p-3">

@@ -123,6 +123,7 @@ export class LMS {
                                 alert( json['message'] );
                             }
                             else {
+                                console.log(json);
                                 success( json['data'] );
                             }
                         }

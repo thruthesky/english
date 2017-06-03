@@ -181,4 +181,9 @@ export class ReservationComponent implements OnInit {
              data: data 
         } );
     }
+
+
+    getNextClass() {
+        
+    }
 }

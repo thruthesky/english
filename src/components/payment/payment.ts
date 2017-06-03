@@ -75,6 +75,10 @@ export class PaymentComponent implements AfterViewInit {
     else amount = this.money_format( this.amounts[this.minutes] * this.daysRate[this.days] / 100 *  ( parseInt( this.months ) ) );
     return amount;
   }
+
+  getAmountByMonths(days) {
+     return this.money_format( this.amounts[this.minutes] * this.daysRate[ days ] / 100 *  ( parseInt( this.months ) ) );
+  }
   onClickPayment() {
     console.log("payment begin");
 
