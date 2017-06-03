@@ -8,10 +8,15 @@ import {
 } from 'angular-backend';
 @Injectable()
 export class ShareService {
-
+    ve_url: string = null;
+    VE_ENDPOINT_URL = "http://onlineenglish.kr/~witheng/etc/ve_open.php";
     post_config_id: string = '';
     posts: _POSTS = [];
     class_info: ClassInformation = null;
+    idx_student: string = null;
+    date:Date = new Date();
+    year:number = this.date.getFullYear();
+    month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
     constructor() {
 
     }

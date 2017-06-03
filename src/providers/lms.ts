@@ -103,6 +103,19 @@ export class LMS {
     error( error ) {
         return this.user.errorResponse( error );
     }
+    getNextClass( data, success, failure ) {
+        try {
+            let url = LMS_ENDPOINT_URL + `?function=api_next_class&idx_member=${data['idx_student']}`;
+            console.log("My Girl:",url);
+            this.http.get( url ).subscribe( re =>{
+                let json = JSON.parse( re['_body'] );
+                if( re ) success( json['data'] );
+                else failure( ' error on getting next class ' );
+            });
+        } catch(e) {
+            console.log( e );
+        }
+    }
     getReservationsByMonthYear( data, success, error ) {
         //update website
         try {
@@ -131,7 +144,7 @@ export class LMS {
                             alert("Parse ERROR on lms::getReservationsByMonthYear()");
                         }
                     }, err => {
-                        error();
+                        error(err);
                     });
                 },1000);
             }else {
@@ -139,7 +152,7 @@ export class LMS {
             }
         }catch(e) {
             console.log(e);
-            error();
+            error(e);
         }
     }
 }
