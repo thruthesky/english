@@ -103,35 +103,35 @@ export class LMS {
     error( error ) {
         return this.user.errorResponse( error );
     }
-    getNextClass( data, success, failure ) {
-        try {
-            let url = LMS_ENDPOINT_URL + `?function=api_next_class&idx_member=${data['idx_student']}`;
-            console.log("My Girl:",url);
-            this.http.get( url ).subscribe( re =>{
-                let json = JSON.parse( re['_body'] );
-                if( re ) success( json['data'] );
-                else failure( ' error on getting next class ' );
-            });
-        } catch(e) {
-            console.log( e );
-        }
-    }
+    
+
     getReservationsByMonthYear( data, success, error ) {
         //update website
-        try {
+        //try {
             if ( this.user.logged ) {
-                this.loadUserData();
-                setTimeout(()=>{
+
+                // this.loadUserData();
+
+
+
+
+                //setTimeout(()=>{
                     let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
                     let domain = this.getDomain();
-                    let url = '';
-                    if( this.userData && this.userData.id ) url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-                    else return error();
+                    let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+                    
                     // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                     this.http.get( url ).subscribe( re =>{
                         let json = null;
                         try {
                             json = JSON.parse( re['_body'] );
+                        }
+                        catch ( e ) {
+                            console.log(e);
+                            alert("Parse ERROR on lms::getReservationsByMonthYear()");
+                        }
+                        
+                        
                             if ( json['code'] ) {
                                 alert( json['message'] );
                             }
@@ -139,20 +139,44 @@ export class LMS {
                                 console.log(json);
                                 success( json['data'] );
                             }
-                        }
-                        catch ( e ) {
-                            alert("Parse ERROR on lms::getReservationsByMonthYear()");
-                        }
+
                     }, err => {
                         error(err);
                     });
-                },1000);
-            }else {
+                //},1000);
+            }
+            else {
                 error();
             }
-        }catch(e) {
-            console.log(e);
-            error(e);
-        }
+        // } catch(e) {
+        //     console.log(e);
+        //     error(e);
+        // }
     }
+
+
+
+    getNextClass( success, failure ) {
+
+            let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
+            console.log("My Girl:",url);
+            this.http.get( url ).subscribe( re =>{
+                let json = JSON.parse( re['_body'] );
+                if( re ) success( json['data'] );
+                else failure( ' error on getting next class ' );
+            });
+            
+    }
+
+    openVe() {
+        this.getNextClass( data => {
+            console.log('data: ', data);
+            let student_id = this.user.info.id + '@' + this.getDomain();
+            let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
+            window.open( url, "_blank");
+        }, error => {
+            console.error(error);
+        });
+    }
+
 }

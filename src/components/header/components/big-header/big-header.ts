@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'angular-backend';
 import { App } from '../../../../providers/app';
+import { LMS } from './../../../../providers/lms';
 import { ShareService } from '../../../../providers/share-service';
 @Component({
     selector: 'big-header-component',
@@ -18,7 +19,8 @@ export class BigHeaderComponent {
     constructor(
         public user: User,
         public app: App,
-        public share: ShareService
+        public share: ShareService,
+        public lms: LMS
     ) {
 
     }
@@ -30,10 +32,17 @@ export class BigHeaderComponent {
       else  console.log("chididi kong koyla");
       this.app.initializeNaverLogin();
     }
+
+
     onClickVe() {
-        console.log("chimini ah ah:",this.share.ve_url);
-        window.open(this.share.ve_url,'_blank');
+        // console.log("chimini ah ah:",this.share.ve_url);
+        // window.open(this.share.ve_url,'_blank');
+
+
+        this.lms.openVe();
     }
+
+
     ngAfterViewInit() {
         // this.onClickRegister();
         // this.onClickLogin();
