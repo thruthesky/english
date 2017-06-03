@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
+
+import * as config from './../app/config';
+
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
 export const domain: string = 'englishfordevelopers.onlineenglish.kr';
@@ -53,8 +56,10 @@ export class LMS {
     register( data, success, failure: ( error : string ) => void ){
         data = data.value;
         let domain = this.getDomain();
+        data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
-
+        console.log(data);
+        console.log(url);
         this.http.get( url ).subscribe( re =>{
             if( re ) success( re );
             else failure( ' error on lms registration ' );
@@ -86,6 +91,7 @@ export class LMS {
     }
     update( data, success, failure: ( error: string) => void ){
         data = data.value;
+        data['classid'] = config.classid;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
         this.http.get( url ).subscribe( re =>{
@@ -118,6 +124,7 @@ export class LMS {
                 //setTimeout(()=>{
                     let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
                     let domain = this.getDomain();
+                    data['classid'] = config.classid;
                     let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
                     
                     // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
@@ -132,13 +139,13 @@ export class LMS {
                         }
                         
                         
-                            if ( json['code'] ) {
-                                alert( json['message'] );
-                            }
-                            else {
-                                console.log(json);
-                                success( json['data'] );
-                            }
+                        if ( json['code'] !== void 0 && json['code'] ) {
+                            alert( json['message'] );
+                        }
+                        else {
+                            console.log(json);
+                            success( json['data'] );
+                        }
 
                     }, err => {
                         error(err);

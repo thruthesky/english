@@ -4,6 +4,7 @@ import * as firebase from 'firebase/app';
 
 import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 
+import { LMS } from './lms';
 
 import * as config from './../app/config';
 import { Alert } from "./bootstrap/alert/alert";
@@ -48,6 +49,7 @@ export class App {
         public user: User,
         private fc: FirebaseChat,
         private modal      : NgbModal,
+        private lms: LMS
     ) {
         this.myEvent = new EventEmitter();
     }
@@ -427,8 +429,30 @@ export class App {
     }
     backendSuccess(res: _USER_LOGIN_RESPONSE) {
         console.log("Backend login or register success: " + res);
-        this.renderPage();
-        this.showRequiredInfoModal();
+
+        ///
+
+    //         id: string;
+    // idx: number;
+    // name: string;
+    // email: string;
+    // admin?: number;
+
+        // Center X registration for Social Login Users.
+        let data = {
+            id: res.data.id,
+            name: res.data.name,
+            nickname: res.data.name,
+            email: res.data.email,
+            mobile: '',
+            classid: this.config.classid
+        };
+        this.lms.register( data, res =>{
+            console.log(' registered on centerX ' + res );
+            this.renderPage();
+            this.showRequiredInfoModal();
+        }, error => console.error(' error on CenterX registration ' + error ) )
+
         //this.router.navigateByUrl('/');
     }
     backendFailed(e) {

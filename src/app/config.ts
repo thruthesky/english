@@ -13,4 +13,8 @@ export let footer = {
     copyright: "ⓒ 2017 개발자를 위한 화상영어 - 프로가 되기 위한 첫 걸음"
 };
 
+
+export const classid = "solution";
+
+
 export let user_profile = "assets/images/user/user.jpg";

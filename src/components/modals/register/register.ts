@@ -87,13 +87,9 @@ export class RegisterComponent {
 
     onEnterRegister(event){
         if( event.keyCode == 13){
-            if( this.user.logged ) this.updateProfile( callback => this.updateLMSprofile() );
-            else this.register( callback => this.lmsRegister() );
+            if( this.user.logged ) this.onClickUpdate();
+            else this.onClickRegister();
         }
-    }
-
-    onClickDismiss() {
-        this.activeModal.close();
     }
 
     onClickRegister() {
@@ -102,6 +98,12 @@ export class RegisterComponent {
     onClickUpdate() {
         this.updateProfile( callback => this.updateLMSprofile() );
     }
+
+
+    onClickDismiss() {
+        this.activeModal.close();
+    }
+
 
     onValueChanged(data?: any) {
         if ( ! this.form ) return;
@@ -193,7 +195,7 @@ export class RegisterComponent {
         return this.user.errorResponse( error );
     }
 
-    lmsRegister(){
+    lmsRegister() {
         this.lms.register( this.form, res =>{
             console.log(' registered on centerX ' + res );
             this.activeModal.close();
