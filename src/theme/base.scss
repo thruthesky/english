@@ -7,8 +7,23 @@
        url(assets/font/NotoSansKR-Regular.otf) format('opentype');
 }
 
-html,body,h1,h2,h3,h4,h5,h6,div,span,td,li,a,small, label, i, strong, button {
-    font-family: "Apple SD Gothic Neo", "Noto Sans KR"!important;
+// @font-face {
+//   font-family: 'FontAwesome';
+//   font-style: normal;
+//   font-weight: 300;
+//   src: url("assets/font-awesome-v4/fonts/fontawesome-webfont.woff2") format('woff2');
+// }
+
+// span {
+//     font-family: 'FontAwesome';
+//     content: 'abc';
+// }
+
+
+
+
+html,body,h1,h2,h3,h4,h5,h6,div,span,td,li,a,small,label,i,strong,button {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR";
 }
 
 
@@ -31,3 +46,5 @@ a, a:focus, a:hover, a:active, button, button:hover {
 app-component {
     display: block;
 }
+
+

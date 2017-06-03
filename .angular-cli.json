@@ -20,9 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
+        "assets/font-awesome-v4/css/font-awesome.css",
         "enhance/scss/enhancer.scss",
-        "assets/bootstrap-v4/bootstrap.min.css",
-        "assets/font-awesome-v4/css/font-awesome.min.css"
+        "assets/bootstrap-v4/bootstrap.min.css"
       ],
       "scripts": [
       ],
@@ -34,6 +34,7 @@
       }
     }
   ],
+  
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
