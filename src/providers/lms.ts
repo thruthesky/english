@@ -58,8 +58,6 @@ export class LMS {
         let domain = this.getDomain();
         data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
-        console.log(data);
-        console.log(url);
         this.http.get( url ).subscribe( re =>{
             if( re ) success( re );
             else failure( ' error on lms registration ' );
@@ -113,21 +111,11 @@ export class LMS {
 
     getReservationsByMonthYear( data, success, error ) {
         //update website
-        //try {
             if ( this.user.logged ) {
-
-                // this.loadUserData();
-
-
-
-
-                //setTimeout(()=>{
                     let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
                     let domain = this.getDomain();
                     data['classid'] = config.classid;
                     let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-                    
-                    // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
                     this.http.get( url ).subscribe( re =>{
                         let json = null;
                         try {
@@ -137,7 +125,6 @@ export class LMS {
                             console.log(e);
                             alert("Parse ERROR on lms::getReservationsByMonthYear()");
                         }
-                        
                         
                         if ( json['code'] !== void 0 && json['code'] ) {
                             alert( json['message'] );
@@ -150,33 +137,26 @@ export class LMS {
                     }, err => {
                         error(err);
                     });
-                //},1000);
             }
             else {
                 error();
             }
-        // } catch(e) {
-        //     console.log(e);
-        //     error(e);
-        // }
     }
 
 
 
     getNextClass( success, failure ) {
-
             let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
-            console.log("My Girl:",url);
             this.http.get( url ).subscribe( re =>{
                 let json = JSON.parse( re['_body'] );
                 if( re ) success( json['data'] );
                 else failure( ' error on getting next class ' );
             });
-            
     }
 
     openVe() {
         this.getNextClass( data => {
+            if( !data ) return alert("data is false on openVe()");
             console.log('data: ', data);
             let student_id = this.user.info.id + '@' + this.getDomain();
             let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
