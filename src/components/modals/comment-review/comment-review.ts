@@ -13,6 +13,7 @@ import {ShareService} from "../../../providers/share-service";
 
 @Component({
   selector: 'comment-review-component',
+  styleUrls: ['comment-review.scss'],
   templateUrl: 'comment-review.html',
 })
 export class CommentReviewComponent {
