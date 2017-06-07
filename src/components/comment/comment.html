@@ -42,10 +42,10 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6" *ngFor="let post of posts ">
-              <table>
+              <table cellspacing="0" cellpadding="0">
                 <tr>
-                  <td *ngIf="post.files[0]" class="of-hidden b-white rounded-circle d-block" style="height: 64px; width: 64px; border-width: 3px">
-                    <img [src]=" post.files[0].url " class="w-100">
+                  <td *ngIf="post.files[0]" class="of-hidden b-white rounded-circle d-block" style="height: 4rem; width: 4rem;">
+                    <img [src]=" post.files[0].url " class="d-block p-relative m-0 p-0 w-100 h-auto" style="min-width:4rem; min-height:4rem">
                   </td>
                   <td class="pl-2 fs-120 bold">
                     {{ post.name }}
