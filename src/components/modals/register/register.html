@@ -13,7 +13,7 @@
 
     <div class="modal-body">
       <div class="form-container">
-        <form [formGroup]="form" novalidate>
+        <form [formGroup]="form">
 
             <div class="form-group form_image my-0 mx-auto rounded-circle of-hidden" style="width:7rem; height:7rem" *ngIf=" user.logged ">
                 <span class="fa-stack fa-lg fs-1rem" style="position: absolute; z-index:100; left: 1rem; bottom: .3rem;">
@@ -103,14 +103,16 @@
                 <button *ngIf=" ! user?.logged " type="button"
                     class="btn btn-secondary btn-block rounded-0 py-3 white"
                     style="background-color: #8fa3ad;"
-                    (click)="onClickRegister()">
+                    (click)="onClickRegister()" [disabled]="!form.valid">
                     <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
                     회원 가입
                     </button>
                 <button *ngIf=" user?.logged " type="button"
                 class="btn btn-secondary btn-block rounded-0 py-3 white"
                     style="background-color: #8fa3ad;"
-                (click)="onClickUpdate()">회원 정보 수정</button>
+                (click)="onClickUpdate()" [disabled]="!form.valid">
+                <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
+                회원 정보 수정</button>
                 <button *ngIf=" user?.logged " type="button"
                 class="btn btn-block rounded-0 py-3 slategrey"
                 style="background-color: transparent;"
