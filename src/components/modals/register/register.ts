@@ -36,6 +36,7 @@ export class RegisterComponent {
     form: FormGroup;
 
     showRequiredError: boolean = false;
+    checkRequired:boolean = false;
 
     user_profile = user_profile;
     constructor (
@@ -161,6 +162,9 @@ export class RegisterComponent {
     checkRequiredErrorMessage( user ) {
       if( ! user.name || ! user.nickname || !user.mobile || ! user.email ) {
         this.showRequiredError = true;
+      }
+      else if( this.checkRequired && ! this.showRequiredError) {
+        this.activeModal.close();
       }
     }
 

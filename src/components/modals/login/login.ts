@@ -95,6 +95,8 @@ export class LoginModal implements OnInit {
         this.loading = true;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
+            let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
+            checkRequired.componentInstance.checkRequired = true;
         }, error => {
 
             this.error(error);
