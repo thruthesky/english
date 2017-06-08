@@ -16,18 +16,20 @@
                 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
                     
                     <file-form-component [files]=" files " [form]="formGroup"></file-form-component>
+                    
                     <div class="input-group">
                         <input  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="Title">
                     </div>
-         
+                    <small class="form-text text-muted my-2">Please enter a title</small>
                     <div class="input-group">
                         <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Content" rows="3"></textarea>
                     </div>
+                    <small class="form-text text-muted my-2">Please enter a content.</small>
                     <div *ngIf="!user.logged" class="input-group">
                         <input  formControlName="password"  name="password" type="text" class="form-control form-control-sm" placeholder="Password">
                     </div>
                     <div class="row">
-                        <div class="col-md-6 post" ><button type="button"class="input-group btn btn-primary form-control" (click)="onSubmit()">Post</button></div>
+                        <div class="col-md-12 post" ><button type="button"class="input-group btn form-control white" style="background-color:#8fa3ad" (click)="onSubmit()">Post</button></div>
                     </div>
                     <hr/>
                 </form>
