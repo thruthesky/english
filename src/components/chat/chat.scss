@@ -4,3 +4,51 @@
     bottom: 1em;
     right: 0;
 }
+
+
+// layout
+
+
+.chat.max {
+    padding: 1em;
+    width: 340px; @media (min-width: $sm ) { width: $sm - 160px; }
+    .title {
+        .closer {
+            float: right;
+        }
+    }
+}
+
+
+// component
+.chat.max {
+    background-color: lightblue;
+    word-break: break-all;
+}
+
+.messages ul {
+    max-height: 480px;
+    overflow-y: scroll;
+    .message {
+        margin-bottom: .25em;
+        .text {
+            padding: .5em;
+            border-radius: 2px;
+        }
+    }
+}
+
+.chat.max .input {
+    div {
+        margin: 0 .6em 0 .5em;
+
+        input {
+            box-sizing: border-box;
+    width: 100%;
+    border: 0;
+        }
+    }
+    
+    
+    
+}

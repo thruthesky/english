@@ -1,11 +1,19 @@
 @import '../../../../theme/variables';
+@import '../../../../theme/mixins';
+
 
 
 nav {
     .bottom {
-        background: rgba( 0, 0, 0, .88 );
+        background: rgba( 255, 255, 255, .9 );
+        .text {
+            @include shadow(.9, 255);
+        }
     }
 }
+
+
+
 .top {
     border-top:.2em solid #006bb6;
     border-bottom: .1em solid #d7d7d7;

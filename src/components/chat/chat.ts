@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import { FirebaseListObservable} from 'angularfire2/database';
-import {User, _USER_DATA_RESPONSE, _USER_RESPONSE} from 'angular-backend';
-import {App} from './../../providers/app';
-import {FirebaseChat} from './../../providers/firebase';
+import { Component, OnInit } from '@angular/core';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
+import { App } from './../../providers/app';
+import { FirebaseChat } from './../../providers/firebase';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   moduleId: module.id,
   selector: 'chat-component',
-  templateUrl: 'chat.html',
-  styleUrls: ['./chat.scss']
+  templateUrl: 'chat.html'
 })
 
 export class ChatComponent implements OnInit {
@@ -19,17 +19,20 @@ export class ChatComponent implements OnInit {
   form = {
     message: ''
   };
-  min: boolean = true;
-  max: boolean = false;
+  min: boolean = false;
+  max: boolean = true;
 
   firstList = true;
   //userData: _USER_RESPONSE = null;
   userId: string = null;
 
+
+  scrollMessage: Subject<any> = new Subject();
+
   constructor(
-              public app: App,
-              private user: User,
-              private fc: FirebaseChat
+    public app: App,
+    private user: User,
+    private fc: FirebaseChat
   ) {
 
     this.uid = this.app.getClientId();
@@ -44,7 +47,15 @@ export class ChatComponent implements OnInit {
     //   }
     // });
 
-    this.user_message = this.fc.getUserMessage( this.uid, {
+
+    this.scrollMessage
+      .debounceTime(500)
+      .subscribe(res => {
+        this.scrollMessageBox();
+      });
+
+
+    this.user_message = this.fc.getUserMessage(this.uid, {
       limitToLast: 10,
       orderByKey: true
     });
@@ -58,6 +69,13 @@ export class ChatComponent implements OnInit {
       else {
         this.onClickMaximize();
       }
+
+
+
+
+      this.scrollMessage.next();
+
+
 
     });
 
@@ -130,5 +148,15 @@ export class ChatComponent implements OnInit {
     this.min = false;
     this.max = true;
   }
+
+  scrollMessageBox() {
+
+    let $messages = $('.chat.max .messages ul');
+    if ($messages && $messages[0].scrollHeight) {
+            console.log("scroll: messages: ", $messages[0], $messages[0].scrollHeight);
+      $messages.animate({ scrollTop: $messages[0].scrollHeight }, 300);
+    }
+  }
+
 
 }
