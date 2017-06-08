@@ -79,7 +79,7 @@
 
                             </div>
                         </ng-template>
-                        <div class="more-menu p-absolute fa-stack fa-lg" placement="bottom" [ngbPopover]="popContent" #p="ngbPopover">
+                        <div class="more-menu fa-stack fa-lg" placement="bottom" [ngbPopover]="popContent" #p="ngbPopover">
                             <i class="fa fa-circle fa-stack-2x black" aria-hidden="true"></i>
                             <i class="fa fa-bars fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </div>
@@ -102,7 +102,7 @@
                         <li class="register item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
                             <div class="text">회원가입</div>
                         </li>
-                        <li class="item mr-1" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
+                        <li class="item mr-1" *ngIf=" user.logged " (click)="onClickVe()">
                             <div class="text">강의실입장</div>
                         </li>
                         <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
+
+import * as config from './../app/config';
+
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
 export const domain: string = 'englishfordevelopers.onlineenglish.kr';
@@ -53,8 +56,8 @@ export class LMS {
     register( data, success, failure: ( error : string ) => void ){
         data = data.value;
         let domain = this.getDomain();
+        data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
-
         this.http.get( url ).subscribe( re =>{
             if( re ) success( re );
             else failure( ' error on lms registration ' );
@@ -86,6 +89,7 @@ export class LMS {
     }
     update( data, success, failure: ( error: string) => void ){
         data = data.value;
+        data['classid'] = config.classid;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
         this.http.get( url ).subscribe( re =>{
@@ -103,42 +107,63 @@ export class LMS {
     error( error ) {
         return this.user.errorResponse( error );
     }
+    
+
     getReservationsByMonthYear( data, success, error ) {
         //update website
-        try {
             if ( this.user.logged ) {
-                this.loadUserData();
-                setTimeout(()=>{
                     let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
                     let domain = this.getDomain();
-                    let url = '';
-                    if( this.userData && this.userData.id ) url = LMS_URL + `/ajax.php?id=${this.userData.id}&email=${this.userData.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-                    else return error();
-                    // let url = LMS_URL + `/ajax.php?id=k402486&email=k402486@naver.com&classid=${data['classid']}&domain=englishcoffeeonline.onlineenglish.kr&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}`;
+                    data['classid'] = config.classid;
+                    let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
                     this.http.get( url ).subscribe( re =>{
                         let json = null;
                         try {
                             json = JSON.parse( re['_body'] );
-                            if ( json['code'] ) {
-                                alert( json['message'] );
-                            }
-                            else {
-                                success( json['data'] );
-                            }
                         }
                         catch ( e ) {
+                            console.log(e);
                             alert("Parse ERROR on lms::getReservationsByMonthYear()");
                         }
+                        
+                        if ( json['code'] !== void 0 && json['code'] ) {
+                            alert( json['message'] );
+                        }
+                        else {
+                            console.log(json);
+                            success( json['data'] );
+                        }
+
                     }, err => {
-                        error();
+                        error(err);
                     });
-                },1000);
-            }else {
+            }
+            else {
                 error();
             }
-        }catch(e) {
-            console.log(e);
-            error();
-        }
     }
+
+
+
+    getNextClass( success, failure ) {
+            let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
+            this.http.get( url ).subscribe( re =>{
+                let json = JSON.parse( re['_body'] );
+                if( re ) success( json['data'] );
+                else failure( ' error on getting next class ' );
+            });
+    }
+
+    openVe() {
+        this.getNextClass( data => {
+            if( !data ) return alert("data is false on openVe()");
+            console.log('data: ', data);
+            let student_id = this.user.info.id + '@' + this.getDomain();
+            let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
+            window.open( url, "_blank");
+        }, error => {
+            console.error(error);
+        });
+    }
+
 }

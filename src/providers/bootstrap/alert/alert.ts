@@ -18,6 +18,7 @@ export class Alert {
 
     let modalOption = {};
     if (option.class) modalOption['windowClass'] = option.class;
+    else modalOption['windowClass'] = 'enhance-modal';
     let modalRef = this.modalService
       .open( AlertContent, modalOption);
 

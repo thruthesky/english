@@ -52,7 +52,7 @@ export class CommentComponent {
   onClickWriteReview(){
 
 
-    if ( ! this.app.user.logged ) return this.app.alertModal( "Please Login First...", "User must log-in first" );
+    if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
 
     let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal' } );
     modalRef.result.then( res => {
@@ -72,8 +72,8 @@ export class CommentComponent {
   loadPostData( page = 1 ) {
 
 
-      this.app.scrollTo('comment');
-      
+    this.app.scrollTo('comment');
+
     this.posts = [];
     this.searchQuery.page = page;
     this.searchQuery.limit = this.no_of_items_in_one_page;
