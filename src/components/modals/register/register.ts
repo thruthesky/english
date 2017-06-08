@@ -124,7 +124,7 @@ export class RegisterComponent {
     loadUserData() {
         this.loading = true;
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
-          if( res.code && res.code == 0 ) {
+          if( res.code == 0 ) {
             this.getDataSuccess( res );
             this.checkRequiredErrorMessage( res.data.user );
           }

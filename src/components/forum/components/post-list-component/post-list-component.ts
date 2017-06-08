@@ -137,7 +137,7 @@ export class PostListComponent  {
         this.loadPostData();
     }
     onClickShow( data ) {
-        let modalRef = this.modal.open( PostViewModal );
+        let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
         modalRef.componentInstance['post'] = data;
         modalRef.result.then( () => {
         }).catch( e => console.log('exit ' + e ) );

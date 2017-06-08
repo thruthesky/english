@@ -551,6 +551,6 @@ export class App {
     }
 
     showRequiredInfoModal() {
-      this.modal.open ( RegisterComponent, { windowClass: 'required-info-modal' } );
+      this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' }  );
     }
 }

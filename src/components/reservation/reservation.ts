@@ -89,12 +89,12 @@ export class ReservationComponent implements OnInit {
             this.listOfYears.push( { m: test[1], Y: test[3] } );
         }
     }
-    
+
     getNewReservationData() {
         this.calendarLoad = true;
         console.log('hello');
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-           
+
             //Process gather data
             this.classinformation = {
                 first_class: res.first_class,
@@ -104,7 +104,7 @@ export class ReservationComponent implements OnInit {
             };
             if ( this.classinformation.first_class == "No class" ) this.classinformation.first_class = "예약된 수업이 없습니다.";
             if ( this.classinformation.next_class == "No reservation" ) this.classinformation.next_class = "예약된 수업이 없습니다.";
-            
+
             this.share.class_info = this.classinformation;
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
@@ -137,10 +137,10 @@ export class ReservationComponent implements OnInit {
         }
         while( !(<number>this.books.length % 7 == 0 )) { this.books.push( null ); }
         this.weeks = [];
-        this.weeks = this.chunk(this.books );       
+        this.weeks = this.chunk(this.books );
         console.log("Display Reservation Info:",this.weeks);
     }
-    
+
 
     chunk( arr:BOOKS ) : WEEKS {
         let temp:WEEKS = [];
@@ -174,16 +174,16 @@ export class ReservationComponent implements OnInit {
         this.getNewCalendar();
     }
     onClickClassInfo( data ) {
-        this.modal.open( ClassInfoModal ).result.then( () => {
+        this.modal.open( ClassInfoModal, { windowClass: 'enhance-modal' }  ).result.then( () => {
         }).catch( e => console.log('exit ' + e ) );
         this.app.myEvent.emit( {
              eventType:"post",
-             data: data 
+             data: data
         } );
     }
 
 
     getNextClass() {
-        
+
     }
 }
