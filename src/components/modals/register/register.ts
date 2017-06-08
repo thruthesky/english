@@ -35,6 +35,8 @@ export class RegisterComponent {
     primary_photo_idx: number = null;
     form: FormGroup;
 
+    showRequiredError: boolean = false;
+
     user_profile = user_profile;
     constructor (
         private activeModal  : NgbActiveModal,
@@ -120,7 +122,10 @@ export class RegisterComponent {
     loadUserData() {
         this.loading = true;
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+          if( res.code && res.code == 0 ) {
             this.getDataSuccess( res );
+            this.checkRequiredErrorMessage( res.data.user );
+          }
         }, error => {
             this.error( error );
         } );
@@ -151,11 +156,17 @@ export class RegisterComponent {
 
     }
 
+    checkRequiredErrorMessage( user ) {
+      if( ! user.name || ! user.nickname || !user.mobile || ! user.email ) {
+        this.showRequiredError = true;
+      }
+    }
+
     getDataSuccess( res:any ) {
         try {
-            console.log(res);
-            this.userData = res.data.user;
-            console.log("chemy chemy:",this.userData);
+          console.log(res);
+          this.userData = res.data.user;
+          console.log("chemy chemy:",this.userData);
             this.form.patchValue( {
                 id: this.userData.id,
                 name:this.userData.name,
