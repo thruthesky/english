@@ -170,9 +170,8 @@ export class RegisterComponent {
 
     getDataSuccess( res:any ) {
         try {
-          console.log(res);
-          this.userData = res.data.user;
-          console.log("chemy chemy:",this.userData);
+            console.log(res);
+            this.userData = res.data.user;
             this.form.patchValue( {
                 id: this.userData.id,
                 name:this.userData.name,
@@ -183,6 +182,7 @@ export class RegisterComponent {
             let birthday = this.getConcatBirthdate();
             if( birthday )this.form.patchValue( {birthday:birthday});
             this.primary_photo_idx = this.userData.primary_photo.idx;
+            this.loading = false;
         }catch(e){
             console.log(e);
         }
@@ -228,6 +228,7 @@ export class RegisterComponent {
     updateProfile( callback? ){
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
+        console.log("Hello World:",edit);
         delete edit['password'];
         if( edit['birthday']) {
         let date = this.splitBirthday( edit['birthday']);
@@ -259,20 +260,16 @@ export class RegisterComponent {
     successUpdate( res: _USER_EDIT_RESPONSE) {
         if( res.data.admin == 1) this.user.deleteSessionInfo();
         this.loading = false;
-        this.activeModal.close();
+        // this.activeModal.close();
     }
     updateLMSprofile(){
         this.lms.update( this.form , res =>{
             console.log(' lms user updated ' + res );
             this.activeModal.close();
+            // alert("Update Success");
         }, err =>{})
     }
 
-
-    // validateError( name ) {
-    //     this.app.alert( name + ' is required ...' );
-    //     return false;
-    // }
     emailValidator(c: AbstractControl): { [key: string]: any } {
         if ( c.value.length < 8 ) {
         return { 'minlength' : '' };

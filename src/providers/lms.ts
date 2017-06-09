@@ -149,7 +149,8 @@ export class LMS {
             let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
             this.http.get( url ).subscribe( re =>{
                 let json = JSON.parse( re['_body'] );
-                if( re ) success( json['data'] );
+                console.log("getNextClass json:",json);
+                if( json['data'] ) success( json['data'] );
                 else failure( ' error on getting next class ' );
             });
     }
@@ -163,6 +164,7 @@ export class LMS {
             window.open( url, "_blank");
         }, error => {
             console.error(error);
+            alert("error on getting next class");
         });
     }
 

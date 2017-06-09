@@ -5,10 +5,11 @@
     <h1 class="fs-3rem text-center">나의 수업</h1>
    <div class="class-info">
         <div class="desc" *ngIf="share && share.class_info">
-            <div><strong>첫 수업</strong>    : {{share.class_info?.first_class}}</div>
-            <div><strong>예약된 수업</strong> : {{share.class_info?.no_of_reservation}}</div>
-            <div><strong>다음 수업</strong>  : {{share.class_info?.next_class}}</div>
-            <div><strong>지난 수업</strong> : {{share.class_info?.no_of_past}} </div>
+
+            <div><span class="caption">다음 수업</span>  : {{ formatNextClass(share.class_info)}}</div>
+            <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
+            <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
+            <div><span class="caption">첫 수업</span>    : {{ formatFirstClass(share.class_info) }}</div>
         </div>
         <div class="pl-5 desc" *ngIf="share && !share.class_info">
             예약된 수업 정보가 없습니다.
@@ -22,10 +23,11 @@
         <div class="reservation-container p-relative ">
             <div class="date-container d-flex justify-content-between my-3">
                 <div  class="btn btn-success h-100 p-relative prev-month" style="z-index:1; padding: .3rem .3rem;">
-                    <div class="d-inline-block" (click)="onClickPrev()">
-                    <span class="d-inline-block pointer show-list fs-15rem px-3">
+                    <div class="d-inline-block pointer" (click)="onClickPrev()">
+                    <span class="d-inline-block show-list fs-15rem">
                         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
                     </span>
+                    {{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}
                     </div>
                    
                 </div>
@@ -42,9 +44,9 @@
                     </div>
                 </div>-->
 
-                <div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative this-month">
+                <div style="z-index:1; padding:.6rem 1rem;color: #fff;background-color: #5cb85c"  class="btn btn-success h-100 p-relative this-month">
                     <div class="d-inline-block"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
-                    <span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showYear=!showYear">
+                    <!--<span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showYear=!showYear">
                         <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                         <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
                     </span>
@@ -52,12 +54,13 @@
                         <ul class="list-menu">
                             <li class="this-year w-100" style="padding: .3rem 0;" *ngFor="let year of listOfYears" (click)="selectNewDate({m:year.m,Y:year.Y});showYear=!showYear"> {{ year.m }} {{ year.Y }}</li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
                 <div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative next-month">
                     
-                    <div class="d-inline-block" (click)="onClickNext()">
-                        <span class="d-inline-block pointer show-list fs-15rem px-3">
+                    <div class="d-inline-block pointer" (click)="onClickNext()">
+                        {{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}
+                        <span class="d-inline-block show-list fs-15rem">
                             <i class="fa fa-arrow-circle-o-right " aria-hidden="true"></i>
                         </span>
                     </div>

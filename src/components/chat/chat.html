@@ -1,46 +1,59 @@
 <section id="chat-component">
 
 
-    <div class="chat max p-2 bg-lightblue" *ngIf="max">
+    <div class="chat max" *ngIf="max">
 
 
-        <div class="opener">
-            질문하기 Live chat
+        <div class="title">
+            라이브 챗 : 무엇이든 물어보세요.
+
+            <div class="closer">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
         </div>
-        <div class="closer">
-            무엇이든 물어보세요. 닫기[x]
-        </div>
 
 
-        <div>
-            <div class="message">
+
+            <div class="messages">
                 <ul class="list-style-none">
-                    <li class="d-flex" [ngClass]="{'justify-content-end': m.user == uid } " *ngFor="let m of user_message | async">
-                        <span class="p-2 mb-1 rounded" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } " >{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
+                    <li class="message d-flex" [ngClass]="{'justify-content-end': m.user == uid } " *ngFor="let m of user_message | async">
+                        <span class="text" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                     </li>
                 </ul>
             </div>
+
+
+
             <div class="input">
                 <form (ngSubmit)="onSubmitMessage()">
-                    <span class="fa-stack fa-lg" (click)="onClickMinimize()">
-                    <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
-                    <i class="fa fa-times fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                </span>
-                    <input name="message" [(ngModel)]="form.message">
-                    <i class="fa fa-mail-forward" aria-hidden="true"></i>
+                    <table width="100%" cellpadding="0" cellpadding="0">
+                        <tr>
+                            <td width="1%">
+                                <span class="fa-stack fa-lg" (click)="onClickMinimize()">
+                                    <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-times fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                                </span>
+                            </td>
+                            <td width="98%"><div><input name="message" [(ngModel)]="form.message"></div></td>
+                            <td width="1%"><i class="fa fa-mail-forward" aria-hidden="true"></i></td>
+                        </tr>
+                    </table>
+                    
+                    
+                    
                 </form>
             </div>
+
+
         </div>
-    </div>
+        
 
     <div class="min" *ngIf="min">
-        <div class="p-3 bg-lightgrey">
-            <span class="fa-stack fa-lg" (click)="onClickMaximize()">
+        <div class="p-3 bg-lightgrey" (click)="onClickMaximize()">
+            <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                     <i class="fa fa-arrow-left fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                </span>
-
-            질문하기: 무엇이든 물어보세요.
+                </span> 라이브 챗 : 무엇이든 물어보세요.
         </div>
     </div>
 
