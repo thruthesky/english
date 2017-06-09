@@ -29,7 +29,7 @@
                     <div *ngIf="!user.logged" class="input-group">
                         <input style="border: 1px solid #dfdbdb;" validate-onblur  formControlName="password"  name="password" type="text" class="form-control form-control-sm" placeholder="Password">
                     </div>
-                    <small class="form-text text-muted my-2">Please enter a Password.</small>
+                    <small *ngIf="!user.logged" class="form-text text-muted my-2">Please enter a Password.</small>
                     <div *ngIf="formErrors.password" class="alert alert-danger">
                         <span class="errors"> {{ formErrors.password }} </span>
                     </div>
