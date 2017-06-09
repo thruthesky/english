@@ -25,7 +25,7 @@ export class AppComponent {
 
     // backed.setBackendUrl("http://backend.dev/index.php");
 
-     backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
 
     //backed.setBackendUrl("http://backend.org/index.php");
     app.setWidth(window.innerWidth);
