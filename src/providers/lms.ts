@@ -160,7 +160,7 @@ export class LMS {
             window.open( url, "_blank");
         }, error => {
             console.error(error);
-            alert("error on getting next class");
+            alert("No Next Class Data");
         });
     }
 
