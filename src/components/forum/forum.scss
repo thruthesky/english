@@ -14,7 +14,7 @@ $bg-forum: #ffe1bf;
     }
 }
 .content-wrapper {
-    padding: .4rem 1em 0;
+    padding: .4rem 0 0;
 }
 .bg-forum {
     background-color: $bg-forum;
@@ -30,7 +30,7 @@ $bg-forum: #ffe1bf;
 }
 .title {
     margin: 0 auto;
-    padding: 4em 1em;
+    padding: 4em 0;
     max-width: $lg;
     font-size: 1rem;
     h1 {
