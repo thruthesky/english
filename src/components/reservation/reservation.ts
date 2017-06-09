@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LMS, LMS_URL } from '../../providers/lms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClassInfoModal } from '../modals/class-info/class-info';
 import { User } from 'angular-backend';
 import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
 import { App, DAYS_EN } from '../../providers/app';
@@ -30,7 +28,6 @@ export class ReservationComponent implements OnInit {
     showYear: boolean = false;
     constructor(
         public app     : App,
-        private modal   : NgbModal,
         public user     : User,
         private lms     : LMS,
         public share    : ShareService
@@ -172,14 +169,6 @@ export class ReservationComponent implements OnInit {
             this.month = 12;
         }
         this.getNewCalendar();
-    }
-    onClickClassInfo( data ) {
-        this.modal.open( ClassInfoModal, { windowClass: 'enhance-modal' }  ).result.then( () => {
-        }).catch( e => console.log('exit ' + e ) );
-        this.app.myEvent.emit( {
-             eventType:"post",
-             data: data
-        } );
     }
 
     formatFirstClass( info ) {

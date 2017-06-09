@@ -99,10 +99,8 @@
                                     <div>
                                     <div *ngFor="let info of day;">
                                         <ng-template #popContent>
-                                            <div class="popover-title white"  (click)="p.close()">
+                                            <div class="popover-title white">
                                                 <div class="d-flex justify-content-end">
-                                                    
-                                                    <div><i class="fa fa-times float-right" aria-hidden="true"></i></div>
                                                 </div>
                                             </div>
                                             <div class="popover-content">
@@ -127,10 +125,10 @@
                                                   
                                             </div>
                                         </ng-template>
-                                        <div *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" (click)="onClickClassInfo(info)" [innerHTML]="info?.icon" on-mouseover="info.display = true"
-                                            on-mouseleave="info.display = false"></div>
-                                        <div   [ngbPopover]="popContent" #p="ngbPopover" class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
-                                        <div class="p-absolute p-2 bg-success  class-info" *ngIf="info?.display && info?.teacher">
+                                        <div [ngbPopover]="popContent" #p="ngbPopover" *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" [innerHTML]="info?.icon"></div>
+                                        
+                                        <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
+                                        <!--<div class="p-absolute p-2 bg-success  class-info" *ngIf="info?.display && info?.teacher">
                                             <div>
                                                 <span>
                                                 Teacher's Name: {{ info?.teacher?.mb_nick }}
@@ -152,7 +150,7 @@
                                                 Teacher's Comment: {{ info?.rate_comment }}
                                             </span>
                                             </div>
-                                        </div>
+                                        </div>-->
                                        
                                     </div>
                                     
