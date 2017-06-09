@@ -9,7 +9,6 @@ import { LMS } from './lms';
 import * as config from './../app/config';
 import { Alert } from "./bootstrap/alert/alert";
 import { FirebaseChat } from "./firebase";
-import { RequiredInfoComponent } from "../components/modals/required-info/required-info";
 
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RegisterComponent} from "../components/modals/register/register";
