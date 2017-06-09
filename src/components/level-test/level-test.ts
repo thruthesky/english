@@ -69,7 +69,6 @@ export class LevelTestComponent {
       let d = (new Date);
       let newDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;
-      //console.log(newDate.toString());
       let date = newDate.getMonth() + '-' + newDate.getDate();
       let day = {date: date, day: app.DAYS[newDate.getDay()]};
       this.days.push(day);
@@ -93,9 +92,6 @@ export class LevelTestComponent {
   }
 
   onClickSubmitLevelTest(){
-    console.log("onClickSubmitLevelTest::", this.form.value);
-    // console.log("formError::", this.formErrors);
-    // console.log("form.value::", this.form.value);
 
     if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
     if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
@@ -111,7 +107,6 @@ export class LevelTestComponent {
 
 
   createPost() {
-    console.log('createPost::');
     let p = "레벨 테스트 신청: " + this.form.value.name + "님께서 " + this.form.value.date + " " + this.form.value.time + "에 레벨테스트를 신청하였습니다.";
     let create = <_POST_CREATE> {
       title: p,
@@ -126,15 +121,11 @@ export class LevelTestComponent {
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
       this.share.posts.unshift( res.data );
       this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
-        console.log('message::', res);
         this.app.alertModal("Message Sent Success");
         this.form.reset();
       }, err => {
-        console.log('messageError', err);
       }).catch( e => {
-        console.log('ErrorOnCatch', e);
       });
-      console.log( res );
     }, err => this.postData.alert( err ) );
   }
 
@@ -144,7 +135,6 @@ export class LevelTestComponent {
   onValueChanged() {
 
 
-    console.log(this.form.value);
     if (!this.form) return;
     this.formValid = true;
     const form = this.form;

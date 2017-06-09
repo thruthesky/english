@@ -9,7 +9,6 @@ import { LMS } from './lms';
 import * as config from './../app/config';
 import { Alert } from "./bootstrap/alert/alert";
 import { FirebaseChat } from "./firebase";
-import { RequiredInfoComponent } from "../components/modals/required-info/required-info";
 
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RegisterComponent} from "../components/modals/register/register";
@@ -61,7 +60,6 @@ export class App {
     setWidth(width) {
         this.width = width;
         this.renderPage();
-        // console.log("setWidth(): ", this.width);
 
 
         this.makeSureHeaderHeight();
@@ -81,14 +79,11 @@ export class App {
 
         let header = document.querySelector('header nav');
         if (!header) return;
-        //console.log(header);
-        //console.log( header.clientHeight );
         this.headerHeight = header.clientHeight;
     }
 
     renderPage() {
         this.ngZone.run(() => {
-            // console.log('ngZone.run()');
         });
     }
     private getWidth() {
@@ -98,15 +93,11 @@ export class App {
     get widthSize(): 'small' | 'big' {
         let size: 'small' | 'big' = 'small';
         if (this.getWidth() >= 768) size = 'big';
-        // console.log('size: ', size);
         return size;
     }
 
     get marginTop() {
         return this.headerHeight;
-        // let margin_top = HEADER_HEIGHT;
-        // if ( this.widthSize == 'big' ) margin_top += BIG_HEADER_HEIGHT;
-        // return margin_top;
     }
 
 
@@ -125,12 +116,9 @@ export class App {
      * @note No need to cache for speedup since it is only being called once every bounce time.
      */
     scrolled(event?) {
-        // console.log(event);
         let windowTop = this.getWindowOffset().top;
-        // console.log(`windows offset: `, windowTop);
         let selectedId = null;
         let parts = this.getParts();
-        // console.log(parts);
         if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 let part = parts[i];
@@ -140,14 +128,11 @@ export class App {
 
                     if (nextPart.top > windowTop + this.marginTop) break;
                 }
-                // console.log( 'id:' + part.id + ', pos: ', pos);
             }
         }
-        // console.log('selected: ', selectedId);
         this.scrollId = selectedId;
 
         this.renderPage();
-        // console.log( this.getOffset(parts) );
     }
 
     /**
@@ -175,11 +160,9 @@ export class App {
     scrollTo(id) {
 
         let parts = this.getParts();
-        // console.log(parts);
         if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
-                    console.log("parts:i, ", parts[i]);
                     //  window.scrollTo( 0, parts[i]['top'] - HEADER_HEIGHT+1 );
                     this.scrollToY(parts[i]['top'] - this.headerHeight, 2000, 'easeInOutQuint');
 
@@ -286,7 +269,6 @@ export class App {
                 window['requestAnimFrame'](tick);
                 window.scrollTo(0, scrollY + ((scrollTargetY - scrollY) * t));
             } else {
-                console.log('scroll done');
                 window.scrollTo(0, scrollTargetY);
             }
         }
@@ -306,7 +288,6 @@ export class App {
         let currentUser = firebase.auth().currentUser;
         if (currentUser) {
             let user: SOCIAL_LOGIN = {} as SOCIAL_LOGIN;
-            // console.log("currentUser: ", currentUser);
             currentUser['providerData'].forEach((profile) => {
                 user.provider = profile.providerId;
                 user.uid = profile.uid;
@@ -348,21 +329,15 @@ export class App {
      * This will be called only one time after naver login.
     */
     checkLoginWithNaver() {
-        console.log("checkLoginWithNaver")
         let naver_id_login = window['naver_id_login'];
         let naver_access_token = naver_id_login.oauthParams.access_token;
         if (naver_access_token) {
-            console.log(`Has access token: ${naver_access_token} Going to remove hash`);
             history.pushState('', document.title, window.location.pathname);
         }
 
 
         // user has logged in with naver id.
         if (naver_access_token) naver_id_login.get_naver_userprofile(() => {
-            console.log("Got naver user profile");
-            console.log("nickname: ", naver_id_login.getProfileData('nickname'));
-            //console.log("age: ", naver_id_login.getProfileData('age'));
-
             let nickname = naver_id_login.getProfileData('nickname');
             let id = naver_id_login.getProfileData('id');
             this.socialLogin = {
@@ -393,12 +368,10 @@ export class App {
         // open login popup
         Kakao.Auth.login({
             success: (authObj) => {
-                console.log(JSON.stringify(authObj));
                 // Get user informaton
                 Kakao.API.request({
                     url: '/v1/user/me',
                     success: (res) => {
-                        console.log(res);
 
                         let nickname = res.properties['nickname'];
                         let id = res.id;
@@ -426,13 +399,10 @@ export class App {
     }
 
     socialLoginSuccessHandler() {
-        console.log("Social login success => Going to login to backend()");
         this.backendLogin(r => this.backendSuccess(r), e => this.backendFailed(e));
     }
     backendSuccess(res: _USER_LOGIN_RESPONSE) {
-        console.log("Backend login or register success: " + res);
 
-        ///
 
     //         id: string;
     // idx: number;
@@ -450,19 +420,16 @@ export class App {
             classid: this.config.classid
         };
         this.lms.register( data, res =>{
-            console.log(' registered on centerX ' + res );
             this.renderPage();
             this.showRequiredInfoModal();
-        }, error => console.error(' error on CenterX registration ' + error ) )
+        }, error => alert(' error on CenterX registration ' + error ) )
 
         //this.router.navigateByUrl('/');
     }
     backendFailed(e) {
-        console.log("Backend login failed.");
         let user = this.getSocialLogin();
         let id = user.uid + '@' + user.provider;
         if (e['code'] == -40102) {              // user not exists ==> register
-            console.log("User not exists. going to register.");
             this.backendRegister(r => this.backendSuccess(r), e => this.backendFailed(e));
         }
         else {
@@ -473,7 +440,6 @@ export class App {
 
     backendLogin(success, fail) {
         let user = this.getSocialLogin();
-        console.log("login success => going to log in backend: ", user);
         let id = user.uid + '@' + user.provider;
         // login
         this.user.logout();
@@ -498,9 +464,7 @@ export class App {
 
 
     errorHandler(e) {
-        console.log('error: ', e);
-        // this.error = e.message;
-        // this.app.zoneRun();
+        alert('error: '+ e);
     }
 
 
@@ -547,7 +511,7 @@ export class App {
       let option: ALERT_OPTION = {
         title: title,
         content: content,
-        class: 'alert-modal'
+        class: 'alert-modal enhance-modal',
       };
       this.showModal( option );
     }
@@ -566,6 +530,7 @@ export class App {
     }
 
     showRequiredInfoModal() {
-      this.modal.open ( RegisterComponent, { windowClass: 'required-info-modal' } );
+      let activeModal = this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' }  );
+      activeModal.componentInstance.checkRequired = true;
     }
 }

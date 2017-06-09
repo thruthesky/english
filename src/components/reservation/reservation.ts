@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { LMS, LMS_URL } from '../../providers/lms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClassInfoModal } from '../modals/class-info/class-info';
 import { User } from 'angular-backend';
 import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
 import { App, DAYS_EN } from '../../providers/app';
@@ -30,7 +28,6 @@ export class ReservationComponent implements OnInit {
     showYear: boolean = false;
     constructor(
         public app     : App,
-        private modal   : NgbModal,
         public user     : User,
         private lms     : LMS,
         public share    : ShareService
@@ -89,12 +86,11 @@ export class ReservationComponent implements OnInit {
             this.listOfYears.push( { m: test[1], Y: test[3] } );
         }
     }
-    
+
     getNewReservationData() {
         this.calendarLoad = true;
-        console.log('hello');
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-           
+
             //Process gather data
             this.classinformation = {
                 first_class: res.first_class,
@@ -104,7 +100,7 @@ export class ReservationComponent implements OnInit {
             };
             if ( this.classinformation.first_class == "No class" ) this.classinformation.first_class = "예약된 수업이 없습니다.";
             if ( this.classinformation.next_class == "No reservation" ) this.classinformation.next_class = "예약된 수업이 없습니다.";
-            
+
             this.share.class_info = this.classinformation;
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
@@ -137,10 +133,9 @@ export class ReservationComponent implements OnInit {
         }
         while( !(<number>this.books.length % 7 == 0 )) { this.books.push( null ); }
         this.weeks = [];
-        this.weeks = this.chunk(this.books );       
-        console.log("Display Reservation Info:",this.weeks);
+        this.weeks = this.chunk(this.books );
     }
-    
+
 
     chunk( arr:BOOKS ) : WEEKS {
         let temp:WEEKS = [];
@@ -173,19 +168,6 @@ export class ReservationComponent implements OnInit {
         }
         this.getNewCalendar();
     }
-    onClickClassInfo( data ) {
-        this.modal.open( ClassInfoModal ).result.then( () => {
-        }).catch( e => console.log('exit ' + e ) );
-        this.app.myEvent.emit( {
-             eventType:"post",
-             data: data 
-        } );
-    }
-
-
-    getNextClass() {
-        
-    }
 
     formatFirstClass( info ) {
         if ( info.first_class !== void 0 ) {
@@ -205,7 +187,6 @@ export class ReservationComponent implements OnInit {
             new_day = `(${new_day})`;
             parts = re.split('-');
             let teacher = parts[3];
-            console.log(day, teacher);
             re = re.replace( day, new_day);
             re = re.replace( teacher, `${teacher} 선생님`);
             return re;

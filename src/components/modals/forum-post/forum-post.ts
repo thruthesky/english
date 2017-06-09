@@ -56,30 +56,32 @@ export class ForumPostComponent implements OnInit {
     }
     ngOnInit() {
         this.createForm();
+        this.formGroup.valueChanges
+            .debounceTime( 1000 )
+            .subscribe( res => this.onValueChanged( res ) );
     }
     createForm() {
 
         if ( this.isCreate() ) {
             this.files = [];
             this.formGroup = this.fb.group({
-                title: [],
-                content: []
+                title: [ '', [ Validators.required ] ],
+                content: [ '', [ Validators.required ] ]
             });
         }
         else { // edit
             this.files = this.post.files ? this.post.files : [];
             this.formGroup = this.fb.group({
-                title: [ this.post.title ],
-                content: [ this.post.content ]
+                title: [ this.post.title, [ Validators.required ] ],
+                content: [ this.post.content, [ Validators.required ] ]
             });
         }
         if ( ! this.user.logged ) {
-            this.formGroup.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(3), Validators.maxLength(128)] ) );
+            this.formGroup.addControl( 'password', new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(128)] ) );
         }
     }
 
     onSubmit() {
-        console.log( this.formGroup.value );
         if ( this.isCreate() ) this.createPost();
         else this.editPost();
   }
@@ -114,7 +116,6 @@ export class ForumPostComponent implements OnInit {
         else create.name = 'anonymous';
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
-            console.log( res );
             this.createSuccess( res.data );
         }, err => this.postData.alert( err ) );
     }
@@ -126,7 +127,6 @@ export class ForumPostComponent implements OnInit {
         if( this.user.logged ) edit.name = this.userData.name;
         else edit.name = 'anonymous';
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
-            console.log( 'after edit: ', res );
             Object.assign( this.post, res.data ); // two-way binding.
             this.editSuccess( res.data );
         }, err => this.postData.alert( err ) );
@@ -141,7 +141,38 @@ export class ForumPostComponent implements OnInit {
     onClickDismiss(){
         this.activeModal.close();
     }
-
+    onValueChanged(data?: any) {
+        if ( ! this.formGroup ) return;
+        const form = this.formGroup;
+        for ( const field in this.formErrors ) {
+        this.formErrors[field] = '';        // clear previous error message (if any)
+        const control = form.get(field);
+          if ( control && control.dirty && ! control.valid ) {
+              const messages = this.validationMessages[field];
+              for ( const key in control.errors ) {
+              this.formErrors[field] += messages[key] + ' ';
+              }
+          }
+        }
+    }
+  formErrors = {
+    title: '',
+    content: '',
+    password: ''
+  };
+  validationMessages = {
+    title: {
+      'required':      'Title is required.'
+    },
+    content: {
+      'required':      'Content is required.'
+    },
+    password: {
+      'required':      'Password is required.',
+      'minlength':     'Password must be at least 5 characters long.',
+      'maxlength':     'Password cannot be more than 128 characters long.'
+    }
+  };
 }
 
 

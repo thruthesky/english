@@ -24,17 +24,14 @@ export class FileFormComponent {
         this.loading = true;
         this.file.uploadPostFile( _.files[0] ).subscribe( (res:_UPLOAD_RESPONSE) => {
             this.files.push( res.data );
-            console.log('files: ', this.files);
             this.loading = false;
         }, err => {
-            console.log('err:', err);
             if ( this.file.isError(err) == ERROR_NO_FILE_SELECTED ) return;
             this.loading = false;
             this.file.alert(err);
         });
     }
     onClickDeleteFile( file ) {
-        console.log("FileFormComponent::onClickDeleteFile(file): ", file);
         this.loading = true;
         let req;
         if( this.user.logged ) {
@@ -46,10 +43,8 @@ export class FileFormComponent {
         };
         }
         this.file.delete( req ).subscribe( (res:_DELETE_RESPONSE) => {
-            console.log("file delete: ", res);
             let i = this.files.findIndex( (f:_FILE) => f.idx == res.data.idx );
             this.files.splice( i, 1 );
-            console.log('files: ', this.files);
             this.loading = false;
         }, err => { 
             this.loading = false;

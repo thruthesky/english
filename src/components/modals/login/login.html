@@ -28,14 +28,17 @@
 
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-          <input formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="아이디 입력">
+
+          <input validate-onblur formControlName="id" name="id" type="text" class="form-control form-control-sm" placeholder="아이디 입력">
+
         </div>
         <div *ngIf="formErrors.id" class="alert alert-danger">
           <span class="errors"> {{ formErrors.id }} </span>
         </div>
         <div class="input-group">
+
           <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-          <input formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="비밀번호 입력"
+          <input validate-onblur formControlName="password" name="password" type="password" class="form-control form-control-sm" id="password" placeholder="비밀번호 입력"
             (keydown)="onEnterLogin($event)">
         </div>
         <div *ngIf="formErrors.password" class="alert alert-danger">
@@ -72,5 +75,4 @@
       </form>
     </div>
   </div>
-
 </div>

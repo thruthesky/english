@@ -75,18 +75,18 @@ export class LoginModal implements OnInit {
 
     onClickForgotPassword() {
         this.activeModal.close();
-        this.modal.open(ForgotPasswordComponent)
+        this.modal.open(ForgotPasswordComponent, { windowClass: 'enhance-modal' } )
     }
 
     onClickFindId() {
         this.activeModal.close();
-        this.modal.open(FindIdModal);
+        this.modal.open(FindIdModal, { windowClass: 'enhance-modal' } );
     }
 
 
     onClickRegister() {
         this.activeModal.close();
-        this.modal.open(RegisterComponent);
+        this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
     }
 
     onClickLogin() {
@@ -95,6 +95,8 @@ export class LoginModal implements OnInit {
         this.loading = true;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
+            let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
+            checkRequired.componentInstance.checkRequired = true;
         }, error => {
 
             this.error(error);

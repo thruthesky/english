@@ -23,10 +23,11 @@
         <div class="reservation-container p-relative ">
             <div class="date-container d-flex justify-content-between my-3">
                 <div  class="btn btn-success h-100 p-relative prev-month" style="z-index:1; padding: .3rem .3rem;">
-                    <div class="d-inline-block" (click)="onClickPrev()">
-                    <span class="d-inline-block pointer show-list fs-15rem px-3">
+                    <div class="d-inline-block pointer" (click)="onClickPrev()">
+                    <span class="d-inline-block show-list fs-15rem">
                         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
                     </span>
+                    {{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}
                     </div>
                    
                 </div>
@@ -43,9 +44,9 @@
                     </div>
                 </div>-->
 
-                <div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative this-month">
+                <div style="z-index:1; padding:.6rem 1rem;color: #fff;background-color: #5cb85c"  class="btn btn-success h-100 p-relative this-month">
                     <div class="d-inline-block"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
-                    <span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showYear=!showYear">
+                    <!--<span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showYear=!showYear">
                         <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                         <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
                     </span>
@@ -53,12 +54,13 @@
                         <ul class="list-menu">
                             <li class="this-year w-100" style="padding: .3rem 0;" *ngFor="let year of listOfYears" (click)="selectNewDate({m:year.m,Y:year.Y});showYear=!showYear"> {{ year.m }} {{ year.Y }}</li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
                 <div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative next-month">
                     
-                    <div class="d-inline-block" (click)="onClickNext()">
-                        <span class="d-inline-block pointer show-list fs-15rem px-3">
+                    <div class="d-inline-block pointer" (click)="onClickNext()">
+                        {{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}
+                        <span class="d-inline-block show-list fs-15rem">
                             <i class="fa fa-arrow-circle-o-right " aria-hidden="true"></i>
                         </span>
                     </div>
@@ -97,10 +99,8 @@
                                     <div>
                                     <div *ngFor="let info of day;">
                                         <ng-template #popContent>
-                                            <div class="popover-title white"  (click)="p.close()">
+                                            <div class="popover-title white">
                                                 <div class="d-flex justify-content-end">
-                                                    
-                                                    <div><i class="fa fa-times float-right" aria-hidden="true"></i></div>
                                                 </div>
                                             </div>
                                             <div class="popover-content">
@@ -125,10 +125,10 @@
                                                   
                                             </div>
                                         </ng-template>
-                                        <div *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" (click)="onClickClassInfo(info)" [innerHTML]="info?.icon" on-mouseover="info.display = true"
-                                            on-mouseleave="info.display = false"></div>
-                                        <div   [ngbPopover]="popContent" #p="ngbPopover" class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
-                                        <div class="p-absolute p-2 bg-success  class-info" *ngIf="info?.display && info?.teacher">
+                                        <div [ngbPopover]="popContent" #p="ngbPopover" *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" [innerHTML]="info?.icon"></div>
+                                        
+                                        <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
+                                        <!--<div class="p-absolute p-2 bg-success  class-info" *ngIf="info?.display && info?.teacher">
                                             <div>
                                                 <span>
                                                 Teacher's Name: {{ info?.teacher?.mb_nick }}
@@ -150,7 +150,7 @@
                                                 Teacher's Comment: {{ info?.rate_comment }}
                                             </span>
                                             </div>
-                                        </div>
+                                        </div>-->
                                        
                                     </div>
                                     

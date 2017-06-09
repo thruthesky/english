@@ -80,17 +80,14 @@ export class CommentReviewComponent {
       this.app.alertModal( "To write comment you must log-in", "Must Log-in first");
     }
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
-      console.log( res );
       this.activeModal.close();
       this.app.alertModal( "Success Write Comment");
     }, err => this.postData.alert( err ) );
   }
 
   onClickDeletePhoto() {
-    console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
     this.loading = true;
     this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
-      console.log("file delete: ", res);
       this.primary_photo_idx = null;
       this.loading = false;
     }, err => {

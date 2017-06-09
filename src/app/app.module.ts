@@ -57,7 +57,6 @@ import { FileFormComponent } from '../components/forum/components/file-form-comp
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
 import { CommentReviewComponent } from '../components/modals/comment-review/comment-review';
-import { RequiredInfoComponent } from '../components/modals/required-info/required-info';
 
 import { BooksComponent } from '../components/books/books';
 
@@ -71,6 +70,7 @@ import { FirebaseChat } from '../providers/firebase';
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
+import { ValidateOnBlurDirective } from '../directives/validate-on-blur';
 
 
 const appRoutes:Routes = [
@@ -108,11 +108,11 @@ const appRoutes:Routes = [
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,
-    RequiredInfoComponent,
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
-    LevelTestButtonComponent
+    LevelTestButtonComponent,
+    ValidateOnBlurDirective
   ],
   imports: [
     BrowserModule,
@@ -139,7 +139,6 @@ const appRoutes:Routes = [
     ForgotPasswordComponent,
     ForumPostComponent,
     CommentReviewComponent,
-    RequiredInfoComponent,
     ChangePasswordComponent
   ]
 })
