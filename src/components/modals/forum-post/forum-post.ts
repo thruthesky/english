@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { App } from './../../../providers/app';
 import {
     PostData,
     User,
@@ -40,7 +41,8 @@ export class ForumPostComponent implements OnInit {
         public file: File,
         private postData: PostData,
         private activeModal  : NgbActiveModal,
-        public  user         : User
+        public  user         : User,
+        private app: App
     ) {
         if ( this.user.logged ) this.loadUserData();
     }
@@ -48,7 +50,8 @@ export class ForumPostComponent implements OnInit {
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
         }, error => {
-            this.user.alert( error );
+            // this.user.alert( error );
+            this.app.error( error );
         } );
     }
     ngOnInit() {

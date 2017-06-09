@@ -48,7 +48,8 @@ export class LMS {
             });
         }
         catch(e) {
-            alert(e);
+            // alert(e);
+            console.error(e);
         }
         
     }

@@ -22,3 +22,22 @@
 
 
 //    styleUrls: ['small-header.scss']
+
+.modal.toast {
+    .modal-dialog {
+        .modal-content {
+            margin-top: 100px;
+            border: 0;
+            border-radius: 0;
+
+            background-color: rgba(3, 3, 72, 0.7);
+            color: white;
+
+            .fa { color: yellow;}
+
+            .modal-header { display: none; }
+            .modal-footer { display: none; }
+        }
+    }
+
+}
