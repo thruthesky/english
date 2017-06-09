@@ -3,6 +3,7 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[validate-onblur]',
   host: {
+      '(ngModelChange)': 'onFocus($event)',
       '(focus)': 'onFocus($event)',
       '(blur)' : 'onBlur($event)'
   }
@@ -12,9 +13,10 @@ export class ValidateOnBlurDirective {
     constructor( public formControl: NgControl ) {
     }
 
-    // mark control pristine on focus
+    // mark control pristine on focus or on first change
     onFocus($event) {
         this.hasFocus = true;
+        this.formControl.control.markAsPristine();
         this.formControl.control.valueChanges
             .filter(() => this.hasFocus)
             .subscribe(() => {
@@ -24,6 +26,7 @@ export class ValidateOnBlurDirective {
 
     // mark control  dirty on focus lost
     onBlur($event) {
+        console.log("Blurry");
         this.hasFocus = false;
         this.formControl.control.markAsDirty();
     }
