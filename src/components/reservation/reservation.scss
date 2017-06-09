@@ -45,10 +45,16 @@ h1 {
     margin-bottom: 1em;
     //@include shadow(.4);
 }
-strong {
-    display: inline-block;
-    width: 6em;
-    text-align: right;
+.class-info {
+    font-weight: 100;
+    .desc {
+        margin-left: 1em; @media (min-width: $sm) { margin-left: 2em; }
+    }
+    .caption {
+        display: inline-block;
+        width: 6em;
+        text-align: right;
+    }
 }
 
 

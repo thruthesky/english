@@ -29,6 +29,8 @@ export interface ALERT_OPTION {
 }
 
 
+export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
+
 
 @Injectable()
 export class App {

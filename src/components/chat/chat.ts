@@ -19,8 +19,8 @@ export class ChatComponent implements OnInit {
   form = {
     message: ''
   };
-  min: boolean = false;
-  max: boolean = true;
+  min: boolean = true;
+  max: boolean = false;
 
   firstList = true;
   //userData: _USER_RESPONSE = null;

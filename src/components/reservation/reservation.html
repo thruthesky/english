@@ -5,10 +5,11 @@
     <h1 class="fs-3rem text-center">나의 수업</h1>
    <div class="class-info">
         <div class="desc" *ngIf="share && share.class_info">
-            <div><strong>첫 수업</strong>    : {{share.class_info?.first_class}}</div>
-            <div><strong>예약된 수업</strong> : {{share.class_info?.no_of_reservation}}</div>
-            <div><strong>다음 수업</strong>  : {{share.class_info?.next_class}}</div>
-            <div><strong>지난 수업</strong> : {{share.class_info?.no_of_past}} </div>
+
+            <div><span class="caption">다음 수업</span>  : {{ formatNextClass(share.class_info)}}</div>
+            <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
+            <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
+            <div><span class="caption">첫 수업</span>    : {{ formatFirstClass(share.class_info) }}</div>
         </div>
         <div class="pl-5 desc" *ngIf="share && !share.class_info">
             예약된 수업 정보가 없습니다.

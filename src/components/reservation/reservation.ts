@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ClassInfoModal } from '../modals/class-info/class-info';
 import { User } from 'angular-backend';
 import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
-import { App } from '../../providers/app';
+import { App, DAYS_EN } from '../../providers/app';
 import { ShareService } from '../../providers/share-service';
 @Component({
     selector: 'reservation-component',
@@ -185,5 +185,32 @@ export class ReservationComponent implements OnInit {
 
     getNextClass() {
         
+    }
+
+    formatFirstClass( info ) {
+        if ( info.first_class !== void 0 ) {
+            let date = info.first_class.split('-');
+            return `${date[0]}년 ${date[1]}월 ${date[2]}일에 첫 수업을 하였습니다.`;
+        }
+        else return "앗! 아직 수업을 하지 않으셨네요. 얼른 레벨테스트 부터 시작해 보세요.";
+    }
+    formatNextClass( info ) {
+        if ( info.next_class !== void 0 ) {
+            let re = info.next_class;
+
+            let parts = re.split(' ', 2);
+            let day = parts[1];
+            let new_day = (<string> day).replace(' ', '');
+            new_day = this.app.DAYS[ DAYS_EN[new_day] ];
+            new_day = `(${new_day})`;
+            parts = re.split('-');
+            let teacher = parts[3];
+            console.log(day, teacher);
+            re = re.replace( day, new_day);
+            re = re.replace( teacher, `${teacher} 선생님`);
+            return re;
+
+        }
+        else return "예약된 수업이 없습니다.";
     }
 }
