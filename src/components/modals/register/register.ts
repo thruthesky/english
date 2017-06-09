@@ -255,11 +255,6 @@ export class RegisterComponent {
         }, err =>{})
     }
 
-
-    // validateError( name ) {
-    //     this.app.alert( name + ' is required ...' );
-    //     return false;
-    // }
     emailValidator(c: AbstractControl): { [key: string]: any } {
         if ( c.value.length < 8 ) {
         return { 'minlength' : '' };
