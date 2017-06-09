@@ -71,6 +71,7 @@ import { FirebaseChat } from '../providers/firebase';
 import { LMS } from '../providers/lms';
 import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
+import { ValidateOnBlurDirective } from '../directives/validate-on-blur';
 
 
 const appRoutes:Routes = [
@@ -112,7 +113,8 @@ const appRoutes:Routes = [
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
-    LevelTestButtonComponent
+    LevelTestButtonComponent,
+    ValidateOnBlurDirective
   ],
   imports: [
     BrowserModule,

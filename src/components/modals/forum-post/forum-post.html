@@ -1,22 +1,17 @@
 <div class="forum-post-modal">
     <div class="modal-header">
-
         <h5 class="modal-title">
             <span class="modal-title">질문 등록</span>
         </h5>
         <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
             <span aria-hidden="true">×</span>
         </button>
-
     </div>
 
     <div class="modal-body">
         <div class="form-container">
-
                 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" novalidate>
-                    
                     <file-form-component [files]=" files " [form]="formGroup"></file-form-component>
-                    
                     <div class="input-group">
                         <input  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="Title">
                     </div>
@@ -34,6 +29,5 @@
                     <hr/>
                 </form>
             </div>
-
     </div>
 </div>
