@@ -33,7 +33,7 @@
           <span class="errors"> {{ photoError }} </span>
         </div>
         <div class="input-group my-3">
-          <textarea  formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Your comment here..." rows="3"></textarea>
+          <textarea validate-onblur formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Your comment here..." rows="3"></textarea>
         </div>
         <div *ngIf="formErrors.content" class="alert alert-danger mt-1">
           <span class="errors"> {{ formErrors.content }} </span>
