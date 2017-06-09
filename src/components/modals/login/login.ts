@@ -141,17 +141,16 @@ export class LoginModal implements OnInit {
     };
     validationMessages = {
         id: {
-            'required': 'ID is required.',
-            'minlength': 'ID must be at least 3 characters long.',
+            'required': '아이디를 입력하세요.',
+            'minlength': '아이디는 3 글자 이상 입력해야합니다.',
             'maxlength': 'ID cannot be more than 32 characters long.'
         },
         password: {
-            'required': 'Password is required.',
-            'minlength': 'Password must be at least 5 characters long.',
+            'required': '비밀번호를 입력하세요.',
+            'minlength': '비밀번호는 5 글자 이상 입력해야 합니다.',
             'maxlength': 'Password cannot be more than 128 characters long.'
         },
     };
-
 
     onClickNaverLogin() {
       this.app.onClickLoginWithNaver();

@@ -9,8 +9,9 @@
                     <!--<span (click)="onClickLogin()"><img src="assets/img/kkang/naver-id.png"></span>                    -->
 
                 </div>
-                <div class="p-2 fs-130" (click)="onClickPanelMenu('level-test')">
-                    무료 레벨 테스트
+                <div class="p-2 fs-130">
+                    <span *ngIf="user.logged" (click)="onClickVe()">강의실 입장</span>
+                    <span *ngIf=" ! user.logged " (click)="onClickPanelMenu('level-test')">무료 레벨 테스트</span>
                 </div>
             </div>
 
@@ -36,11 +37,11 @@
                         <span class="text">로그인</span>
                         </span>
 
-                        <span>
+                        <div class="mt-1 ml-4">
 <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
 <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
 <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
-</span>
+</div>
                     </li>
                     <li class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
                         <span class="fa-stack fa-lg">
@@ -108,7 +109,7 @@
                         <span class="text">수업 후기</span>
                         <small>Student Comments</small>
                     </li>
-                    <li class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+                    <li *ngIf="user.logged" class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-camera fa-stack-1x"></i>
                             <i class="fa fa-ban fa-stack-2x text-danger"></i>
