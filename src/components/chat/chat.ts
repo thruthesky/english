@@ -36,16 +36,8 @@ export class ChatComponent implements OnInit {
   ) {
 
     this.uid = this.app.getClientId();
-    console.log("Chat User id: ", this.uid);
-    //if (user.logged) this.loadUserData();
     if (user.logged) this.userId = user.info.id;
 
-    // this.user_message = db.list('/messages/users/' + this.uid, {
-    //   query: {
-    //     limitToLast: 10,
-    //     orderByKey: true
-    //   }
-    // });
 
 
     this.scrollMessage
@@ -62,7 +54,6 @@ export class ChatComponent implements OnInit {
 
     this.user_message.subscribe(res => {
 
-      //console.log(res);
       if (this.firstList) {
         this.firstList = false;
       }
@@ -90,7 +81,6 @@ export class ChatComponent implements OnInit {
   }
 
   onSubmitMessage() {
-    console.log("onSubmitMessage()");
 
     if (this.form.message.length == 0) return;
 
@@ -128,15 +118,6 @@ export class ChatComponent implements OnInit {
     this.form.message = '';
   }
 
-  // loadUserData() {
-  //   this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
-  //     console.log('UserLogged:: ', res);
-  //     this.userData = res.data.user;
-
-  //   }, error => {
-  //     this.user.alert(error);
-  //   });
-  // }
 
 
   onClickMinimize() {
@@ -153,7 +134,6 @@ export class ChatComponent implements OnInit {
 
     let $messages = $('.chat.max .messages ul');
     if ($messages && $messages[0].scrollHeight) {
-            console.log("scroll: messages: ", $messages[0], $messages[0].scrollHeight);
       $messages.animate({ scrollTop: $messages[0].scrollHeight }, 300);
     }
   }

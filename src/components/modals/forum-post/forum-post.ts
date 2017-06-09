@@ -79,7 +79,6 @@ export class ForumPostComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log( this.formGroup.value );
         if ( this.isCreate() ) this.createPost();
         else this.editPost();
   }
@@ -114,7 +113,6 @@ export class ForumPostComponent implements OnInit {
         else create.name = 'anonymous';
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
-            console.log( res );
             this.createSuccess( res.data );
         }, err => this.postData.alert( err ) );
     }
@@ -126,7 +124,6 @@ export class ForumPostComponent implements OnInit {
         if( this.user.logged ) edit.name = this.userData.name;
         else edit.name = 'anonymous';
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
-            console.log( 'after edit: ', res );
             Object.assign( this.post, res.data ); // two-way binding.
             this.editSuccess( res.data );
         }, err => this.postData.alert( err ) );

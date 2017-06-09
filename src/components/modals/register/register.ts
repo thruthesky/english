@@ -170,7 +170,6 @@ export class RegisterComponent {
 
     getDataSuccess( res:any ) {
         try {
-            console.log(res);
             this.userData = res.data.user;
             this.form.patchValue( {
                 id: this.userData.id,
@@ -184,7 +183,6 @@ export class RegisterComponent {
             this.primary_photo_idx = this.userData.primary_photo.idx;
             this.loading = false;
         }catch(e){
-            console.log(e);
         }
 
     }
@@ -197,8 +195,6 @@ export class RegisterComponent {
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" +this.userData.birth_day;
     }
     successRegister( res: _USER_CREATE_RESPONSE) {
-
-        console.log("user register success: ", res );
         this.loading = false;
         this.activeModal.close();
     }
@@ -206,15 +202,13 @@ export class RegisterComponent {
     error( error ) {
         this.loading = false;
         this.result = error;
-        console.log( this.result );
         return this.user.errorResponse( error );
     }
 
     lmsRegister() {
         this.lms.register( this.form, res =>{
-            console.log(' registered on centerX ' + res );
             this.activeModal.close();
-        }, error => console.error(' error on registration ' + error ) )
+        }, error => alert(' error on registration ' + error ) )
     }
 
     splitBirthday( date ) {
@@ -228,7 +222,6 @@ export class RegisterComponent {
     updateProfile( callback? ){
         this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
-        console.log("Hello World:",edit);
         delete edit['password'];
         if( edit['birthday']) {
         let date = this.splitBirthday( edit['birthday']);
@@ -246,10 +239,8 @@ export class RegisterComponent {
         } );
     }
     onClickDeletePhoto() {
-        console.log("FileFormComponent::onClickDeleteFile(file): ", this.primary_photo_idx);
         this.loading = true;
         this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
-            console.log("file delete: ", res);
             this.primary_photo_idx = null;
             this.loading = false;
         }, err => {
@@ -260,13 +251,10 @@ export class RegisterComponent {
     successUpdate( res: _USER_EDIT_RESPONSE) {
         if( res.data.admin == 1) this.user.deleteSessionInfo();
         this.loading = false;
-        // this.activeModal.close();
     }
     updateLMSprofile(){
         this.lms.update( this.form , res =>{
-            console.log(' lms user updated ' + res );
             this.activeModal.close();
-            // alert("Update Success");
         }, err =>{})
     }
 

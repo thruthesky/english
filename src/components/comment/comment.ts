@@ -56,16 +56,13 @@ export class CommentComponent {
 
     let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal' } );
     modalRef.result.then( res => {
-      console.log(res);
-    }).catch( e => console.log('exit ' + e ) );
+    }).catch( e => alert('exit ' + e ) );
 
 
   }
 
 
   onConfigPageClick( $event ) {
-    //console.log('onPageClick::$event',$event);
-    //this.pageOption['currentPage'] = $event;
     this.loadPostData( $event );
   }
 
@@ -79,11 +76,9 @@ export class CommentComponent {
     this.searchQuery.limit = this.no_of_items_in_one_page;
     this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
 
-      console.log("comments::loadPostData", res );
 
       this.posts = res.data.posts;
 
-      console.log("comments::loadPostData::this.posts", this.posts );
       this.no_of_total_items = res.data.total;
       this.no_of_current_page = res.data.page;
 

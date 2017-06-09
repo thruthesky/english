@@ -27,7 +27,6 @@ export class ChangePasswordComponent{
         });
     }
     onClickCancel() {
-        console.log("Change Password Click Cancel");
         this.activeModal.close();
     }
     onClickDismiss() {
@@ -39,7 +38,6 @@ export class ChangePasswordComponent{
             new_password:this.formGroup.get('new_password').value
         };
         this.user.changePassword( req ).subscribe( ( res: _USER_PASSWORD_CHANGE_RESPONSE ) => {
-            console.log("Change Password Success");
             this.activeModal.close();
         }, err => this.user.alert( err ));
     }

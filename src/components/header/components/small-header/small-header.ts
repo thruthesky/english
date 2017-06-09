@@ -26,8 +26,6 @@ export class SmallHeaderComponent {
     }
 
     ngOnInit() {
-        if( this.user.logged) console.log("pong chhoyla");
-        else  console.log("chididi kong koyla");
         this.app.initializeNaverLogin();
     }
 

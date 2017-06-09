@@ -23,13 +23,11 @@ export class FirebaseChat {
       }
       else { query['limitToLast'] = 20; }
 
-      console.log("getAllMessageList:: ", {query});
     return this.db.list('/messages/all/', {query});
   }
 
 
   push( path, data ) {
-    console.log('push', data);
     return this.db.list('/' + path ).push(data);
   }
 
@@ -61,7 +59,6 @@ export class FirebaseChat {
   }
 
   sendLevelTest(data, uid){
-    console.log('sendLevelTest', data);
     return this.db.list('/level_test/inquiry/' + uid).push(data);
   }
 
@@ -74,11 +71,10 @@ export class FirebaseChat {
     this.new_user = this.db.list('/users/');
 
     this.new_user.push( msg ).then( res => {
-      console.log('newRegisteredUser::', res);
     }, err => {
-      console.log('newRegisteredUserError', err);
+      alert('newRegisteredUserError'+ err);
     }).catch( e => {
-      console.log('newRegisteredUserErrorOnCatch', e);
+      alert('newRegisteredUserErrorOnCatch'+ e);
     });
   }
 

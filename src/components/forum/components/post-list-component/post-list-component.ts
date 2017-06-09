@@ -71,7 +71,7 @@ export class PostListComponent  {
             let req: _POST_EDIT = { idx: _post.idx, password: password };
             this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
                 // password match
-                console.log("res: ", res);
+                
                 this.showEditPostForm( _post );
             }, e => this.postData.alert( e ) );
         }
@@ -80,13 +80,11 @@ export class PostListComponent  {
         let modalRef = this.modal.open( ForumPostComponent, { windowClass: 'enhance-modal'} );
         modalRef.componentInstance['post'] = _post;
         modalRef.result.then( () => {
-        }).catch( e => console.log('exit ' + e ) );
+        }).catch( e => alert('exit ' + e ) );
     }
     onClickDelete( _post ) {
-            if( _post.deleted == '1' ) return;
-        console.log( _post.idx );
+        if( _post.deleted == '1' ) return;
         this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
-        console.log("delete response: ", res);
         _post.deleted = '1';
         }, err => this.postData.alert( err ) );
     }
@@ -102,8 +100,6 @@ export class PostListComponent  {
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
-        // console.log('Post:',this.posts);
-
         }, err => this.postData.alert( err ));
     }
     onChangePostSearch() {
@@ -140,7 +136,7 @@ export class PostListComponent  {
         let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
         modalRef.componentInstance['post'] = data;
         modalRef.result.then( () => {
-        }).catch( e => console.log('exit ' + e ) );
+        }).catch( e => alert('exit ' + e ) );
     }
 
 }

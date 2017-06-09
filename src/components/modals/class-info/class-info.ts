@@ -62,7 +62,6 @@ export class ClassInfoModal{
     listenEvents() {
         this.app.myEvent.subscribe( item =>{
             if( item.eventType == 'post'  ){
-              console.log("Success:",item.data);
               this.classInfo = item.data;
             }
         });

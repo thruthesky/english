@@ -26,27 +26,14 @@ export class BigHeaderComponent {
     }
 
     ngOnInit() {
-    
-
-      if( this.user.logged) console.log("pong chhoyla");
-      else  console.log("chididi kong koyla");
       this.app.initializeNaverLogin();
     }
 
 
     onClickVe() {
-        // console.log("chimini ah ah:",this.share.ve_url);
-        // window.open(this.share.ve_url,'_blank');
-
-
         this.lms.openVe();
     }
 
-
-    ngAfterViewInit() {
-        // this.onClickRegister();
-        // this.onClickLogin();
-    }
 
     onClickLogout(){
 

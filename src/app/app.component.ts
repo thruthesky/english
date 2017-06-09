@@ -23,7 +23,6 @@ export class AppComponent {
   ) {
 
 
-    // console.log("User session_id: ", app.user.getSessionId());
     // backed.setBackendUrl("http://backend.dev/index.php");
 
      backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
@@ -51,7 +50,6 @@ export class AppComponent {
   }
 
   onDevinceReady() {
-    console.log("yes, I am running in cordova.");
   }
 
   onResize(event) {

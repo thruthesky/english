@@ -89,7 +89,6 @@ export class ReservationComponent implements OnInit {
 
     getNewReservationData() {
         this.calendarLoad = true;
-        console.log('hello');
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
 
             //Process gather data
@@ -135,7 +134,6 @@ export class ReservationComponent implements OnInit {
         while( !(<number>this.books.length % 7 == 0 )) { this.books.push( null ); }
         this.weeks = [];
         this.weeks = this.chunk(this.books );
-        console.log("Display Reservation Info:",this.weeks);
     }
 
 
@@ -189,7 +187,6 @@ export class ReservationComponent implements OnInit {
             new_day = `(${new_day})`;
             parts = re.split('-');
             let teacher = parts[3];
-            console.log(day, teacher);
             re = re.replace( day, new_day);
             re = re.replace( teacher, `${teacher} 선생님`);
             return re;

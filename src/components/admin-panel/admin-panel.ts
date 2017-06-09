@@ -43,17 +43,12 @@ export class AdminPanelComponent implements OnInit {
       this.userId = app.user.info.id;
       this.userLoginName = app.user.info.name;
     }
-    console.log("Chat User id: ", this.uid);
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      console.log('all_message:: ', res);
-      console.log('this.all_message:: ', this.all_message);
       let node = res.pop();
 
       if (node && node.user) {
-        console.log('node', node);
         let user = node.user;
-        console.log(`${this.minimized} && ${this.initial} `);
         if( this.minimized && !this.initial ) {
           this.minimized = false ;
           this.initial = true;
@@ -62,7 +57,6 @@ export class AdminPanelComponent implements OnInit {
         else this.initial = false;
 
         if (this.username && user && this.username != user) {
-          console.log(`who: ${this.username} : ${user}`);
           this.someoneTalking = true;
         }
         this.scrollMessage.next();
@@ -79,32 +73,7 @@ export class AdminPanelComponent implements OnInit {
 
     this.last_message = this.fc.getLastMessage();
     this.last_message.subscribe(res => {
-      console.log("last_message:: ", res);
-      console.log('this.last_message:: ', this.last_message);
     });
-
-    // this.last_message.subscribe(res => {
-    //   console.log(res);
-    //   this.user_last_list =  [];
-    //   for (let user of res) {
-    //     console.log("user: ", user.$key);
-    //     let lastMessageSubscription = db.list('/messages/users/' + user.$key, {
-    //       query: {
-    //         limitToLast: 1
-    //       }
-    //     }).subscribe(res => {
-    //       let lm = res[0];
-    //       if (lm && lm.message) {
-    //         lm['count'] = user.count ? user.count : '';
-    //         this.user_last_list.push(lm);
-    //         console.log("User chat: ", res[0].message, " Talk count: ", user.count);
-    //       }
-    //       lastMessageSubscription.unsubscribe();
-    //     });
-    //   }
-    //
-    //   console.log('lastmessage:: ', this.user_last_list);
-    // });
 
 
   }
@@ -115,7 +84,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   onSubmitMessage() {
-    console.log("onSubmitMessage()");
 
     if (this.form.message.length == 0) return;
 
@@ -156,7 +124,6 @@ export class AdminPanelComponent implements OnInit {
     this.userSenderId = lastMessage.name ? lastMessage.name : '';
     this.user_message = this.fc.getUserMessage(this.username);
     this.user_message.$ref.on('value', snapshot => {
-      // console.log(snapshot);
       this.countDownForChatClose();
       this.scrollMessage.next();
     });
@@ -169,14 +136,11 @@ export class AdminPanelComponent implements OnInit {
     this.observableForChatClose = Observable.interval(1000)
       .take(100)
       .subscribe(res => {
-          // console.log("res: ", res);
           this.secondCountDownForChatClose = 100 - res;
-          // this.app.renderPage();
         },
         e => {
         },
         () => {
-          console.log("count complete");
           this.username = '';
         });
   }
@@ -219,7 +183,6 @@ export class AdminPanelComponent implements OnInit {
   }
 
   setChatDisplay(display?) {
-    //console.log('display::',display);
     if (display) {
       localStorage.setItem('chatDisplay', display);
     }
@@ -252,7 +215,6 @@ export class AdminPanelComponent implements OnInit {
   get minimized() {
     let min = localStorage.getItem('minimized') ? true : false;
 
-    //console.log( 'min: ', min );
     return min;
   }
 

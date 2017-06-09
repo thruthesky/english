@@ -26,7 +26,6 @@ export class ValidateOnBlurDirective {
 
     // mark control  dirty on focus lost
     onBlur($event) {
-        console.log("Blurry");
         this.hasFocus = false;
         this.formControl.control.markAsDirty();
     }

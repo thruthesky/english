@@ -122,7 +122,6 @@ export class LMS {
                             json = JSON.parse( re['_body'] );
                         }
                         catch ( e ) {
-                            console.log(e);
                             alert("Parse ERROR on lms::getReservationsByMonthYear()");
                         }
                         
@@ -130,7 +129,6 @@ export class LMS {
                             alert( json['message'] );
                         }
                         else {
-                            console.log(json);
                             success( json['data'] );
                         }
 
@@ -149,7 +147,6 @@ export class LMS {
             let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
             this.http.get( url ).subscribe( re =>{
                 let json = JSON.parse( re['_body'] );
-                console.log("getNextClass json:",json);
                 if( json['data'] ) success( json['data'] );
                 else failure( ' error on getting next class ' );
             });
@@ -158,7 +155,6 @@ export class LMS {
     openVe() {
         this.getNextClass( data => {
             if( !data ) return alert("data is false on openVe()");
-            console.log('data: ', data);
             let student_id = this.user.info.id + '@' + this.getDomain();
             let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
             window.open( url, "_blank");

@@ -31,13 +31,10 @@ export class PaymentComponent implements AfterViewInit {
   constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
 
 
-    // console.log( this.money_format( 2590000).replace(/,/g, "") );
-    // console.log( this.money_format( 123000000).replace(/,/g, "") );
     
 
 
     window.addEventListener('message', (e) => {
-      console.log(e.data);
       let msg = <string>e.data;
       if ( ! /^payment\-/.test(msg) ) return;
       firebaseDatabase.push("payment", {
@@ -80,7 +77,6 @@ export class PaymentComponent implements AfterViewInit {
      return this.money_format( this.amounts[this.minutes] * this.daysRate[ days ] / 100 *  ( parseInt( this.months ) ) );
   }
   onClickPayment() {
-    console.log("payment begin");
 
     if (!this.user.logged) {
       alert("로그인을 해 주세요.");
@@ -91,7 +87,6 @@ export class PaymentComponent implements AfterViewInit {
 
     let amount = this.getAmount().replace(/,/g, '');
     this.user.data(this.user.info.id).subscribe((res) => {
-      console.log(res);
 
       let user = res.data.user;
       if (!user.name) return alert("결재하기 전, 회원 정보 메뉴에서 이름을 먼저 입력해 주십시오.");
@@ -107,7 +102,6 @@ export class PaymentComponent implements AfterViewInit {
       }, 300);
       
 
-      console.log("iframeUrl: ", this.iframeUrl);
 
 
       // let w = window.innerWidth;
