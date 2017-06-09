@@ -547,7 +547,7 @@ export class App {
       let option: ALERT_OPTION = {
         title: title,
         content: content,
-        class: 'alert-modal'
+        class: 'alert-modal enhance-modal',
       };
       this.showModal( option );
     }
