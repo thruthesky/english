@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User, _USER_PASSWORD_CHANGE, _USER_PASSWORD_CHANGE_RESPONSE } from 'angular-backend';
 @Component({
     selector: 'change-password-component',
@@ -16,11 +16,14 @@ export class ChangePasswordComponent{
     
     ngOnInit() {
         this.createForm();
+        this.formGroup.valueChanges
+            .debounceTime( 1000 )
+            .subscribe( res => this.onValueChanged( res ) );
     }
     createForm() {
         this.formGroup = this.fb.group({
-            old_password:[],
-            new_password:[]
+            old_password:['', [ Validators.required ] ],
+            new_password:['', [ Validators.required ] ]
         });
     }
     onClickCancel() {
@@ -43,4 +46,30 @@ export class ChangePasswordComponent{
     onEnterChangePassword( event ){
         if( event.keyCode == 13 ) this.onClickChangePassword();
     }
+    onValueChanged(data?: any) {
+        if ( ! this.formGroup ) return;
+        const form = this.formGroup;
+        for ( const field in this.formErrors ) {
+        this.formErrors[field] = '';        // clear previous error message (if any)
+        const control = form.get(field);
+          if ( control && control.dirty && ! control.valid ) {
+              const messages = this.validationMessages[field];
+              for ( const key in control.errors ) {
+              this.formErrors[field] += messages[key] + ' ';
+              }
+          }
+        }
+    }
+    formErrors = {
+        old_password: '',
+        new_password: ''
+    };
+    validationMessages = {
+        old_password: {
+            'required':      'Old Password is required.'
+        },
+        new_password: {
+            'required':      'New Password is required.'
+        }
+    };
 }

@@ -155,7 +155,7 @@ export class ForumPostComponent implements OnInit {
           }
         }
     }
-    formErrors = {
+  formErrors = {
     title: '',
     content: '',
     password: ''
