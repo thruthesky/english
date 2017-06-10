@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
 
     onClickUpdateProfile(){
         let modalRef = this.modal.open( RegisterComponent, { windowClass: 'enhance-modal' } );
-        modalRef.result.then(() => {}).catch( () => alert('exit '));
+        modalRef.result.then(() => {}).catch( () => {});
     }
 
     onClickMoreMenu() {

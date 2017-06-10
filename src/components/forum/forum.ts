@@ -40,6 +40,6 @@ export class ForumComponent {
     modalRef.componentInstance['post_config_id'] = this.post_config_id;
     modalRef.result.then( () => {
       this.postListComponent.loadPostData( );
-    }).catch( e => alert('exit ' + e ) );
+    }).catch( e => {} );
   }
 }

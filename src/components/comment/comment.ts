@@ -45,7 +45,7 @@ export class CommentComponent {
 
     let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal' } );
     modalRef.result.then( res => {
-    }).catch( e => alert('exit ' + e ) );
+    }).catch( e => {} );
 
 
   }
@@ -77,9 +77,7 @@ export class CommentComponent {
 
 
     }, err => {
-      // this.postData.alert( err );
       this.app.error( err );
     });
   }
-
 }

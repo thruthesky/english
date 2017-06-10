@@ -83,7 +83,7 @@ export class PostListComponent  {
         let modalRef = this.modal.open( ForumPostComponent, { windowClass: 'enhance-modal'} );
         modalRef.componentInstance['post'] = _post;
         modalRef.result.then( () => {
-        }).catch( e => alert('exit ' + e ) );
+        }).catch( e => {});
     }
     onClickDelete( _post ) {
         if( _post.deleted == '1' ) return;
