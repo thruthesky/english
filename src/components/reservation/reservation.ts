@@ -90,8 +90,6 @@ export class ReservationComponent implements OnInit {
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-
-            //Process gather data
             this.classinformation = {
                 first_class: res.first_class,
                 next_class: res.next_class,
@@ -121,10 +119,10 @@ export class ReservationComponent implements OnInit {
     listCalendar( month, year ) {
         this.books = [];
         let book;
-        let empty_day = new Date(year + "-" + month + "-01").getDay()               // first date(day) of the month. 0~6
-        let days_in_month = new Date(year, month, 0).getDate();                     // last date(day) of the month. 28, 29, 30.
-        for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }      // Fill all the empty days first
-        for (let i = 1; i <= days_in_month; i++) {                                  //Fill the days of month
+        let empty_day = new Date(year + "-" + month + "-01").getDay();
+        let days_in_month = new Date(year, month, 0).getDate();
+        for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }
+        for (let i = 1; i <= days_in_month; i++) {
             let date = this.year.toString() +  this.add0( this.month ) + this.add0( i );
             if(this.data) book = this.data.filter( (mybook)=> { return mybook['date'] == date; });
             if ( book ) book['myDate'] = i;

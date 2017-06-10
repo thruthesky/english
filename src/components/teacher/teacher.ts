@@ -11,7 +11,6 @@ import { App } from './../../providers/app';
 export class TeacherComponent {
 
     @Input() teachers;
-    // teachers container to be displayed
     playVideo: boolean = false;
     showMore: boolean = false;
     whole_teacher: any = [];
@@ -39,10 +38,10 @@ export class TeacherComponent {
                 if (teacher.greeting.match(/(<([^>]+)>)/g)) teacher.greeting = teacher.greeting.replace(/(<([^>]+)>)/g, "");
                 teacher.img_youtube = teacher.url_youtube.replace(/embed/g, "vi");
                 teacher.img_youtube = teacher.img_youtube.match(/youtube.com/g, "img.youtube.com")? teacher.img_youtube.replace(/youtube.com/g, "img.youtube.com") + "/mqdefault.jpg":'assets/images/teacher/no-video.jpg';
-                teacher.img_youtube = this.sanitizer.bypassSecurityTrustUrl(teacher.img_youtube);//to fix unsafe
+                teacher.img_youtube = this.sanitizer.bypassSecurityTrustUrl(teacher.img_youtube);
                 if( teacher.url_youtube ) {
                     teacher.url_youtube = teacher.url_youtube + "?autoplay=1&autohide=1&controls=0&border=0&scrolling=no";
-                    teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube);//to fix unsafe
+                    teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube);
                 }
                 else teacher.url_youtube = false;
             });

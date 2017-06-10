@@ -32,7 +32,7 @@ export class PaymentComponent implements AfterViewInit {
 
 
     
-
+    
 
     window.addEventListener('message', (e) => {
       let msg = <string>e.data;
@@ -43,6 +43,9 @@ export class PaymentComponent implements AfterViewInit {
       })
     }, false);
 
+  }
+  ngAfterViewInit() {
+    
   }
   money_format( amount ) : string {
     if ( ! amount ) return "0";
@@ -56,13 +59,6 @@ export class PaymentComponent implements AfterViewInit {
     
   }
   
-  ngAfterViewInit() {
-    // let pay = <HTMLElement> document.querySelector(".menu.payment");
-    // let click = () => pay.click();
-    // setTimeout( click, 1000 );
-
-
-  }
 
   getAmount() {
     let amount: string = "";
@@ -96,41 +92,13 @@ export class PaymentComponent implements AfterViewInit {
       let url = `https://www.englishfordevelopers.com/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
       this.app.scrollTo('paymentIframe');
-      //alert("200 만 넘어가니 에러 있음");
       setTimeout(() => {
         this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
       }, 300);
       
 
-
-
-      // let w = window.innerWidth;
-      // let h = window.innerHeight;
-      // w = Math.round(w * 50 / 100);
-      // if (w < 600) w = 600;
-      // h = Math.round(h * 80 / 100);
-      // this.PopupCenter(`https://www.englishfordevelopers.com/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`, '_blank', w, h);
-
     }, e => this.user.alert(e));
 
 
   }
-  // PopupCenter(url, title, w, h) {
-  //   // Fixes dual-screen position                         Most browsers      Firefox
-  //   var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen['left'];
-  //   var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen['top'];
-
-  //   var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-  //   var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-
-  //   var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-  //   var top = ((height / 2) - (h / 2)) + dualScreenTop;
-  //   var newWindow = window.open(url, title, 'toolbar=yes,scrollbars=yes,resizable=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
-  //   // Puts focus on the newWindow
-  //   if (typeof newWindow.focus != 'undefined') {
-  //     newWindow.focus();
-  //   }
-  // }
-
 }

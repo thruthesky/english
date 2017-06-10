@@ -48,7 +48,7 @@ export class ChangePasswordComponent{
         if ( ! this.formGroup ) return;
         const form = this.formGroup;
         for ( const field in this.formErrors ) {
-        this.formErrors[field] = '';        // clear previous error message (if any)
+        this.formErrors[field] = '';
         const control = form.get(field);
           if ( control && control.dirty && ! control.valid ) {
               const messages = this.validationMessages[field];

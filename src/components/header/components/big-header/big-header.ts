@@ -11,7 +11,7 @@ import { ShareService } from '../../../../providers/share-service';
 export class BigHeaderComponent {
     more: boolean = false;
     @Input() login: boolean;
-    @Output() logout = new EventEmitter(); // @todo ambiguious, where does it go?
+    @Output() logout = new EventEmitter();
     @Output() onLogin = new EventEmitter();
     @Output() register = new EventEmitter();
     @Output() profile = new EventEmitter();

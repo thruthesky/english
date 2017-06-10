@@ -38,8 +38,8 @@ dir.files('src', function (err, files) {
                 if ( err ) console.log("error: ", err);
                 else {
                     filesize = parseInt(filesize.replace('B', ''));
-                    if ( filesize > 100000 ) console.log(`Filesize BIG: ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
-                    else if ( size.width < 300 && filesize > 30000 ) console.log(`Filesize small but bigger than 50K. ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
+                    if ( filesize > 100000 ) console.log(`Filesize BIG: You may need to double check: ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
+                    else if ( size.width < 300 && filesize > 30000 ) console.log(`Image width & height is small but the file size is bigger than 30K. ${a}: ${size.width} x ${size.height}. filesize: ${filesize}`);
                     // console.log(`${a}: ${size.width} x ${size.height} = ${ size.width * size.height }. filesize: ${filesize}`);
                 }
             } );

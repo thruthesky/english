@@ -25,7 +25,6 @@ export class SmallHeaderComponent {
         public app: App,
         public lms: LMS
     ) {
-        // this.onClickMoreMenu();
     }
 
     ngOnInit() {

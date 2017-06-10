@@ -45,12 +45,9 @@ export class HeaderComponent implements OnInit {
     }
 
     onClickLogout() {
-    //   this.share.class_info = null;
       this.app.myEvent.emit( {
           eventType: "logout-success"
       } );
-
-      //this.user.logout();
 
       this.app.logout( a => {} );
       
@@ -58,7 +55,7 @@ export class HeaderComponent implements OnInit {
 
     onClickUpdateProfile(){
         let modalRef = this.modal.open( RegisterComponent, { windowClass: 'enhance-modal' } );
-        modalRef.result.then(() => {}).catch( () => alert('exit '));
+        modalRef.result.then(() => {}).catch( () => {});
     }
 
     onClickMoreMenu() {

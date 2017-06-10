@@ -39,11 +39,9 @@
     padding: 5em 0 3em;
     background-color: rgba( 255, 255, 255, .9 );
     color: #444;
-    //@include shadow(.4);
 }
 h1 {
     margin-bottom: 1em;
-    //@include shadow(.4);
 }
 .class-info {
     font-weight: 100;
@@ -63,10 +61,6 @@ h1 {
         padding: 1em 1.6em;
         background-color: rgba( 0, 0, 0, .5 );
     }
-    td {
-        // background-color: rgba( 0, 0, 0, .2 );
-    }
-    
 }
 
 .has {
