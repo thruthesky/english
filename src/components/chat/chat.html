@@ -8,7 +8,7 @@
             라이브 챗 : 무엇이든 물어보세요.
 
             <div class="closer">
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i class="fa fa-times cursor" (click)="onClickMaximize()" aria-hidden="true"></i>
             </div>
         </div>
 
@@ -29,27 +29,24 @@
                     <table width="100%" cellpadding="0" cellpadding="0">
                         <tr>
                             <td width="1%">
-                                <span class="fa-stack fa-lg" (click)="onClickMinimize()">
+                                <span class="fa-stack fa-lg pointer" (click)="onClickMinimize()">
                                     <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                                     <i class="fa fa-times fa-stack-1x fa-inverse" aria-hidden="true"></i>
                                 </span>
                             </td>
                             <td width="98%"><div><input name="message" [(ngModel)]="form.message"></div></td>
-                            <td width="1%"><i class="fa fa-mail-forward" aria-hidden="true"></i></td>
+                            <td width="1%"><i class="fa fa-mail-forward pointer" aria-hidden="true" (click)="onSubmitMessage()"></i></td>
                         </tr>
                     </table>
-                    
-                    
-                    
                 </form>
             </div>
 
 
         </div>
-        
+
 
     <div class="min" *ngIf="min">
-        <div class="p-3 bg-lightgrey" (click)="onClickMaximize()">
+        <div class="p-3 bg-lightgrey cursor" (click)="onClickMaximize()">
             <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                     <i class="fa fa-arrow-left fa-stack-1x fa-inverse" aria-hidden="true"></i>
