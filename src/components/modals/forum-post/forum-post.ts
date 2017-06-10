@@ -66,7 +66,7 @@ export class ForumPostComponent implements OnInit {
                 content: [ '', [ Validators.required ] ]
             });
         }
-        else { // edit
+        else {
             this.files = this.post.files ? this.post.files : [];
             this.formGroup = this.fb.group({
                 title: [ this.post.title, [ Validators.required ] ],
@@ -124,7 +124,7 @@ export class ForumPostComponent implements OnInit {
         if( this.user.logged ) edit.name = this.userData.name;
         else edit.name = 'anonymous';
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
-            Object.assign( this.post, res.data ); // two-way binding.
+            Object.assign( this.post, res.data );
             this.editSuccess( res.data );
         }, err => this.postData.alert( err ) );
     }
@@ -142,7 +142,7 @@ export class ForumPostComponent implements OnInit {
         if ( ! this.formGroup ) return;
         const form = this.formGroup;
         for ( const field in this.formErrors ) {
-        this.formErrors[field] = '';        // clear previous error message (if any)
+        this.formErrors[field] = '';
         const control = form.get(field);
           if ( control && control.dirty && ! control.valid ) {
               const messages = this.validationMessages[field];

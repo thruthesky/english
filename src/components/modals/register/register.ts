@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-//import { App } from '../../../providers/app';
 import { user_profile } from '../../../app/config';
 import { FirebaseChat } from '../../../providers/firebase';
 
@@ -112,7 +111,7 @@ export class RegisterComponent {
         if ( ! this.form ) return;
         const form = this.form;
         for ( const field in this.formErrors ) {
-        this.formErrors[field] = '';        // clear previous error message (if any)
+        this.formErrors[field] = '';
         const control = form.get(field);
           if ( control && control.dirty && ! control.valid ) {
               const messages = this.validationMessages[field];
@@ -150,7 +149,6 @@ export class RegisterComponent {
             register.birth_day = date[2];
         }
         this.user.register( register ).subscribe( (res: _USER_CREATE_RESPONSE ) => {
-            //this.successRegister( res );
             this.fc.newRegisteredUser( msg );
             callback();
         }, error => {

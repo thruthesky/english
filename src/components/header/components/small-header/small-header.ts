@@ -22,7 +22,6 @@ export class SmallHeaderComponent {
         public user: User,
         public app: App
     ) {
-        // this.onClickMoreMenu();
     }
 
     ngOnInit() {

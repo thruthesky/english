@@ -13,7 +13,6 @@ export class ValidateOnBlurDirective {
     constructor( public formControl: NgControl ) {
     }
 
-    // mark control pristine on focus or on first change
     onFocus($event) {
         this.hasFocus = true;
         this.formControl.control.markAsPristine();
@@ -24,7 +23,6 @@ export class ValidateOnBlurDirective {
             });
     }
 
-    // mark control  dirty on focus lost
     onBlur($event) {
         this.hasFocus = false;
         this.formControl.control.markAsDirty();

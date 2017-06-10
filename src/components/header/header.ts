@@ -45,12 +45,9 @@ export class HeaderComponent implements OnInit {
     }
 
     onClickLogout() {
-    //   this.share.class_info = null;
       this.app.myEvent.emit( {
           eventType: "logout-success"
       } );
-
-      //this.user.logout();
 
       this.app.logout( a => {} );
       

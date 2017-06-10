@@ -23,7 +23,6 @@ export class ChatComponent implements OnInit {
   max: boolean = false;
 
   firstList = true;
-  //userData: _USER_RESPONSE = null;
   userId: string = null;
 
 
@@ -70,8 +69,6 @@ export class ChatComponent implements OnInit {
 
     });
 
-    // this.all_message = db.list('/messages/all/');
-    // this.last_message = db.list('/messages/last/');
 
     this.all_message = this.fc.getAllMessageList();
     this.last_message = this.fc.getLastMessage();
@@ -90,9 +87,6 @@ export class ChatComponent implements OnInit {
       message: this.form.message
     };
 
-    // if (this.userData && this.userData.name) {
-    //   msg['name'] = this.userData.name;
-    // }
 
     this.user_message.push(msg);
     this.all_message.push(msg);

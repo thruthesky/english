@@ -230,8 +230,8 @@ const BOOKS: BOOKS = [
 })
 export class CurriculumComponent {
     showBook:boolean = false;
-    books: BOOKS = null; // container of books to display on browser.
-    first_8_books: BOOKS = null; // first_8
+    books: BOOKS = null;
+    first_8_books: BOOKS = null;
     constructor( public app: App ) {
         this.takeSomeTemporaryBooks();
     }

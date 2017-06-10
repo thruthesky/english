@@ -31,7 +31,7 @@ export class PostListComponent  {
     pageOption = {
         limitPerPage: 10,
         currentPage: 1,
-        limitPerNavigation: 4, //
+        limitPerNavigation: 4, 
         totalRecord: 0
     };
     searchPostForm: _POST = <_POST> {};
@@ -53,7 +53,7 @@ export class PostListComponent  {
         this.loadPostData();
 
         this.searchPostChangeDebounce
-        .debounceTime(300) // wait 300ms after the last event before emitting last event
+        .debounceTime(300)
         .subscribe(() => this.onChangedPostSearch());
     }
     loadUserData() {
@@ -70,8 +70,7 @@ export class PostListComponent  {
             let password = prompt("Input Password");
             let req: _POST_EDIT = { idx: _post.idx, password: password };
             this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
-                // password match
-                
+            
                 this.showEditPostForm( _post );
             }, e => this.postData.alert( e ) );
         }
