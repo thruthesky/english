@@ -32,7 +32,7 @@ export class PaymentComponent implements AfterViewInit {
 
 
     
-
+    
 
     window.addEventListener('message', (e) => {
       let msg = <string>e.data;
@@ -43,6 +43,9 @@ export class PaymentComponent implements AfterViewInit {
       })
     }, false);
 
+  }
+  ngAfterViewInit() {
+    
   }
   money_format( amount ) : string {
     if ( ! amount ) return "0";
