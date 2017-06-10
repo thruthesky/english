@@ -1,7 +1,7 @@
 <section id="admin-panel-component">
 
   <div class="config p-absolute b-0 w-16" [ngClass]="{'bg-white w-16': config}" >
-    <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
+    <div class="pointer" [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
             <span class="fa-stack fa-lg" (click)=" config = ! config ">
             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
             <i class="fa fa-stack-1x fa-inverse" [class.fa-gear]=" !config " [class.fa-times]=" config "></i>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row">
-          <div class="col-auto">
+          <div class="col-auto pointer">
             <span *ngIf="minimized" (click)=" minimized = false ">Maximize</span>
             <span *ngIf=" !minimized " (click)=" minimized = true; initial = true ">Minifize</span>
           </div>
