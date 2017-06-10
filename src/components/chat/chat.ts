@@ -52,21 +52,14 @@ export class ChatComponent implements OnInit {
     });
 
     this.user_message.subscribe(res => {
-
+      
       if (this.firstList) {
         this.firstList = false;
       }
       else {
         this.onClickMaximize();
       }
-
-
-
-
       this.scrollMessage.next();
-
-
-
     });
 
 
@@ -125,6 +118,8 @@ export class ChatComponent implements OnInit {
   }
 
   scrollMessageBox() {
+
+    if ( this.min ) return;
 
     let $messages = $('.chat.max .messages ul');
     if ($messages && $messages[0].scrollHeight) {

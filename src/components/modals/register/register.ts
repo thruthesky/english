@@ -199,6 +199,7 @@ export class RegisterComponent {
 
     error( error ) {
         this.loading = false;
+        if ( error.code == -40101 ) error.message = "아이디가 이미 존재합니다. 다른 아이디를 선택하십시오.";
         this.result = error;
         return this.user.errorResponse( error );
     }
@@ -289,36 +290,36 @@ export class RegisterComponent {
   };
   validationMessages = {
     id: {
-      'required':      'ID is required.',
-      'minlength':     'ID must be at least 3 characters long.',
-      'maxlength':     'ID cannot be more than 32 characters long.'
+      'required':      '아이디를 입력하십시오.',
+      'minlength':     '아이디는 3 글자 이상이어야 합니다.',
+      'maxlength':     '아이디는 32 글자 이하이어야 합니다.'
     },
     name: {
-      'required':      'Name is required.',
-      'minlength':     'Name must be at least 3 characters long.',
-      'maxlength':     'Name cannot be more than 32 characters long.'
+      'required':      '이름을 입력하십시오.',
+      'minlength':     '이름은 3 글자 이상이어야 합니다.',
+      'maxlength':     '이름은 32 글자 이하이어야 합니다.'
     },
     nickname: {
-      'required':      'Nick Name is required.',
-      'minlength':     'Nick Name must be at least 3 characters long.',
-      'maxlength':     'Nick Name cannot be more than 32 characters long.'
+      'required':      '닉네임을 입력하십시오.',
+      'minlength':     '닉에임은 3 글자 이상이어야 합니다.',
+      'maxlength':     '닉네임은 32 글자 이하이어야 합니다.'
     },
     password: {
-      'required': 'Password is required.',
-      'minlength':     'Password must be at least 5 characters long.',
-      'maxlength':     'Password cannot be more than 128 characters long.'
+      'required': '비밀번호를 입력하십시오.',
+      'minlength':     '비밀번호는 3 글자 이상이어야 합니다.',
+      'maxlength':     '비밀번호는 128 글자 이하이어야 합니다.'
     },
     email: {
-      'required':     'Email is required.',
-      'minlength':    'Email must be at least 8 characters long.',
-      'maxlength':    'Email cannot be more than 32 characters long.',
-      'malformed':    'Email must be in valid format. validator error'
+      'required':     '이메일을 입력하십시오.',
+      'minlength':    '이메일은 8 글자 이상이어야 합니다.',
+      'maxlength':    '이메일은 32 글자 이하이어야 합니다.',
+      'malformed':    '잘못된 형식의 메일 주소입니다.'
     },
     mobile: {
-      'required':     'Mobile is required.',
-      'minlength':    'Mobile must be at least 9 characters long.',
-      'maxlength':    'Mobile cannot be more than 15 characters long.',
-      'malformed':    'Mobile must be in valid format. validator error'
+      'required':     '전화번호를 입력하십시오.',
+      'minlength':    '전화번호는 숫자 8 자리 이상이어야 합니다.',
+      'maxlength':    '전화번호는 숫자 15 자리 이하이어야 합니다.',
+      'malformed':    '잘못된 전화번호 형식입니다.'
     }
 
   };

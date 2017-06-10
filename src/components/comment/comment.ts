@@ -76,7 +76,10 @@ export class CommentComponent {
       });
 
 
-    }, err => this.postData.alert( err ));
+    }, err => {
+      // this.postData.alert( err );
+      this.app.error( err );
+    });
   }
 
 }

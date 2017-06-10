@@ -1,10 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 
+
 import * as firebase from 'firebase/app';
 
 import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 import { App } from '../../../../providers/app';
+import { LMS } from './../../../../providers/lms';
 @Component({
     selector: 'small-header-component',
     templateUrl: 'small-header.html'
@@ -20,7 +22,8 @@ export class SmallHeaderComponent {
     @Output() classroom = new EventEmitter();
     constructor(
         public user: User,
-        public app: App
+        public app: App,
+        public lms: LMS
     ) {
     }
 
@@ -53,6 +56,15 @@ export class SmallHeaderComponent {
     onClickRegister() {
         this.register.emit();
     }
+
+    onClickVe() {
+        // console.log("chimini ah ah:",this.share.ve_url);
+        // window.open(this.share.ve_url,'_blank');
+
+
+        this.lms.openVe();
+    }
+
 
 
 }

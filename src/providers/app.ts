@@ -21,7 +21,7 @@ export interface SOCIAL_LOGIN {
 };
 
 export interface ALERT_OPTION {
-  title: string;
+  title?: string;
   content: string;
   'class'?: string;
   timeout?: number;
@@ -503,7 +503,7 @@ export class App {
       // option.content = this.t( option.content );
       //alert(option.content);
       this.alertService.open( option, () => {
-        console.info("alert OK");
+        // console.info("alert OK");
       });
     }
 
@@ -514,6 +514,19 @@ export class App {
         class: 'alert-modal enhance-modal',
       };
       this.showModal( option );
+    }
+
+    toast(content) {
+        this.showModal( { content: content, class: 'toast', timeout: 4000 } );
+    }
+    error( e ) {
+
+        if ( e.code == -80011 ) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
+
+        console.log(e);
+            //console.log("errrrrrrrrr: ", error);
+            this.toast( e.message );
+
     }
 
     showRequiredInfoModal() {

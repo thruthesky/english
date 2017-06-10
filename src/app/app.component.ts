@@ -22,6 +22,7 @@ export class AppComponent {
     private backed: Backend
   ) {
     backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+
     app.setWidth(window.innerWidth);
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);
 

@@ -57,6 +57,7 @@ header > nav > .d-flex {
         background-color: rgba( 100, 100, 100, .3);
         .popover-text {
             padding: 1em;
+            a:hover { text-decoration: none; }
             button {
                 display: block;
                 margin: .2em 0;

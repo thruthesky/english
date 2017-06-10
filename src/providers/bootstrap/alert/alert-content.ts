@@ -4,14 +4,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'alert-content',
   template: `
     <div class="modal-header">
-
       <h4 class="modal-title">{{ title }}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <p>{{ content }}</p>
+      <i class="fa fa-warning" aria-hidden="true"></i>
+      {{ content }}
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
@@ -23,3 +23,5 @@ export class AlertContent {
   content: string = "Modal Content";
   constructor(public activeModal: NgbActiveModal) {}
 }
+
+

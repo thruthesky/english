@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { App } from './../../../../providers/app';
 import { ShareService } from '../../../../providers/share-service';
 import { ForumPostComponent} from '../../../modals/forum-post/forum-post';
 import { PostViewModal} from '../../../modals/post-view/post-view';
@@ -45,7 +46,8 @@ export class PostListComponent  {
         public share: ShareService,
         private postData: PostData,
         private modal: NgbModal,
-        public  user : User
+        public  user : User,
+        private app: App
     ) {
         if ( this.user.logged ) this.loadUserData();
         this.searchQuery['order'] = 'idx DESC';
@@ -60,7 +62,9 @@ export class PostListComponent  {
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
             this.userData = res.data.user;
         }, error => {
-            this.user.alert( error );
+            //
+            // this.user.alert( error );
+            this.app.error( error );
         } );
     }
     onClickEdit( _post ) {
@@ -99,7 +103,10 @@ export class PostListComponent  {
         this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
-        }, err => this.postData.alert( err ));
+    }, err => {
+        //this.postData.alert( err );
+        this.app.error( err );
+    });
     }
     onChangePostSearch() {
         this.searchPostChangeDebounce.next();
