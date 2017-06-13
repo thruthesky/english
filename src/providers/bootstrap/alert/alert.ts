@@ -29,10 +29,8 @@ export class Alert {
     this.modalRef.componentInstance['content'] = option.content;
 
     this.modalRef.result.then((result) => {
-      console.info(`Closed with: ${result}`);
       if (yesCallback) yesCallback();
     }, (reason) => {
-      console.info("dismissed::", reason);
       if (noCallback) noCallback();
     });
 

@@ -48,16 +48,12 @@ export class LMS {
             });
         }
         catch(e) {
-            // alert(e);
-            console.error(e);
         }
         
     }
 
     register( data, success, failure: ( error : string ) => void ){
-        console.log("mydata:",data);
         if( data.value ) data = data.value;
-        console.log("data:",data);
         let domain = this.getDomain();
         data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
