@@ -91,7 +91,7 @@ export class ReservationComponent implements OnInit {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
 
-            console.log('getNewReservationData:: ', res);
+            //console.log('getNewReservationData:: ', res);
             this.classinformation = {
                 first_class: res.first_class,
                 next_class: res.next_class,
