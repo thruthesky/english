@@ -17,6 +17,8 @@ export class FileFormComponent {
     loading: boolean = false;
     @Input() files: Array<_FILE> = [];
     @Input() form: FormGroup;
+    @Input() text_upload_title = "Upload Photos";
+    @Input() text_upload_description = "Please select a photo to upload";
 
     constructor( public user: User,
                  private file: File ) {}

@@ -1,7 +1,7 @@
 <div class="forum-view-modal">
     <div class="modal-header">
         <h5 class="modal-title">
-            <span class="modal-title">Post Information</span>
+            <span class="modal-title">질문과 답변 게시판</span>
         </h5>
         <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
             <span aria-hidden="true">×</span>
@@ -14,7 +14,7 @@
                 <form *ngIf="post">
                     <div class="files clearfix" *ngIf=" post.files && post.files.length > 0 ">
                         <span class="info-title">
-                            Photos
+                            사진
                         </span>
                         <div class="w-25 float-left" *ngFor=" let file of post.files ">
                         <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
@@ -22,26 +22,26 @@
                     </div>
                     <div>
                         <span class="info-title">
-                            Title
+                            제목
                         </span>
                         <input [(ngModel)]="post.title" name="title" type="text" class="form-control" placeholder="Title">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
-                            Author
+                            작성자
                         </span>
                         <input [(ngModel)]="post.name" name="teachers-name" type="text" class="form-control"  placeholder="Author's Name">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
-                            Date
+                            날짜
                         </span>
                         <input [(ngModel)]="post.created" name="date" type="text" class="form-control" placeholder="Date">
                     </div>
                     
                     <div>
                         <span class="info-title">
-                            Content
+                            제목
                         </span>
                         <textarea rows="10" name="content" type="text" class="form-control">{{ post.content }}</textarea>
                     </div>

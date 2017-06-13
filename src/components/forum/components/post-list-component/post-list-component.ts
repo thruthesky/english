@@ -142,7 +142,7 @@ export class PostListComponent  {
         let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
         modalRef.componentInstance['post'] = data;
         modalRef.result.then( () => {
-        }).catch( e => alert('exit ' + e ) );
+        }).catch( e => {} );
     }
 
 }

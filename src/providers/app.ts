@@ -404,13 +404,12 @@ export class App {
     backendSuccess(res: _USER_LOGIN_RESPONSE) {
 
 
-    //         id: string;
+    // id: string;
     // idx: number;
     // name: string;
     // email: string;
     // admin?: number;
-
-        // Center X registration for Social Login Users.
+    // Center X registration for Social Login Users.
         let data = {
             id: res.data.id,
             name: res.data.name,
@@ -423,8 +422,6 @@ export class App {
             this.renderPage();
             this.showRequiredInfoModal();
         }, error => alert(' error on CenterX registration ' + error ) )
-
-        //this.router.navigateByUrl('/');
     }
     backendFailed(e) {
         let user = this.getSocialLogin();
@@ -441,7 +438,6 @@ export class App {
     backendLogin(success, fail) {
         let user = this.getSocialLogin();
         let id = user.uid + '@' + user.provider;
-        // login
         this.user.logout();
         this.user.login({ id: id, password: id }).subscribe(success, fail);
     }
@@ -498,12 +494,7 @@ export class App {
     }
 
     private showModal( option: ALERT_OPTION ) {
-      //alert( this.t );
-      // option.title = this.t( option.title );
-      // option.content = this.t( option.content );
-      //alert(option.content);
       this.alertService.open( option, () => {
-        // console.info("alert OK");
       });
     }
 
@@ -520,13 +511,8 @@ export class App {
         this.showModal( { content: content, class: 'toast', timeout: 4000 } );
     }
     error( e ) {
-
         if ( e.code == -80011 ) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
-
-        console.log(e);
-            //console.log("errrrrrrrrr: ", error);
-            this.toast( e.message );
-
+        this.toast( e.message );
     }
 
     showRequiredInfoModal() {

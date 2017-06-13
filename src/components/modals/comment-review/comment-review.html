@@ -2,7 +2,7 @@
   <div class="modal-header">
 
     <h5 class="modal-title">
-      <span class="modal-title">Write Review</span>
+      <span class="modal-title">수업 후기 작성</span>
     </h5>
     <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
       <span aria-hidden="true">×</span>
@@ -29,17 +29,20 @@
               <input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">
             </div>
         </div>
+
+        <div *ngIf="!primary_photo_idx"  class="mt-2 text-center grey">사진 등록</div>
+
         <div *ngIf="photoError" class="alert alert-danger mt-1">
           <span class="errors"> {{ photoError }} </span>
         </div>
         <div class="input-group my-3">
-          <textarea validate-onblur formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="Your comment here..." rows="3"></textarea>
+          <textarea validate-onblur formControlName="content"  name="content" class="form-control form-control-sm" id="content" placeholder="수업 후기를 작성해 주세요." rows="3"></textarea>
         </div>
         <div *ngIf="formErrors.content" class="alert alert-danger mt-1">
           <span class="errors"> {{ formErrors.content }} </span>
         </div>
         <div class="row mt-2">
-          <div class="col-md-12 post" ><button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">Post Review</button></div>
+          <div class="col-md-12 post" ><button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">등록</button></div>
         </div>
         <hr/>
       </form>

@@ -48,14 +48,12 @@ export class LMS {
             });
         }
         catch(e) {
-            // alert(e);
-            console.error(e);
         }
         
     }
 
     register( data, success, failure: ( error : string ) => void ){
-        data = data.value;
+        if( data.value ) data = data.value;
         let domain = this.getDomain();
         data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
@@ -160,8 +158,7 @@ export class LMS {
             let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
             window.open( url, "_blank");
         }, error => {
-            console.error(error);
-            alert("No Next Class Data");
+            alert("앗! 예약된 수업이 없습니다.");
         });
     }
 
