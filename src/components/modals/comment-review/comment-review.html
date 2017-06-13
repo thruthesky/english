@@ -29,6 +29,9 @@
               <input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">
             </div>
         </div>
+
+        <div *ngIf="!primary_photo_idx"  class="mt-2 text-center grey">사진 등록</div>
+
         <div *ngIf="photoError" class="alert alert-danger mt-1">
           <span class="errors"> {{ photoError }} </span>
         </div>

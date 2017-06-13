@@ -24,67 +24,28 @@
             <div class="date-container d-flex justify-content-between my-3">
                 <div  class="btn btn-success h-100 p-relative prev-month" style="z-index:1; padding: .3rem .3rem;">
                     <div class="d-inline-block pointer" (click)="onClickPrev()">
-                    <span class="d-inline-block show-list fs-15rem">
-                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                    <span class="d-inline-block show-list fs-15rem pr-2">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     </span>
                     {{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}
                     </div>
                    
                 </div>
-                <!--<div  class="btn btn-success h-100 p-relative prev-month" style="z-index:1; padding: .3rem .3rem;">
-                    <div class="d-inline-block" (click)="onClickPrev();showPrevious= false"><span>{{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}</span></div>
-                    <span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showPrevious=!showPrevious">
-                        <i *ngIf="showPrevious" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        <i *ngIf="!showPrevious" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
-                    </span>
-                    <div  style="top:105%" class="p-absolute l-0 bg-success p-2 prev-months" *ngIf="showPrevious">
-                        <ul class="list-menu">
-                            <li class="prev w-100" style="padding: .3rem 0;" *ngFor="let prev of prevMonths | slice:2" (click)="selectNewDate({m:prev.m,Y:prev.Y}); showPrevious=!showPrevious"> {{ prev.m }} {{ prev.Y }}</li>
-                        </ul>
-                    </div>
-                </div>-->
+                
 
-                <div style="z-index:1; padding:.6rem 1rem;color: #fff;background-color: #5cb85c"  class="btn btn-success h-100 p-relative this-month">
+                <div style="z-index:1; padding:.6rem 1rem;color: #fff;background-color: rgba(80, 88, 80, 0.81)"  class="btn border-0 h-100 p-relative this-month">
                     <div class="d-inline-block"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
-                    <!--<span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showYear=!showYear">
-                        <i *ngIf="showYear" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        <i *ngIf="!showYear" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
-                    </span>
-                    <div  style="top:105%" class="p-absolute l-0 bg-success p-2 this-months" *ngIf="showYear">
-                        <ul class="list-menu">
-                            <li class="this-year w-100" style="padding: .3rem 0;" *ngFor="let year of listOfYears" (click)="selectNewDate({m:year.m,Y:year.Y});showYear=!showYear"> {{ year.m }} {{ year.Y }}</li>
-                        </ul>
-                    </div>-->
                 </div>
                 <div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative next-month">
                     
                     <div class="d-inline-block pointer" (click)="onClickNext()">
                         {{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}
-                        <span class="d-inline-block show-list fs-15rem">
-                            <i class="fa fa-arrow-circle-o-right " aria-hidden="true"></i>
+                        <span class="d-inline-block show-list fs-15rem pl-2">
+                            <i class="fa fa-arrow-right " aria-hidden="true"></i>
                         </span>
                     </div>
-                    
-                    <!--<div  style="top:105%" class="p-absolute l-0 bg-success p-2 next-months" *ngIf="showNext">
-                        <ul class="list-menu">
-                            <li class="next w-100" style="padding: .3rem 0;" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y});showNext=!showNext"> {{ next.m }} {{ next.Y }}</li>
-                        </ul>
-                    </div>-->
                 </div>
 
-                <!--<div style="z-index:1; padding: .3rem .3rem; "  class="btn btn-success h-100 p-relative next-month">
-                    
-                    <div class="d-inline-block" (click)="onClickNext()"><span>{{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}</span></div>
-                    <span class="d-inline-block pointer show-list fs-15rem pl-1" (click)="showNext=!showNext">
-                        <i *ngIf="showNext" class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                        <i *ngIf="!showNext" class="fa fa-arrow-circle-down" aria-hidden="true"></i>
-                    </span>
-                    <div  style="top:105%" class="p-absolute l-0 bg-success p-2 next-months" *ngIf="showNext">
-                        <ul class="list-menu">
-                            <li class="next w-100" style="padding: .3rem 0;" *ngFor="let next of nextMonths | slice:1" (click)="selectNewDate({m:next.m,Y:next.Y});showNext=!showNext"> {{ next.m }} {{ next.Y }}</li>
-                        </ul>
-                    </div>
-                </div>-->
             </div>
 
             <table class="schedule-table" width="100%">

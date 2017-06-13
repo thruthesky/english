@@ -1,6 +1,24 @@
 # English
 
 
+# Work Environment
+
+## JaeHo Song
+
+### To test locally
+
+````
+$ s
+````
+
+### To publish to site
+````
+$ p
+````
+
+
+
+
 # TODOs
 
 See github isuess or overv.io

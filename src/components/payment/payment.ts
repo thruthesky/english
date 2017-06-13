@@ -16,7 +16,7 @@ export class PaymentComponent implements AfterViewInit {
     "50": 216000 
   };
   customAmount = '';
-  minutes = "25";
+  minutes = "";
   days = "5";
   daysRate = {
     "5" : 100,
