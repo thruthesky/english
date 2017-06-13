@@ -1,11 +1,11 @@
 <section id="admin-panel-component">
 
-  <div class="config p-absolute b-0 w-16" [ngClass]="{'bg-white w-16': config}" >
-    <div class="pointer" [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
-            <span class="fa-stack fa-lg" (click)=" config = ! config ">
-            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
-            <i class="fa fa-stack-1x fa-inverse" [class.fa-gear]=" !config " [class.fa-times]=" config "></i>
-        </span>
+  <div class="config p-absolute b-0 w-16 z-index-high" [ngClass]="{'bg-white w-16': config}" >
+    <div [ngClass]="{'ml-2 mb-2': !config, 'p-2 blue': config, 'mb-3': username }">
+      <span class="fa-stack fa-lg pointer" (click)=" config = ! config ">
+        <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+        <i class="fa fa-stack-1x fa-inverse" [class.fa-gear]=" !config " [class.fa-times]=" config "></i>
+      </span>
       <span *ngIf=" config ">Admin Options</span>
     </div>
     <div class="p-2 bg-slategrey" [class.d-none]=" ! config ">
@@ -13,7 +13,7 @@
         <div class="row form-group">
           <label class="col-auto col-form-label" for="adminNoOfLines">채팅창 높이</label>
           <div class="col-auto">
-            <select class="form-control" id="adminNoOfLines" name="adminNoOfLines" [value]="getOptionChatNoOfLines" (change)="onChangeNoOfLines($event)">
+            <select class="form-control pointer" id="adminNoOfLines" name="adminNoOfLines" [value]="getOptionChatNoOfLines" (change)="onChangeNoOfLines($event)">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -31,7 +31,7 @@
         <div class="row form-group">
           <label class="col-auto col-form-label" for="adminNoOfLines">채팅창 높이</label>
           <div class="col-auto">
-            <select class="form-control" id="adminNoOfWidth" name="adminNoOfWidth" [value]="getOptionChatNoOfWidth" (change)="onChangeNoOfWidth($event)">
+            <select class="form-control pointer" id="adminNoOfWidth" name="adminNoOfWidth" [value]="getOptionChatNoOfWidth" (change)="onChangeNoOfWidth($event)">
               <option value="15">15</option>
               <option value="20">20</option>
               <option value="25">25</option>
@@ -44,10 +44,10 @@
           </div>
         </div>
         <div class="row form-group">
-          <div class="col-auto" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
+          <div class="col-auto mr-2 pointer" onclick="alert('채팅은 한 줄에 채팅 한나를 표시. 사용자는 한 사용자당 한 줄로 표시.');">채팅 구분 (?)</div>
           <div class="col-auto">
-            <input type='radio' name="per" [(ngModel)]="chatDisplay" value="line" (change)="setChatDisplay( 'line' )">채팅
-            <input type='radio' name="per" [(ngModel)]="chatDisplay" value="user" (change)="setChatDisplay( 'user' )">사용자
+            <label class="pointer" for="line"><input class="pointer" type='radio' name="per" [(ngModel)]="chatDisplay" value="line" id="line" (change)="setChatDisplay( 'line' )">채팅</label>
+            <label class="pointer" for="user"><input class="pointer" type='radio' name="per" [(ngModel)]="chatDisplay" value="user" id="user" (change)="setChatDisplay( 'user' )">사용자</label>
           </div>
         </div>
 
@@ -65,23 +65,23 @@
   <div class="chat p-3 bg-lightblue" [class.d-none]="minimized">
     <div class="display">
       <div class="messages h-15">
-        <ul *ngIf=" ! username " class="list-style-none">
+        <ul *ngIf=" ! username " class="list-style-none p-3">
           <ng-container *ngIf="chatDisplay == 'line'">
-            <li class="d-flex" *ngFor="let m of all_message | async">
-              <span class="p-1 m-1 rounded bg-white" (click)=" onClickUser(m) ">{{ getUserName( m ) }} : {{ m.message }}</span>
+            <li class="d-flex talkbubble bubble-left" *ngFor="let m of all_message | async">
+              <span class="p-1 m-1 rounded bg-white pointer" (click)=" onClickUser(m) ">{{ getUserName( m ) }} : {{ m.message }}</span>
             </li>
           </ng-container>
           <ng-container *ngIf="chatDisplay == 'user'">
-            <li class="d-flex" *ngFor="let lm of last_message | async">
-              <span (click)=" onClickUser( lm ) " class="p-2 mb-1 rounded bg-white">
+            <li class="d-flex talkbubble bubble-left" *ngFor="let lm of last_message | async">
+              <span (click)=" onClickUser( lm ) " class="p-2 mb-1 rounded bg-white pointer">
                 <span *ngIf="lm.name"  [class]="getUserIcon( lm.name )" >{{ getUserIcon( lm.name ) }}</span>
                 {{ getUserName( lm ) }} : {{ lm.message }} {{lm.count}}
               </span>
             </li>
           </ng-container>
         </ul>
-        <ul *ngIf=" username " class="list-style-none">
-          <li class="message d-flex" [ngClass]="{'justify-content-end': m.name == userLoginName }" *ngFor="let m of user_message | async">
+        <ul *ngIf=" username " class="list-style-none p-3">
+          <li class="message d-flex talkbubble {{ m.name == userLoginName ? 'justify-content-end bubble-right': 'bubble-left'}}" *ngFor="let m of user_message | async">
             <span class="p-2 mb-1 rounded" [ngClass]="{'bg-white': m.name != userLoginName, 'bg-yellow': m.name == userLoginName } " >{{ m.name == userLoginName ? '' : getUserName( m ) + ' : ' }}{{ m.message }}</span>
           </li>
         </ul>
@@ -92,7 +92,7 @@
           <form (ngSubmit)="onSubmitMessage()">
             <input name="message" [(ngModel)]="form.message" style="width: 80%;">
 
-            <span class="fa-stack fa-lg" (click)=" onClickChatClose() ">
+            <span class="fa-stack fa-lg pointer" (click)=" onClickChatClose() ">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-close fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>

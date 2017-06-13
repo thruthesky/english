@@ -190,10 +190,11 @@ export class AdminPanelComponent implements OnInit {
       let display = this.getChatDisplay;
       if( display ) this.chatDisplay = display;
     }
+    this.scrollMessage.next();
   }
 
   scrollMessageBox() {
-    let $messages = $('.messages');
+    let $messages = $('.display .messages');
     if ($messages && $messages[0].scrollHeight) {
       $messages.animate({scrollTop: $messages[0].scrollHeight}, 300);
     }
