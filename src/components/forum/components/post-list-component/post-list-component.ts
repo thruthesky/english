@@ -21,6 +21,9 @@ import {
     _POST_EDIT,
     _POST_EDIT_RESPONSE
 } from 'angular-backend';
+
+import { ConfirmContent } from '../../../../providers/bootstrap/confirm/confirm-content';
+
 @Component({
     selector: 'post-list-component',
     templateUrl: 'post-list-component.html'
@@ -32,7 +35,7 @@ export class PostListComponent  {
     pageOption = {
         limitPerPage: 10,
         currentPage: 1,
-        limitPerNavigation: 4, 
+        limitPerNavigation: 4,
         totalRecord: 0
     };
     searchPostForm: _POST = <_POST> {};
@@ -41,15 +44,15 @@ export class PostListComponent  {
         extra: {file: true}
     };
     searchPostChangeDebounce = new Subject();
-    userData: _USER_RESPONSE = null;
+    userIdx: number = null;
     constructor(
         public share: ShareService,
         private postData: PostData,
         private modal: NgbModal,
-        public  user : User,
+        public  user: User,
         private app: App
     ) {
-        if ( this.user.logged ) this.loadUserData();
+        if ( this.user.logged ) this.userIdx = this.user.info.idx;
         this.searchQuery['order'] = 'idx DESC';
         if ( this.post_config_id !== void 0 ) this.post_config_id = 'qna';
         this.loadPostData();
@@ -58,15 +61,7 @@ export class PostListComponent  {
         .debounceTime(300)
         .subscribe(() => this.onChangedPostSearch());
     }
-    loadUserData() {
-        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
-            this.userData = res.data.user;
-        }, error => {
-            //
-            // this.user.alert( error );
-            this.app.error( error );
-        } );
-    }
+
     onClickEdit( _post ) {
         if( _post.deleted == '1' ) return;
         if( this.user.logged ) this.showEditPostForm( _post );
@@ -74,7 +69,7 @@ export class PostListComponent  {
             let password = prompt("Input Password");
             let req: _POST_EDIT = { idx: _post.idx, password: password };
             this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
-            
+
                 this.showEditPostForm( _post );
             }, e => this.postData.alert( e ) );
         }
@@ -86,14 +81,25 @@ export class PostListComponent  {
         }).catch( e => {});
     }
     onClickDelete( _post ) {
-        if( _post.deleted == '1' ) return;
-        this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
-        _post.deleted = '1';
-        }, err => this.postData.alert( err ) );
+        let activeModal = this.modal.open( ConfirmContent, { windowClass: 'enhance-modal' } );
+        activeModal.componentInstance.title = 'Deleting Post';
+        activeModal.componentInstance.content = 'Are you sure you want to delete? ' + _post.title;
+        activeModal.componentInstance.confirm = 'Submit';
+        activeModal.componentInstance.cancel = 'Cancel';
+
+        activeModal.result.then( () => {
+          this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
+            _post.title = 'Deleted';
+            _post.content = 'Deleted';
+            _post.deleted = 1;
+          }, err => this.postData.alert( err ) );
+        }, () => {});
     }
     loadPostData() {
         this.posts = [];
         this.searchQuery.page = this.pageOption.currentPage;
+        this.searchQuery.where = "deleted is null and cast(? as integer)";
+        this.searchQuery.bind  = '1';
         this.searchQuery.extra['post_config_id'] = this.post_config_id ? this.post_config_id : null;
         this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
         this.posts = res.data.posts;
