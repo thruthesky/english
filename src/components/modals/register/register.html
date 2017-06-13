@@ -110,14 +110,12 @@
                     class="btn btn-secondary btn-block rounded-0 py-3 white"
                     style="background-color: #8fa3ad;"
                     (click)="onClickRegister()" [disabled]="!form.valid">
-                    <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
                     회원 가입
                     </button>
                 <button *ngIf=" user?.logged " type="button"
                 class="btn btn-secondary btn-block rounded-0 py-3 white"
                     style="background-color: #8fa3ad;"
                 (click)="onClickUpdate()" [disabled]="!form.valid">
-                <i *ngIf="loading" class='fa fa-spinner fa-spin'></i>
                 회원 정보 수정</button>
                 <button *ngIf=" user?.logged " type="button"
                 class="btn btn-block rounded-0 py-3 slategrey"

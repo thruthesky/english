@@ -29,7 +29,6 @@ import {
 export class RegisterComponent {
     login: boolean = false;
     result: _RESPONSE = <_RESPONSE> {};
-    loading     : boolean = false;
     userData: _USER_RESPONSE = null;
     primary_photo_idx: number = null;
     form: FormGroup;
@@ -75,13 +74,10 @@ export class RegisterComponent {
         this.modal.open( ChangePasswordComponent, { windowClass: 'enhance-modal' } );
     }
     onChangeFileUpload( fileInput ) {
-        this.loading = true;
         let file = fileInput.files[0];
         this.file.uploadPrimaryPhoto( file ).subscribe(res => {
             this.primary_photo_idx = res.data.idx;
-            this.loading = false;
         }, err => {
-            this.loading = false;
             this.file.alert(err);
         });
     }
@@ -122,7 +118,6 @@ export class RegisterComponent {
         }
     }
     loadUserData() {
-        this.loading = true;
         this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
           if( res.code == 0 ) {
             this.getDataSuccess( res );
@@ -133,7 +128,6 @@ export class RegisterComponent {
         } );
     }
     register( callback? ) {
-        this.loading = true;
         let register = <_USER_CREATE> this.form.value;
         let msg = {
           id: register.id,
@@ -179,7 +173,6 @@ export class RegisterComponent {
             let birthday = this.getConcatBirthdate();
             if( birthday )this.form.patchValue( {birthday:birthday});
             this.primary_photo_idx = this.userData.primary_photo.idx;
-            this.loading = false;
         }catch(e){
         }
 
@@ -193,12 +186,10 @@ export class RegisterComponent {
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" +this.userData.birth_day;
     }
     successRegister( res: _USER_CREATE_RESPONSE) {
-        this.loading = false;
         this.activeModal.close();
     }
 
     error( error ) {
-        this.loading = false;
         if ( error.code == -40101 ) error.message = "아이디가 이미 존재합니다. 다른 아이디를 선택하십시오.";
         this.result = error;
         return this.user.errorResponse( error );
@@ -219,7 +210,6 @@ export class RegisterComponent {
     }
 
     updateProfile( callback? ){
-        this.loading = true;
         let edit = <_USER_EDIT> this.form.value;
         delete edit['password'];
         if( edit['birthday']) {
@@ -238,18 +228,14 @@ export class RegisterComponent {
         } );
     }
     onClickDeletePhoto() {
-        this.loading = true;
         this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
             this.primary_photo_idx = null;
-            this.loading = false;
         }, err => {
-            this.loading = false;
             this.file.alert(err)
         });
     }
     successUpdate( res: _USER_EDIT_RESPONSE) {
         if( res.data.admin == 1) this.user.deleteSessionInfo();
-        this.loading = false;
     }
     updateLMSprofile(){
         this.lms.update( this.form , res =>{
