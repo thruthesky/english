@@ -58,10 +58,6 @@ export class SmallHeaderComponent {
     }
 
     onClickVe() {
-        // console.log("chimini ah ah:",this.share.ve_url);
-        // window.open(this.share.ve_url,'_blank');
-
-
         this.lms.openVe();
     }
 
