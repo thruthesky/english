@@ -7,16 +7,16 @@
         <div class="title">
             라이브 챗 : 무엇이든 물어보세요.
 
-            <div class="closer">
-                <i class="fa fa-times cursor" (click)="onClickMaximize()" aria-hidden="true"></i>
+            <div class="closer" (click)="onClickMinimize()">
+                <i class="fa fa-times pointer"  aria-hidden="true"></i>
             </div>
         </div>
 
 
 
-            <div class="messages">
-                <ul class="list-style-none">
-                    <li class="message d-flex" [ngClass]="{'justify-content-end': m.user == uid } " *ngFor="let m of user_message | async">
+            <div class="messages h-20">
+                <ul class="list-style-none p-3">
+                    <li class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" *ngFor="let m of user_message | async">
                         <span class="text" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                     </li>
                 </ul>
@@ -46,7 +46,7 @@
 
 
     <div class="min" *ngIf="min">
-        <div class="p-3 bg-lightgrey cursor" (click)="onClickMaximize()">
+        <div class="p-3 bg-lightgrey pointer" (click)="onClickMaximize()">
             <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                     <i class="fa fa-arrow-left fa-stack-1x fa-inverse" aria-hidden="true"></i>

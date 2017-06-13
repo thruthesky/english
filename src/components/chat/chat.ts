@@ -40,7 +40,7 @@ export class ChatComponent implements OnInit {
 
 
     this.scrollMessage
-      .debounceTime(500)
+      .debounceTime(100)
       .subscribe(res => {
         this.scrollMessageBox();
       });
@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.user_message.subscribe(res => {
-      
+
       if (this.firstList) {
         this.firstList = false;
       }
@@ -115,17 +115,19 @@ export class ChatComponent implements OnInit {
   onClickMaximize() {
     this.min = false;
     this.max = true;
+    this.scrollMessage.next();
   }
 
   scrollMessageBox() {
 
     if ( this.min ) return;
 
-    let $messages = $('.chat.max .messages ul');
+    let $messages = $('.chat.max .messages');
     if ($messages && $messages[0].scrollHeight) {
       $messages.animate({ scrollTop: $messages[0].scrollHeight }, 300);
     }
   }
+
 
 
 }

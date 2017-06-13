@@ -26,18 +26,21 @@
     word-break: break-all;
 }
 
-.messages ul {
+.messages {
+  overflow: hidden;
+  overflow-y: scroll;
+  ul {
     max-height: 480px;
-    overflow-y: scroll;
+    //overflow-y: scroll;
     .message {
-        margin-bottom: .25em;
-        .text {
-            padding: .5em;
-            border-radius: 2px;
-        }
+      margin-bottom: .25em;
+      .text {
+        padding: .5em;
+        border-radius: 2px;
+      }
     }
+  }
 }
-
 
 
 .chat.max .input {
