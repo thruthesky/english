@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LMS, LMS_URL } from '../../providers/lms';
 import { User } from 'angular-backend';
-import { PrevMonths, NextMonths, BOOKS, WEEKS, ClassInformation, NewDate, ListOfYears } from './reservation-interface';
+import { _PrevMonths, _NextMonths, _BOOKS, _WEEKS, _ClassInformation, _NewDate, _ListOfYears } from './reservation-interface';
 import { App, DAYS_EN } from '../../providers/app';
 import { ShareService } from '../../providers/share-service';
 @Component({
@@ -10,19 +10,19 @@ import { ShareService } from '../../providers/share-service';
     styleUrls: ['./reservation.scss']
 })
 export class ReservationComponent implements OnInit {
-    data: BOOKS = [];
+    data: _BOOKS = [];
     maxDay:number = 42;
     calendarLoad:boolean = true;
-    books: BOOKS = [];
-    chemy: BOOKS = [];
-    weeks: WEEKS = [];
+    books: _BOOKS = [];
+    chemy: _BOOKS = [];
+    weeks: _WEEKS = [];
     date:Date = new Date();
     year:number = this.date.getFullYear();
     month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
-    prevMonths:Array<PrevMonths> = [];
-    nextMonths:Array<NextMonths> = [];
-    listOfYears:Array<ListOfYears> = [];
-    classinformation:ClassInformation = null;
+    prevMonths: Array<_PrevMonths> = [];
+    nextMonths: Array<_NextMonths> = [];
+    listOfYears: Array<_ListOfYears> = [];
+    classinformation: _ClassInformation = null;
     showPrevious: boolean = false;
     showNext: boolean = false;
     showYear: boolean = false;
@@ -58,7 +58,7 @@ export class ReservationComponent implements OnInit {
         this.getNextMonths();
         this.getListOfYears();
     }
-    selectNewDate( data: NewDate ) {
+    selectNewDate( data: _NewDate ) {
         this.year = parseInt(data.Y);
         this.month =new Date(Date.parse(`${data.m} +1, ${data.Y}`)).getMonth()+1;
         this.getNewCalendar();
@@ -135,8 +135,8 @@ export class ReservationComponent implements OnInit {
     }
 
 
-    chunk( arr:BOOKS ) : WEEKS {
-        let temp:WEEKS = [];
+    chunk( arr: _BOOKS ) : _WEEKS {
+        let temp: _WEEKS = [];
         for( let i = 0; i < arr.length; i = i + 7 ) {
             temp.push( this.pres( arr.slice( i, i + 7 ) ) );
         }

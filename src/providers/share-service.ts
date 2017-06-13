@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClassInformation } from '../components/reservation/reservation-interface'
+import { _ClassInformation } from '../components/reservation/reservation-interface'
 import {
     PostData,
     _LIST,
@@ -12,7 +12,7 @@ export class ShareService {
     VE_ENDPOINT_URL = "http://onlineenglish.kr/~witheng/etc/ve_open.php";
     post_config_id: string = '';
     posts: _POSTS = [];
-    class_info: ClassInformation = null;
+    class_info: _ClassInformation = null;
     idx_student: string = null;
     date:Date = new Date();
     year:number = this.date.getFullYear();
