@@ -177,7 +177,7 @@ export class ReservationComponent implements OnInit {
     formatNextClass( info ) {
         if ( info.next_class !== void 0 ) {
             let re = info.next_class;
-
+            // console.log(re);
             let parts = re.split(' ', 2);
             let day = parts[1];
             let new_day = (<string> day).replace(' ', '');
