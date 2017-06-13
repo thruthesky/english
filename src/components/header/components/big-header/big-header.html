@@ -112,9 +112,6 @@
                         <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
                             <div class="text">로그인</div>
                         </li>
-                        <!--<li class="item" *ngIf=" user.logged " (click)="onClickLogout()">
-                            <div class="text">로그아웃</div>
-                        </li>-->
                     </ul>
                     <span class="d-none" id="naver_id_login"></span>
                     <div *ngIf=" ! user.logged "><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
