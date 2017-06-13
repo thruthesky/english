@@ -3,16 +3,20 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[validate-onblur]',
   host: {
-      '(ngModelChange)': 'onFocus($event)',
+      '(ngModelChange)': 'onFirstChangeCheck($event)',
       '(focus)': 'onFocus($event)',
       '(blur)' : 'onBlur($event)'
   }
 })
 export class ValidateOnBlurDirective {
   private hasFocus = false;
+  private onFirstChange = true;
     constructor( public formControl: NgControl ) {
     }
-
+    onFirstChangeCheck( $event ) {
+        if( !this.onFirstChange ) return;
+        this.onFocus( $event );
+    }
     onFocus($event) {
         this.hasFocus = true;
         this.formControl.control.markAsPristine();
