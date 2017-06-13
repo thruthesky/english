@@ -8,27 +8,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class FindIdModal implements OnInit{
-    loading:boolean = false;
     id:string = '';
     email:string;
-
     constructor(
         private activeModal : NgbActiveModal
     ){}
   ngOnInit(){
-      
+
   }
   onClickDismiss(){
     this.activeModal.close();
   }
-
-
   onClickFindID(){
 
   }
-
-
-
-
-
 }

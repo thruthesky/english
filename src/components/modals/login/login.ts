@@ -21,7 +21,6 @@ import {
 })
 
 export class LoginModal implements OnInit {
-    loading: boolean = false;
     result: _RESPONSE = <_RESPONSE>{};
     saveid: boolean = false;
     form: FormGroup;
@@ -92,7 +91,6 @@ export class LoginModal implements OnInit {
     onClickLogin() {
         if (this.validate() == false) return;
         let loginData = this.form.value;
-        this.loading = true;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
             let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
@@ -107,11 +105,9 @@ export class LoginModal implements OnInit {
         this.app.myEvent.emit({
             eventType: "login-success"
         });
-        this.loading = false;
         this.activeModal.close('success');
     }
     error(error) {
-        this.loading = false;
         this.result = error;
         return this.user.errorResponse(error);
     }
