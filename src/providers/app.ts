@@ -372,8 +372,8 @@ export class App {
                 Kakao.API.request({
                     url: '/v1/user/me',
                     success: (res) => {
-
-                        let nickname = res.properties['nickname'];
+                        let nickname = null;
+                        if ( res['properties'] && res['properties']['nickname'] ) nickname = res['properties']['nickname'];
                         let id = res.id;
                         this.socialLogin = {
                             provider: 'kakaotalk.com',
