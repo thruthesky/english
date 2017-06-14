@@ -340,7 +340,6 @@ export class App {
         if (naver_access_token) naver_id_login.get_naver_userprofile(() => {
             let nickname = naver_id_login.getProfileData('nickname');
             let id = naver_id_login.getProfileData('id');
-            console.log("Yoboseyo:",naver_id_login.getProfileData('profile_image'));
             this.socialLogin = {
                 provider: 'naver.com',
                 name: nickname,
