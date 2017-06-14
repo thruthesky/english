@@ -10,7 +10,6 @@
                     <ng-container *ngIf=" ! user.logged ">
                         <span><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
                         <span (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
-                        <!--<span (click)="onClickLogin()"><img src="assets/img/kkang/naver-id.png"></span>                    -->
                     </ng-container>
 
                     <div class="username pt-1 fs-1rem" *ngIf=" user.logged ">
@@ -142,14 +141,6 @@
                         <span class="text">질문과 답변</span>
                         <small>Q&amp;A Forum</small>
                     </li>
-                    <!--<li class="menu" [class.active]=" app.scrollId =='contact' " (click)="onClickPanelMenu('contact')">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
-                            <i class="fa fa-address-book fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                        </span>
-                        <span class="text">연락처</span>
-                        <small>Contacts</small>
-                    </li>-->
                 </ul>
             </div>
         </div>

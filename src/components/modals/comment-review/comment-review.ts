@@ -22,7 +22,6 @@ export class CommentReviewComponent {
   formGroup: FormGroup;
   files: Array<_FILE> = [];
 
-  loading     : boolean = false;
   primary_photo_idx: number = null;
   photoError: string = null;
 
@@ -86,25 +85,19 @@ export class CommentReviewComponent {
   }
 
   onClickDeletePhoto() {
-    this.loading = true;
     this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
       this.primary_photo_idx = null;
-      this.loading = false;
     }, err => {
-      this.loading = false;
       this.file.alert(err)
     });
   }
 
   onChangeFileUpload( fileInput ) {
-    this.loading = true;
     this.photoError = null;
     let file = fileInput.files[0];
     this.file.uploadPostFile( file ).subscribe(res => {
       this.primary_photo_idx = res.data.idx;
-      this.loading = false;
     }, err => {
-      this.loading = false;
       this.file.alert(err);
     });
   }

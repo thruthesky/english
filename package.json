@@ -32,7 +32,7 @@
     "@angular/router": "^4.2.0-rc.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.26",
     "@types/jquery": "^2.0.46",
-    "angular-backend": "^0.6.16",
+    "angular-backend": "^0.6.17",
     "angularfire2": "^4.0.0-rc.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",

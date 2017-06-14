@@ -1,40 +1,49 @@
 <div class="post-list-container">
-    <table class="table table-striped table-bordered table-hover">
-        <thead class="table-inverse" style="background-color: #8e8e8e;">
-            <th>제목</th>
-            <th>글쓴이</th>
-            <th>날짜</th>
-        </thead>
-      
-         <tbody class="users">
-            <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}"  (click)='onClickShow(post)'>
-            
-              <td>
-                  <span type="text" name="title" placeholder="Title">
-                    {{post.title}}
-                  </span>
-                  <span  *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons" aria-hidden="true"></i></span>
-                  <span  *ngIf="userData && userData.idx == post.user_idx" (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-trash icons"></i></span>
-                  <span  *ngIf="(userData && userData.idx == post.user_idx) ||(!user.logged && post.name == 'anonymous')" (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button"><i class="fa fa-pencil icons"></i></span>
-                </td>
-                <td>
-                  <span  type="text" name="author" placeholder="Author">
-                    {{post.name}}
-                    
-                  </span>
-                </td>
-                <td>
-                  <span  type="text" name="created"  placeholder="Date">
-                    {{ post.created }}
-                  </span>
-                </td>
-            </tr>
-            </tbody>
-    </table>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-inverse" style="background-color: #8e8e8e;">
+    <th>제목</th>
+    <th>글쓴이</th>
+    <th>날짜</th>
+    </thead>
+
+    <tbody class="users">
+    <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}"
+        (click)='onClickShow(post)'>
+
+      <td>
+        <span type="text" name="title" placeholder="Title">
+          {{post.title}}
+        </span>
+        <span *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons p-1" aria-hidden="true"></i></span>
+        <span *ngIf=" !post.deleted && ( userIdx == post.user_idx  ||  user.info.admin == 1 )"
+              (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button">
+          <i class="fa fa-trash icons p-1" ></i>
+        </span>
+        <span *ngIf="!post.deleted && ( userIdx == post.user_idx  ||  !userIdx && post.name == 'anonymous')"
+              (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button">
+          <i class="fa fa-pencil icons p-1"></i>
+        </span>
+      </td>
+      <td>
+        <span type="text" name="author" placeholder="Author">
+          {{post.name}}
+
+        </span>
+      </td>
+      <td>
+        <span type="text" name="created" placeholder="Date">
+          {{ post.created }}
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <page-navigator-basic [no_of_total_items]=" pageOption['totalRecord'] "
-        [no_of_items_in_one_page] = " pageOption['limitPerPage'] "
-        [no_of_pages_in_navigator] = " pageOption['limitPerNavigation'] "
-        [no_of_current_page] = " pageOption['currentPage'] "
-        [show_prev_next] = " true "
-        (pageClick)="onPostPageClick($event)"></page-navigator-basic>
+                      [no_of_items_in_one_page]=" pageOption['limitPerPage'] "
+                      [no_of_pages_in_navigator]=" pageOption['limitPerNavigation'] "
+                      [no_of_current_page]=" pageOption['currentPage'] "
+                      [show_prev_next]=" true "
+                      (pageClick)="onPostPageClick($event)">
+</page-navigator-basic>
+
