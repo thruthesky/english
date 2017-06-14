@@ -68,12 +68,12 @@
         <ul *ngIf=" ! username " class="list-style-none p-3">
           <ng-container *ngIf="chatDisplay == 'line'">
             <li class="d-flex talkbubble bubble-left" *ngFor="let m of all_message | async">
-              <span class="p-1 m-1 rounded bg-white pointer" (click)=" onClickUser(m) ">{{ getUserName( m ) }} : {{ m.message }}</span>
+              <span class="d-block p-2 mb-1 rounded bg-white pointer" (click)=" onClickUser(m) ">{{ getUserName( m ) }} : {{ m.message }}</span>
             </li>
           </ng-container>
           <ng-container *ngIf="chatDisplay == 'user'">
             <li class="d-flex talkbubble bubble-left" *ngFor="let lm of last_message | async">
-              <span (click)=" onClickUser( lm ) " class="p-2 mb-1 rounded bg-white pointer">
+              <span (click)=" onClickUser( lm ) " class="d-block p-2 mb-1 rounded bg-white pointer">
                 <span *ngIf="lm.name"  [class]="getUserIcon( lm.name )" >{{ getUserIcon( lm.name ) }}</span>
                 {{ getUserName( lm ) }} : {{ lm.message }} {{lm.count}}
               </span>
@@ -82,7 +82,7 @@
         </ul>
         <ul *ngIf=" username " class="list-style-none p-3">
           <li class="message d-flex talkbubble {{ m.name == userLoginName ? 'justify-content-end bubble-right': 'bubble-left'}}" *ngFor="let m of user_message | async">
-            <span class="p-2 mb-1 rounded" [ngClass]="{'bg-white': m.name != userLoginName, 'bg-yellow': m.name == userLoginName } " >{{ m.name == userLoginName ? '' : getUserName( m ) + ' : ' }}{{ m.message }}</span>
+            <span class="d-block p-2 mb-1 rounded" [ngClass]="{'bg-white': m.name != userLoginName, 'bg-yellow': m.name == userLoginName } " >{{ m.name == userLoginName ? '' : getUserName( m ) + ' : ' }}{{ m.message }}</span>
           </li>
         </ul>
       </div>

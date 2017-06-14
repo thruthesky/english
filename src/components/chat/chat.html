@@ -17,7 +17,7 @@
             <div class="messages h-20">
                 <ul class="list-style-none p-3">
                     <li class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" *ngFor="let m of user_message | async">
-                        <span class="text" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
+                        <span class="text d-block" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                     </li>
                 </ul>
             </div>
