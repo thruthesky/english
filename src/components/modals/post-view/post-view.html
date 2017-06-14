@@ -24,26 +24,26 @@
                         <span class="info-title">
                             제목
                         </span>
-                        <input [(ngModel)]="post.title" name="title" type="text" class="form-control" placeholder="Title">
+                        <input disabled [(ngModel)]="post.title" name="title" type="text" class="form-control" placeholder="Title">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
                             작성자
                         </span>
-                        <input [(ngModel)]="post.name" name="teachers-name" type="text" class="form-control"  placeholder="Author's Name">
+                        <input disabled [(ngModel)]="post.name" name="teachers-name" type="text" class="form-control"  placeholder="Author's Name">
                     </div>
                     <div class="info-block">
                         <span class="info-title">
                             날짜
                         </span>
-                        <input [(ngModel)]="post.created" name="date" type="text" class="form-control" placeholder="Date">
+                        <input disabled [(ngModel)]="post.created" name="date" type="text" class="form-control" placeholder="Date">
                     </div>
                     
                     <div>
                         <span class="info-title">
                             제목
                         </span>
-                        <textarea rows="10" name="content" type="text" class="form-control">{{ post.content }}</textarea>
+                        <textarea disabled rows="10" name="content" type="text" class="form-control">{{ post.content }}</textarea>
                     </div>
                 </form>
             </div>
