@@ -17,7 +17,17 @@
                             사진
                         </span>
                         <div class="w-25 float-left" *ngFor=" let file of post.files ">
-                        <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
+                        <img  [ngbPopover]="popContent" #p="ngbPopover" style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
+                        <ng-template #popContent  >
+                            <div (click)="p.close()">
+                            <div class="popover-content">
+                                <div class="popover-text">
+                                    <img  style="width: 100%" src="{{ file.url }}">
+                                </div>
+                            </div>
+                            </div>
+                            
+                        </ng-template>
                         </div>
                     </div>
                     <div *ngIf="post.title">
