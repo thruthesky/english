@@ -21,7 +21,7 @@ html,body {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
-  text-shadow: none; 
+  text-shadow: none;
   font-weight: normal;
 }
 
@@ -31,6 +31,14 @@ a, a:focus, a:hover, a:active, button, button:hover {
 
 app-component {
     display: block;
+}
+
+
+input::-ms-clear {
+  display: none;
+}
+input::-ms-reveal {
+  display: none;
 }
 
 

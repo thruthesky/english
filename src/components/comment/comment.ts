@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { App } from './../../providers/app';
 import { CommentReviewComponent } from "../modals/comment-review/comment-review";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import {_LIST, _POST_COMMON_WRITE_FIELDS, _POST_LIST_RESPONSE, _POSTS, PostData} from "angular-backend";
+import {
+  _DELETE_RESPONSE,
+  _LIST, _POST_COMMON_WRITE_FIELDS, _POST_EDIT, _POST_EDIT_RESPONSE, _POST_LIST_RESPONSE, _POSTS,
+  PostData
+} from "angular-backend";
+import {ConfirmContent} from "../../providers/bootstrap/confirm/confirm-content";
 @Component({
   selector: 'comment-component',
   templateUrl: 'comment.html',
@@ -14,7 +19,7 @@ export class CommentComponent {
 
 
 
-  
+
 
   posts: _POSTS = [];
   searchQuery = <_LIST>{
@@ -28,6 +33,7 @@ export class CommentComponent {
   no_of_items_in_one_page: number = 10;
   no_of_pages_in_navigator: number = 5;
 
+  userIdx: number = null;
 
   constructor(
     public app: App,
@@ -35,16 +41,18 @@ export class CommentComponent {
     private postData: PostData,
   ) {
 
+    if ( this.app.user.logged ) this.userIdx = this.app.user.info.idx;
     this.loadPostData();
   }
 
-  onClickWriteReview(){
+  onClickWriteReview() {
 
 
     if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
 
     let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal' } );
     modalRef.result.then( res => {
+      this.loadPostData();
     }).catch( e => {} );
 
 
@@ -62,6 +70,8 @@ export class CommentComponent {
 
     this.posts = [];
     this.searchQuery.page = page;
+    this.searchQuery.where = "deleted is null and cast(? as integer)";
+    this.searchQuery.bind  = '1';
     this.searchQuery.limit = this.no_of_items_in_one_page;
     this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
 
@@ -79,5 +89,35 @@ export class CommentComponent {
     }, err => {
       this.app.error( err );
     });
+  }
+
+
+
+  onClickDelete( _post ) {
+    let activeModal = this.modal.open( ConfirmContent, { windowClass: 'enhance-modal' } );
+    activeModal.componentInstance.title = 'Deleting Post';
+    activeModal.componentInstance.content = 'Are you sure you want to delete this comment?';
+    activeModal.componentInstance.confirm = 'Submit';
+    activeModal.componentInstance.cancel = 'Cancel';
+
+    activeModal.result.then( () => {
+      this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
+        _post.title = 'Deleted';
+        _post.content = 'Deleted';
+        _post.deleted = 1;
+      }, err => this.postData.alert( err ) );
+    }, () => {});
+  }
+
+  onClickEdit( _post ) {
+    if( this.userIdx ) this.showEditPostForm( _post );
+  }
+
+  showEditPostForm( _post ) {
+    let modalRef = this.modal.open( CommentReviewComponent, { windowClass: 'enhance-modal'} );
+    modalRef.componentInstance['post'] = _post;
+    modalRef.result.then( () => {
+      this.loadPostData();
+    }).catch( e => {});
   }
 }

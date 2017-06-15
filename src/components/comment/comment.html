@@ -26,7 +26,19 @@
                     <img [src]=" post.files[0].url " class="d-block p-relative m-0 p-0 w-100 h-auto" style="min-width:4rem; min-height:4rem">
                   </td>
                   <td class="pl-2 fs-120 bold">
-                    {{ post.name }}
+                    <span>
+                      {{post.name}}
+                    </span>
+                      <span *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons p-1" aria-hidden="true"></i></span>
+                      <span *ngIf=" !post.deleted && ( userIdx == post.user_idx  ||  app.user.info.admin == 1 )"
+                            (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button">
+                      <i class="fa fa-trash icons p-1" ></i>
+                    </span>
+                      <span *ngIf="!post.deleted && ( userIdx == post.user_idx  ||  !userIdx && post.name == 'anonymous')"
+                            (click)="onClickEdit( post );$event.stopPropagation();" class="text-center" role="button">
+                      <i class="fa fa-pencil icons p-1"></i>
+                    </span>
+
                   </td>
                 </tr>
               </table>
@@ -46,7 +58,7 @@
         >
         </page-navigator-basic>
       </div>
-        
+
 
 
         <level-test-button></level-test-button>
