@@ -55,7 +55,7 @@ export class ForumPostComponent implements OnInit {
         } );
     }
     ngOnInit() {
-        this.createForm();
+      this.createForm();
         this.formGroup.valueChanges
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
