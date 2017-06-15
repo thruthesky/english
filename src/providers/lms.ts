@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
+import { User } from 'angular-backend';
 
 import * as config from './../app/config';
 
@@ -24,7 +24,6 @@ export interface TEACHER {
 export type TEACHERS = Array< TEACHER >;
 @Injectable()
 export class LMS {
-    userData: _USER_RESPONSE = null;
     constructor( private http: Http,
                  public user: User ) {
 
@@ -96,13 +95,6 @@ export class LMS {
             else failure( ' error on lms update user ' );
         })
     }
-    loadUserData() {
-        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
-            this.userData = res.data.user;
-        }, error => {
-            this.error( error );
-        } );
-    }
     error( error ) {
         return this.user.errorResponse( error );
     }
@@ -110,45 +102,43 @@ export class LMS {
 
     getReservationsByMonthYear( data, success, error ) {
         //update website
-            if ( this.user.logged ) {
-                    let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
-                    let domain = this.getDomain();
-                    data['classid'] = config.classid;
-                    let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-                    this.http.get( url ).subscribe( re =>{
-                        let json = null;
-                        try {
-                            json = JSON.parse( re['_body'] );
-                        }
-                        catch ( e ) {
-                            alert("Parse ERROR on lms::getReservationsByMonthYear()");
-                        }
-                        
-                        if ( json['code'] !== void 0 && json['code'] ) {
-                            alert( json['message'] );
-                        }
-                        else {
-                            success( json['data'] );
-                        }
+        if ( this.user.logged ) {
+            let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
+            let domain = this.getDomain();
+            data['classid'] = config.classid;
+            let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+            this.http.get( url ).subscribe( re =>{
+                let json = null;
+                try {
+                    json = JSON.parse( re['_body'] );
+                }
+                catch ( e ) {
+                    alert("Parse ERROR on lms::getReservationsByMonthYear()");
+                }
+                
+                if ( json['code'] !== void 0 && json['code'] ) {
+                    alert( json['message'] );
+                }
+                else {
+                    success( json['data'] );
+                }
 
-                    }, err => {
-                        error(err);
-                    });
-            }
-            else {
-                error();
-            }
+            }, err => {
+                error(err);
+            });
+        }
+        else {
+            error();
+        }
     }
 
-
-
     getNextClass( success, failure ) {
-            let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
-            this.http.get( url ).subscribe( re =>{
-                let json = JSON.parse( re['_body'] );
-                if( json['data'] ) success( json['data'] );
-                else failure( ' error on getting next class ' );
-            });
+        let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
+        this.http.get( url ).subscribe( re =>{
+            let json = JSON.parse( re['_body'] );
+            if( json['data'] ) success( json['data'] );
+            else failure( ' error on getting next class ' );
+        });
     }
 
     openVe() {
