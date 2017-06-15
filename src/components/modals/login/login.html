@@ -44,11 +44,8 @@
         <div *ngIf="formErrors.password" class="alert alert-danger">
           <span class="errors"> {{ formErrors.password }} </span>
         </div>
-
         <div class="error alert alert-danger" role="alert" *ngIf="result.message">
-          <button type="button" class="close" (click)="result.message=null">
-                    <span aria-hidden="true">&times;</span>
-                </button> {{ result?.message }}
+          {{ result?.message }}
         </div>
         <div class="button-signin">
           <button type="button" class="btn btn-secondary btn-block border-0 rounded-0 py-3 bg-slategrey white" (click)="onClickLogin()">로그인</button>
