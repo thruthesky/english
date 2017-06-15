@@ -20,30 +20,29 @@
                         <img style="width: 100%" src="{{ file.url + '&crop=100x100x70' }}">
                         </div>
                     </div>
-                    <div>
+                    <div *ngIf="post.title">
                         <span class="info-title">
                             제목
                         </span>
-                        <input disabled [(ngModel)]="post.title" name="title" type="text" class="form-control" placeholder="Title">
+                        <div class="info-content"> {{ post.title }} </div>
                     </div>
-                    <div class="info-block">
+                    <div *ngIf="post.name" class="info-block">
                         <span class="info-title">
                             작성자
                         </span>
-                        <input disabled [(ngModel)]="post.name" name="teachers-name" type="text" class="form-control"  placeholder="Author's Name">
+                        <div class="info-content"> {{ post.name }} </div>
                     </div>
-                    <div class="info-block">
+                    <div *ngIf="post.created" class="info-block">
                         <span class="info-title">
                             날짜
                         </span>
-                        <input disabled [(ngModel)]="post.created" name="date" type="text" class="form-control" placeholder="Date">
+                        <div class="info-content"> {{ post.created }} </div>
                     </div>
-                    
-                    <div>
+                    <div *ngIf="post.content">
                         <span class="info-title">
                             제목
                         </span>
-                        <textarea disabled rows="10" name="content" type="text" class="form-control">{{ post.content }}</textarea>
+                        <div class="info-content"> {{ post.content }} </div>
                     </div>
                 </form>
             </div>

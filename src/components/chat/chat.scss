@@ -4,11 +4,7 @@
     bottom: 1em;
     right: 0;
 }
-
-
 // layout
-
-
 .chat.max {
     padding: 1em;
     width: 340px; @media (min-width: $sm ) { width: $sm - 160px; }
@@ -18,14 +14,11 @@
         }
     }
 }
-
-
 // component
 .chat.max {
     background-color: lightblue;
     word-break: break-all;
 }
-
 .messages {
   overflow: hidden;
   overflow-y: scroll;
@@ -41,12 +34,9 @@
     }
   }
 }
-
-
 .chat.max .input {
     div {
         margin: 0 .6em 0 .5em;
-
         input {
             box-sizing: border-box;
     width: 100%;

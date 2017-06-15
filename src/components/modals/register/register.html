@@ -97,9 +97,6 @@
             </div>
 
             <div class="error alert alert-danger" role="alert" *ngIf="result.message">
-                <button type="button" class="close" (click)="result.message=null">
-                    <span aria-hidden="true">&times;</span>
-                </button>
                 {{ result?.message }}
             </div>
 

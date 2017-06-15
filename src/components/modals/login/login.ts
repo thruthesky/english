@@ -107,11 +107,8 @@ export class LoginModal implements OnInit {
         this.activeModal.close('success');
     }
     error(error) {
-        // this.loading = false;
-
         if ( error['message'] == 'user-not-exist' ) error['message'] = "아이디를 잘못입력하셨습니다.";
         else if ( error['message'] == 'wrong-password' ) error['message'] = '비밀번호를 잘못입력하셨습니다.';
-
         this.result = error;
         return this.user.errorResponse(error);
     }
@@ -168,8 +165,4 @@ export class LoginModal implements OnInit {
       this.app.onClickLoginWithKakao();
       this.activeModal.close('close::kakao');
     }
-
-
-
-
 }
