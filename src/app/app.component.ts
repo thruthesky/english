@@ -4,15 +4,11 @@ import { App } from '../providers/app';
 import { Backend } from 'angular-backend';
 import { Observable } from 'rxjs/Observable';
 
-
-
-
 @Component({
   selector: 'app-root',
   template: `
     <router-outlet (window:resize)="onResize($event)"></router-outlet>
-    <ng-template ngbModalContainer></ng-template>
-  `,
+    <ng-template ngbModalContainer></ng-template>`,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
@@ -31,24 +27,15 @@ export class AppComponent {
       .subscribe((event) => {
         app.scrolled(event);
       });
-
       app.checkLoginWithNaver();
-
   }
-
-
 
   ngOnInit() {
-
     setTimeout(() => this.app.scrolled(event), 10);
-
   }
-
   onDevinceReady() {
   }
-
   onResize(event) {
     this.app.setWidth(window.innerWidth);
   }
-
 }

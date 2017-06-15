@@ -1,19 +1,11 @@
 <section id="chat-component">
-
-
     <div class="chat max" *ngIf="max">
-
-
         <div class="title">
             라이브 챗 : 무엇이든 물어보세요.
-
             <div class="closer" (click)="onClickMinimize()">
                 <i class="fa fa-times pointer"  aria-hidden="true"></i>
             </div>
         </div>
-
-
-
             <div class="messages h-20">
                 <ul class="list-style-none p-3">
                     <li class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" *ngFor="let m of user_message | async">
@@ -21,9 +13,6 @@
                     </li>
                 </ul>
             </div>
-
-
-
             <div class="input">
                 <form (ngSubmit)="onSubmitMessage()">
                     <table width="100%" cellpadding="0" cellpadding="0">
@@ -40,11 +29,7 @@
                     </table>
                 </form>
             </div>
-
-
         </div>
-
-
     <div class="min" *ngIf="min">
         <div class="p-3 bg-lightgrey pointer" (click)="onClickMaximize()">
             <span class="fa-stack fa-lg">
@@ -53,5 +38,4 @@
                 </span> 라이브 챗 : 무엇이든 물어보세요.
         </div>
     </div>
-
 </section>

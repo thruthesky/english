@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RouterModule, Routes } from '@angular/router';
-
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -19,7 +17,6 @@ import { BootstrapModule } from '../providers/bootstrap/bootstrap';
 
 import { App } from '../providers/app';
 import { ShareService } from '../providers/share-service';
-
 
 import { AppComponent } from './app.component';
 
@@ -73,7 +70,6 @@ const appRoutes:Routes = [
   { path: '', component: HomePage },
   { path: '**', component: HomePage }
 ];
-
 @NgModule({
   declarations: [
     AppComponent,
