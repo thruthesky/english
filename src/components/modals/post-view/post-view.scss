@@ -1,10 +1,17 @@
 
 :host {
     /deep/.popover {
+        width: 100%;
+        max-width: none;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        right: 0;
+        background-color: white;
         top: 50% !important;
         margin-top: -200px !important;
-        left: 50% !important;
-        margin-left: -135px;
+        left: 0 !important;
+        background-color: rgba(100, 100, 100, 0.3);
     }
     /deep/.popover::before {
         display: none;
