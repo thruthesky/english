@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { App } from './../../../../providers/app';
 import { ShareService } from '../../../../providers/share-service';
@@ -13,16 +12,12 @@ import {
     _POST_LIST_RESPONSE,
     _POST,
     _POSTS,
-    _FILE,
     _DELETE_RESPONSE,
     _POST_COMMON_WRITE_FIELDS,
-    _USER_RESPONSE,
-    _USER_DATA_RESPONSE,
     _POST_EDIT,
     _POST_EDIT_RESPONSE
 } from 'angular-backend';
 
-import { ConfirmContent } from '../../../../providers/bootstrap/confirm/confirm-content';
 
 @Component({
     selector: 'post-list-component',
@@ -81,19 +76,20 @@ export class PostListComponent  {
         }).catch( e => {});
     }
     onClickDelete( _post ) {
-        let activeModal = this.modal.open( ConfirmContent, { windowClass: 'enhance-modal' } );
-        activeModal.componentInstance.title = 'Deleting Post';
-        activeModal.componentInstance.content = 'Are you sure you want to delete? ' + _post.title;
-        activeModal.componentInstance.confirm = 'Submit';
-        activeModal.componentInstance.cancel = 'Cancel';
-
-        activeModal.result.then( () => {
+      let option = {
+        class: 'enhance-modal',
+        title: 'Deleting Post',
+        content: 'Are you sure you want to delete this post?',
+        confirm: 'Submit',
+        cancel: 'Cancel'
+      };
+      this.app.confirmModal( option , () => {
           this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
             _post.title = 'Deleted';
             _post.content = 'Deleted';
             _post.deleted = 1;
           }, err => this.postData.alert( err ) );
-        }, () => {});
+      });
     }
     loadPostData() {
         this.posts = [];

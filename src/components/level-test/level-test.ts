@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
 import {App} from './../../providers/app';
 import {FirebaseChat} from './../../providers/firebase';
-import {User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE, _POST} from "angular-backend";
+import {User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE } from "angular-backend";
 import {ShareService} from "../../providers/share-service";
 
 @Component({
@@ -26,11 +26,15 @@ export class LevelTestComponent {
 
   validationMessages = {
     name: {
-      'required': 'Name is required.',
+      'required':      '이름을 입력하십시오.',
+      'minlength':     '이름은 3 글자 이상이어야 합니다.',
+      'maxlength':     '이름은 32 글자 이하이어야 합니다.'
     },
     phone: {
-      'required': 'Phone is required.',
-      'pattern': 'Numbers and Dashes only'
+      'required':     '전화번호를 입력하십시오.',
+      'minlength':    '전화번호는 숫자 8 자리 이상이어야 합니다.',
+      'maxlength':    '전화번호는 숫자 15 자리 이하이어야 합니다.',
+      'malformed':    '잘못된 전화번호 형식입니다.'
     },
     date: {
       'required': 'Date is required.',
@@ -55,8 +59,8 @@ export class LevelTestComponent {
 
 
     this.form = fb.group({
-      name:   ['', [Validators.required]],
-      phone:  ['', [Validators.required, Validators.pattern("^[0-9-]+$")]],
+      name:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      phone:  ['', [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
     });
@@ -91,13 +95,21 @@ export class LevelTestComponent {
     return this.days.find( v => v['date'] == date ).day;
   }
 
-  onClickSubmitLevelTest(){
+  onClickSubmitLevelTest() {
 
-    if ( this.form.value.name.length == 0 ) return this.formErrors.name = "Name is required";
-    if ( this.form.value.phone.length == 0 ) return this.formErrors.phone = "Phone is required";
-    if ( this.form.value.time.length == 0 ) return this.formErrors.time = "Time is required";
-
-    if(this.form.status == 'INVALID') return this.formValid = false;
+    if ( this.form.value.name.length == 0 ) {
+      this.formErrors.name = "Name is required";
+      return this.app.alertModal( this.formErrors.name );
+    }
+    if ( this.form.value.phone.length == 0 ) {
+      this.formErrors.phone = "Phone is required";
+      return this.app.alertModal( this.formErrors.phone );
+    }
+    if ( this.form.value.time.length == 0 ) {
+      this.formErrors.time = "Time is required";
+      return this.app.alertModal(this.formErrors.time)
+    }
+    if (this.form.status == 'INVALID') return this.formValid = false;
 
     this.createPost();
 
@@ -133,8 +145,6 @@ export class LevelTestComponent {
 
 
   onValueChanged() {
-
-
     if (!this.form) return;
     this.formValid = true;
     const form = this.form;
@@ -149,4 +159,18 @@ export class LevelTestComponent {
       }
     }
   }
+
+
+  mobileValidator(c: AbstractControl): { [key: string]: any } {
+    if ( c.value.length < 9 ) {
+      return { 'minlength' : '' };
+    }
+    if ( c.value.length > 15 ) {
+      return { 'maxlength' : '' };
+    }
+    let re = new RegExp( /^(\d+-?)+\d+$/ ).test( <string> c.value );
+    if ( re ) return;
+    else return { 'malformed': '' };
+  }
+
 }

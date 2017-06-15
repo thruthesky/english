@@ -10,7 +10,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body">
-      <i class="fa fa-warning" aria-hidden="true"></i>
       {{ content }}
     </div>
     <div class="modal-footer">

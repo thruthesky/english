@@ -20,8 +20,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   `
 })
 export class ConfirmContent {
-  title: string = 'Modal Title !';
-  content: string = 'Modal Content';
+  title: string = 'Confirm';
+  content: string = 'Are you sure?';
   confirm: string = 'Submit';
   cancel: string = 'Cancel';
   constructor(public activeModal: NgbActiveModal) {}

@@ -4,10 +4,9 @@ import { CommentReviewComponent } from "../modals/comment-review/comment-review"
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import {
   _DELETE_RESPONSE,
-  _LIST, _POST_COMMON_WRITE_FIELDS, _POST_EDIT, _POST_EDIT_RESPONSE, _POST_LIST_RESPONSE, _POSTS,
+  _LIST, _POST_COMMON_WRITE_FIELDS,_POST_LIST_RESPONSE, _POSTS,
   PostData
 } from "angular-backend";
-import {ConfirmContent} from "../../providers/bootstrap/confirm/confirm-content";
 @Component({
   selector: 'comment-component',
   templateUrl: 'comment.html',
@@ -70,19 +69,21 @@ export class CommentComponent {
   }
 
   onClickDelete( _post ) {
-    let activeModal = this.modal.open( ConfirmContent, { windowClass: 'enhance-modal' } );
-    activeModal.componentInstance.title = 'Deleting Post';
-    activeModal.componentInstance.content = 'Are you sure you want to delete this comment?';
-    activeModal.componentInstance.confirm = 'Submit';
-    activeModal.componentInstance.cancel = 'Cancel';
 
-    activeModal.result.then( () => {
+    let option = {
+      class: 'enhance-modal',
+      title: 'Deleting Post',
+      content: 'Are you sure you want to delete this comment?',
+      confirm: 'Submit',
+      cancel: 'Cancel'
+    };
+    this.app.confirmModal( option , () => {
       this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
         _post.title = 'Deleted';
         _post.content = 'Deleted';
         _post.deleted = 1;
-      }, err => this.postData.alert( err ) );
-    }, () => {});
+      }, err => this.postData.alert( err ));
+    });
   }
 
   onClickEdit( _post ) {

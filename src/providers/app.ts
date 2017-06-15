@@ -7,7 +7,8 @@ import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 import { LMS } from './lms';
 
 import * as config from './../app/config';
-import { Alert } from "./bootstrap/alert/alert";
+import { Alert } from './bootstrap/alert/alert';
+import { Confirm } from './bootstrap/confirm/confirm';
 import { FirebaseChat } from "./firebase";
 
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
@@ -46,6 +47,7 @@ export class App {
     constructor(
         private ngZone: NgZone,
         private alertService: Alert,
+        private confirmService: Confirm,
         public afAuth: AngularFireAuth,
         public user: User,
         private fc: FirebaseChat,
@@ -505,6 +507,25 @@ export class App {
         class: 'alert-modal enhance-modal',
       };
       this.showModal( option );
+    }
+
+    private showConfirmModal( option, resultCallback?: (result) => void, dismissCallback?: (reason) => void ) {
+      this.confirmService.openConfirmModal( option, result => {
+        console.info("openMobileUpload:: " + result );
+        if( resultCallback ) resultCallback( result );
+      }, reason => {
+        if( dismissCallback ) dismissCallback( reason );
+      });
+    }
+
+
+    confirmModal( option, resultCallback?: (result) => void,  dismissCallback?: (reason) => void ) {
+      this.showConfirmModal( option, result => {
+        if ( resultCallback ) resultCallback( result );
+      }, reason => {
+        if ( dismissCallback ) dismissCallback( reason );
+      });
+
     }
 
     toast(content) {
