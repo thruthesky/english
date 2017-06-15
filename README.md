@@ -116,3 +116,21 @@ npm install @ng-bootstrap/ng-bootstrap
     * admin and user begin to chat.
     * if they don't chat for 1 minutes, then the 1:1 chat box will be closed and show global chat box.
     * while they are chatting, if another user chat to admin, an alert message will be dispaly on the current 1:1 chat box.
+    
+    
+    
+    
+    
+    
+# IE10,IE11 and EDGE an X mark is showing on input on once you start typing.
+
+* to remove this x mark see the css code below
+
+````
+input::-ms-clear {
+  display: none;
+}
+input::-ms-reveal {
+  display: none;
+}
+````
