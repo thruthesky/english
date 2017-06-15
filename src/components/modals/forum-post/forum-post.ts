@@ -33,8 +33,7 @@ export class ForumPostComponent implements OnInit {
 
     formGroup: FormGroup;
     files: Array<_FILE> = [];
-
-    userData: _USER_RESPONSE = null;
+    userName: string = null;
     constructor(
         public share: ShareService,
         private fb: FormBuilder,
@@ -44,15 +43,7 @@ export class ForumPostComponent implements OnInit {
         public  user         : User,
         private app: App
     ) {
-        if ( this.user.logged ) this.loadUserData();
-    }
-    loadUserData() {
-        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
-            this.userData = res.data.user;
-        }, error => {
-            // this.user.alert( error );
-            this.app.error( error );
-        } );
+        if ( this.user.logged ) this.userName = user.info.name;
     }
     ngOnInit() {
       this.createForm();
@@ -112,7 +103,7 @@ export class ForumPostComponent implements OnInit {
         let create = <_POST_CREATE> this.formGroup.value;
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
-        if( this.user.logged ) create.name = this.userData.name;
+        if( this.user.logged ) create.name = this.userName;
         else create.name = 'anonymous';
         this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
             this.share.posts.unshift( res.data );
@@ -124,7 +115,7 @@ export class ForumPostComponent implements OnInit {
         let edit = <_POST_EDIT> this.formGroup.value;
         edit.idx = this.post.idx;
         edit.file_hooks = this.files.map( (f:_FILE) => f.idx );
-        if( this.user.logged ) edit.name = this.userData.name;
+        if( this.user.logged ) edit.name = this.userName;
         else edit.name = 'anonymous';
         this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
             Object.assign( this.post, res.data );
