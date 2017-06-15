@@ -1,4 +1,17 @@
+
 :host {
+    /deep/.popover {
+        top: 50% !important;
+        margin-top: -200px !important;
+        left: 50% !important;
+        margin-left: -135px;
+    }
+    /deep/.popover::before {
+        display: none;
+    }
+    /deep/.popover::after {
+        display: none;
+    }
     .modal-header {
         color: #fff;
         background-color: #deb888;
@@ -6,8 +19,10 @@
             line-height: 1.428571429;
         }
     }
+    
     .modal-body {
       .form-container {
+        
         margin-left: auto;
         margin-right: auto;
         border: solid 1px #eee;
