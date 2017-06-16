@@ -90,8 +90,6 @@ export class ReservationComponent implements OnInit {
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-
-            //console.log('getNewReservationData:: ', res);
             this.classinformation = {
                 first_class: res.first_class,
                 next_class: res.next_class,
@@ -179,7 +177,6 @@ export class ReservationComponent implements OnInit {
     formatNextClass( info ) {
         if ( info.next_class !== void 0 ) {
             let re = info.next_class;
-            // console.log(re);
             let parts = re.split(' ', 2);
             let day = parts[1];
             let new_day = (<string> day).replace(' ', '');
