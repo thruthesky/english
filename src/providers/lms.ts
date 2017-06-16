@@ -21,106 +21,106 @@ export interface TEACHER {
     teaching_year: number;
     url_youtube: string;
 };
-export type TEACHERS = Array< TEACHER >;
+export type TEACHERS = Array<TEACHER>;
 @Injectable()
 export class LMS {
-    constructor( private http: Http,
-                 public user: User ) {
+    constructor(private http: Http,
+        public user: User) {
 
     }
     get url() {
         return LMS_URL;
     }
-    getTeachers( success: (teachers: TEACHERS) => void ) {
+    getTeachers(success: (teachers: TEACHERS) => void) {
         try {
             let url = LMS_ENDPOINT_URL + "?function=teacher_list";
-            this.http.get( url ).subscribe( re => {
+            this.http.get(url).subscribe(re => {
                 let json = null;
                 try {
-                    json = JSON.parse( re['_body'] );
+                    json = JSON.parse(re['_body']);
                 }
-                catch ( e ) {
+                catch (e) {
                     alert("Parse ERROR on lms::getTeachers()");
                 }
-               
-                success( json['data'] );
+
+                success(json['data']);
             });
         }
-        catch(e) {
+        catch (e) {
         }
-        
+
     }
 
-    register( data, success, failure: ( error : string ) => void ){
-        if( data.value ) data = data.value;
+    register(data, success, failure: (error: string) => void) {
+        if (data.value) data = data.value;
         let domain = this.getDomain();
         data['classid'] = config.classid;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
-        this.http.get( url ).subscribe( re =>{
-            if( re ) success( re );
-            else failure( ' error on lms registration ' );
+        this.http.get(url).subscribe(re => {
+            if (re) success(re);
+            else failure(' error on lms registration ');
         })
     }
-    getDomain( ) {
+    getDomain() {
         let hostname = window.location.hostname
-        let domain:string = '';
-        if ( hostname.indexOf("witheng.com" ) != -1 ) {
+        let domain: string = '';
+        if (hostname.indexOf("witheng.com") != -1) {
             domain = 'witheng.onlineenglish.kr';
         }
-        else if ( hostname.indexOf("witheng.dev" ) != -1 ) {
+        else if (hostname.indexOf("witheng.dev") != -1) {
             domain = 'witheng.onlineenglish.kr';
         }
-        else if( hostname.indexOf("onfis.com") != -1 ) {
+        else if (hostname.indexOf("onfis.com") != -1) {
             domain = 'onfis.onlineenglish.kr';
         }
-        else if( hostname.indexOf('iamtalkative') != -1 ) {
+        else if (hostname.indexOf('iamtalkative') != -1) {
             domain = 'talkative.onlineenglish.kr';
         }
-        else if( hostname.indexOf("igoodtalk.com") != -1 ) {
+        else if (hostname.indexOf("igoodtalk.com") != -1) {
             domain = 'igoodtalk.onlineenglish.kr';
         }
         else {
-            let parts = hostname.split( '.' );
+            let parts = hostname.split('.');
             domain = parts[0] == 'www' ? parts[1] + '.onlineenglish.kr' : parts[0] + '.onlineenglish.kr';
         }
         return domain;
     }
-    update( data, success, failure: ( error: string) => void ){
+    update(data, success, failure: (error: string) => void) {
         data = data.value;
         data['classid'] = config.classid;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
-        this.http.get( url ).subscribe( re =>{
-            if( re ) success( re );
-            else failure( ' error on lms update user ' );
+        this.http.get(url).subscribe(re => {
+            if (re) success(re);
+            else failure(' error on lms update user ');
         })
     }
-    error( error ) {
-        return this.user.errorResponse( error );
+    error(error) {
+        return this.user.errorResponse(error);
     }
-    
 
-    getReservationsByMonthYear( data, success, error ) {
+
+    getReservationsByMonthYear(data, success, error) {
         //update website
-        if ( this.user.logged ) {
-            let m = parseInt(data['m']) < 10 ? '0' + data['m'] :  data['m'];
+        if (this.user.logged) {
+            let m = parseInt(data['m']) < 10 ? '0' + data['m'] : data['m'];
             let domain = this.getDomain();
             data['classid'] = config.classid;
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-            this.http.get( url ).subscribe( re =>{
+            this.http.get(url).subscribe(re => {
                 let json = null;
                 try {
-                    json = JSON.parse( re['_body'] );
+                    json = JSON.parse(re['_body']);
                 }
-                catch ( e ) {
+                catch (e) {
                     alert("Parse ERROR on lms::getReservationsByMonthYear()");
                 }
-                
-                if ( json['code'] !== void 0 && json['code'] ) {
-                    alert( json['message'] );
+
+                if (json['code'] !== void 0 && json['code']) {
+                    alert(json['message']);
                 }
                 else {
-                    success( json['data'] );
+                    success(json['data']);
                 }
 
             }, err => {
@@ -132,21 +132,28 @@ export class LMS {
         }
     }
 
-    getNextClass( success, failure ) {
+    getNextClass(success, failure) {
         let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
-        this.http.get( url ).subscribe( re =>{
-            let json = JSON.parse( re['_body'] );
-            if( json['data'] ) success( json['data'] );
-            else failure( ' error on getting next class ' );
-        });
+        this.http.get(url).subscribe(re => {
+            let json = null;
+            try {
+                json = JSON.parse(re['_body']);
+            }
+            catch (e) {
+                alert("앗! 데이터베이스 서버로 부터 수업 정보를 가져오는데 문제가 발생하였습니다.");
+                return;
+            }
+            if (json['data']) success(json['data']);
+            else failure(' error on getting next class ');
+        }, e => alert("앗!, 수업 정보를 가져오는데 문제가 발생했습니다."));
     }
 
     openVe() {
-        this.getNextClass( data => {
-            if( !data ) return alert("data is false on openVe()");
+        this.getNextClass(data => {
+            if (!data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();
             let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
-            window.open( url, "_blank");
+            window.open(url, "_blank");
         }, error => {
             alert("앗! 예약된 수업이 없습니다.");
         });
