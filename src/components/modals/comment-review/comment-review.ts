@@ -90,8 +90,6 @@ export class CommentReviewComponent implements OnInit {
 
 
   createPost() {
-    //console.log('submit');
-
     if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
     if ( ! this.primary_photo_idx ) {
       return this.photoError = "Photo is required"

@@ -106,7 +106,6 @@ export class PostListComponent  {
             post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
         });
     }, err => {
-        //this.postData.alert( err );
         this.app.error( err );
     });
     }
