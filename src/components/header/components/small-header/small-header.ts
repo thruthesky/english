@@ -47,6 +47,7 @@ export class SmallHeaderComponent {
         this.app.scrollTo(name);
     }
     onClickLogin() {
+        this.more = false;
         this.onLogin.emit();
     }
     onClickGotoClassRoom() {
