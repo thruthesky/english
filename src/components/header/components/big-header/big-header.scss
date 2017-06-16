@@ -7,13 +7,13 @@ header > nav {
     background: rgba( 0, 0, 0, .8 );
 }
 
-header > nav > .d-flex {
+header > nav > table{
     margin: 0 auto;
     width: 100%;
     @media ( min-width: $lg + 32 ) {
 
     max-width: $lg + 32px;
-    
+
     }
 }
 
