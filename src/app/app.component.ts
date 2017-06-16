@@ -28,6 +28,8 @@ export class AppComponent {
         app.scrolled(event);
       });
       app.checkLoginWithNaver();
+
+
   }
 
   ngOnInit() {
