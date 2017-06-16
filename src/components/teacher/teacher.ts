@@ -47,24 +47,35 @@ export class TeacherComponent {
             });
         }
         this.first_9_teachers = this.teachers.filter(this.firstDisplayTeacherIndex);
+        
         this.rest_teacher = this.teachers.filter(e => this.first_9_teachers.findIndex(x => e.nickname == x.nickname) == -1);
+        this.checkFirstNineTeachers();
         this.whole_teacher = this.first_9_teachers.concat(this.rest_teacher);
-
-
         this.teachers = this.first_9_teachers;
         
     }
-
+    checkFirstNineTeachers() {
+        if( this.first_9_teachers.length < 9 ) {
+            let diff = 9 - this.first_9_teachers.length;
+            let i =0;
+            while( i < diff ) {
+                let item = this.rest_teacher[i];
+                this.rest_teacher.splice(i,1);
+                this.first_9_teachers.push(item);
+                i++;
+            }
+        }
+    }
     firstDisplayTeacherIndex(query, i) {
-        if (query.nickname == "Mngr Fae" ||
-            query.nickname == "Louine" ||
-            query.nickname == "Meg" ||
-            query.nickname == "Yani" ||
-            query.nickname == "Ellise" ||
-            query.nickname == "Den" ||
-            query.nickname == "Ren" ||
-            query.nickname == "Ghen" ||
-            query.nickname == "Asha") {
+        if (query.id == "Fae" ||
+            query.id == "Louine" ||
+            query.id == "Sofia" ||
+            query.id == "maconcepcion" ||
+            query.id == "Ellise" ||
+            query.id == "Ren" ||
+            query.id == "Ghen" ||
+            query.id == "Asha" ||
+            query.id == "eden") {
             return query;
         }
     }
