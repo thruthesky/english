@@ -7,13 +7,13 @@
                 <div>레벨테스트 신청은 회원 가입하지 않아도 가능합니다.</div>
             </div>
         </div>
-        <div class="container mt-5">
+        <div class="grid-30-70-container mt-5">
 
             <form [formGroup]="form" novalidate>
 
-                <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 mt-2" for="name">이름</label>
-                    <div class="col-sm-8 col-lg-9">
+                <div class="grid-row form-group">
+                    <label class="grid-col mt-2" for="name">이름</label>
+                    <div class="grid-col">
                         <input validate-onblur formControlName="name" class="form-control rounded-0" type="text" name="name" maxlength="64" id="name" tabindex="101" placeholder="이름">
                         <div *ngIf="formErrors.name" class="alert alert-danger mt-3 mb-0">
                             <span class="errors"> {{ formErrors.name }} </span>
@@ -21,9 +21,9 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 mt-2" for="phone">핸드폰번호</label>
-                    <div class="col-sm-8 col-lg-9">
+                <div class="grid-row form-group">
+                    <label class="grid-col mt-2" for="phone">핸드폰번호</label>
+                    <div class="grid-col">
                         <input validate-onblur formControlName="phone" class="form-control rounded-0" type="tel" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
                         <div *ngIf="formErrors.phone" class="alert alert-danger mt-3 mb-0">
                             <span class="errors"> {{ formErrors.phone }} </span>
@@ -31,9 +31,9 @@
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 pt-md-3">날짜 선택</label>
-                    <div class="col-sm-8 col-lg-9">
+                <div class="grid-row form-group">
+                    <label class="grid-col pt-md-3">날짜 선택</label>
+                    <div class="grid-col">
                         <div class="btn-group pointer" data-toggle="buttons">
                             <label *ngFor="let day of days" class="btn d-inline-block p-3 mb-0 bg-lightgrey pointer  rounded-0" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"
                                 (click)=" selectedDay = day.date ">
@@ -46,9 +46,9 @@
                     </div>
                 </div>
 
-                <div class="row form-group times">
-                    <div class="col-sm-4 col-lg-3 mt-4">시간 선택</div>
-                    <div class="col-sm-8 col-lg-9">
+                <div class="grid-row form-group times">
+                    <div class="grid-col mt-4">시간 선택</div>
+                    <div class="grid-col">
                         <div class="form-check py-3 bg-lightgrey">
                             <table>
                                 <tr *ngFor="let i of [ 3, 4, 5, 6, 7, 8, 9, 10 ] ">
@@ -63,8 +63,9 @@
                     </div>
                 </div>
 
-                <div class="row line-submit justify-content-sm-center">
-                    <div class="col-sm-8 col-lg-9 offset-sm-4 offset-lg-3">
+                <div class="grid-row line-submit justify-content-sm-center">
+                    <div class="grid-col">&nbsp;</div>
+                    <div class="grid-col">
                         <ng-container *ngIf=" form.get('name').value ">
                             <b>{{ form.get('name').value }}</b>님
                         </ng-container>

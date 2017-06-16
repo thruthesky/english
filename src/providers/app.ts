@@ -11,8 +11,8 @@ import { Alert } from './bootstrap/alert/alert';
 import { Confirm } from './bootstrap/confirm/confirm';
 import { FirebaseChat } from "./firebase";
 
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {RegisterComponent} from "../components/modals/register/register";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { RegisterComponent } from "../components/modals/register/register";
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -22,10 +22,10 @@ export interface SOCIAL_LOGIN {
 };
 
 export interface ALERT_OPTION {
-  title?: string;
-  content: string;
-  'class'?: string;
-  timeout?: number;
+    title?: string;
+    content: string;
+    'class'?: string;
+    timeout?: number;
 }
 
 
@@ -51,7 +51,7 @@ export class App {
         public afAuth: AngularFireAuth,
         public user: User,
         private fc: FirebaseChat,
-        private modal      : NgbModal,
+        private modal: NgbModal,
         private lms: LMS
     ) {
         this.myEvent = new EventEmitter();
@@ -339,17 +339,22 @@ export class App {
 
 
         // user has logged in with naver id.
-        if (naver_access_token) naver_id_login.get_naver_userprofile(() => {
-            let nickname = naver_id_login.getProfileData('nickname');
-            let id = naver_id_login.getProfileData('id');
-            this.socialLogin = {
-                provider: 'naver.com',
-                name: nickname,
-                uid: id,
-                email: id + '@naver.com'
-            };
-            this.socialLoginSuccessHandler();
-        });
+        if (naver_access_token) {
+
+            naver_id_login.get_naver_userprofile(() => {
+                let nickname = naver_id_login.getProfileData('nickname');
+                let id = naver_id_login.getProfileData('id');
+                this.socialLogin = {
+                    provider: 'naver.com',
+                    name: nickname,
+                    uid: id,
+                    email: id + '@naver.com'
+                };
+                this.socialLoginSuccessHandler();
+            });
+
+            
+        }
     }
 
 
@@ -375,7 +380,7 @@ export class App {
                     url: '/v1/user/me',
                     success: (res) => {
                         let nickname = null;
-                        if ( res['properties'] && res['properties']['nickname'] ) nickname = res['properties']['nickname'];
+                        if (res['properties'] && res['properties']['nickname']) nickname = res['properties']['nickname'];
                         let id = res.id;
                         this.socialLogin = {
                             provider: 'kakaotalk.com',
@@ -406,12 +411,12 @@ export class App {
     backendSuccess(res: _USER_LOGIN_RESPONSE) {
 
 
-    // id: string;
-    // idx: number;
-    // name: string;
-    // email: string;
-    // admin?: number;
-    // Center X registration for Social Login Users.
+        // id: string;
+        // idx: number;
+        // name: string;
+        // email: string;
+        // admin?: number;
+        // Center X registration for Social Login Users.
         let data = {
             id: res.data.id,
             name: res.data.name,
@@ -420,10 +425,10 @@ export class App {
             mobile: '',
             classid: this.config.classid
         };
-        this.lms.register( data, res =>{
+        this.lms.register(data, res => {
             this.renderPage();
             this.showRequiredInfoModal();
-        }, error => alert(' error on CenterX registration ' + error ) )
+        }, error => alert(' error on CenterX registration ' + error))
     }
     backendFailed(e) {
         let user = this.getSocialLogin();
@@ -453,16 +458,16 @@ export class App {
             email: user.email,
             name: user.name
         };
-        this.user.register(req).subscribe( r => {
-          this.fc.newRegisteredUser( req );
-          this.backendSuccess(r);
+        this.user.register(req).subscribe(r => {
+            this.fc.newRegisteredUser(req);
+            this.backendSuccess(r);
         }, e => this.backendFailed(e));
     }
 
 
 
     errorHandler(e) {
-        alert('error: '+ e);
+        alert('error: ' + e);
     }
 
 
@@ -495,49 +500,49 @@ export class App {
         else return false;
     }
 
-    private showModal( option: ALERT_OPTION ) {
-      this.alertService.open( option, () => {
-      });
+    private showModal(option: ALERT_OPTION) {
+        this.alertService.open(option, () => {
+        });
     }
 
-    alertModal(content = "Confirmation Success" , title = "Success" ) {
-      let option: ALERT_OPTION = {
-        title: title,
-        content: content,
-        class: 'alert-modal enhance-modal',
-      };
-      this.showModal( option );
+    alertModal(content = "Confirmation Success", title = "Success") {
+        let option: ALERT_OPTION = {
+            title: title,
+            content: content,
+            class: 'alert-modal enhance-modal',
+        };
+        this.showModal(option);
     }
 
-    private showConfirmModal( option, resultCallback?: (result) => void, dismissCallback?: (reason) => void ) {
-      this.confirmService.openConfirmModal( option, result => {
-        console.info("openMobileUpload:: " + result );
-        if( resultCallback ) resultCallback( result );
-      }, reason => {
-        if( dismissCallback ) dismissCallback( reason );
-      });
+    private showConfirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
+        this.confirmService.openConfirmModal(option, result => {
+            console.info("openMobileUpload:: " + result);
+            if (resultCallback) resultCallback(result);
+        }, reason => {
+            if (dismissCallback) dismissCallback(reason);
+        });
     }
 
 
-    confirmModal( option, resultCallback?: (result) => void,  dismissCallback?: (reason) => void ) {
-      this.showConfirmModal( option, result => {
-        if ( resultCallback ) resultCallback( result );
-      }, reason => {
-        if ( dismissCallback ) dismissCallback( reason );
-      });
+    confirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
+        this.showConfirmModal(option, result => {
+            if (resultCallback) resultCallback(result);
+        }, reason => {
+            if (dismissCallback) dismissCallback(reason);
+        });
 
     }
 
     toast(content) {
-        this.showModal( { content: content, class: 'toast', timeout: 4000 } );
+        this.showModal({ content: content, class: 'toast', timeout: 4000 });
     }
-    error( e ) {
-        if ( e.code == -80011 ) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
-        this.toast( e.message );
+    error(e) {
+        if (e.code == -80011) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
+        this.toast(e.message);
     }
 
     showRequiredInfoModal() {
-      let activeModal = this.modal.open ( RegisterComponent, { windowClass: 'enhance-modal' }  );
-      activeModal.componentInstance.checkRequired = true;
+        let activeModal = this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' });
+        activeModal.componentInstance.checkRequired = true;
     }
 }
