@@ -10,6 +10,8 @@ import { ShareService } from '../../providers/share-service';
     styleUrls: ['./reservation.scss']
 })
 export class ReservationComponent implements OnInit {
+    noFirstClass: string = "예약된 수업이 없습니다.";
+    noNextClass: string = "예약된 수업이 없습니다.";
     data: _BOOKS = [];
     maxDay:number = 42;
     calendarLoad:boolean = true;
@@ -168,14 +170,14 @@ export class ReservationComponent implements OnInit {
     }
 
     formatFirstClass( info ) {
-        if ( info.first_class !== void 0 ) {
+        if ( info.first_class !== void 0 && info.first_class != this.noFirstClass ) {
             let date = info.first_class.split('-');
             return `${date[0]}년 ${date[1]}월 ${date[2]}일에 첫 수업을 하였습니다.`;
         }
         else return "앗! 아직 수업을 하지 않으셨네요. 얼른 레벨테스트 부터 시작해 보세요.";
     }
     formatNextClass( info ) {
-        if ( info.next_class !== void 0 ) {
+        if ( info.next_class !== void 0 && info.next_class != this.noNextClass ) {
             let re = info.next_class;
             let parts = re.split(' ', 2);
             let day = parts[1];
@@ -187,7 +189,6 @@ export class ReservationComponent implements OnInit {
             re = re.replace( day, new_day);
             re = re.replace( teacher, `${teacher} 선생님`);
             return re;
-
         }
         else return "예약된 수업이 없습니다.";
     }
