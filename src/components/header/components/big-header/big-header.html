@@ -1,32 +1,32 @@
 <header class="big">
   <nav class="navbar fixed-top pt-1 py-0">
       <table class="">
-        <tr>
+        <tr class="white">
           <td valign="middle" class="logo white pointer" (click)="onClickPanelMenu('intro')">
               <img class="" style="height: 46px;" src="assets/images/logo/logo24.png">
           </td>
-          <td valign="middle" class="menu fs-120 white" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
             <div class="text">영어선생님</div>
           </td>
-          <td valign="middle" class="menu fs-120 white" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
             <div class="text">수업과정</div>
           </td>
-          <td valign="middle" class="menu fs-120 white" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
             <div class="text">레벨테스트</div>
           </td>
-          <td valign="middle" class="menu fs-120 white" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
             <div class="text">수업후기</div>
           </td>
-          <td valign="middle" class="menu fs-120 white payment" [class.active]=" app.scrollId =='payment' "
+          <td valign="middle" class="menu fs-120 pointer payment" [class.active]=" app.scrollId =='payment' "
               (click)="onClickPanelMenu('payment')">
             <div class="text">수업료</div>
           </td>
-          <td valign="middle" class="menu fs-120 white" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
+          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
             <div class="text">질문하기</div>
           </td>
           <td valign="middle" class="menu p-relative">
             <ng-template #popContent>
-              <div class="popover-title white" (click)="p.close()">
+              <div class="popover-title white  pointer" (click)="p.close()">
                 <div class="d-flex justify-content-between">
                   <div>{{ app.config.name }}</div>
                   <div><i class="fa fa-times" aria-hidden="true"></i></div>

@@ -162,7 +162,7 @@ export class App {
     scrollTo(id) {
 
         let parts = this.getParts();
-        if (parts && parts.length) {
+        if ( parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
                     //  window.scrollTo( 0, parts[i]['top'] - HEADER_HEIGHT+1 );
