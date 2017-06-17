@@ -2,6 +2,8 @@
 @import './../../../../theme/mixins';
 
 header > nav {
+    display: block;
+    margin: 0 auto;
     height: $header-height;
     background-color: slategrey;
     background: rgba( 0, 0, 0, .8 );

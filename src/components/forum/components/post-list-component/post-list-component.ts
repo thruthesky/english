@@ -98,16 +98,14 @@ export class PostListComponent  {
         this.searchQuery.bind  = '1';
         this.searchQuery.extra['post_config_id'] = this.post_config_id ? this.post_config_id : null;
         this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
-        this.posts = res.data.posts;
-
-        this.pageOption.totalRecord = res.data.total;
-
-        this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
-            post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
+            this.posts = res.data.posts;
+            this.pageOption.totalRecord = res.data.total;
+            this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
+                post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
+            });
+        }, err => {
+            this.app.error( err );
         });
-    }, err => {
-        this.app.error( err );
-    });
     }
     onChangePostSearch() {
         this.searchPostChangeDebounce.next();
