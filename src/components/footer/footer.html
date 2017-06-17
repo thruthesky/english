@@ -1,13 +1,13 @@
 <section id="footer" class="part">
     <footer>
         <div class="copyright" style="border-top: 1px solid #dbd7d7; background-color: #fbfbfb;">
-            <div class="content-wrapper grid-25-50-25-container">
-                <div class="grid-row">
-                    <div class="text-center logo-picture grid-col">
+            <div class="content-wrapper container">
+                <div class="row">
+                    <div class="logo-picture col-12 col-md-3">
                         <img class="pointer" (click)="onClickPanelMenu('intro')" src="/assets/images/logo/logo24.png">
                     </div>
-                    <div class="address grid-col text-center" [innerHTML]="app.config.footer.info"></div>
-                        <div class="text-center grid-col top-icon">
+                    <div class="address col-12 col-md-7 text-center" [innerHTML]="app.config.footer.info"></div>
+                        <div class="col-12 col-md-2 top-icon">
                             <div class="fa-stack fa-lg pointer">
                                 <i class="fa fa-circle fa-stack-2x grey" aria-hidden="true"></i>
                                 <i class="fa fa-arrow-up fa-stack-1x fa-inverse" aria-hidden="true" (click)="onClickPanelMenu('intro')"></i>
