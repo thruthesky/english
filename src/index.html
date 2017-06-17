@@ -10,6 +10,24 @@
   <meta name="msapplication-tap-highlight" content="no">
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+      function detectOldIE() {
+          var ua = window.navigator.userAgent;
+          var msie = ua.indexOf('MSIE ');
+          if (msie > 0) {
+              // IE 10 or older => return version number
+              return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+          }
+          // other browser or not old IE.
+          return false;
+      }
+      var v = detectOldIE();
+      if ( v && v <= 9 ) {
+        alert("앗, 새로운 사이트에서 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n옛날 사이트로 이동합니다.\n\n새로운 사이트를 이용하시려면 인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
+        location.href="http://old.iamtalkative.com";
+      }
+  </script>
+
 
 
 </head>
