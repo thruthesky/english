@@ -40,7 +40,7 @@
                         <tr valign="top">
                             <td>전공</td>
                             <td>
-                                <div class="h-1 of-hidden" [class.h-auto]=" teacher.show_more_greeting " [class.of-auto]=" teacher.show_more_greeting ">
+                                <div class="h-3 of-hidden" [class.h-auto]=" teacher.show_more_greeting " [class.of-auto]=" teacher.show_more_greeting ">
                                     {{ teacher.major }}
                                 </div>
                             </td>
@@ -48,8 +48,9 @@
                     </table>
 
                     <div class="my-3" (click)="teacher.show_more_greeting = ! teacher.show_more_greeting">
-                        <div class="mh-4 of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [innerHTML]=" teacher.greeting "></div>
-
+                        <!--<div class="mh-4 of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [innerHTML]=" teacher.greeting "></div>-->
+                        <!--<div class="of-hidden" [ngClass]="{ teacher.show_more_greeting?teacher-greeting:mh-auto'}"  [innerHTML]=" teacher.greeting "></div>-->
+                        <div class="of-hidden" [class.mh-auto]=" teacher.show_more_greeting " [class.teacher-greeting]=" !teacher.show_more_greeting "  [innerHTML]=" teacher.greeting "></div>
                         <div *ngIf="!teacher.show_more_greeting">... show more</div>
                         <div *ngIf="teacher.show_more_greeting">... hide</div>
 
