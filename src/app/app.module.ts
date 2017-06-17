@@ -110,7 +110,7 @@ const appRoutes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot( appRoutes, { useHash: true } ),
+    RouterModule.forRoot( appRoutes ),
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
