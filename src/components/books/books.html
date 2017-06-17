@@ -1,14 +1,16 @@
+
 <section id="books" class="part">
     <div class="content-wrapper">
+
         <div class="mb-3 mb-md-4 mb-lg-5 mw-md-18 mx-auto p-3 text-center white" style="background-color: rgba(0, 0, 0, .3)">
             <h1>{{ app.config.name }} 화상영어 교재</h1>
             <div class="mt-2 fs-1rem white">
                 {{ app.config.name }}에서는 전 세계적으로 영어 교육에 가장 많이 쓰이고 잘 짜여진 엄선된 교재를 사용하고 있습니다.
             </div>
         </div>
-        <div class="grid-2-3-4-container bg-lightgrey py-2 py-sm-3 pr-0" *ngIf="books">
-            <div class="grid-row pl-2 pl-sm-3">
-                <div class="grid-col p-0 pr-2 pr-sm-3 mb-3" *ngFor="let book of books">
+        <div class="bg-lightgrey p-3 pr-0" *ngIf="books">
+            <div class="row pl-3">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6 p-0 pr-3 mb-3" *ngFor="let book of books">
                     <div class="bg-white rounded-top">
                         <img class="w-100 rounded-top" src="{{ book.img }}">
                         <div class="p-2 p-md-3">
@@ -29,5 +31,7 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </section>
