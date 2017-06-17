@@ -505,13 +505,13 @@ export class App {
         });
     }
 
-    alertModal(content = "Confirmation Success", title = "Success") {
+    alertModal( content: string = 'Notification Message', title: string = 'Notification') {
         let option: ALERT_OPTION = {
             title: title,
             content: content,
             class: 'alert-modal enhance-modal',
         };
-        this.showModal(option);
+        this.showModal( option );
     }
 
     private showConfirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
