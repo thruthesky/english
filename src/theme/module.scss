@@ -111,3 +111,21 @@
   }
 }
 
+.grid-25-50-25-container {
+  .grid-row {
+    overflow: auto;
+    .grid-col {
+      @media (min-width: 768px) {
+        float: left;
+        width: 50%;
+        &:first-child {
+          width: 25%;
+        }
+        &:last-child {
+          width: 25%;
+        }
+      }
+    }
+  }
+}
+
