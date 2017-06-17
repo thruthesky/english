@@ -353,7 +353,7 @@ export class App {
                 this.socialLoginSuccessHandler();
             });
 
-            
+
         }
     }
 
@@ -538,6 +538,7 @@ export class App {
     }
     error(e) {
         if (e.code == -80011) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
+        console.log(e);
         this.toast(e.message);
     }
 
