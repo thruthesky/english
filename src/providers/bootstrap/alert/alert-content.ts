@@ -13,7 +13,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       {{ content }}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">닫기</button>
     </div>
   `
 })
