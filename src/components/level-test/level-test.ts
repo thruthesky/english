@@ -98,15 +98,15 @@ export class LevelTestComponent {
   onClickSubmitLevelTest() {
 
     if ( this.form.value.name.length == 0 ) {
-      this.formErrors.name = "Name is required";
+      this.formErrors.name = "이름을 입력하셔야 합니다.";
       return this.app.alertModal( this.formErrors.name );
     }
     if ( this.form.value.phone.length == 0 ) {
-      this.formErrors.phone = "Phone is required";
+      this.formErrors.phone = "전화번호를 입력하셔야 합니다.";
       return this.app.alertModal( this.formErrors.phone );
     }
     if ( this.form.value.time.length == 0 ) {
-      this.formErrors.time = "Time is required";
+      this.formErrors.time = "시간을 입력하셔야 합니다.";
       return this.app.alertModal(this.formErrors.time)
     }
     if (this.form.status == 'INVALID') return this.formValid = false;

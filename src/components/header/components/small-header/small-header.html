@@ -51,7 +51,7 @@
 <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
 </div>
                     </li>
-                    <li class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
+                    <li id="small-header-register-button" class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>

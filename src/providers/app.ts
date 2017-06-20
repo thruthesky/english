@@ -85,7 +85,7 @@ export class App {
 
         if ( this.widthSize == 'big' ) this.headerHeight = 64;
         else this.headerHeight = 109;
-        
+
 
 
 
@@ -536,7 +536,7 @@ export class App {
         });
     }
 
-    alertModal( content: string = 'Notification Message', title: string = 'Notification') {
+    alertModal( content: string = 'Notification Message', title: string = '알림') {
         let option: ALERT_OPTION = {
             title: title,
             content: content,
@@ -604,7 +604,8 @@ export class App {
           this.config = config;
         }
         else {
-            alert("error");
+            // We Don't do anything on config load error.
+            // alert("error");
         }
       }, error => {
           // Don't do anything on error.
