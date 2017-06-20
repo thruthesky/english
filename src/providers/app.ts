@@ -579,7 +579,7 @@ export class App {
     }
 
   getSiteConfig() {
-    //localStorage.setItem(this.site_config, '');
+
     let config = localStorage.getItem(this.site_config);
     //console.log('config:: ', config);
     if (config) {
@@ -587,31 +587,23 @@ export class App {
         this.config = JSON.parse(config);
       } catch(e){}
     }
-    
-      let q: _LIST = {};
-      q.where = 'model = ? AND code = ? AND model_idx = ?';
-      q.bind = `${this.site_config},${this.site_config},1`;
-    
-      console.log('query:: ', q );
-      this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
-          console.log("res: ", res);
-          
-        if(res && res.data && res.data.meta.length){
-          //console.log('meta.list', res);
-          config = res.data.meta[0].data ;
-          localStorage.setItem(this.site_config, config);
-          console.log(config);
-          this.config = config;
-        }
-        else {
-            // We Don't do anything on config load error.
-            // alert("error");
-        }
-      }, error => {
-          // Don't do anything on error.
-          // console.error( this.meta.errorResponse(error))
-      });
-      
+
+
+    this.meta.config().subscribe( (res) => {
+
+      //console.log('meta.config', res);
+      if(res && res.data && res.data.config){
+        //console.log('meta.config::config', res);
+        config = res.data.config ;
+        try {
+          this.config = JSON.parse(config);
+        } catch(e){}
+        localStorage.setItem(this.site_config, config);
+      }
+      return config;
+    }, error => this.meta.errorResponse(error));
+
+
   }
 
 
