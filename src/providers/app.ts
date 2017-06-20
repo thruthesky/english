@@ -2,7 +2,7 @@ import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
+import {User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST} from 'angular-backend';
 
 import { LMS } from './lms';
 
@@ -28,6 +28,17 @@ export interface ALERT_OPTION {
     timeout?: number;
 }
 
+export interface _SITE_CONFIGURATION {
+  company_name_variation?: string;
+  company_name?: string;
+  company_email?: string;
+  phone_number?: number;
+  copyright_line1?: string;
+  copyright_line2?: string;
+  copyright_line3?: string;
+  copyright_line4?: string;
+}
+
 
 export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
 
@@ -36,6 +47,7 @@ export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 export class App {
 
     config = config;
+    site_config = 'site_config';
     DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
     public myEvent: EventEmitter<any>;
@@ -50,6 +62,7 @@ export class App {
         private confirmService: Confirm,
         public afAuth: AngularFireAuth,
         public user: User,
+        public meta: Meta,
         private fc: FirebaseChat,
         private modal: NgbModal,
         private lms: LMS
@@ -546,4 +559,42 @@ export class App {
         let activeModal = this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' });
         activeModal.componentInstance.checkRequired = true;
     }
+
+  getSiteConfig() {
+    // //localStorage.setItem(this.site_config, '');
+    // let config = localStorage.getItem(this.site_config);
+    // //console.log('config:: ', config);
+    // if (config) {
+    //   try {
+    //     this.metaData = JSON.parse(config);
+    //   } catch(e){}
+    // }
+    // else {
+    //   let q: _LIST = {};
+    //   q.where = 'model = ? AND code = ? AND model_idx = ?';
+    //   q.bind = `${this.site_config},${this.site_config},1`;
+    //
+    //   //console.log('query:: ', q );
+    //   this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
+    //     if(res && res.data && res.data.meta.length){
+    //       //console.log('meta.list', res);
+    //       config = res.data.meta[0].data ;
+    //       localStorage.setItem(this.site_config, config);
+    //     }
+    //     return config;
+    //   }, error => this.meta.errorResponse(error));
+    // }
+  }
+
+
+  get siteInfo(): _SITE_CONFIGURATION {
+    let data = localStorage.getItem( this.site_config );
+    if ( data ) {
+      try {
+        return JSON.parse( data );
+      }
+      catch (e) {}
+    }
+    return <_SITE_CONFIGURATION>{};
+  }
 }
