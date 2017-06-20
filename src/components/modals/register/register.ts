@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { user_profile } from '../../../app/config';
+// import { user_profile } from '../../../app/config';
 import { FirebaseChat } from '../../../providers/firebase';
 
 import { LMS } from '../../../providers/lms';
@@ -36,7 +36,8 @@ export class RegisterComponent {
     showRequiredError: boolean = false;
     checkRequired:boolean = false;
 
-    user_profile = user_profile;
+    // user_profile = user_profile;
+
     constructor (
         private activeModal  : NgbActiveModal,
         private lms          : LMS,

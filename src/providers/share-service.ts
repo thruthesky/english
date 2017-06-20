@@ -17,6 +17,9 @@ export class ShareService {
     date:Date = new Date();
     year:number = this.date.getFullYear();
     month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
+
+    defaultClassId = 'solution';
+    
     constructor() {
 
     }

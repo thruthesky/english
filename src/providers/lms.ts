@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+//import { App } from '../providers/app';
+
 import { User } from 'angular-backend';
 
-import * as config from './../app/config';
+// import * as config from './../app/config';
+
+
+import { ShareService } from '../providers/share-service';
 
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
@@ -25,7 +30,10 @@ export type TEACHERS = Array<TEACHER>;
 @Injectable()
 export class LMS {
     constructor(private http: Http,
-        public user: User) {
+        public user: User,
+        //public app: App,
+        private share: ShareService
+        ) {
 
     }
     get url() {
@@ -54,7 +62,7 @@ export class LMS {
     register(data, success, failure: (error: string) => void) {
         if (data.value) data = data.value;
         let domain = this.getDomain();
-        data['classid'] = config.classid;
+        data['classid'] = this.share.defaultClassId;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
         this.http.get(url).subscribe(re => {
             if (re) success(re);
@@ -87,7 +95,7 @@ export class LMS {
     }
     update(data, success, failure: (error: string) => void) {
         data = data.value;
-        data['classid'] = config.classid;
+        data['classid'] = this.share.defaultClassId;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
         this.http.get(url).subscribe(re => {
@@ -105,7 +113,7 @@ export class LMS {
         if (this.user.logged) {
             let m = parseInt(data['m']) < 10 ? '0' + data['m'] : data['m'];
             let domain = this.getDomain();
-            data['classid'] = config.classid;
+            data['classid'] = this.share.defaultClassId;
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
             this.http.get(url).subscribe(re => {
                 let json = null;
