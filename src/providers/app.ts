@@ -561,32 +561,29 @@ export class App {
     }
 
   getSiteConfig() {
-    //localStorage.setItem(this.site_config, '');
-    let config = localStorage.getItem(this.site_config);
-    //console.log('config:: ', config);
-    if (config) {
-      try {
-        this.metaData = JSON.parse(config);
-      } catch(e){}
-    }
-    else {
-      let q: _LIST = {};
-      q.where = 'model = ? AND code = ? AND model_idx = ?';
-      q.bind = `${this.site_config},${this.site_config},1`;
-
-      //console.log('query:: ', q );
-      this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
-        if(res && res.data && res.data.meta.length){
-          //console.log('meta.list', res);
-          config = res.data.meta[0].data ;
-          try {
-            this.metaData = JSON.parse(config);
-          } catch(e){}
-          localStorage.setItem(this.site_config, config);
-        }
-        return config;
-      }, error => this.meta.errorResponse(error));
-    }
+    // //localStorage.setItem(this.site_config, '');
+    // let config = localStorage.getItem(this.site_config);
+    // //console.log('config:: ', config);
+    // if (config) {
+    //   try {
+    //     this.metaData = JSON.parse(config);
+    //   } catch(e){}
+    // }
+    // else {
+    //   let q: _LIST = {};
+    //   q.where = 'model = ? AND code = ? AND model_idx = ?';
+    //   q.bind = `${this.site_config},${this.site_config},1`;
+    //
+    //   //console.log('query:: ', q );
+    //   this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
+    //     if(res && res.data && res.data.meta.length){
+    //       //console.log('meta.list', res);
+    //       config = res.data.meta[0].data ;
+    //       localStorage.setItem(this.site_config, config);
+    //     }
+    //     return config;
+    //   }, error => this.meta.errorResponse(error));
+    // }
   }
 
 

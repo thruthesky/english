@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit {
     });
 
     this.user_message.subscribe(res => {
-      console.log('user_message:: ', res.length);
+      //console.log('user_message:: ', res.length);
       if ( res && res.length == 0 ) {
         console.log('newVisitor');
         let msg: _FIREBASE_CHAT = {
