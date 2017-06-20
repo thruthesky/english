@@ -1,7 +1,7 @@
 @import './../../theme/variables';
 @import './../../theme/mixins';
 #curriculum {
-    margin-top: 4em;
+    padding-top: 4em;
     margin-bottom: 8em; @media ( min-width: $md ) { margin-bottom: 12em; }
 }
 .text {
