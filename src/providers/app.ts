@@ -41,7 +41,7 @@ export interface _SITE_CONFIGURATION {
 
 
 export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
-export const is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
+// export const is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
 
 @Injectable()
 export class App {
@@ -53,7 +53,7 @@ export class App {
     public myEvent: EventEmitter<any>;
     width: number = 0;
     scrollId: string = null;
-    headerHeight = 10;
+    headerHeight = 64;
     socialLogin: SOCIAL_LOGIN = null;
 
     constructor(
@@ -77,16 +77,16 @@ export class App {
         this.renderPage();
 
 
-        this.makeSureHeaderHeight();
-        setTimeout(() => this.makeSureHeaderHeight(), 1000);
-        setTimeout(() => this.makeSureHeaderHeight(), 3000);
-        setTimeout(() => this.makeSureHeaderHeight(), 5000);
-        setTimeout(() => this.makeSureHeaderHeight(), 7500);
-        setTimeout(() => this.makeSureHeaderHeight(), 10000);
-        setTimeout(() => this.makeSureHeaderHeight(), 15000);
-        setTimeout(() => this.makeSureHeaderHeight(), 20000);
-        setTimeout(() => this.makeSureHeaderHeight(), 30000);
-        setTimeout(() => this.makeSureHeaderHeight(), 60000);
+        // this.makeSureHeaderHeight();
+        // setTimeout(() => this.makeSureHeaderHeight(), 1000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 3000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 5000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 7500);
+        // setTimeout(() => this.makeSureHeaderHeight(), 10000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 15000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 20000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 30000);
+        // setTimeout(() => this.makeSureHeaderHeight(), 60000);
     }
 
 
@@ -95,6 +95,7 @@ export class App {
         let header = document.querySelector('header nav');
         if (!header) return;
         this.headerHeight = header.clientHeight;
+        console.log("headerHeight: ", this.headerHeight);
     }
 
     renderPage() {
@@ -128,29 +129,6 @@ export class App {
     }
 
     /**
-     * @note No need to cache for speedup since it is only being called once every bounce time.
-     */
-    scrolled(event?) {
-        let windowTop = this.getWindowOffset().top;
-        let selectedId = null;
-        let parts = this.getParts();
-        if (parts && parts.length) {
-            for (let i = 0, len = parts.length; i < len; i++) {
-                let part = parts[i];
-                selectedId = part.id;
-                if (i < len - 1) {
-                    let nextPart = parts[i + 1];
-
-                    if (nextPart.top > windowTop + this.marginTop) break;
-                }
-            }
-        }
-        this.scrollId = selectedId;
-
-        this.renderPage();
-    }
-
-    /**
      * Returns the array of 'section#names' and its top position in the document.
      *
      */
@@ -173,19 +151,48 @@ export class App {
 
 
     scrollTo(id) {
-
+        console.log("clicked id: ", id);
         let parts = this.getParts();
         if ( parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
-                    if( is_chrome ) this.scrollToY(parts[i]['top'] - this.headerHeight + 1, 2000, 'easeInOutQuint');
-                    else  this.scrollToY(parts[i]['top'] - this.headerHeight, 2000, 'easeInOutQuint');
+                    console.log("top of the section: ", parts[i]['top']);
+                    let p = parts[i]['top'] - this.headerHeight;
+                    console.log('p: ', p);
+                    console.log("headerHeight: ", this.headerHeight);
+                    this.scrollToY(p);
                     break;
                 }
             }
         }
         return;
     }
+    
+    /**
+     * @note No need to cache for speedup since it is only being called once every bounce time.
+     */
+    scrolled(event?) {
+        let windowTop = Math.round(this.getWindowOffset().top);
+        let selectedId = null;
+        let parts = this.getParts();
+        if (parts && parts.length) {
+            for (let i = 0, len = parts.length; i < len; i++) {
+                let part = parts[i];
+                selectedId = part.id;
+                if (i < len - 1) {
+                    let nextPart = parts[i + 1];
+                    let pTop = Math.round( nextPart.top );
+                    console.log(`if (${pTop} > ${windowTop} + ${this.marginTop}) break;`);
+                    if (pTop >= (windowTop + this.marginTop)) break;
+                }
+            }
+        }
+        console.log("selectedId:", selectedId)
+        this.scrollId = selectedId;
+
+        this.renderPage();
+    }
+
 
     /**
      * To get offset of an element.
