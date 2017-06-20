@@ -32,6 +32,9 @@ export class AppComponent {
 
   }
 
+
+
+
   ngOnInit() {
     setTimeout(() => this.app.scrolled(event), 10);
   }
