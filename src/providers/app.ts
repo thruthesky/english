@@ -59,7 +59,7 @@ export class App {
     public myEvent: EventEmitter<any>;
     width: number = 0;
     scrollId: string = null;
-    headerHeight = 64;
+    headerHeight = 64; // 109 for small.
     socialLogin: SOCIAL_LOGIN = null;
 
     constructor(
@@ -82,6 +82,11 @@ export class App {
     setWidth(width) {
         this.width = width;
         this.renderPage();
+
+        if ( this.widthSize == 'big' ) this.headerHeight = 64;
+        else this.headerHeight = 109;
+        
+
 
 
         // this.makeSureHeaderHeight();
@@ -165,7 +170,7 @@ export class App {
                 if (parts[i]['id'] == id) {
                     console.log("top of the section: ", parts[i]['top']);
                     let p = parts[i]['top'] - this.headerHeight;
-                    console.log('p: ', p);
+                    console.log('scroll To Y: ', p);
                     console.log("headerHeight: ", this.headerHeight);
                     this.scrollToY(p);
                     break;
@@ -188,9 +193,9 @@ export class App {
                 selectedId = part.id;
                 if (i < len - 1) {
                     let nextPart = parts[i + 1];
-                    let pTop = Math.round( nextPart.top );
+                    let pTop = Math.ceil( nextPart.top );
                     console.log(`if (${pTop} > ${windowTop} + ${this.marginTop}) break;`);
-                    if (pTop >= (windowTop + this.marginTop)) break;
+                    if (pTop > (windowTop + this.marginTop)) break;
                 }
             }
         }
