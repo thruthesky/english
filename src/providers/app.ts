@@ -45,7 +45,7 @@ export interface _SITE_CONFIGURATION {
 
 
 export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
-
+export const is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
 
 @Injectable()
 export class App {
@@ -185,9 +185,8 @@ export class App {
         if ( parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
-                    //  window.scrollTo( 0, parts[i]['top'] - HEADER_HEIGHT+1 );
-                    this.scrollToY(parts[i]['top'] - this.headerHeight, 2000, 'easeInOutQuint');
-
+                    if( is_chrome ) this.scrollToY(parts[i]['top'] - this.headerHeight + 1, 2000, 'easeInOutQuint');
+                    else  this.scrollToY(parts[i]['top'] - this.headerHeight, 2000, 'easeInOutQuint');
                     break;
                 }
             }
