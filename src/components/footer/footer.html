@@ -6,7 +6,13 @@
                     <div class="logo-picture col-12 col-md-3">
                         <img class="pointer" (click)="onClickPanelMenu('intro')" src="/assets/images/logo/logo24.png">
                     </div>
-                    <div class="address col-12 col-md-7 text-center" [innerHTML]="app.config.copyright_line1"></div>
+
+                    <div class="address col-12 col-md-7 text-center">
+                        <div [innerHTML]="app.config.copyright_line1"></div>
+                        <div [innerHTML]="app.config.copyright_line2"></div>
+                        <div [innerHTML]="app.config.copyright_line3"></div>
+                    </div>
+
                         <div class="col-12 col-md-2 top-icon">
                             <div class="fa-stack fa-lg pointer">
                                 <i class="fa fa-circle fa-stack-2x grey" aria-hidden="true"></i>

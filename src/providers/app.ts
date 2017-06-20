@@ -585,6 +585,7 @@ export class App {
     if (config) {
       try {
         this.config = JSON.parse(config);
+        this.preConfig();
       } catch(e){}
     }
 
@@ -597,13 +598,28 @@ export class App {
         config = res.data.config ;
         try {
           this.config = JSON.parse(config);
+
         } catch(e){}
         localStorage.setItem(this.site_config, config);
+        this.preConfig();
       }
-      return config;
+      
     }, error => this.meta.errorResponse(error));
 
 
+  }
+  
+  preConfig() {
+      if ( this.config.company_name_variation === '1' ) this.config['company_name_eul'] = this.config.company_name + '을';
+      else this.config['company_name_eul'] = this.config.company_name + '를';
+
+      if ( this.config.company_name_variation === '1' ) this.config['company_name_en'] = this.config.company_name + '은';
+      else this.config['company_name_en'] = this.config.company_name + '는';
+
+      if ( this.config.company_name_variation === '1' ) this.config['company_name_wa'] = this.config.company_name + '과';
+      else this.config['company_name_wa'] = this.config.company_name + '와';
+
+      
   }
 
 
