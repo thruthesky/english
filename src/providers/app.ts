@@ -6,13 +6,17 @@ import {User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LI
 
 import { LMS } from './lms';
 
-import * as config from './../app/config';
+// import * as config from './../app/config';
+
 import { Alert } from './bootstrap/alert/alert';
 import { Confirm } from './bootstrap/confirm/confirm';
 import { FirebaseChat } from "./firebase";
 
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { RegisterComponent } from "../components/modals/register/register";
+
+import { ShareService } from '../providers/share-service';
+
 
 export interface SOCIAL_LOGIN {
     provider: string;
@@ -46,7 +50,9 @@ export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 @Injectable()
 export class App {
 
-    config = config;
+    config: _SITE_CONFIGURATION = {};
+
+
     site_config = 'site_config';
     DAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -65,7 +71,8 @@ export class App {
         public meta: Meta,
         private fc: FirebaseChat,
         private modal: NgbModal,
-        private lms: LMS
+        private lms: LMS,
+        private share: ShareService
     ) {
         this.myEvent = new EventEmitter();
     }
@@ -442,7 +449,7 @@ export class App {
             nickname: res.data.name,
             email: res.data.email,
             mobile: '',
-            classid: this.config.classid
+            classid: this.share.defaultClassId
         };
         this.lms.register(data, res => {
             this.renderPage();
@@ -567,29 +574,38 @@ export class App {
     }
 
   getSiteConfig() {
-    // //localStorage.setItem(this.site_config, '');
-    // let config = localStorage.getItem(this.site_config);
-    // //console.log('config:: ', config);
-    // if (config) {
-    //   try {
-    //     this.metaData = JSON.parse(config);
-    //   } catch(e){}
-    // }
-    // else {
-    //   let q: _LIST = {};
-    //   q.where = 'model = ? AND code = ? AND model_idx = ?';
-    //   q.bind = `${this.site_config},${this.site_config},1`;
-    //
-    //   //console.log('query:: ', q );
-    //   this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
-    //     if(res && res.data && res.data.meta.length){
-    //       //console.log('meta.list', res);
-    //       config = res.data.meta[0].data ;
-    //       localStorage.setItem(this.site_config, config);
-    //     }
-    //     return config;
-    //   }, error => this.meta.errorResponse(error));
-    // }
+    //localStorage.setItem(this.site_config, '');
+    let config = localStorage.getItem(this.site_config);
+    //console.log('config:: ', config);
+    if (config) {
+      try {
+        this.config = JSON.parse(config);
+      } catch(e){}
+    }
+    
+      let q: _LIST = {};
+      q.where = 'model = ? AND code = ? AND model_idx = ?';
+      q.bind = `${this.site_config},${this.site_config},1`;
+    
+      console.log('query:: ', q );
+      this.meta.list(q).subscribe( (res: _META_LIST_RESPONSE) => {
+          console.log("res: ", res);
+          
+        if(res && res.data && res.data.meta.length){
+          //console.log('meta.list', res);
+          config = res.data.meta[0].data ;
+          localStorage.setItem(this.site_config, config);
+          console.log(config);
+          this.config = config;
+        }
+        else {
+            alert("error");
+        }
+      }, error => {
+          // Don't do anything on error.
+          // console.error( this.meta.errorResponse(error))
+      });
+      
   }
 
 
