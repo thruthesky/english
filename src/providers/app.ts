@@ -41,6 +41,9 @@ export interface _SITE_CONFIGURATION {
   copyright_line2?: string;
   copyright_line3?: string;
   copyright_line4?: string;
+  company_name_eul?: string;
+  company_name_en?: string;
+  company_name_wa?: string;
 }
 
 
@@ -186,7 +189,7 @@ export class App {
         }
         return;
     }
-    
+
     /**
      * @note No need to cache for speedup since it is only being called once every bounce time.
      */
@@ -610,12 +613,12 @@ export class App {
         localStorage.setItem(this.site_config, config);
         this.preConfig();
       }
-      
+
     }, error => this.meta.errorResponse(error));
 
 
   }
-  
+
   preConfig() {
       if ( this.config.company_name_variation === '1' ) this.config['company_name_eul'] = this.config.company_name + '을';
       else this.config['company_name_eul'] = this.config.company_name + '를';
@@ -626,10 +629,11 @@ export class App {
       if ( this.config.company_name_variation === '1' ) this.config['company_name_wa'] = this.config.company_name + '과';
       else this.config['company_name_wa'] = this.config.company_name + '와';
 
+
       if ( this.config.company_name_variation === '1' ) this.config['company_name_ga'] = this.config.company_name + '이';
       else this.config['company_name_ga'] = this.config.company_name + '가';
 
-      console.log("this.config", this.config);
+
   }
 
 

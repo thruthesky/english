@@ -40,11 +40,11 @@ export class CommentReviewComponent implements OnInit {
   constructor(
     public  app          : App,
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal,
+    public  activeModal: NgbActiveModal,
     private user: User,
     private postData: PostData,
-    public share: ShareService,
-    public file          : File,
+    public  share: ShareService,
+    public  file          : File,
   ) {
 
 
