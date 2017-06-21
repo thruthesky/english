@@ -201,7 +201,7 @@ export class App {
                 if (i < len - 1) {
                     let nextPart = parts[i + 1];
                     let pTop = Math.ceil( nextPart.top );
-                    console.log(`if (${pTop} > ${windowTop} + ${this.marginTop}) break;`);
+                    // console.log(`if (${pTop} > ${windowTop} + ${this.marginTop}) break;`);
                     if (pTop > (windowTop + this.marginTop)) break;
                 }
             }

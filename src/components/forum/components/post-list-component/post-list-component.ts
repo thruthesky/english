@@ -52,21 +52,39 @@ export class PostListComponent  {
         if ( this.post_config_id !== void 0 ) this.post_config_id = 'qna';
         this.loadPostData();
 
-        this.searchPostChangeDebounce
-        .debounceTime(300)
-        .subscribe(() => this.onChangedPostSearch());
+        // this.searchPostChangeDebounce
+        // .debounceTime(300)
+        // .subscribe(() => this.onChangedPostSearch());
+
+
+
+        this.testOpenPost('post147');
+    }
+
+
+    testOpenPost(id) {
+
+        setTimeout(() => {
+            console.log("check id: ", id);
+            if ( $("#post147").length ) $("#post147").click();
+            else this.testOpenPost(id);
+        }, 200);
+
+
     }
 
     onClickEdit( _post ) {
         if( _post.deleted == '1' ) return;
         if( this.user.logged ) this.showEditPostForm( _post );
         else {
-            let password = prompt("Input Password");
+            let password = prompt("비밀번호를 입력하세요.");
             let req: _POST_EDIT = { idx: _post.idx, password: password };
             this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
-
                 this.showEditPostForm( _post );
-            }, e => this.postData.alert( e ) );
+            }, e => {
+                if ( e.code == -40109 ) alert("비밀번호가 틀립니다.");
+                else this.postData.alert( e );
+             } );
         }
     }
     showEditPostForm( _post ) {
@@ -94,15 +112,18 @@ export class PostListComponent  {
     loadPostData() {
         this.posts = [];
         this.searchQuery.page = this.pageOption.currentPage;
-        this.searchQuery.where = "deleted is null and cast(? as integer)";
-        this.searchQuery.bind  = '1';
+        this.searchQuery.where = "parent_idx=? and deleted is null and cast(? as integer)";
+        this.searchQuery.bind  = '0,1';
         this.searchQuery.extra['post_config_id'] = this.post_config_id ? this.post_config_id : null;
+        this.searchQuery.extra['comment'] = true;
+        
         this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
             this.posts = res.data.posts;
             this.pageOption.totalRecord = res.data.total;
             this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
                 post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
             });
+            console.log(this.posts);
         }, err => {
             this.app.error( err );
         });
@@ -110,36 +131,38 @@ export class PostListComponent  {
     onChangePostSearch() {
         this.searchPostChangeDebounce.next();
     }
-    onChangedPostSearch() {
-        if (this.searchPostForm.title) {
-        if (this.searchPostForm.title.length < 2) return;
-        }
-        if (this.searchPostForm.content) {
-        if (this.searchPostForm.content.length < 2) return;
-        }
 
-        let cond = '';
-        let bind = '';
+    // onChangedPostSearch() {
+    //     if (this.searchPostForm.title) {
+    //     if (this.searchPostForm.title.length < 2) return;
+    //     }
+    //     if (this.searchPostForm.content) {
+    //     if (this.searchPostForm.content.length < 2) return;
+    //     }
 
-        if (this.searchPostForm.title) cond += "title LIKE ? ";
-        if (this.searchPostForm.title) bind += `%${this.searchPostForm.title}%`;
+    //     let cond = '';
+    //     let bind = '';
 
-        if (this.searchPostForm.content) cond += cond ? "AND content LIKE ? " : "content LIKE ?";
-        if (this.searchPostForm.content) bind += bind ? `,%${this.searchPostForm.content}%` : `%${this.searchPostForm.content}%`;
+    //     if (this.searchPostForm.title) cond += "title LIKE ? ";
+    //     if (this.searchPostForm.title) bind += `%${this.searchPostForm.title}%`;
 
-        this.searchQuery.where = cond;
-        this.searchQuery.bind = bind;
-        this.searchQuery.order= 'idx DESC';
-        this.pageOption.currentPage = 1;
-        this.loadPostData();
-    }
+    //     if (this.searchPostForm.content) cond += cond ? "AND content LIKE ? " : "content LIKE ?";
+    //     if (this.searchPostForm.content) bind += bind ? `,%${this.searchPostForm.content}%` : `%${this.searchPostForm.content}%`;
+
+    //     this.searchQuery.where = cond;
+    //     this.searchQuery.bind = bind;
+    //     this.searchQuery.order= 'idx DESC';
+    //     this.pageOption.currentPage = 1;
+    //     this.loadPostData();
+    // }
+
     onPostPageClick( $event ) {
         this.pageOption['currentPage'] = $event;
         this.loadPostData();
     }
-    onClickShow( data ) {
+    onClickView( post ) {
         let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
-        modalRef.componentInstance['post'] = data;
+        modalRef.componentInstance['post'] = post;
         modalRef.result.then( () => {
         }).catch( e => {} );
     }
