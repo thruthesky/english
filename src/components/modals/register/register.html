@@ -31,7 +31,7 @@
                     <i class="fa fa-trash fa-stack-1x text-white"></i>
                 </span>
                 <img *ngIf="primary_photo_idx" class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ file.url( primary_photo_idx ) }}">
-                <img *ngIf="!primary_photo_idx" class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ user_profile }}" >
+                <img *ngIf="!primary_photo_idx" class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ share.user_profile }}" >
                 <div class="p-absolute t-0 l-0 w-100 h-100" style="max-width:15em; z-index:100; opacity: .001">
                     <input #userfile type="file" (change)="onChangeFileUpload( userfile )" class="my-0 mx-auto">
                 </div>

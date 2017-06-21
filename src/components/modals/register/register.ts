@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-// import { user_profile } from '../../../app/config';
+
 import { FirebaseChat } from '../../../providers/firebase';
+import { ShareService } from './../../../providers/share-service';
 
 import { LMS } from '../../../providers/lms';
 import { ChangePasswordComponent } from '../change-password/change-password';
@@ -36,7 +37,6 @@ export class RegisterComponent {
     showRequiredError: boolean = false;
     checkRequired:boolean = false;
 
-    // user_profile = user_profile;
 
     constructor (
         private activeModal  : NgbActiveModal,
@@ -46,6 +46,7 @@ export class RegisterComponent {
         private fb           : FormBuilder,
         private fc           : FirebaseChat,
         private modal: NgbModal,
+        public  share: ShareService
     ) {
         this.form = fb.group({
             name:     [ '', [ Validators.required, Validators.minLength(3), Validators.maxLength(32) ] ],

@@ -19,7 +19,8 @@ export class ShareService {
     month:number = parseInt(("0" + (this.date.getMonth() + 1)).slice(-2));
 
     defaultClassId = 'solution';
-    
+    user_profile = 'assets/images/user/user.jpg';
+
     constructor() {
 
     }
