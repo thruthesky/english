@@ -369,7 +369,11 @@ export class App {
     initializeNaverLogin() {
         let naver_id_login = window['naver_id_login'];
         naver_id_login.setButton("green", 1, 28);
-        naver_id_login.setDomain(".englishfordevelopers.com");
+        let hostname = window.location.hostname;
+        hostname = hostname.replace("www.", "");
+        hostname = hostname.replace("WWW.", "");
+        naver_id_login.setDomain("." + hostname);
+        // naver_id_login.setPopup();
         naver_id_login.init_naver_id_login();
     }
 
