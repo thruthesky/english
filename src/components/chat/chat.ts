@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
         let msg: _FIREBASE_CHAT = {
           user: this.uid,
           name: this.userId,
-          message: this.form.message,
+          message: 'newVisitor',
           newVisitor: true
         };
         this.pushMessage( msg );
