@@ -1,117 +1,178 @@
 <header class="big">
   <nav class="navbar fixed-top pt-1 py-0">
-      <table class="">
-        <tr class="white">
-          <td valign="middle" class="logo white pointer" (click)="onClickPanelMenu('intro')">
-              <img class="" style="height: 46px;" src="assets/images/logo/logo24.png">
-          </td>
-          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
-            <div class="text">영어선생님</div>
-          </td>
-          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
-            <div class="text">수업과정</div>
-          </td>
-          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
-            <div class="text">레벨테스트</div>
-          </td>
-          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
-            <div class="text">수업후기</div>
-          </td>
-          <td valign="middle" class="menu fs-120 pointer payment" [class.active]=" app.scrollId =='payment' "
-              (click)="onClickPanelMenu('payment')">
-            <div class="text">수업료</div>
-          </td>
-          <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
-            <div class="text">질문하기</div>
-          </td>
-          <td valign="middle" class="menu p-relative">
-            <ng-template #popContent>
-              <div class="popover-title white  pointer" (click)="p.close()">
-                <div class="d-flex justify-content-between">
-                  <div>{{ app.config.company_name }}</div>
-                  <div><i class="fa fa-times" aria-hidden="true"></i></div>
-                </div>
+    <table class="">
+      <tr class="white">
+        <td valign="middle" class="logo white pointer" (click)="onClickPanelMenu('intro')">
 
+          <img *ngIf=" ! app.firstVisit " class="" style="height: 46px;" src="assets/images/logo/logo24.png">
+
+          <ng-container *ngIf=" app.firstVisit ">
+            <img class="" style="height: 46px;" src="assets/images/logo/logo24.png" placement="bottom" [ngbPopover]="popLogo" #pLogo="ngbPopover" (click)="closeAllHelp()">
+            <ng-template #popLogo>
+              <div class="baloon-help"  (click)="pLogo.close(); nextHelp('menu');">
+                <div class="popover-title">전화번호 {{ app.config.phone_number }}</div>
+                <div class="popover-text">
+                  <div>{{ app.config.company_name }} 새로운 홈페이지로 인사드립니다.</div>
+                  전화번호를 메모해 주세요.
+                </div>
+                <button type="button" class="btn">
+                    도움말 닫기
+                </button>
               </div>
-              <div class="popover-text">
-                <button class="btn" *ngIf=" ! user.logged " (click)="onClickRegister(); p.close()">
+            </ng-template>
+          </ng-container>
+
+        </td>
+        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+          <div class="text">영어선생님</div>
+        </td>
+        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+          <div class="text">수업과정</div>
+        </td>
+        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+          <div class="text">레벨테스트</div>
+        </td>
+        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+          <div class="text">수업후기</div>
+        </td>
+        <td valign="middle" class="menu fs-120 pointer payment" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+          <div class="text">수업료</div>
+        </td>
+        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
+          <div class="text">질문하기</div>
+        </td>
+        <td valign="middle" class="menu more-button p-relative">
+          <ng-template #popContent>
+            <div class="popover-title white  pointer" (click)="p.close()">
+              <div class="d-flex justify-content-between">
+                <div>{{ app.config.company_name }}</div>
+                <div><i class="fa fa-times" aria-hidden="true"></i></div>
+              </div>
+
+            </div>
+            <div class="popover-text">
+              <button class="btn" *ngIf=" ! user.logged " (click)="onClickRegister(); p.close()">
                   <div class="text">회원가입</div>
                 </button>
-                <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogin(); p.close()">
+              <button class="btn" *ngIf=" ! user.logged " (click)="onClickLogin(); p.close()">
                   <div class="text">로그인</div>
                 </button>
 
-                <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation'); p.close()">
+              <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation'); p.close()">
                   <div class="text">나의수업</div>
                 </button>
 
-                <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+              <button class="btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
                   <div class="text">강의실 입장</div>
                 </button>
 
 
-                <button class="btn" (click)="onClickPanelMenu('books'); p.close()">
+              <button class="btn" (click)="onClickPanelMenu('books'); p.close()">
                   <div class="text">교재안내</div>
                 </button>
 
-                <a href="http://onlineenglish.kr/~centerxmain/res/download/tv_ko.exe">
+              <a href="http://onlineenglish.kr/~centerxmain/res/download/tv_ko.exe">
                   <button class="btn">
                     <div class="text">원격지원</div>
                   </button>
                 </a>
 
 
-                <button class="profile btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
+              <button class="profile btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">
                   <div class="text">회원정보</div>
                 </button>
 
 
-                <button class="btn" *ngIf=" user.logged " (click)="onClickLogout(); p.close()">
+              <button class="btn" *ngIf=" user.logged " (click)="onClickLogout(); p.close()">
                   <div class="text">로그아웃</div>
                 </button>
-                <button type="button" class="btn" (click)="p.close()">
+              <button type="button" class="btn" (click)="p.close()">
                   닫기
                 </button>
 
 
-              </div>
-            </ng-template>
-            <div class="more-menu fa-stack fa-lg" placement="bottom" [ngbPopover]="popContent" #p="ngbPopover">
-              <i class="fa fa-circle fa-stack-2x black" aria-hidden="true"></i>
-              <i class="fa fa-bars fa-stack-1x fa-inverse" aria-hidden="true"></i>
             </div>
-          </td>
-          <td valign="middle">
-            <div class="right">
-              <ul class="list-style-none list-float-left pointers fs-80 clearfix" style="color: #bbb;">
-                <li class="item mr-1" *ngIf=" app.isAdmin() ">
-                  <div class="text">
-                    <a href="http://www.englishfordevelopers.com/admin/" class="white" target="_blank">관리자</a>
-                  </div>
-                </li>
-                <li class="item mr-1" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation')">
-                  <div class="text">나의수업</div>
-                </li>
-                <li class="register item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
-                  <div class="text">회원가입</div>
-                </li>
-                <li class="item mr-1" *ngIf=" user.logged " (click)="onClickVe()">
-                  <div class="text">강의실입장</div>
-                </li>
-                <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
-                  <div class="text">로그인</div>
-                </li>
-              </ul>
-              <span class="d-none" id="naver_id_login"></span>
-              <div *ngIf=" ! user.logged "><img (click)="app.onClickLoginWithNaver()" class="h-2"
-                                                src="assets/images/social-login/naver-3-small.png"></div>
+          </ng-template>
+          <div class="more-menu fa-stack fa-lg" placement="bottom" [ngbPopover]="popContent" #p="ngbPopover">
+            <i class="fa fa-circle fa-stack-2x black" aria-hidden="true"></i>
+            <i class="fa fa-bars fa-stack-1x fa-inverse" aria-hidden="true"></i>
+          </div>
 
-              <div class="username pt-1 fs-1rem white" *ngIf=" user.logged ">
-                {{ user.info.name }}
-              </div>
+
+
+          <ng-container *ngIf=" app.firstVisit ">
+            <div class="menu-help">
+              <div placement="bottom" [ngbPopover]="popMenu" #pMenu="ngbPopover" style="height:1px; width:42px; overflow: hidden;">..</div>
+              <ng-template #popMenu>
+                <div class="baloon-help" (click)="pMenu.close(); nextHelp('login');">
+                  <div class="popover-title">더보기 메뉴</div>
+                  <div class="popover-text">
+                    <div>{{ app.config.company_name }}의 더 많은 메뉴를 보실 수 있습니다.</div>
+                  </div>
+                  <button type="button" class="btn">
+                    도움말 닫기
+                </button>
+                </div>
+              </ng-template>
             </div>
-          </td>
-        </tr>
-      </table>
+          </ng-container>
+
+
+
+        </td>
+        <td valign="middle">
+          <div class="right">
+            <ul class="list-style-none list-float-left pointers fs-80 clearfix" style="color: #bbb;">
+              <li class="item mr-1" *ngIf=" app.isAdmin() ">
+                <div class="text">
+                  <a href="http://www.englishfordevelopers.com/admin/" class="white" target="_blank">관리자</a>
+                </div>
+              </li>
+              <li class="item mr-1" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation')">
+                <div class="text">나의수업</div>
+              </li>
+              <li class="register item mr-1" *ngIf="! user.logged " (click)="onClickRegister()">
+                <div class="text">회원가입</div>
+              </li>
+              <li class="item mr-1" *ngIf=" user.logged " (click)="onClickVe()">
+                <div class="text">강의실입장</div>
+              </li>
+              <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
+                <div class="text">로그인</div>
+              </li>
+            </ul>
+            <span class="d-none" id="naver_id_login"></span>
+            <div *ngIf=" ! user.logged "><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
+
+            <div class="username pt-1 fs-1rem white" *ngIf=" user.logged ">
+              {{ user.info.name }}
+            </div>
+
+
+
+          <ng-container *ngIf=" app.firstVisit ">
+            <div class="login-help">
+              <div placement="bottom" [ngbPopover]="popLogin" #pLogin="ngbPopover" style="height:1px; width:88px; overflow: hidden;">..</div>
+              <ng-template #popLogin>
+                <div class="baloon-help" (click)="pLogin.close(); nextHelp('close');">
+                  <div class="popover-title">로그인</div>
+                  <div class="popover-text">
+                    <div>
+                      네이버, 카카오톡, 페이스북으로 로그인을 할 수 있습니다.<br>
+                      단, 기존 회원님은 꼭 아이디로 로그인해 주세요.
+                    </div>
+                  </div>
+                  <button type="button" class="btn">
+                    도움말 닫기
+                </button>
+                </div>
+              </ng-template>
+            </div>
+          </ng-container>
+
+          </div>
+        </td>
+      </tr>
+    </table>
   </nav>
 </header>

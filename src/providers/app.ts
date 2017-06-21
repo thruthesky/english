@@ -62,6 +62,11 @@ export class App {
     headerHeight = 64; // 109 for small.
     socialLogin: SOCIAL_LOGIN = null;
 
+
+    firstVisit: boolean = false;
+
+    keyVisitCount: string = 'vistCount4'
+
     constructor(
         private ngZone: NgZone,
         private alertService: Alert,
@@ -75,6 +80,8 @@ export class App {
         private share: ShareService
     ) {
         this.myEvent = new EventEmitter();
+        this.checkFirstVisit();
+        this.increaseVisitCount();
     }
     /**
     * Everytime window resizes, this is set.
@@ -619,7 +626,10 @@ export class App {
       if ( this.config.company_name_variation === '1' ) this.config['company_name_wa'] = this.config.company_name + '과';
       else this.config['company_name_wa'] = this.config.company_name + '와';
 
-      
+      if ( this.config.company_name_variation === '1' ) this.config['company_name_ga'] = this.config.company_name + '이';
+      else this.config['company_name_ga'] = this.config.company_name + '가';
+
+      console.log("this.config", this.config);
   }
 
 
@@ -632,5 +642,28 @@ export class App {
       catch (e) {}
     }
     return <_SITE_CONFIGURATION>{};
+  }
+
+
+  checkFirstVisit() {
+      let vc = localStorage.getItem(this.keyVisitCount);
+
+      if ( ! vc ) {
+          this.firstVisit = true;
+      }
+      else if ( parseInt(vc) <= 3 ) { // It assumes as "first vist" until thuser visits 3 times. (세번째 방문까지는 첫번째 방문으로 인정한다.)
+          this.firstVisit = true;
+      }
+      
+  }
+  increaseVisitCount() {
+      let vc = localStorage.getItem(this.keyVisitCount);
+      let num = 0;
+      if ( ! vc ) num = 1;
+      else num = parseInt(vc) + 1;
+      localStorage.setItem(this.keyVisitCount, ''+num);
+  }
+  setVisitCount(num: number) {
+      localStorage.setItem(this.keyVisitCount, ''+num);
   }
 }

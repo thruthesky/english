@@ -34,22 +34,22 @@ export class ReservationComponent implements OnInit {
         private lms     : LMS,
         public share    : ShareService
     ) {
-        this.listenEvents();
+        //this.listenEvents();
     }
-    listenEvents(){
-        this.app.myEvent.subscribe( item =>{
-            if( item.eventType == 'login-success'  ){
-                this.getNewReservationData();
-            }
-            if( item.eventType == 'logout-success'  ){
-                setTimeout(()=>{
-                    this.data = [];
-                    this.listCalendar(this.month, this.year);
-                    this.share.class_info = null;
-                },100);
-            }
-        });
-    }
+    // listenEvents(){
+    //     this.app.myEvent.subscribe( item =>{
+    //         if( item.eventType == 'login-success'  ){
+    //             this.getNewReservationData();
+    //         }
+    //         if( item.eventType == 'logout-success'  ){
+    //             setTimeout(()=>{
+    //                 this.data = [];
+    //                 this.listCalendar(this.month, this.year);
+    //                 this.share.class_info = null;
+    //             },100);
+    //         }
+    //     });
+    // }
     ngOnInit() {
         this.listCalendar(this.month, this.year);
         this.getNewCalendar();
