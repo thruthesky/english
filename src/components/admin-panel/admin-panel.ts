@@ -209,7 +209,7 @@ export class AdminPanelComponent implements OnInit {
   get getOptionChatNoOfWidth() {
     let line;
     line = localStorage.getItem('chatNoOfWidth');
-    if (!line) line = 15;
+    if (!line) line = 20;
     return line;
   }
 

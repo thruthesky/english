@@ -44,8 +44,8 @@ export interface _SITE_CONFIGURATION {
   company_name_eul?: string;
   company_name_en?: string;
   company_name_wa?: string;
-  logo_idx: number;
-  logo_url: string;
+  logo_idx?: number;
+  logo_url?: string;
 }
 
 
@@ -56,6 +56,9 @@ export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 export class App {
 
     config: _SITE_CONFIGURATION = {};
+    defaultLogoUrl: string = "/assets/images/logo/logo24.png";
+    logoUrl: string = this.defaultLogoUrl;
+
 
 
     site_config = 'site_config';
@@ -85,7 +88,6 @@ export class App {
         private share: ShareService
     ) {
         this.myEvent = new EventEmitter();
-        this.getSiteConfig();
         this.checkFirstVisit();
         this.increaseVisitCount();
     }
@@ -623,6 +625,10 @@ export class App {
   }
 
   preConfig() {
+
+    if ( this.config.logo_url ) this.logoUrl = this.config.logo_url;
+    else this.config.logo_url = this.defaultLogoUrl;
+
       if ( this.config.company_name_variation === '1' ) this.config['company_name_eul'] = this.config.company_name + '을';
       else this.config['company_name_eul'] = this.config.company_name + '를';
 

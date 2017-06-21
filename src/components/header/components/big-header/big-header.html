@@ -4,7 +4,7 @@
       <tr class="white">
         <td valign="middle" class="logo white pointer" (click)="onClickPanelMenu('intro')">
 
-          <img *ngIf=" ! app.firstVisit " class="" style="height: 46px;" src="app.logoUrl">
+          <img *ngIf=" ! app.firstVisit " class="" style="height: 46px;" src="{{ app.logoUrl }}">
 
           <ng-container *ngIf=" app.firstVisit ">
             <img class="" style="height: 46px;" src="assets/images/logo/logo24.png" placement="bottom" [ngbPopover]="popLogo" #pLogo="ngbPopover" (click)="closeAllHelp()">
