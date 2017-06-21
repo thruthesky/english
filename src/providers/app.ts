@@ -44,6 +44,8 @@ export interface _SITE_CONFIGURATION {
   company_name_eul?: string;
   company_name_en?: string;
   company_name_wa?: string;
+  logo_idx: number;
+  logo_url: string;
 }
 
 
@@ -658,7 +660,7 @@ export class App {
       else if ( parseInt(vc) <= 3 ) { // It assumes as "first vist" until thuser visits 3 times. (세번째 방문까지는 첫번째 방문으로 인정한다.)
           this.firstVisit = true;
       }
-      
+
   }
   increaseVisitCount() {
       let vc = localStorage.getItem(this.keyVisitCount);
