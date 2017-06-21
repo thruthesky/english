@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
   firstList = true;
   userId: string = null;
   scrollMessage: Subject<any> = new Subject();
+
   constructor(
     public app: App,
     private user: User,
@@ -48,22 +49,25 @@ export class ChatComponent implements OnInit {
 
     this.user_message.subscribe(res => {
       //console.log('user_message:: ', res.length);
-      if ( res && res.length == 0 ) {
-        console.log('newVisitor');
+
+      if (this.firstList) {
+        //console.log('newVisitor');
+        let d = (new Date);
+        let now ='visit ' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() ;
         let msg: _FIREBASE_CHAT = {
           user: this.uid,
           name: this.userId,
-          message: 'newVisitor',
+          message: now,
           newVisitor: true
         };
         this.pushMessage( msg );
-      }
-
-      if (this.firstList) {
         this.firstList = false;
       }
       else {
-        this.onClickMaximize();
+        //console.log('second');
+        if ( res && res.length && !res[ res.length - 1 ].newVisitor ) {
+          this.onClickMaximize();
+        }
       }
       this.scrollMessage.next();
     });

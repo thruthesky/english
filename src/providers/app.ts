@@ -178,7 +178,7 @@ export class App {
 
 
     scrollTo(id) {
-        console.log("clicked id: ", id);
+        //console.log("clicked id: ", id);
         let parts = this.getParts();
         if ( parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
@@ -643,7 +643,7 @@ export class App {
       else this.config['company_name_ga'] = this.config.company_name + '가';
 
 
-      console.log("site:", this.config);
+      //console.log("site:", this.config);
 
   }
 

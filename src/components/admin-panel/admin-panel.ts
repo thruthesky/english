@@ -37,7 +37,8 @@ export class AdminPanelComponent implements OnInit {
   initial = true;
 
   constructor(public app: App,
-              private fc: FirebaseChat) {
+              private fc: FirebaseChat)
+  {
     this.uid = this.app.getClientId();
     if (app.user.logged) {
       this.userId = app.user.info.id;
@@ -45,21 +46,27 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      let node = res.pop();
+      console.log('all_message', res)
+      if( res && res.length ) {
+        let node = res[ res.length - 1 ];
+        //let node = res.pop();
 
-      if (node && node.user) {
-        let user = node.user;
-        if( this.minimized && !this.initial ) {
-          this.minimized = false ;
-          this.initial = true;
+        if (node && node.user) {
+          let user = node.user;
+          if( this.minimized && !this.initial ) {
+            this.minimized = false ;
+            this.initial = true;
 
+          }
+          else this.initial = false;
+
+          if (this.username && user && this.username != user) {
+            console.log('this.username:: ', this.username);
+            console.log('user:: ', user);
+            this.someoneTalking = true;
+          }
+          this.scrollMessage.next();
         }
-        else this.initial = false;
-
-        if (this.username && user && this.username != user) {
-          this.someoneTalking = true;
-        }
-        this.scrollMessage.next();
       }
 
     });
@@ -74,7 +81,6 @@ export class AdminPanelComponent implements OnInit {
     this.last_message = this.fc.getLastMessage();
     this.last_message.subscribe(res => {
     });
-
 
   }
 
