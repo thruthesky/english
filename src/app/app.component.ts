@@ -29,7 +29,6 @@ export class AppComponent {
       });
       app.checkLoginWithNaver();
 
-    app.getSiteConfig();
   }
 
 

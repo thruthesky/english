@@ -45,7 +45,7 @@ import { ChangePasswordComponent } from '../components/modals/change-password/ch
 
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
-import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
+//import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
@@ -95,7 +95,7 @@ const appRoutes:Routes = [
     FooterComponent,
     ForumComponent,
     PostListComponent,
-    PostViewComponent,
+    //PostViewComponent,
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,

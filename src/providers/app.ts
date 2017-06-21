@@ -83,6 +83,7 @@ export class App {
         private share: ShareService
     ) {
         this.myEvent = new EventEmitter();
+        this.getSiteConfig();
         this.checkFirstVisit();
         this.increaseVisitCount();
     }
@@ -209,7 +210,7 @@ export class App {
                 }
             }
         }
-        console.log("selectedId:", selectedId)
+        //console.log("selectedId:", selectedId)
         this.scrollId = selectedId;
 
         this.renderPage();
@@ -633,6 +634,8 @@ export class App {
       if ( this.config.company_name_variation === '1' ) this.config['company_name_ga'] = this.config.company_name + '이';
       else this.config['company_name_ga'] = this.config.company_name + '가';
 
+
+      console.log("site:", this.config);
 
   }
 

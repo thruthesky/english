@@ -24,7 +24,7 @@ export class PostViewModal {
     ) {
     }
     ngOnInit() {
-        console.log("post on view:", this.post);
+        // console.log("post on view:", this.post);
     }
     onClickDismiss() {
         this.activeModal.close();

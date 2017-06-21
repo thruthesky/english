@@ -58,7 +58,7 @@ export class PostListComponent  {
 
 
 
-        this.testOpenPost('post147');
+        // this.testOpenPost('post147');
     }
 
 
@@ -123,7 +123,7 @@ export class PostListComponent  {
             this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
                 post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
             });
-            console.log(this.posts);
+            // console.log(this.posts);
         }, err => {
             this.app.error( err );
         });
