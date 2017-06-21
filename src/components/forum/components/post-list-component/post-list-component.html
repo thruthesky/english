@@ -8,10 +8,10 @@
 
     <tbody class="users">
     <tr *ngFor="let post of posts" class="post" role="button" [ngClass]="{strikeout: post.deleted == '1'}"
-        (click)='onClickShow(post)'>
+        (click)='onClickView(post)'>
 
       <td>
-        <span type="text" name="title" placeholder="Title">
+        <span id="post{{post.idx}}" type="text" name="title" placeholder="Title">
           {{post.title}}
         </span>
         <span *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons p-1" aria-hidden="true"></i></span>

@@ -51,6 +51,8 @@ export class ForumPostComponent implements OnInit {
             .debounceTime( 1000 )
             .subscribe( res => this.onValueChanged( res ) );
     }
+
+
     createForm() {
 
         if ( this.isCreate() ) {
@@ -153,14 +155,14 @@ export class ForumPostComponent implements OnInit {
   };
   validationMessages = {
     title: {
-      'required':      'Title is required.'
+      'required':      '제목을 입력하십시오.'
     },
     content: {
-      'required':      'Content is required.'
+      'required':      '내용을 입력하십시오.'
     },
     password: {
-      'required':      'Password is required.',
-      'minlength':     'Password must be at least 5 characters long.',
+      'required':      '비밀번호를 입력하십시오.',
+      'minlength':     '비밀번호는 5자리 이상이어야 합니다.',
       'maxlength':     'Password cannot be more than 128 characters long.'
     }
   };

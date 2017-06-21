@@ -32,9 +32,11 @@ export class SmallHeaderComponent {
     }
 
     onClickLogout() {
+        this.more = false;
         this.logout.emit();
     }
     onClickUpdateProfile() {
+        this.more = false;
         this.profile.emit();
     }
 
@@ -51,14 +53,17 @@ export class SmallHeaderComponent {
         this.onLogin.emit();
     }
     onClickGotoClassRoom() {
+        this.more = false;
         this.classroom.emit();
     }
 
     onClickRegister() {
+        this.more = false;
         this.register.emit();
     }
 
     onClickVe() {
+        this.more = false;
         this.lms.openVe();
     }
 

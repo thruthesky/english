@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "s": "sudo ng serve --hmr -e=hmr --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
+    "s": "sudo ng serve --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
     "s2": "sudo ng serve --live-reload false --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
     "sa": "sudo ng serve --aot --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
     "ssl": "ng serve --ssl --ssl-key ./tmp/privkey.pem --ssl-cert ./tmp/fullchain.pem --host englishfordevelopers.com --port 443",

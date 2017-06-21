@@ -19,112 +19,47 @@
   }
 }
 
+.logo, .menu-help, .login-help {
+  .popover {
+    margin-top: 1em!important;
 
+    box-sizing: border-box;
+    width: 200px!important;
+    border: 0;
+    border-radius: 0;
+    background-color: white!important;
+    color: black;
+    font-weight: 100;
+      text-align: center;
 
-.grid-4-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 940px) {
-        float: left;
-        width: 25%;
-      }
+    cursor: pointer;
+
+    .popover-title {
+      padding: .4em;
+      box-sizing: border-box;
+      border-radius: 0;
+      background-color: rgba( 0, 0, 0, .8 )!important;
+      color: white;
+      font-size: 1.2em !important;
     }
-  }
-}
 
-
-
-.grid-3-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 940px) {
-        float: left;
-        width: 33.33%;
-      }
+    .popover-content {
+      padding: 0;
+      background-color: white!important;
     }
-  }
-}
-
-
-
-.grid-2-3-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 576px) {
-        float: left;
-        width: 50%;
-      }
-      @media (min-width: 992px) {
-        width: 33.33%;
-      }
+    .popover-text {
+      padding: .8em;
+      line-height: 180%;
     }
-  }
-}
 
-
-.grid-2-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 768px) {
-        float: left;
-        width: 50%;
-      }
-    }
-  }
-}
-
-
-
-.grid-2-3-4-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      float: left;
-      width: 50%;
-      @media (min-width: 576px) {
-        width: 33.33%;
-      }
-      @media (min-width: 992px) {
-        width: 25%;
-      }
-    }
-  }
-}
-
-
-.grid-30-70-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 768px) {
-        float: left;
-        width: 70%;
-        &:first-child {
-          width: 30%;
-        }
-      }
-    }
-  }
-}
-
-.grid-25-50-25-container {
-  .grid-row {
-    overflow: auto;
-    .grid-col {
-      @media (min-width: 768px) {
-        float: left;
-        width: 50%;
-        &:first-child {
-          width: 25%;
-        }
-        &:last-child {
-          width: 25%;
-        }
-      }
+    button {
+      border: 0;
+      border-radius: 0;
+      width: 100%;
+      font-weight: 100;
+      color: yellow;
+      background-color: #6d6d6c!important;
+      cursor: pointer;
     }
   }
 }
