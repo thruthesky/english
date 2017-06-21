@@ -171,7 +171,7 @@ var naver_id_login = function (client_id,redirect_uri)
 			alert("등록한 Callback URL 값을 입력해 주세요.");
 			return false;
 		}
-		call_url = this.authorize_url+"?response_type="+this.response_type+"&client_id="+this.client_id+"&redirect_uri="+encodeURIComponent(this.redirect_uri)+"&state="+encodeURIComponent(this.state)+"&svctype=0";
+		call_url = this.authorize_url+"?response_type="+this.response_type+"&client_id="+this.client_id+"&redirect_uri="+encodeURIComponent(this.redirect_uri)+"&state="+encodeURIComponent(this.state);
 		if (this.scope!="")
 		{
 			call_url = call_url + "&scope="+encodeURIComponent(this.scope);

@@ -373,7 +373,8 @@ export class App {
         hostname = hostname.replace("www.", "");
         hostname = hostname.replace("WWW.", "");
         naver_id_login.setDomain("." + hostname);
-        // naver_id_login.setPopup();
+        naver_id_login.setState("loginRequest");
+        naver_id_login.setPopup();
         naver_id_login.init_naver_id_login();
     }
 
@@ -382,15 +383,16 @@ export class App {
     */
     checkLoginWithNaver() {
         let naver_id_login = window['naver_id_login'];
-        let naver_access_token = naver_id_login.oauthParams.access_token;
-        if (naver_access_token) {
-            history.pushState('', document.title, window.location.pathname);
-        }
 
+
+
+        let naver_access_token = naver_id_login.oauthParams.access_token;
+        if (naver_access_token) { // The user has just logged in.
+            // history.pushState('', document.title, window.location.pathname);
+        }
 
         // user has logged in with naver id.
         if (naver_access_token) {
-
             naver_id_login.get_naver_userprofile(() => {
                 let nickname = naver_id_login.getProfileData('nickname');
                 let id = naver_id_login.getProfileData('id');
@@ -400,10 +402,10 @@ export class App {
                     uid: id,
                     email: id + '@naver.com'
                 };
-                this.socialLoginSuccessHandler();
+                this.socialLoginSuccessHandler(() => {
+                    self.close();
+                });
             });
-
-
         }
     }
 
@@ -455,10 +457,10 @@ export class App {
 
     }
 
-    socialLoginSuccessHandler() {
-        this.backendLogin(r => this.backendSuccess(r), e => this.backendFailed(e));
+    socialLoginSuccessHandler( callback? ) {
+        this.backendLogin(r => this.backendSuccess(r, callback), e => this.backendFailed(e));
     }
-    backendSuccess(res: _USER_LOGIN_RESPONSE) {
+    backendSuccess(res: _USER_LOGIN_RESPONSE, callback?) {
 
 
         // id: string;
@@ -478,6 +480,7 @@ export class App {
         this.lms.register(data, res => {
             this.renderPage();
             this.showRequiredInfoModal();
+            if ( callback ) callback();
         }, error => alert(' error on CenterX registration ' + error))
     }
     backendFailed(e) {
