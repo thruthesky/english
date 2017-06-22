@@ -41,9 +41,12 @@
                   </td>
                 </tr>
               </table>
-              <div class="py-3">
-                {{ post.content }}
+              <div class="py-3" (click)="post.show_more_content = ! post.show_more_content">
+                <div class="of-hidden" [class.mh-auto]=" post.show_more_content " [class.post-content]=" !post.show_more_content " [innerHTML]=" post.content "></div>
+                <div *ngIf="!post.show_more_content">... show more</div>
+                <div *ngIf="post.show_more_content">... hide</div>
               </div>
+              
             </div>
           </div>
         </div>

@@ -11,6 +11,9 @@
     .comments {
         @include layout-center();
         padding-bottom: 0!important;
+        .post-content {
+            max-height: 5.7em;
+        }
     }
 }
 

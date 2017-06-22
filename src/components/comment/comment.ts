@@ -7,6 +7,9 @@ import {
   _LIST, _POST_COMMON_WRITE_FIELDS,_POST_LIST_RESPONSE, _POSTS,
   PostData
 } from "angular-backend";
+export interface _POST_COMMON_WRITE_FIELDS_SHOWMORE extends _POST_COMMON_WRITE_FIELDS{
+    show_more_content?: boolean;
+}
 @Component({
   selector: 'comment-component',
   templateUrl: 'comment.html',
@@ -60,8 +63,9 @@ export class CommentComponent {
       this.posts = res.data.posts;
       this.no_of_total_items = res.data.total;
       this.no_of_current_page = res.data.page;
-      this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
+      this.posts.map( (post: _POST_COMMON_WRITE_FIELDS_SHOWMORE) => {
         post.created = ( new Date( parseInt( post.created ) * 1000 ) ).toString();
+        post.show_more_content = false;
       });
     }, err => {
       this.app.error( err );
