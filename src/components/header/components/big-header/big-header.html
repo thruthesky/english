@@ -7,9 +7,10 @@
           <img *ngIf=" ! app.firstVisit " class="" style="height: 46px;" src="{{ app.logoUrl }}">
 
           <ng-container *ngIf=" app.firstVisit ">
-            <img class="" style="height: 46px;" src="assets/images/logo/logo24.png" placement="bottom" [ngbPopover]="popLogo" #pLogo="ngbPopover" (click)="closeAllHelp()">
+            <img class="" style="height: 46px;" src="assets/images/logo/logo24.png" placement="bottom" [ngbPopover]="popLogo" #pLogo="ngbPopover"
+              (click)="closeAllHelp()">
             <ng-template #popLogo>
-              <div class="baloon-help"  (click)="pLogo.close(); nextHelp('menu');">
+              <div class="baloon-help" (click)="pLogo.close(); nextHelp('menu');">
                 <div class="popover-title">전화번호 {{ app.config.phone_number }}</div>
                 <div class="popover-text">
                   <div>{{ app.config.company_name }} 새로운 홈페이지로 인사드립니다.</div>
@@ -29,9 +30,16 @@
         <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
           <div class="text">수업과정</div>
         </td>
-        <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+
+        <td *ngIf=" app.isNewStudent " valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
           <div class="text">레벨테스트</div>
         </td>
+
+        <td *ngIf=" ! app.isNewStudent " valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='books' " (click)="onClickPanelMenu('books')">
+          <div class="text">교재안내</div>
+        </td>
+
+
         <td valign="middle" class="menu fs-120 pointer" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
           <div class="text">수업후기</div>
         </td>
@@ -67,9 +75,17 @@
                 </button>
 
 
-              <button class="btn" (click)="onClickPanelMenu('books'); p.close()">
+              <button *ngIf=" ! app.isNewStudent " class="btn" (click)="onClickPanelMenu('level-test'); p.close()">
+                  <div class="text">레벨테스트</div>
+                </button>
+
+
+              <button *ngIf=" app.isNewStudent " class="btn" (click)="onClickPanelMenu('books'); p.close()">
                   <div class="text">교재안내</div>
                 </button>
+
+
+
 
               <a href="http://onlineenglish.kr/~centerxmain/res/download/tv_ko.exe">
                   <button class="btn">
@@ -136,13 +152,32 @@
               </li>
               <li class="item mr-1" *ngIf=" user.logged " (click)="onClickVe()">
                 <div class="text">강의실입장</div>
+
+                <div class="class-room-help">
+                  <div placement="bottom" [ngbPopover]="popClass" #pClass="ngbPopover" style="height:1px; width:58px; overflow: hidden;">..</div>
+                  <ng-template #popClass>
+                    <div class="baloon-help" (click)="pClass.close();">
+                      <div class="popover-title">강의실 입장</div>
+                      <div class="popover-text">
+                        <div>
+                          수업에 참여하기 위해서는 강의실 입장 메뉴를 클릭 해 주세요.<br>
+                          단, 강의실을 사용하지 않는 학생은 매니저에게 연락해 주세요.
+                        </div>
+                      </div>
+                      <button type="button" class="btn">
+                    도움말 닫기
+                </button>
+                    </div>
+                  </ng-template>
+                </div>
+
               </li>
               <li class="item" *ngIf=" ! user.logged " (click)="onClickLogin()">
                 <div class="text">로그인</div>
               </li>
             </ul>
             <span class="d-none" id="naver_id_login"></span>
-            <div *ngIf=" ! user.logged "><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
+            <div *ngIf=" ! user.logged " class="pointer"><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
 
             <div class="username pt-1 fs-1rem white" *ngIf=" user.logged ">
               {{ user.info.name }}
@@ -150,25 +185,24 @@
 
 
 
-          <ng-container *ngIf=" app.firstVisit ">
-            <div class="login-help">
-              <div placement="bottom" [ngbPopover]="popLogin" #pLogin="ngbPopover" style="height:1px; width:88px; overflow: hidden;">..</div>
-              <ng-template #popLogin>
-                <div class="baloon-help" (click)="pLogin.close(); nextHelp('close');">
-                  <div class="popover-title">로그인</div>
-                  <div class="popover-text">
-                    <div>
-                      네이버, 카카오톡, 페이스북으로 로그인을 할 수 있습니다.<br>
-                      단, 기존 회원님은 꼭 아이디로 로그인해 주세요.
+            <ng-container *ngIf=" app.firstVisit ">
+              <div class="login-help">
+                <div placement="bottom" [ngbPopover]="popLogin" #pLogin="ngbPopover" style="height:1px; width:88px; overflow: hidden;">..</div>
+                <ng-template #popLogin>
+                  <div class="baloon-help" (click)="pLogin.close(); nextHelp('close');">
+                    <div class="popover-title">로그인</div>
+                    <div class="popover-text">
+                      <div>
+                        네이버, 카카오톡, 페이스북으로 로그인을 할 수 있습니다.<br> 단, 기존 회원님은 꼭 아이디로 로그인해 주세요.
+                      </div>
                     </div>
-                  </div>
-                  <button type="button" class="btn">
+                    <button type="button" class="btn">
                     도움말 닫기
                 </button>
-                </div>
-              </ng-template>
-            </div>
-          </ng-container>
+                  </div>
+                </ng-template>
+              </div>
+            </ng-container>
 
           </div>
         </td>

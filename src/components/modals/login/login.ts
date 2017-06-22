@@ -104,6 +104,8 @@ export class LoginModal implements OnInit {
         // this.app.myEvent.emit({
         //     eventType: "login-success"
         // });
+
+        this.app.loginSuccess();
         this.activeModal.close('success');
     }
     error(error) {

@@ -2,7 +2,8 @@ import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-import {User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST} from 'angular-backend';
+
+import { User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST } from 'angular-backend';
 
 import { LMS } from './lms';
 
@@ -16,6 +17,12 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { RegisterComponent } from "../components/modals/register/register";
 
 import { ShareService } from '../providers/share-service';
+
+
+import { Subject } from 'rxjs/Subject';
+
+import { _ClassInformation } from '../components/reservation/reservation-interface'
+
 
 
 export interface SOCIAL_LOGIN {
@@ -33,19 +40,19 @@ export interface ALERT_OPTION {
 }
 
 export interface _SITE_CONFIGURATION {
-  company_name_variation?: string;
-  company_name?: string;
-  company_email?: string;
-  phone_number?: number;
-  copyright_line1?: string;
-  copyright_line2?: string;
-  copyright_line3?: string;
-  copyright_line4?: string;
-  company_name_eul?: string;
-  company_name_en?: string;
-  company_name_wa?: string;
-  logo_idx?: number;
-  logo_url?: string;
+    company_name_variation?: string;
+    company_name?: string;
+    company_email?: string;
+    phone_number?: number;
+    copyright_line1?: string;
+    copyright_line2?: string;
+    copyright_line3?: string;
+    copyright_line4?: string;
+    company_name_eul?: string;
+    company_name_en?: string;
+    company_name_wa?: string;
+    logo_idx?: number;
+    logo_url?: string;
 }
 
 
@@ -72,8 +79,14 @@ export class App {
 
 
     firstVisit: boolean = false;
+    keyVisitCount: string = 'vistCount7';
+    keyLoginCount: string = 'loginCount7';
+    keyClassInfo: string = 'ClassInfo7';
 
-    keyVisitCount: string = 'vistCount4'
+
+
+    loginCount = new Subject<number>();
+
 
     constructor(
         private ngZone: NgZone,
@@ -98,7 +111,7 @@ export class App {
         this.width = width;
         this.renderPage();
 
-        if ( this.widthSize == 'big' ) this.headerHeight = 64;
+        if (this.widthSize == 'big') this.headerHeight = 64;
         else this.headerHeight = 109;
 
 
@@ -180,7 +193,7 @@ export class App {
     scrollTo(id) {
         console.log("clicked id: ", id);
         let parts = this.getParts();
-        if ( parts && parts.length) {
+        if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
                     console.log("top of the section: ", parts[i]['top']);
@@ -208,7 +221,7 @@ export class App {
                 selectedId = part.id;
                 if (i < len - 1) {
                     let nextPart = parts[i + 1];
-                    let pTop = Math.ceil( nextPart.top );
+                    let pTop = Math.ceil(nextPart.top);
                     // console.log(`if (${pTop} > ${windowTop} + ${this.marginTop}) break;`);
                     if (pTop > (windowTop + this.marginTop)) break;
                 }
@@ -283,7 +296,7 @@ export class App {
 
         var scrollY = window.pageYOffset,
             scrollTargetY = scrollTargetY || 0,
-            speed = speed || 2000,
+            speed = speed || 1000,
             easing = easing || 'easeOutSine',
             currentTime = 0;
 
@@ -374,7 +387,8 @@ export class App {
         hostname = hostname.replace("WWW.", "");
         naver_id_login.setDomain("." + hostname);
         naver_id_login.setState("loginRequest");
-        naver_id_login.setPopup();
+
+        // naver_id_login.setPopup();
         naver_id_login.init_naver_id_login();
     }
 
@@ -383,16 +397,11 @@ export class App {
     */
     checkLoginWithNaver() {
         let naver_id_login = window['naver_id_login'];
-
-
-
         let naver_access_token = naver_id_login.oauthParams.access_token;
-        if (naver_access_token) { // The user has just logged in.
-            // history.pushState('', document.title, window.location.pathname);
-        }
 
-        // user has logged in with naver id.
+        // User has just logged in with naver id. ( 방금 로그인 )
         if (naver_access_token) {
+            history.pushState('', document.title, window.location.pathname);
             naver_id_login.get_naver_userprofile(() => {
                 let nickname = naver_id_login.getProfileData('nickname');
                 let id = naver_id_login.getProfileData('id');
@@ -403,10 +412,17 @@ export class App {
                     email: id + '@naver.com'
                 };
                 this.socialLoginSuccessHandler(() => {
-                    self.close();
+                    /**
+                     * After Naver login, resize IE window with full with. The code below works only on IE. it's not working on Chrome, Firefox.
+                     */
+                    window.resizeTo(
+                        window.screen.availWidth,
+                        window.screen.availHeight
+                    );
                 });
             });
         }
+
     }
 
 
@@ -457,8 +473,15 @@ export class App {
 
     }
 
-    socialLoginSuccessHandler( callback? ) {
-        this.backendLogin(r => this.backendSuccess(r, callback), e => this.backendFailed(e));
+    socialLoginSuccessHandler(callback?) {
+        this.backendLogin(r => this.backendSuccess(r, callback), e => this.backendFailed(e, callback));
+    }
+
+    /**
+     * Must call this method for all logins. This may be the last thing to do on each login.
+     */
+    loginSuccess() {
+        this.increaseLoginCount();
     }
     backendSuccess(res: _USER_LOGIN_RESPONSE, callback?) {
 
@@ -480,17 +503,20 @@ export class App {
         this.lms.register(data, res => {
             this.renderPage();
             this.showRequiredInfoModal();
-            if ( callback ) callback();
+            this.loginSuccess();
+            if (callback) callback();
         }, error => alert(' error on CenterX registration ' + error))
     }
-    backendFailed(e) {
+    backendFailed(e, callback?) {
         let user = this.getSocialLogin();
         let id = user.uid + '@' + user.provider;
         if (e['code'] == -40102) {              // user not exists ==> register
-            this.backendRegister(r => this.backendSuccess(r), e => this.backendFailed(e));
+            this.backendRegister(r => this.backendSuccess(r, callback), e => this.backendFailed(e, callback));
         }
         else {
-            alert(this.user.getErrorString(e));
+            // alert("backendFailed: " + this.user.alert(e));
+            if (callback) callback();
+            console.error("backendFailed: " + this.user.alert(e));
         }
     }
 
@@ -520,7 +546,7 @@ export class App {
 
 
     errorHandler(e) {
-        alert('error: ' + e);
+        alert('errorHandler() : ' + e);
     }
 
 
@@ -558,13 +584,13 @@ export class App {
         });
     }
 
-    alertModal( content: string = 'Notification Message', title: string = '알림') {
+    alertModal(content: string = 'Notification Message', title: string = '알림') {
         let option: ALERT_OPTION = {
             title: title,
             content: content,
             class: 'alert-modal enhance-modal',
         };
-        this.showModal( option );
+        this.showModal(option);
     }
 
     private showConfirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
@@ -596,96 +622,160 @@ export class App {
     }
 
     showRequiredInfoModal() {
+
         let activeModal = this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' });
         activeModal.componentInstance.checkRequired = true;
+
     }
 
-  getSiteConfig() {
+    getSiteConfig() {
 
-    let config = localStorage.getItem(this.site_config);
-    //console.log('config:: ', config);
-    if (config) {
-      try {
-        this.config = JSON.parse(config);
-        this.preConfig();
-      } catch(e){}
+        let config = localStorage.getItem(this.site_config);
+        //console.log('config:: ', config);
+        if (config) {
+            try {
+                this.config = JSON.parse(config);
+                this.preConfig();
+            } catch (e) { }
+        }
+
+
+        this.meta.config().subscribe((res) => {
+
+            //console.log('meta.config', res);
+            if (res && res.data && res.data.config) {
+                //console.log('meta.config::config', res);
+                config = res.data.config;
+                try {
+                    this.config = JSON.parse(config);
+
+                } catch (e) { }
+                localStorage.setItem(this.site_config, config);
+                this.preConfig();
+            }
+
+        }, error => this.meta.errorResponse(error));
+
+
+    }
+
+    preConfig() {
+
+        if (this.config.logo_url) this.logoUrl = this.config.logo_url;
+        else this.config.logo_url = this.defaultLogoUrl;
+
+        if (this.config.company_name_variation === '1') this.config['company_name_eul'] = this.config.company_name + '을';
+        else this.config['company_name_eul'] = this.config.company_name + '를';
+
+        if (this.config.company_name_variation === '1') this.config['company_name_en'] = this.config.company_name + '은';
+        else this.config['company_name_en'] = this.config.company_name + '는';
+
+        if (this.config.company_name_variation === '1') this.config['company_name_wa'] = this.config.company_name + '과';
+        else this.config['company_name_wa'] = this.config.company_name + '와';
+
+
+        if (this.config.company_name_variation === '1') this.config['company_name_ga'] = this.config.company_name + '이';
+        else this.config['company_name_ga'] = this.config.company_name + '가';
+
+
+        console.log("site:", this.config);
+
     }
 
 
-    this.meta.config().subscribe( (res) => {
+    get siteInfo(): _SITE_CONFIGURATION {
+        let data = localStorage.getItem(this.site_config);
+        if (data) {
+            try {
+                return JSON.parse(data);
+            }
+            catch (e) { }
+        }
+        return <_SITE_CONFIGURATION>{};
+    }
 
-      //console.log('meta.config', res);
-      if(res && res.data && res.data.config){
-        //console.log('meta.config::config', res);
-        config = res.data.config ;
+
+    checkFirstVisit() {
+        let vc = localStorage.getItem(this.keyVisitCount);
+
+        if (!vc) {
+            this.firstVisit = true;
+        }
+        else if (parseInt(vc) <= 3) { // It assumes as "first vist" until thuser visits 3 times. (세번째 방문까지는 첫번째 방문으로 인정한다.)
+            this.firstVisit = true;
+        }
+
+    }
+    increaseVisitCount() {
+        let vc = localStorage.getItem(this.keyVisitCount);
+        let num = 0;
+        if (!vc) num = 1;
+        else num = parseInt(vc) + 1;
+        localStorage.setItem(this.keyVisitCount, '' + num);
+    }
+    setVisitCount(num: number) {
+        localStorage.setItem(this.keyVisitCount, '' + num);
+    }
+
+
+    increaseLoginCount() {
+        let vc = localStorage.getItem(this.keyLoginCount);
+        let num = 0;
+        if (!vc) num = 1;
+        else num = parseInt(vc) + 1;
+        localStorage.setItem(this.keyLoginCount, '' + num);
+
+        this.loginCount.next(num);
+    }
+    getLoginCount(): number {
+        let vc = localStorage.getItem(this.keyLoginCount);
+        let num = 0;
+        if (!vc) num = 1;
+        else num = parseInt(vc);
+        return num;
+    }
+
+
+    set classInfo(obj) {
+        if (obj == void 0) return;
+        let json;
         try {
-          this.config = JSON.parse(config);
-
-        } catch(e){}
-        localStorage.setItem(this.site_config, config);
-        this.preConfig();
-      }
-
-    }, error => this.meta.errorResponse(error));
-
-
-  }
-
-  preConfig() {
-
-    if ( this.config.logo_url ) this.logoUrl = this.config.logo_url;
-    else this.config.logo_url = this.defaultLogoUrl;
-
-      if ( this.config.company_name_variation === '1' ) this.config['company_name_eul'] = this.config.company_name + '을';
-      else this.config['company_name_eul'] = this.config.company_name + '를';
-
-      if ( this.config.company_name_variation === '1' ) this.config['company_name_en'] = this.config.company_name + '은';
-      else this.config['company_name_en'] = this.config.company_name + '는';
-
-      if ( this.config.company_name_variation === '1' ) this.config['company_name_wa'] = this.config.company_name + '과';
-      else this.config['company_name_wa'] = this.config.company_name + '와';
-
-
-      if ( this.config.company_name_variation === '1' ) this.config['company_name_ga'] = this.config.company_name + '이';
-      else this.config['company_name_ga'] = this.config.company_name + '가';
-
-
-      console.log("site:", this.config);
-
-  }
-
-
-  get siteInfo(): _SITE_CONFIGURATION {
-    let data = localStorage.getItem( this.site_config );
-    if ( data ) {
-      try {
-        return JSON.parse( data );
-      }
-      catch (e) {}
+            json = JSON.stringify(obj);
+        }
+        catch (e) {
+            return;
+        }
+        localStorage.setItem(this.keyClassInfo, json);
     }
-    return <_SITE_CONFIGURATION>{};
-  }
+
+    /**
+     * @todo @check it may need to memory cache.
+     */
+    get classInfo() : _ClassInformation {
+        let str = localStorage.getItem( this.keyClassInfo );
+        if ( ! str ) return null;
+        try {
+            return JSON.parse( str );
+        }
+        catch ( e ) {
+            return null;
+        }
+    }
 
 
-  checkFirstVisit() {
-      let vc = localStorage.getItem(this.keyVisitCount);
+    get isNewStudent() {
 
-      if ( ! vc ) {
-          this.firstVisit = true;
-      }
-      else if ( parseInt(vc) <= 3 ) { // It assumes as "first vist" until thuser visits 3 times. (세번째 방문까지는 첫번째 방문으로 인정한다.)
-          this.firstVisit = true;
-      }
+        console.log("class infos: ", this.classInfo );
+        if ( this.classInfo ) {
+            let count = 0;
+            if ( this.classInfo.no_of_past ) count += parseInt( this.classInfo.no_of_past );
+            if ( this.classInfo.no_of_reservation ) count += parseInt( this.classInfo.no_of_reservation );
+            if ( count >= 3 ) return false;
+        }
 
-  }
-  increaseVisitCount() {
-      let vc = localStorage.getItem(this.keyVisitCount);
-      let num = 0;
-      if ( ! vc ) num = 1;
-      else num = parseInt(vc) + 1;
-      localStorage.setItem(this.keyVisitCount, ''+num);
-  }
-  setVisitCount(num: number) {
-      localStorage.setItem(this.keyVisitCount, ''+num);
-  }
+        return true;
+    }
+
+
+
 }

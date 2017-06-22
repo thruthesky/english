@@ -19,41 +19,54 @@ export class BigHeaderComponent {
     @ViewChild('pLogo') pLogo;
     @ViewChild('pMenu') pMenu;
     @ViewChild('pLogin') pLogin;
+    @ViewChild('pClass') pClass;
     constructor(
         public user: User,
         public app: App,
         public share: ShareService,
         public lms: LMS
     ) {
-
+        
     }
 
     ngOnInit() {
-      this.app.initializeNaverLogin();
-
-      if ( this.app.firstVisit ) {
-        setTimeout(() => this.nextHelp('logo'), 2000);
-      }
+        this.app.initializeNaverLogin();
     }
 
+    ngAfterViewInit() {
 
-    nextHelp( name ) {
+
+        if (this.app.firstVisit) {
+            setTimeout(() => this.nextHelp('logo'), 3000);
+        }
+
+
+        this.app.loginCount.subscribe(n => {
+            console.log("login count: ", n);
+            if (n <= 3) {
+                setTimeout(() => this.pClass.open(), 2000);
+            }
+        });
+
+    }
+
+    nextHelp(name) {
         this.closeAllHelp();
-        if ( name == 'logo' ) this.pLogo.open();
-        else if ( name == 'login' ) {
+        if (name == 'logo') this.pLogo.open();
+        else if (name == 'login') {
             this.pLogin.open();
         }
-        else if ( name == 'menu' ) {
+        else if (name == 'menu') {
             this.pMenu.open();
         }
-        else if ( name == 'close' ) { // if user click on close, then no more baloon help show.
+        else if (name == 'close') { // if user click on close, then no more baloon help show.
             this.app.setVisitCount(5);
             this.app.firstVisit = false;
         }
     }
 
     closeAllHelp() {
-        if ( this.pLogo ) {
+        if (this.pLogo) {
             this.pLogo.close();
             this.pMenu.close();
             this.pLogin.close();
@@ -65,20 +78,20 @@ export class BigHeaderComponent {
     }
 
 
-    onClickLogout(){
+    onClickLogout() {
 
         this.logout.emit();
     }
-    onClickUpdateProfile(){
+    onClickUpdateProfile() {
         this.profile.emit();
     }
     onClickMoreMenu() {
-        this.more = ! this.more;
+        this.more = !this.more;
         this.closeAllHelp();
     }
-    onClickPanelMenu( name ) {
+    onClickPanelMenu(name) {
         this.more = false;
-        this.app.scrollTo( name );
+        this.app.scrollTo(name);
     }
     onClickLogin() {
         this.onLogin.emit();

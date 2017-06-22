@@ -421,22 +421,15 @@ var naver_id_login = function (client_id,redirect_uri)
 		dataType: "jsonp",
 		jsonp: "oauth_callback",
 		success: function (result) {
-			console.log(result);
-			// inner_profileParams.age           = result.response.age;
-			// inner_profileParams.birthday      = result.response.birthday;
-			// inner_profileParams.email         = result.response.email;
-
 			inner_profileParams.age           = '';
 			inner_profileParams.birthday      = '';
 			inner_profileParams.email         = '';
-
 			inner_profileParams.enc_id        = result.response.enc_id;
 			inner_profileParams.gender        = '';
 			inner_profileParams.id            = result.response.id;
 			inner_profileParams.nickname      = result.response.nickname;
 			inner_profileParams.profile_image = '';
 			inner_profileParams.name          = result.response.name;
-			
 			callback_func1();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {

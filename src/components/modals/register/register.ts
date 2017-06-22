@@ -120,15 +120,17 @@ export class RegisterComponent {
         }
     }
     loadUserData() {
-        this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+        this.user.data().subscribe( x => this.afterLoadData(x), error => {
+            this.error( error );
+        } );
+    }
+    afterLoadData(res: _USER_DATA_RESPONSE) {
           if( res.code == 0 ) {
             this.getDataSuccess( res );
             this.checkRequiredErrorMessage( res.data.user );
           }
-        }, error => {
-            this.error( error );
-        } );
-    }
+        }
+        
     register( callback? ) {
         let register = <_USER_CREATE> this.form.value;
         let msg = {

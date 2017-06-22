@@ -102,6 +102,7 @@ export class ReservationComponent implements OnInit {
             if ( this.classinformation.next_class == "No reservation" ) this.classinformation.next_class = "예약된 수업이 없습니다.";
 
             this.share.class_info = this.classinformation;
+            this.app.classInfo = this.classinformation;
             res.books.forEach((res)=>{
                 if(  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
                  LMS_URL + '/data');
