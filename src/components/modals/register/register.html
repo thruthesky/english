@@ -64,7 +64,7 @@
 
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user-circle-o fa-fw"></i></span>
-                <input validate-onblur formControlName="name" name="name" type="text" class="form-control form-control-sm" placeholder="이름" (keydown)="onEnterRegister($event)">
+                <input id="register-form-name" validate-onblur formControlName="name" name="name" type="text" class="form-control form-control-sm" placeholder="이름" (keydown)="onEnterRegister($event)">
             </div>
             <small class="form-text text-muted">이름을 입력하세요.</small>
             <div *ngIf="formErrors.name" class="alert alert-danger">
@@ -104,6 +104,7 @@
 
               <div class="col-md-12 register" >
                 <button *ngIf=" ! user?.logged " type="button"
+                    id="register-form-submit"
                     class="btn btn-secondary btn-block rounded-0 py-3 white"
                     style="background-color: #8fa3ad;"
                     (click)="onClickRegister()" [disabled]="!form.valid">

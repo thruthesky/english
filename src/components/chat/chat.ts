@@ -123,7 +123,7 @@ export class ChatComponent implements OnInit {
   scrollMessageBox() {
     if ( this.min ) return;
     let $messages = $('.chat.max .messages');
-    if ($messages && $messages[0].scrollHeight) {
+    if ($messages && $messages.length && $messages[0].scrollHeight) { /// // add $messages.length by Mr. Song JaeHo.
       $messages.animate({ scrollTop: $messages[0].scrollHeight }, 300);
     }
   }

@@ -201,7 +201,7 @@ export class AdminPanelComponent implements OnInit {
 
   scrollMessageBox() {
     let $messages = $('.display .messages');
-    if ($messages && $messages[0].scrollHeight) {
+    if ($messages && $messages.length && $messages[0].scrollHeight) { // add $messages.length by Mr. Song JaeHo. 
       $messages.animate({scrollTop: $messages[0].scrollHeight}, 300);
     }
   }
