@@ -191,7 +191,7 @@ export class App {
 
 
     scrollTo(id) {
-        console.log("clicked id: ", id);
+        //console.log("clicked id: ", id);
         let parts = this.getParts();
         if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
@@ -734,8 +734,7 @@ export class App {
         else num = parseInt(vc);
         return num;
     }
-
-
+    
     set classInfo(obj) {
         if (obj == void 0) return;
         let json;

@@ -6,32 +6,32 @@
                 <i class="fa fa-times pointer"  aria-hidden="true"></i>
             </div>
         </div>
-            <div class="messages h-20">
-                <ul class="list-style-none p-3">
-                  <ng-container *ngFor="let m of user_message | async">
-                    <li *ngIf=" ! m.newVisitor " class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" >
-                        <span  class="text d-block" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
-                    </li>
-                  </ng-container>
-                </ul>
-            </div>
-            <div class="input">
-                <form (ngSubmit)="onSubmitMessage()">
-                    <table width="100%" cellpadding="0" cellpadding="0">
-                        <tr>
-                          <td width="1%">
-                                <span class="fa-stack fa-lg pointer" (click)="onClickMinimize()">
-                                    <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
-                                    <i class="fa fa-times fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                                </span>
-                            </td>
-                            <td width="98%"><div><input name="message" [(ngModel)]="form.message"></div></td>
-                            <td width="1%"><i class="fa fa-mail-forward pointer" aria-hidden="true" (click)="onSubmitMessage()"></i></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
+        <div class="messages h-20">
+            <ul class="list-style-none p-3">
+              <ng-container *ngFor="let m of user_message | async">
+                <li *ngIf=" ! m.newVisitor " class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" >
+                    <span  class="text d-block" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
+                </li>
+              </ng-container>
+            </ul>
         </div>
+        <div class="input">
+            <form (ngSubmit)="onSubmitMessage()">
+                <table width="100%" cellpadding="0" cellpadding="0">
+                    <tr>
+                      <td width="1%">
+                            <span class="fa-stack fa-lg pointer" (click)="onClickMinimize()">
+                                <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+                                <i class="fa fa-times fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                            </span>
+                        </td>
+                        <td width="98%"><div><input name="message" [(ngModel)]="form.message"></div></td>
+                        <td width="1%"><i class="fa fa-mail-forward pointer" aria-hidden="true" (click)="onSubmitMessage()"></i></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
     <div class="min" *ngIf="min">
         <div class="p-3 bg-lightgrey pointer" (click)="onClickMaximize()">
             <span class="fa-stack fa-lg">
