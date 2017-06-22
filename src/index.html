@@ -162,7 +162,8 @@
 <script src="assets/js/naverLogin_implicit-1.0.3.js"></script>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script>
-  var naver_id_login = new window['naver_id_login']( window['naver_login_client_id'], "https://"+window.location.hostname+"/");
+  var naver_login_client_id = window['naver_login_client_id'] ? window['naver_login_client_id'] : 'RQ5aql3x2TQKjwi2Pkh4';
+  var naver_id_login = new window['naver_id_login']( naver_login_client_id, "https://"+window.location.hostname+"/");
   Kakao.init('f1c28c13d21b295e1cdce515884477de');
 </script>
 

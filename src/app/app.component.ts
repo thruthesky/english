@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from './../environments/environment';
+
 import { App } from '../providers/app';
 
 import { Backend } from 'angular-backend';
@@ -15,9 +17,11 @@ export class AppComponent {
 
   constructor (
     private app: App,
-    private backed: Backend
+    private backend: Backend
   ) {
-    backed.setBackendUrl("https://" + window.location.hostname  + "/index.php");
+
+    if ( environment.backendUrl ) backend.setBackendUrl( environment.backendUrl  );
+    else backend.setBackendUrl("https://" + window.location.hostname  + "/index.php");
 
     app.getSiteConfig();
 
