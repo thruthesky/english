@@ -126,7 +126,7 @@ export class LMS {
                     json = JSON.parse(re['_body']);
                 }
                 catch (e) {
-                    alert("Parse ERROR on lms::getReservationsByMonthYear()");
+                    // alert("Parse ERROR on lms::getReservationsByMonthYear()");
                 }
 
                 if (json['code'] !== void 0 && json['code']) {
