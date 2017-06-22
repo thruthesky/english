@@ -3,7 +3,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 
-import { User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST } from 'angular-backend';
+import {
+  User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST,
+  _USER_DATA_RESPONSE
+} from 'angular-backend';
 
 import { LMS } from './lms';
 
@@ -623,8 +626,19 @@ export class App {
 
     showRequiredInfoModal() {
 
-        let activeModal = this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' });
-        activeModal.componentInstance.checkRequired = true;
+      this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
+
+        if ( res.code == 0 && res.data.user ) {
+          let user = res.data.user;
+          if ( !user.name || !user.nickname || !user.mobile || !user.email ) {
+            let activeModal = this.modal.open(RegisterComponent, {windowClass: 'enhance-modal'});
+            activeModal.componentInstance.checkRequired = true;
+          }
+        }
+      }, error => {
+        this.error( error );
+      });
+
 
     }
 
@@ -734,7 +748,7 @@ export class App {
         else num = parseInt(vc);
         return num;
     }
-    
+
     set classInfo(obj) {
         if (obj == void 0) return;
         let json;

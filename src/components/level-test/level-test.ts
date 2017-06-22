@@ -59,7 +59,7 @@ export class LevelTestComponent {
 
 
     this.form = fb.group({
-      name:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      name:   [ this.user.info.name , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
       phone:  ['', [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]

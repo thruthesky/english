@@ -124,13 +124,14 @@ export class RegisterComponent {
             this.error( error );
         } );
     }
+
     afterLoadData(res: _USER_DATA_RESPONSE) {
-          if( res.code == 0 ) {
-            this.getDataSuccess( res );
-            this.checkRequiredErrorMessage( res.data.user );
-          }
-        }
-        
+      if (res.code == 0) {
+        this.getDataSuccess(res);
+        this.checkRequiredErrorMessage(res.data.user);
+      }
+    }
+
     register( callback? ) {
         let register = <_USER_CREATE> this.form.value;
         let msg = {
