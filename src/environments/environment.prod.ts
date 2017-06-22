@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   hmr: false,
+  backendUrl: '',
   firebase: {
     apiKey: "AIzaSyBnvok5OR77tFUl1yk0-ZeyeVkYgMWGrcE",
     authDomain: "english-588f2.firebaseapp.com",

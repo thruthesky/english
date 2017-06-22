@@ -96,18 +96,34 @@ export class PostListComponent  {
     onClickDelete( _post ) {
       let option = {
         class: 'enhance-modal',
-        title: 'Deleting Post',
-        content: 'Are you sure you want to delete this post?',
-        confirm: 'Submit',
-        cancel: 'Cancel'
+        title: '글 삭제',
+        content: '정말 삭제하시겠습니까??',
+        confirm: '예',
+        cancel: '아니오'
       };
-      this.app.confirmModal( option , () => {
-          this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
-            _post.title = 'Deleted';
-            _post.content = 'Deleted';
-            _post.deleted = 1;
-          }, err => this.postData.alert( err ) );
-      });
+      if( this.user.logged ) {
+        let req: _POST_EDIT = { idx: parseInt( _post.idx) };
+        this.app.confirmModal( option , () => {
+            this.postData.delete( req ).subscribe( (res: _DELETE_RESPONSE) => {
+                _post.title = '삭제되었습니다.';
+                _post.content = '삭제되었습니다.';
+                _post.deleted = 1;
+            }, err => this.postData.alert( err ) );
+        });
+      }
+      else {
+          let password = prompt("비밀번호를 입력하세요.");
+          let req: _POST_EDIT = { idx: parseInt( _post.idx), password: password };
+          this.app.confirmModal( option , () => {
+            this.postData.delete( req ).subscribe( (res: _DELETE_RESPONSE) => {
+                _post.title = '삭제되었습니다.';
+                _post.content = '삭제되었습니다.';
+                _post.deleted = 1;
+            }, err => this.postData.alert( err ) );
+        });
+      }
+      
+      
     }
     loadPostData() {
         this.posts = [];

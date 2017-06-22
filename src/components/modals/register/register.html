@@ -100,6 +100,10 @@
                 {{ result?.message }}
             </div>
 
+            <div *ngIf="loading" class="loading mt-3">
+                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> 회원 정보 등록중입니다. 잠시만 기다려주세요.
+            </div>
+
             <div class="row">
 
               <div class="col-md-12 register" >

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { App } from '../../../providers/app';
 import {
@@ -8,7 +8,7 @@ import {
   User,
   File, _POST, _POST_EDIT, _POST_EDIT_RESPONSE,
 } from 'angular-backend';
-import {ShareService} from '../../../providers/share-service';
+import { ShareService } from '../../../providers/share-service';
 
 
 @Component({
@@ -38,13 +38,13 @@ export class CommentReviewComponent implements OnInit {
   post: _POST = <_POST>{};
 
   constructor(
-    public  app          : App,
+    public app: App,
     private fb: FormBuilder,
-    public  activeModal: NgbActiveModal,
+    public activeModal: NgbActiveModal,
     private user: User,
     private postData: PostData,
-    public  share: ShareService,
-    public  file          : File,
+    public share: ShareService,
+    public file: File,
   ) {
 
 
@@ -54,22 +54,22 @@ export class CommentReviewComponent implements OnInit {
     this.createForm();
     this.formGroup.valueChanges
       .debounceTime(1000)
-      .subscribe( () => {
+      .subscribe(() => {
         this.onValueChanged();
       });
   }
 
   createForm() {
-    if ( this.isCreate() ) {
+    if (this.isCreate()) {
       this.primary_photo_idx = null;
       this.formGroup = this.fb.group({
-        content: ['', [Validators.required] ]
+        content: ['', [Validators.required]]
       });
     }
     else {
       this.primary_photo_idx = this.post.files.length && this.post.files[0].idx ? this.post.files[0].idx : null;
       this.formGroup = this.fb.group({
-        content: [ this.post.content, [ Validators.required ] ]
+        content: [this.post.content, [Validators.required]]
       });
     }
   }
@@ -84,65 +84,65 @@ export class CommentReviewComponent implements OnInit {
   }
 
   onClickSubmit() {
-    if ( this.isCreate() ) this.createPost();
+    if (this.isCreate()) this.createPost();
     else this.editPost();
   }
 
 
   createPost() {
-    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
-    if ( ! this.primary_photo_idx ) {
+    if (this.formGroup.value.content.length == 0) return this.formErrors.content = "내용을 입력 해 주세요.";
+    if (!this.primary_photo_idx) {
       return this.photoError = "사진을 업로드해야 합니다."
     }
 
-    let create = <_POST_CREATE> this.formGroup.value;
+    let create = <_POST_CREATE>this.formGroup.value;
     create.post_config_id = 'review';
-    create.file_hooks = [ this.primary_photo_idx ];
-    if( this.user.logged ) create.name = this.user.info.name;
+    create.file_hooks = [this.primary_photo_idx];
+    if (this.user.logged) create.name = this.user.info.name;
     else {
       this.activeModal.dismiss();
-      this.app.alertModal( "회원 로그인을 해 주세요.", "로그인 필수");
+      this.app.alertModal("회원 로그인을 해 주세요.", "로그인 필수");
     }
-    this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
+    this.postData.create(create).subscribe((res: _POST_CREATE_RESPONSE) => {
       this.activeModal.close();
-      this.app.alertModal( "Success Write Comment");
-    }, err => this.postData.alert( err ) );
+      this.app.alertModal("수업 후기를 작성하였습니다.");
+    }, err => this.postData.alert(err));
   }
 
   editPost() {
 
-    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "내용을 입력해 주세요>";
-    if ( ! this.primary_photo_idx ) {
+    if (this.formGroup.value.content.length == 0) return this.formErrors.content = "내용을 입력해 주세요>";
+    if (!this.primary_photo_idx) {
       return this.photoError = "사진을 업로드해야 합니다."
     }
 
-    let edit = <_POST_EDIT> this.formGroup.value;
+    let edit = <_POST_EDIT>this.formGroup.value;
     edit.idx = this.post.idx;
-    edit.file_hooks = [ this.primary_photo_idx ];
-    if( this.user.logged ) edit.name = this.user.info.name;
+    edit.file_hooks = [this.primary_photo_idx];
+    if (this.user.logged) edit.name = this.user.info.name;
     else {
       this.activeModal.dismiss();
-      this.app.alertModal( "To write comment you must log-in", "Must Log-in first");
+      this.app.alertModal("로그인을 해 주세요.", "로그인 필수");
     }
-    this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
+    this.postData.edit(edit).subscribe((res: _POST_EDIT_RESPONSE) => {
       this.activeModal.close();
-      this.app.alertModal( "Success Update Comment");
-    }, err => this.postData.alert( err ) );
+      this.app.alertModal("수업 후기를 수정하였습니다.");
+    }, err => this.postData.alert(err));
   }
 
 
   onClickDeletePhoto() {
-    this.file.delete( this.primary_photo_idx).subscribe( (res:_DELETE_RESPONSE) => {
+    this.file.delete(this.primary_photo_idx).subscribe((res: _DELETE_RESPONSE) => {
       this.primary_photo_idx = null;
     }, err => {
       this.file.alert(err);
     });
   }
 
-  onChangeFileUpload( fileInput ) {
+  onChangeFileUpload(fileInput) {
     this.photoError = null;
     let file = fileInput.files[0];
-    this.file.uploadPostFile( file ).subscribe(res => {
+    this.file.uploadPostFile(file).subscribe(res => {
       this.primary_photo_idx = res.data.idx;
     }, err => {
       this.file.alert(err);
