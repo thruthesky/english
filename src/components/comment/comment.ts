@@ -72,15 +72,15 @@ export class CommentComponent {
 
     let option = {
       class: 'enhance-modal',
-      title: 'Deleting Post',
-      content: 'Are you sure you want to delete this comment?',
-      confirm: 'Submit',
-      cancel: 'Cancel'
+      title: '글 삭제',
+      content: '정말 삭제를 하시겠씁니까?',
+      confirm: '예',
+      cancel: '아니오'
     };
     this.app.confirmModal( option , () => {
       this.postData.delete( parseInt( _post.idx) ).subscribe( (res: _DELETE_RESPONSE) => {
-        _post.title = 'Deleted';
-        _post.content = 'Deleted';
+        _post.title = '삭제되었습니다.';
+        _post.content = '삭제되었습니다.';
         _post.deleted = 1;
       }, err => this.postData.alert( err ));
     });

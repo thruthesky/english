@@ -90,7 +90,7 @@ export class CommentReviewComponent implements OnInit {
 
 
   createPost() {
-    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
+    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "내용을 입력 해 주세요.";
     if ( ! this.primary_photo_idx ) {
       return this.photoError = "사진을 업로드해야 합니다."
     }
@@ -105,7 +105,7 @@ export class CommentReviewComponent implements OnInit {
     }
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
       this.activeModal.close();
-      this.app.alertModal( "Success Write Comment");
+      this.app.alertModal( "코멘트를 작성하였습니다.");
     }, err => this.postData.alert( err ) );
   }
 
@@ -122,11 +122,11 @@ export class CommentReviewComponent implements OnInit {
     if( this.user.logged ) edit.name = this.user.info.name;
     else {
       this.activeModal.dismiss();
-      this.app.alertModal( "To write comment you must log-in", "Must Log-in first");
+      this.app.alertModal( "로그인을 해 주세요.", "로그인 필수");
     }
     this.postData.edit( edit ).subscribe( ( res: _POST_EDIT_RESPONSE ) => {
       this.activeModal.close();
-      this.app.alertModal( "Success Update Comment");
+      this.app.alertModal( "코멘트를 수정하였습니다.");
     }, err => this.postData.alert( err ) );
   }
 
