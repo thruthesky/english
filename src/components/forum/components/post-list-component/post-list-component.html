@@ -14,8 +14,8 @@
         <span id="post{{post.idx}}" type="text" name="title" placeholder="Title">
           {{post.title}}
         </span>
-        <span *ngIf="post && post.files.length > 0"><i class="fa fa-picture-o icons p-1" aria-hidden="true"></i></span>
-        <span *ngIf=" !post.deleted && ( userIdx == post.user_idx  ||  user.info.admin == 1 )"
+        <span *ngIf="post && post.files.length > 0 "><i class="fa fa-picture-o icons p-1" aria-hidden="true"></i></span>
+        <span *ngIf=" !post.deleted && ( userIdx == post.user_idx  ||  user.info.admin == 1 || !userIdx && post.name == 'anonymous' )"
               (click)="onClickDelete( post );$event.stopPropagation();" class="text-center" role="button">
           <i class="fa fa-trash icons p-1" ></i>
         </span>
