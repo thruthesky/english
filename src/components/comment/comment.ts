@@ -73,7 +73,7 @@ export class CommentComponent {
     let option = {
       class: 'enhance-modal',
       title: '글 삭제',
-      content: '정말 삭제를 하시겠씁니까?',
+      content: '정말 삭제를 하시겠습니까?',
       confirm: '예',
       cancel: '아니오'
     };

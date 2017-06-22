@@ -764,17 +764,29 @@ export class App {
 
     get isNewStudent() {
 
-        console.log("class infos: ", this.classInfo );
+        // console.log("class infos: ", this.classInfo );
+        // if ( this.classInfo ) {
+        //     let count = 0;
+        //     if ( this.classInfo.no_of_past ) count += parseInt( this.classInfo.no_of_past );
+        //     if ( this.classInfo.no_of_reservation ) count += parseInt( this.classInfo.no_of_reservation );
+        //     if ( count >= 3 ) return false;
+        // }
+
+        if ( this.noOfClasses >= 3 ) return false;
+
+        return true;
+    }
+    
+
+    get noOfClasses() : number {
         if ( this.classInfo ) {
             let count = 0;
             if ( this.classInfo.no_of_past ) count += parseInt( this.classInfo.no_of_past );
             if ( this.classInfo.no_of_reservation ) count += parseInt( this.classInfo.no_of_reservation );
-            if ( count >= 3 ) return false;
+            return count;
         }
-
-        return true;
+        return 0;
     }
-
 
 
 }
