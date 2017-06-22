@@ -11,7 +11,6 @@ import { ShareService } from '../providers/share-service';
 
 export const LMS_URL = "//witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
-export const domain: string = 'englishfordevelopers.onlineenglish.kr';
 export interface TEACHER {
     birthday: string;
     classid: string;
@@ -33,7 +32,9 @@ export class LMS {
         public user: User,
         //public app: App,
         private share: ShareService
-        ) {
+    ) {
+
+
 
     }
     get url() {
@@ -69,6 +70,10 @@ export class LMS {
             else failure(' error on lms registration ');
         })
     }
+
+    /**
+     * Branch domain of each site. Branch domain is automatically set.
+     */
     getDomain() {
         let hostname = window.location.hostname
         let domain: string = '';
@@ -81,7 +86,7 @@ export class LMS {
         else if (hostname.indexOf("onfis.com") != -1) {
             domain = 'onfis.onlineenglish.kr';
         }
-        else if (hostname.indexOf('iamtalkative') != -1) {
+        else if (hostname.indexOf('iamtalkative') != -1) { /// Any domain that contains 'iamtalkative'. So you can test with 'test.iamtalkative.com'
             domain = 'talkative.onlineenglish.kr';
         }
         else if (hostname.indexOf("igoodtalk.com") != -1) {

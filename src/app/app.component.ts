@@ -17,7 +17,7 @@ export class AppComponent {
     private app: App,
     private backed: Backend
   ) {
-    backed.setBackendUrl("https://www.englishfordevelopers.com/index.php");
+    backed.setBackendUrl("https://" + window.location.hostname  + "/index.php");
 
     app.getSiteConfig();
 

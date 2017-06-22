@@ -23,8 +23,13 @@
       }
       var v = detectOldIE();
       if ( v && v <= 9 ) {
-        alert("앗, 새로운 사이트에서 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n옛날 사이트로 이동합니다.\n\n새로운 사이트를 이용하시려면 인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
-        location.href="http://old.iamtalkative.com";
+        if ( window.location.hostname.indexOf("iamtalkative") != -1 ) {
+          alert("앗, 새로운 사이트에서 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n옛날 사이트로 이동합니다.\n\n새로운 사이트를 이용하시려면 인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
+          location.href="http://old.iamtalkative.com";
+        }
+        else {
+          alert("앗, 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
+        }
       }
   </script>
 
@@ -157,7 +162,7 @@
 <script src="assets/js/naverLogin_implicit-1.0.3.js"></script>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script>
-  var naver_id_login = new window['naver_id_login']("RQ5aql3x2TQKjwi2Pkh4", "https://"+window.location.hostname+"/");
+  var naver_id_login = new window['naver_id_login']( window['naver_login_client_id'], "https://"+window.location.hostname+"/");
   Kakao.init('f1c28c13d21b295e1cdce515884477de');
 </script>
 

@@ -92,7 +92,7 @@ export class CommentReviewComponent implements OnInit {
   createPost() {
     if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
     if ( ! this.primary_photo_idx ) {
-      return this.photoError = "Photo is required"
+      return this.photoError = "사진을 업로드해야 합니다."
     }
 
     let create = <_POST_CREATE> this.formGroup.value;
@@ -101,7 +101,7 @@ export class CommentReviewComponent implements OnInit {
     if( this.user.logged ) create.name = this.user.info.name;
     else {
       this.activeModal.dismiss();
-      this.app.alertModal( "To write comment you must log-in", "Must Log-in first");
+      this.app.alertModal( "회원 로그인을 해 주세요.", "로그인 필수");
     }
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
       this.activeModal.close();
@@ -111,9 +111,9 @@ export class CommentReviewComponent implements OnInit {
 
   editPost() {
 
-    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "Comment is required";
+    if ( this.formGroup.value.content.length == 0 ) return this.formErrors.content = "내용을 입력해 주세요>";
     if ( ! this.primary_photo_idx ) {
-      return this.photoError = "Photo is required"
+      return this.photoError = "사진을 업로드해야 합니다."
     }
 
     let edit = <_POST_EDIT> this.formGroup.value;
