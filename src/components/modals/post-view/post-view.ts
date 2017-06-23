@@ -54,6 +54,7 @@ export class PostViewModal {
             }
 
             this.mode = '';
+            this.commentContent = '';
 
             // this.createSuccess(res.data);
         }, err => this.postComment.alert(err));
