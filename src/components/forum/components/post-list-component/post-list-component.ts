@@ -108,10 +108,7 @@ export class PostListComponent  {
                 _post.title = '삭제되었습니다.';
                 _post.content = '삭제되었습니다.';
                 _post.deleted = 1;
-                //Work on progress don't delete
-                this.posts.forEach((re)=>{
-                    if(re.idx == _post.idx)console.log(re);
-                });
+                this.posts = this.posts.filter( post => post.idx !== _post.idx );
             }, err => this.postData.alert( err ) );
         });
       }
@@ -141,7 +138,6 @@ export class PostListComponent  {
             this.posts.map( (post: _POST_COMMON_WRITE_FIELDS) => {
                 post.created = ( new Date( parseInt(post.created) * 1000 ) ).toDateString();
             });
-            // console.log(this.posts);
         }, err => {
             this.app.error( err );
         });
