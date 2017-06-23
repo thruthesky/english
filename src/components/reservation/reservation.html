@@ -1,24 +1,24 @@
 <section id="reservation" class="part ">
     <div class="content-wrapper" style="padding-top: 0;">
 
-<div class="text">
-    <h1 class="fs-3rem text-center">나의 수업</h1>
-   <div class="class-info">
-        <div class="desc" *ngIf="share && share.class_info">
+    <div class="text">
+        <h1 class="fs-3rem text-center">나의 수업</h1>
+    <div class="class-info">
+            <div class="desc" *ngIf="share && share.class_info">
 
-            <div><span class="caption">다음 수업</span>  : {{ formatNextClass(share.class_info)}}</div>
-            <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
-            <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
-            <div><span class="caption">첫 수업</span>    : {{ formatFirstClass(share.class_info) }}</div>
-        </div>
-        <div class="pl-5 desc" *ngIf="share && !share.class_info">
-            예약된 수업 정보가 없습니다.
-            <ng-container *ngIf=" ! app.user.logged ">
-                로그인을 하십시오.
-            </ng-container>
+                <div><span class="caption">다음 수업</span>  : {{ formatNextClass(share.class_info)}}</div>
+                <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
+                <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
+                <div><span class="caption">첫 수업</span>    : {{ formatFirstClass(share.class_info) }}</div>
+            </div>
+            <div class="pl-5 desc" *ngIf="share && !share.class_info">
+                예약된 수업 정보가 없습니다.
+                <ng-container *ngIf=" ! app.user.logged ">
+                    로그인을 하십시오.
+                </ng-container>
+            </div>
         </div>
     </div>
-</div>
 
         <div class="reservation-container p-relative ">
             <div class="date-container d-flex justify-content-between my-3">

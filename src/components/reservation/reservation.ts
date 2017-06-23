@@ -122,7 +122,7 @@ export class ReservationComponent implements OnInit {
     listCalendar( month, year ) {
         this.books = [];
         let book;
-        let empty_day = new Date(year + "-" + month + "-01").getDay();
+        let empty_day = new Date( year,month-1,1).getDay();
         let days_in_month = new Date(year, month, 0).getDate();
         for (let i = 0; i < empty_day; i++) { this.books.unshift( null ); }
         for (let i = 1; i <= days_in_month; i++) {
