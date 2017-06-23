@@ -698,7 +698,7 @@ export class App {
         else this.config['company_name_ga'] = this.config.company_name + '가';
 
 
-        console.log("site:", this.config);
+        //console.log("site::", this.config);
 
     }
 
@@ -796,7 +796,7 @@ export class App {
 
         return true;
     }
-    
+
 
     get noOfClasses() : number {
         if ( this.classInfo ) {
