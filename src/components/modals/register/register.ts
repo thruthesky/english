@@ -59,7 +59,7 @@ export class RegisterComponent {
         });
 
         if (!this.user.logged) {
-            this.form.addControl('password', new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(128)]));
+            this.form.addControl('password', new FormControl('', [Validators.required]));
         }
         if (this.user.logged) this.loadUserData();
         this.form.valueChanges
@@ -317,8 +317,6 @@ export class RegisterComponent {
         },
         password: {
             'required': '비밀번호를 입력하십시오.',
-            'minlength': '비밀번호는 3 글자 이상이어야 합니다.',
-            'maxlength': '비밀번호는 128 글자 이하이어야 합니다.'
         },
         email: {
             'required': '이메일을 입력하십시오.',
