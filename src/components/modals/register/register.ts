@@ -280,11 +280,11 @@ export class RegisterComponent {
     }
 
     mobileValidator(c: AbstractControl): { [key: string]: any } {
-
-        if (c.value.length && c.value.length < 9) {
+        if ( ! c.value ) return;
+        if (c.value && c.value.length && c.value.length < 9) {
             return { 'minlength': '' };
         }
-        if (c.value.length &&  c.value.length > 15) {
+        if (c.value &&  c.value.length &&  c.value.length > 15) {
             return { 'maxlength': '' };
         }
         let re = new RegExp(/^(\d+-?)+\d+$/).test(<string>c.value);
