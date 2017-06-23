@@ -40,14 +40,12 @@ export class LoginModal implements OnInit {
             this.form['id'] = id;
             this.saveid = true;
         }
-
-
             this.app.initializeNaverLogin();
     }
     createForm() {
         this.form = this.fb.group({
             id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
-            password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(128)]]
+            password: ['', [Validators.required]]
         });
         this.form.valueChanges
             .debounceTime(1000)
@@ -147,9 +145,7 @@ export class LoginModal implements OnInit {
             'maxlength': 'ID cannot be more than 32 characters long.'
         },
         password: {
-            'required': '비밀번호를 입력하세요.',
-            'minlength': '비밀번호는 5 글자 이상 입력해야 합니다.',
-            'maxlength': 'Password cannot be more than 128 characters long.'
+            'required': '비밀번호를 입력하세요.'
         },
     };
 
