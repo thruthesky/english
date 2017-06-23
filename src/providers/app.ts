@@ -65,6 +65,8 @@ export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 @Injectable()
 export class App {
 
+    useFacebook: boolean = false;
+
     config: _SITE_CONFIGURATION = {};
     defaultLogoUrl: string = "/assets/images/logo/logo24.png";
     logoUrl: string = this.defaultLogoUrl;
@@ -106,6 +108,10 @@ export class App {
         this.myEvent = new EventEmitter();
         this.checkFirstVisit();
         this.increaseVisitCount();
+
+
+        if ( window['use_facebook'] !== void 0 && window['use_facebook'] ) this.useFacebook = true;
+
     }
     /**
     * Everytime window resizes, this is set.

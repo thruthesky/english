@@ -9,7 +9,7 @@
 
                     <ng-container *ngIf=" ! user.logged ">
                         <span><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
-                        <span (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
+                        <span *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
                     </ng-container>
 
                     <div class="username pt-1 fs-1rem" *ngIf=" user.logged ">
@@ -48,7 +48,7 @@
                         <div class="mt-1 ml-4">
                             <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
                             <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
-                            <img (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
+                            <img *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
                         </div>
                     </li>
                     <li id="small-header-register-button" class="menu" *ngIf="! user.logged " (click)="onClickRegister()">

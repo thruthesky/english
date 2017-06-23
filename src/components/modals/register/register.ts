@@ -69,8 +69,8 @@ export class RegisterComponent {
 
     getUserId(id) {
         if (/\@naver\.com$/.test(id)) id = `네이버 로그인 ${id}`;
-        else if (/\@kakaotalk\.com$/.test(id)) id = `카카오톡 로그인 {$id}`;
-        else if (/\@facebook\.com$/.test(id)) id = `페이스북 로그인 {$id}`;
+        else if (/\@kakaotalk\.com$/.test(id)) id = `카카오톡 로그인 ${id}`;
+        else if (/\@facebook\.com$/.test(id)) id = `페이스북 로그인 ${id}`;
         return id;
     }
     onClickChangePassword() {
