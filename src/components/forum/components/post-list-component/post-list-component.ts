@@ -108,6 +108,10 @@ export class PostListComponent  {
                 _post.title = '삭제되었습니다.';
                 _post.content = '삭제되었습니다.';
                 _post.deleted = 1;
+                //Work on progress don't delete
+                this.posts.forEach((re)=>{
+                    if(re.idx == _post.idx)console.log(re);
+                });
             }, err => this.postData.alert( err ) );
         });
       }
@@ -122,8 +126,6 @@ export class PostListComponent  {
             }, err => this.postData.alert( err ) );
         });
       }
-      
-      
     }
     loadPostData() {
         this.posts = [];
