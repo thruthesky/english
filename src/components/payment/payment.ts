@@ -11,19 +11,23 @@ import { FirebaseChat } from './../../providers/firebase';
 export class PaymentComponent implements AfterViewInit {
 
 
-  amounts = {
-    "25": 120000,
-    "50": 216000 
-  };
+  // amounts = {
+  //   "25": 120000,
+  //   "50": 216000 
+  // };
   customAmount = '';
-  minutes = "";
-  days = "5";
-  daysRate = {
-    "5" : 100,
-    "4" : 90,
-    "3" : 80
-  };
-  months = "1";
+  selectedMinutes: string = '';
+  selectedDays: string = '';
+  selectedMonths: string = '';
+
+  // defaultMinutes = "25";
+  // defaultDays = "5";
+  // daysRate = {
+  //   "5" : 100,
+  //   "4" : 90,
+  //   "3" : 80
+  // };
+  // months = "1";
 
 
   iframeUrl: SafeResourceUrl;
@@ -31,9 +35,11 @@ export class PaymentComponent implements AfterViewInit {
   constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
 
 
-    
-    
 
+    this.selectedMinutes = this.app.paymentOption.defaultMinutes + '';
+    this.selectedDays = this.app.paymentOption.defaultDays + '';
+    this.selectedMonths = this.app.paymentOption.defaultMonths + '';
+    
     window.addEventListener('message', (e) => {
       let msg = <string>e.data;
       if ( ! /^payment\-/.test(msg) ) return;
@@ -45,8 +51,12 @@ export class PaymentComponent implements AfterViewInit {
 
   }
   ngAfterViewInit() {
+
+    // console.log(this.selectedDays);
+    // console.log( this.app.paymentOption );
     
   }
+
   money_format( amount ) : string {
     if ( ! amount ) return "0";
     let n = parseInt( amount );
@@ -61,16 +71,27 @@ export class PaymentComponent implements AfterViewInit {
   
 
   getAmount() {
-    let amount: string = "";
-    if ( this.minutes == "0" ) {
-      amount = this.money_format( this.customAmount );
-    }
-    else amount = this.money_format( this.amounts[this.minutes] * this.daysRate[this.days] / 100 *  ( parseInt( this.months ) ) );
-    return amount;
+
+    if ( this.selectedMinutes == '0' ) return this.customAmount;
+
+    // console.log( this.selectedDays );
+    let minutes = this.app.paymentOption.minutes_months_days[ this.selectedMinutes ];
+    if ( ! minutes ) return 0; // alert( this.selectedMinutes + " Minutes not set in payment option");
+    let months = minutes [ this.selectedMonths ];
+    if ( ! months ) return 0; // alert( this.selectedMonths + " Months not set in payment option");
+    let days = months[ this.selectedDays ];
+    if ( ! days ) return 0; // alert( this.selectedDays + " days not set in payment options");
+
+    return days;
+
+
   }
 
   getAmountByMonths(days) {
-     return this.money_format( this.amounts[this.minutes] * this.daysRate[ days ] / 100 *  ( parseInt( this.months ) ) );
+    if ( this.selectedMinutes == '0' ) return 0;
+    if ( this.getAmount() == 0 ) return 0;
+    let months = this.app.paymentOption.minutes_months_days[ this.selectedMinutes ];
+    return this.money_format ( months[ this.selectedMonths ][ days ] );
   }
   onClickPayment() {
 
@@ -80,8 +101,8 @@ export class PaymentComponent implements AfterViewInit {
     }
 
 
-
-    let amount = this.getAmount().replace(/,/g, '');
+    //let amount = this.getAmount().replace(/,/g, '');
+    let amount = this.getAmount();
     this.user.data(this.user.info.id).subscribe((res) => {
 
       let user = res.data.user;
@@ -96,9 +117,7 @@ export class PaymentComponent implements AfterViewInit {
         this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
       }, 300);
       
-
     }, e => this.user.alert(e));
-
 
   }
 }

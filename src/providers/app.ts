@@ -92,6 +92,7 @@ export class App {
 
     loginCount = new Subject<number>();
 
+    paymentOption = null;
 
     constructor(
         private ngZone: NgZone,
@@ -111,6 +112,17 @@ export class App {
 
 
         if ( window['use_facebook'] !== void 0 && window['use_facebook'] ) this.useFacebook = true;
+
+        /**
+         * Payment Customizing. See # https://docs.google.com/document/d/1pRx_T5DwH9fZRZMgj43IGjqppROL8SAUkx7SzmN6fpQ/edit#heading=h.wiz92gphk3qm
+         * 
+         * 
+         */
+
+         this.paymentOption = window['payment_customization'];
+
+         // console.log( this.paymentOption );
+
 
     }
     /**
@@ -205,10 +217,10 @@ export class App {
         if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
                 if (parts[i]['id'] == id) {
-                    console.log("top of the section: ", parts[i]['top']);
+                    // console.log("top of the section: ", parts[i]['top']);
                     let p = parts[i]['top'] - this.headerHeight;
-                    console.log('scroll To Y: ', p);
-                    console.log("headerHeight: ", this.headerHeight);
+                    // console.log('scroll To Y: ', p);
+                    // console.log("headerHeight: ", this.headerHeight);
                     this.scrollToY(p);
                     break;
                 }
@@ -698,7 +710,7 @@ export class App {
         else this.config['company_name_ga'] = this.config.company_name + '가';
 
 
-        console.log("site:", this.config);
+        // console.log("site:", this.config);
 
     }
 

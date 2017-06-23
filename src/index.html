@@ -11,135 +11,220 @@
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script>
-      function detectOldIE() {
-          var ua = window.navigator.userAgent;
-          var msie = ua.indexOf('MSIE ');
-          if (msie > 0) {
-              // IE 10 or older => return version number
-              return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-          }
-          // other browser or not old IE.
-          return false;
+    function detectOldIE() {
+      var ua = window.navigator.userAgent;
+      var msie = ua.indexOf('MSIE ');
+      if (msie > 0) {
+        // IE 10 or older => return version number
+        return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
       }
-      var v = detectOldIE();
-      if ( v && v <= 9 ) {
-        if ( window.location.hostname.indexOf("iamtalkative") != -1 ) {
-          alert("앗, 새로운 사이트에서 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n옛날 사이트로 이동합니다.\n\n새로운 사이트를 이용하시려면 인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
-          location.href="http://old.iamtalkative.com";
-        }
-        else {
-          alert("앗, 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
-        }
+      // other browser or not old IE.
+      return false;
+    }
+    var v = detectOldIE();
+    if (v && v <= 9) {
+      if (window.location.hostname.indexOf("iamtalkative") != -1) {
+        alert("앗, 새로운 사이트에서 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n옛날 사이트로 이동합니다.\n\n새로운 사이트를 이용하시려면 인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
+        location.href = "http://old.iamtalkative.com";
       }
+      else {
+        alert("앗, 인터넷 익스플로러 버전 9 이하는 지원하지 않습니다.\n\n인터넷 익스플로러 버전 10 이상으로 업데이트 해 주세요.");
+      }
+    }
   </script>
 
+
+  <script>
+      /// TEST CODE : This code must be deleted on production site..
+
+      var payment_customization = {
+        customAmountInput: true,  /// To show a box that user can input amount.
+        defaultMinutes: 'N',  /// If 0, then custom amout input will be selected by default. If 25, then, 25 will be selected by default.
+        defaultDays: 5,       /// Default days to be selected.
+        defaultMonths: 1,     /// Defalt months to be selected.
+        text: {               /// Text(title) to display on the form.
+          minutes: {
+            25: '25분',
+            // 50: '50분 (10% 할인)'
+          },
+          months: {
+            1: '1개월',
+            3: '3개월',
+            6: '6개월 (5% DC)',
+            12: '12개월 (10% DC)'
+          },
+          days: {
+            5: '주 5 회',
+            4: '주 4 회',
+            3: '주 3 회'
+          }
+        },
+        minutes_months_days : {
+          25: { // minutes
+            1: { // months
+              5: 120000, // days
+              4: 100000,
+              3: 96000
+            },
+            3: {
+              5: 360000,
+              4: 300000,
+              3: 270000
+            },
+            6: {
+              5: 684000,
+              4: 570000,
+              3: 513000
+            },
+            12: {
+              5: 1296000,
+              4: 1080000,
+              3: 972000
+            }
+          }
+          // ,
+          // 50: {
+          //   1: {
+          //     5: 216000,
+          //     4: 194400,
+          //     3: 172800
+          //   },
+          //   3: {
+          //     5: 648000,
+          //     4: 583200,
+          //     3: 518400
+          //   },
+          //   6: {
+          //     5: 1296000,
+          //     4: 1166400,
+          //     3: 1036800
+          //   },
+          //   12: {
+          //     5: 2592000,
+          //     4: 2332800,
+          //     3: 2073600
+          //   }
+          // }
+        }
+      };
+  </script>
 
 
 </head>
 
 <body>
-<app-root>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Apple SD Gothic Neo", "Noto Sans KR";
-    }
-    .shell-menu {
-      padding: .5em;
-      height: 3.6em;
-      overflow: hidden;
-      background-color: rgba( 0, 0, 0, .8 );
-      color: white;
-    }
-    .shell-menu table {
-      margin: 0 auto;
-      width: 100%;
-      max-width: 912px;
-    }
-    .shell-menu ul {
-      display: inline;
-      list-style: none;
-      margin: 0 0 0 1em;
-      padding: 0;
-    }
-    .shell-menu ul li {
-      display: inline-block;
-      margin: .6em .2em;
-    }
-    .shell-content {
-      position: relative;
-      margin: 60px auto;
-      padding: 1em;
-      max-width: 912px;
-      min-height: 1024px;
-      background-repeat: no-repeat;
-      background-position: center 0;
-      line-height: 180%;
-      text-align: center;
-    }
-    .shell-content h1 {
-      margin-bottom: 20px;
-    }
-    .shell-logo img {
-      width: 140px;
-    }
-    .shell-loader {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .shell-icon-bars {
-      position: relative;
-      display: inline-block;
-      margin: .2em 0 0;
-      background-color: white;
-      border-radius: 50%;
-      width: 34px;
-      height: 34px;
-    }
-    .shell-icon-bars svg {
-      position: absolute;
-      top: 7px;
-      left: 25%;
-      width: 18px;
-      height: 20px;
-      background-color: white;
-    }
-  </style>
-  <div id="app-shell">
-    <div class="shell-menu">
-      <table cellpadding=0 cellspacing=0>
-        <tr valign=top>
-          <td><span class="shell-logo"><img src="./assets/images/logo/logo24.png"></span></td>
-          <td align="center">
-            <ul>
-              <li>영어선생님</li>
-              <li>수업과정</li>
-              <li>레벨테스트</li>
-              <li>수업후기</li>
-              <li>수업료</li>
-              <li>질문게시판</li>
-            </ul>
-          </td>
-          <td>
+  <app-root>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Apple SD Gothic Neo", "Noto Sans KR";
+      }
+
+      .shell-menu {
+        padding: .5em;
+        height: 3.6em;
+        overflow: hidden;
+        background-color: rgba( 0, 0, 0, .8);
+        color: white;
+      }
+
+      .shell-menu table {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 912px;
+      }
+
+      .shell-menu ul {
+        display: inline;
+        list-style: none;
+        margin: 0 0 0 1em;
+        padding: 0;
+      }
+
+      .shell-menu ul li {
+        display: inline-block;
+        margin: .6em .2em;
+      }
+
+      .shell-content {
+        position: relative;
+        margin: 60px auto;
+        padding: 1em;
+        max-width: 912px;
+        min-height: 1024px;
+        background-repeat: no-repeat;
+        background-position: center 0;
+        line-height: 180%;
+        text-align: center;
+      }
+
+      .shell-content h1 {
+        margin-bottom: 20px;
+      }
+
+      .shell-logo img {
+        width: 140px;
+      }
+
+      .shell-loader {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .shell-icon-bars {
+        position: relative;
+        display: inline-block;
+        margin: .2em 0 0;
+        background-color: white;
+        border-radius: 50%;
+        width: 34px;
+        height: 34px;
+      }
+
+      .shell-icon-bars svg {
+        position: absolute;
+        top: 7px;
+        left: 25%;
+        width: 18px;
+        height: 20px;
+        background-color: white;
+      }
+    </style>
+    <div id="app-shell">
+      <div class="shell-menu">
+        <table cellpadding=0 cellspacing=0>
+          <tr valign=top>
+            <td><span class="shell-logo"><img src="./assets/images/logo/logo24.png"></span></td>
+            <td align="center">
+              <ul>
+                <li>영어선생님</li>
+                <li>수업과정</li>
+                <li>레벨테스트</li>
+                <li>수업후기</li>
+                <li>수업료</li>
+                <li>질문게시판</li>
+              </ul>
+            </td>
+            <td>
               <span class="shell-icon-bars">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M436 120H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h424c6.6 0 12 5.4 12 12v32c0 6.6-5.4 12-12 12zm12 316v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12zm0-164v-32c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12z"></path></svg>
               </span>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="shell-content">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="shell-content">
 
-      <h1>완벽한 1:1 말하기 수업</h1>
+        <h1>완벽한 1:1 말하기 수업</h1>
 
-      <div>영어는 언어입니다. 말을 해야지만 배울 수 있는 것입니다.</div>
-      <div>부모님이 10년을 해도 안되는 영어를 자식에게 똑같이 주입시키겠습니까?</div>
-      <div>저희는 지난 10년간 외국인 강사와 매일 하루 25분 씩 1:1 맞춤 수업을 통해서 수 만명의 학생에게 영어 말하기 능력을 향상시켜드렸습니다.</div>
+        <div>영어는 언어입니다. 말을 해야지만 배울 수 있는 것입니다.</div>
+        <div>부모님이 10년을 해도 안되는 영어를 자식에게 똑같이 주입시키겠습니까?</div>
+        <div>저희는 지난 10년간 외국인 강사와 매일 하루 25분 씩 1:1 맞춤 수업을 통해서 수 만명의 학생에게 영어 말하기 능력을 향상시켜드렸습니다.</div>
 
-      <div class="shell-loader">
-        <div class="loader-icon">
-          <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <div class="shell-loader">
+          <div class="loader-icon">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
               <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
     s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
@@ -150,22 +235,23 @@
                 />
               </path>
             </svg>
+          </div>
+          <!--/loader-icon-->
+          <div>홈페이지를 로딩합니다. 잠시만 기다려 주세요.</div>
         </div>
-        <!--/loader-icon-->
-        <div>홈페이지를 로딩합니다. 잠시만 기다려 주세요.</div>
       </div>
     </div>
-  </div>
-</app-root>
+  </app-root>
 
-<script src="assets/js/kakao.min.js"></script>
-<script src="assets/js/naverLogin_implicit-1.0.3.js"></script>
-<script src="assets/js/jquery-3.2.1.min.js"></script>
-<script>
-  var naver_login_client_id = window['naver_login_client_id'] ? window['naver_login_client_id'] : 'RQ5aql3x2TQKjwi2Pkh4';
-  var naver_id_login = new window['naver_id_login']( naver_login_client_id, "https://"+window.location.hostname+"/");
-  Kakao.init('f1c28c13d21b295e1cdce515884477de');
-</script>
+  <script src="assets/js/kakao.min.js"></script>
+  <script src="assets/js/naverLogin_implicit-1.0.3.js"></script>
+  <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script>
+        var naver_login_client_id = window['naver_login_client_id'] ? window['naver_login_client_id'] : 'RQ5aql3x2TQKjwi2Pkh4';
+        var naver_id_login = new window['naver_id_login'](naver_login_client_id, "https://" + window.location.hostname + "/");
+        Kakao.init('f1c28c13d21b295e1cdce515884477de');
+
+  </script>
 
 </body>
 
