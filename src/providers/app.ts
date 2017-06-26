@@ -670,7 +670,7 @@ export class App {
 
             //console.log('meta.config', res);
             if (res && res.data && res.data.config) {
-                console.log('meta.config::config', res);
+                //console.log('meta.config::config', res);
                 config = res.data.config;
                 try {
                     this.config = JSON.parse(config);
