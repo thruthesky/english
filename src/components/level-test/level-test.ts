@@ -2,7 +2,10 @@ import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
 import {App} from './../../providers/app';
 import {FirebaseChat} from './../../providers/firebase';
-import {User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE } from "angular-backend";
+import {
+  User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE, _USER_DATA_RESPONSE, _RESPONSE,
+  _USER_RESPONSE
+} from "angular-backend";
 import {ShareService} from "../../providers/share-service";
 
 @Component({
@@ -46,6 +49,9 @@ export class LevelTestComponent {
 
   };
 
+
+  data = <_USER_RESPONSE>{};
+
   constructor(public app: App,
               private user: User,
               private fb: FormBuilder,
@@ -57,10 +63,18 @@ export class LevelTestComponent {
 
     this.uid = this.app.getClientId();
 
+    if ( user.logged ) {
+      this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
+        this.data = res.data.user;
+      }, (err: _RESPONSE) => {
+        // console.log('error::', err);
+      });
+    }
+
 
     this.form = fb.group({
-      name:   [ this.user.info.name , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
-      phone:  ['', [Validators.required, this.mobileValidator]],
+      name:   [ this.data.name , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      phone:  [ this.data.mobile, [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
     });
