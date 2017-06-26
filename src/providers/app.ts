@@ -58,6 +58,7 @@ export interface _SITE_CONFIGURATION {
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;
+  atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
   logo_url?: string;
@@ -669,7 +670,7 @@ export class App {
 
             //console.log('meta.config', res);
             if (res && res.data && res.data.config) {
-                //console.log('meta.config::config', res);
+                console.log('meta.config::config', res);
                 config = res.data.config;
                 try {
                     this.config = JSON.parse(config);

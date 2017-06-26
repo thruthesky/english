@@ -12,7 +12,7 @@
     "s": "sudo ng serve --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
     "s2": "sudo ng serve --live-reload false --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
     "sa": "sudo ng serve --aot --ssl true --ssl-key './tmp/privkey.pem' --ssl-cert './tmp/fullchain.pem' --host englishfordevelopers.com --port 443",
-    "ssl": "ng serve --ssl --ssl-key ./tmp/privkey.pem --ssl-cert ./tmp/fullchain.pem --host englishfordevelopers.com --port 443",
+    "ssl": "ng serve --ssl --ssl-key ./tmp/privkey.pem --ssl-cert ./tmp/fullchain.pem --host iamtalkative.com --port 443",
     "t": "ng build --prod --aot --output-path=www --base-href=/ && cd www && scp -r * talkative@x.withcenter.com:./www",
     "ret": "ng build --prod --output-path=www --base-href=/ && cd www && scp index.html *.css *.js talkative@x.withcenter.com:./www",
     "publish": "ng build --prod --aot --output-path=www --base-href=/ && npm run scp",

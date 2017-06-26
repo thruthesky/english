@@ -176,15 +176,15 @@ export class LevelTestComponent {
 
 
   mobileValidator(c: AbstractControl): { [key: string]: any } {
-    if ( c.value.length < 9 ) {
-      return { 'minlength' : '' };
+    if ( ! c.value ) return;
+    if (c.value && c.value.length && c.value.length < 9) {
+      return { 'minlength': '' };
     }
-    if ( c.value.length > 15 ) {
-      return { 'maxlength' : '' };
+    if (c.value &&  c.value.length &&  c.value.length > 15) {
+      return { 'maxlength': '' };
     }
-    let re = new RegExp( /^(\d+-?)+\d+$/ ).test( <string> c.value );
-    if ( re ) return;
+    let re = new RegExp(/^(\d+-?)+\d+$/).test(<string>c.value);
+    if (re) return;
     else return { 'malformed': '' };
   }
-
 }
