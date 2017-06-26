@@ -63,23 +63,24 @@ export class LevelTestComponent {
 
     this.uid = this.app.getClientId();
 
-    if ( user.logged ) {
-      this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
-        this.data = res.data.user;
-      }, (err: _RESPONSE) => {
-        // console.log('error::', err);
-      });
-    }
-
-
     this.form = fb.group({
-      name:   [ this.data.name , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
-      phone:  [ this.data.mobile, [Validators.required, this.mobileValidator]],
+      name:   ['' , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      phone:  ['', [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
     });
 
-
+    if ( user.logged ) {
+      this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
+        this.data = res.data.user;
+        this.form.patchValue( {
+          name: this.data.name,
+          phone: this.data.mobile,
+        });
+      }, (err: _RESPONSE) => {
+        //console.log('error::', err);
+      });
+    }
 
 
     let d = (new Date);
@@ -92,10 +93,13 @@ export class LevelTestComponent {
       this.days.push(day);
       if ( ! this.selectedDay ) {
         this.selectedDay = date;
-        this.form.patchValue({date: day.date + " (" + day.day + ")" });
+        this.form.patchValue( {date: day.date + " (" + day.day + ")" } );
       }
       if (this.days.length >= 3) break;
     }
+
+
+
 
 
     this.form.valueChanges
@@ -187,4 +191,5 @@ export class LevelTestComponent {
     if (re) return;
     else return { 'malformed': '' };
   }
+
 }
