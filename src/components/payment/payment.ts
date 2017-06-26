@@ -13,7 +13,7 @@ export class PaymentComponent implements AfterViewInit {
 
   amounts = {
     "25": 120000,
-    "50": 216000 
+    "50": 216000
   };
   customAmount = '';
   minutes = "";
@@ -28,12 +28,12 @@ export class PaymentComponent implements AfterViewInit {
 
   iframeUrl: SafeResourceUrl;
 
-  constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
-
-
-    
-    
-
+  constructor(
+    public app: App,
+    public user: User,
+    private domSanitizer: DomSanitizer,
+    private firebaseDatabase: FirebaseChat
+  ) {
     window.addEventListener('message', (e) => {
       let msg = <string>e.data;
       if ( ! /^payment\-/.test(msg) ) return;
@@ -45,7 +45,7 @@ export class PaymentComponent implements AfterViewInit {
 
   }
   ngAfterViewInit() {
-    
+
   }
   money_format( amount ) : string {
     if ( ! amount ) return "0";
@@ -55,10 +55,10 @@ export class PaymentComponent implements AfterViewInit {
     return n.toString().split('').reverse().reduce( (t, v, i, a ) => {
       return t = t + v.toString() + ( i < a.length -1 && (i+1) % 3 == 0 ? ',' : '' );
     }, '' ).split('').reverse().join('');
-    
-    
+
+
   }
-  
+
 
   getAmount() {
     let amount: string = "";
@@ -95,7 +95,7 @@ export class PaymentComponent implements AfterViewInit {
       setTimeout(() => {
         this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
       }, 300);
-      
+
 
     }, e => this.user.alert(e));
 

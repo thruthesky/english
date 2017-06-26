@@ -53,7 +53,7 @@ export class ChatComponent implements OnInit {
       if (this.firstList) {
         //console.log('newVisitor');
         let d = (new Date);
-        let now ='visit ' + d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() ;
+        let now ='visit ' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() ;
         let msg: _FIREBASE_CHAT = {
           user: this.uid,
           name: this.userId,

@@ -46,7 +46,7 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      console.log('all_message', res)
+      //console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();
@@ -201,7 +201,7 @@ export class AdminPanelComponent implements OnInit {
 
   scrollMessageBox() {
     let $messages = $('.display .messages');
-    if ($messages && $messages.length && $messages[0].scrollHeight) { // add $messages.length by Mr. Song JaeHo. 
+    if ($messages && $messages.length && $messages[0].scrollHeight) { // add $messages.length by Mr. Song JaeHo.
       $messages.animate({scrollTop: $messages[0].scrollHeight}, 300);
     }
   }
