@@ -75,8 +75,11 @@
                                                         </span>
                                                     </div>
                                                     <div class="popover-data" *ngIf="info?.rate_comment">
-                                                        <span>
-                                                            Teacher's Comment: {{ info?.rate_comment }}
+                                                        <span>Teacher's Comment: </span>
+                                                    </div>
+                                                    <div class="popover-data comment" *ngIf="info?.rate_comment">
+                                                        <span  [innerHTML]="info?.rate_comment">
+                                                            <!--{{ info?.rate_comment }}-->
                                                         </span>
                                                     </div>
                                                 </div>
