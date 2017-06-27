@@ -12,7 +12,7 @@
             <form [formGroup]="form" novalidate>
 
                 <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 mt-2" for="name">이름</label>
+                    <label class="d-block col-sm-4 col-lg-3 mt-2" for="name">이름</label>
                     <div class="col-sm-8 col-lg-9">
                         <input validate-onblur formControlName="name" class="form-control rounded-0" type="text" name="name" maxlength="64" id="name" tabindex="101" placeholder="이름">
                         <div *ngIf="formErrors.name" class="alert alert-danger mt-3 mb-0">
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 mt-2" for="phone">핸드폰번호</label>
+                    <label class="d-block col-sm-4 col-lg-3 mt-2" for="phone">핸드폰번호</label>
                     <div class="col-sm-8 col-lg-9">
                         <input validate-onblur formControlName="phone" class="form-control rounded-0" type="tel" name="phone" maxlength="64" id="phone" tabindex="101" placeholder="전화번호를 입력하십시오.">
                         <div *ngIf="formErrors.phone" class="alert alert-danger mt-3 mb-0">
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="row form-group">
-                    <label class="col-sm-4 col-lg-3 pt-md-3">날짜 선택</label>
+                    <label class="d-block col-sm-4 col-lg-3 pt-md-3">날짜 선택</label>
                     <div class="col-sm-8 col-lg-9">
                         <div class="btn-group pointer" data-toggle="buttons">
                             <label *ngFor="let day of days" class="btn d-inline-block p-3 mb-0 bg-lightgrey pointer  rounded-0" [ngClass]="{ 'active bg-slategrey white' : day.date == selectedDay }"

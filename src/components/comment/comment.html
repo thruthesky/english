@@ -18,7 +18,7 @@
       <div class="comments">
         <div class="container">
           <div class="row">
-            <div class="col-md-6" *ngFor="let post of posts ">
+            <div class="d-inline-block align-top col-md-6" *ngFor="let post of posts ">
               <table cellspacing="0" cellpadding="0">
                 <tr>
                   <td *ngIf="post.files[0]" class="of-hidden b-white rounded-circle d-block" style="height: 4rem; width: 4rem;">
@@ -49,7 +49,7 @@
               <div *ngIf="100 > post.content.length" class="py-3" (click)="post.show_more_content = ! post.show_more_content">
                 <div class="of-hidden mh-auto" [innerHTML]=" post.content "></div>
               </div>
-              
+
             </div>
           </div>
         </div>

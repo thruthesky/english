@@ -141,7 +141,8 @@ export class LevelTestComponent {
     let create = <_POST_CREATE> {
       title: p,
       content: p,
-      post_config_id: 'qna'
+      post_config_id: 'qna',
+      mobile: this.form.value.phone
     };
     if( this.user.logged ) create.name = this.user.info.name;
     else {
