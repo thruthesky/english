@@ -15,7 +15,7 @@ import {ShareService} from "../../providers/share-service";
 })
 export class LevelTestComponent {
 
-  uid:string;
+  uid: string;
   days = [];
   selectedDay;
   form: FormGroup;
@@ -30,7 +30,6 @@ export class LevelTestComponent {
   validationMessages = {
     name: {
       'required':      '이름을 입력하십시오.',
-      'minlength':     '이름은 3 글자 이상이어야 합니다.',
       'maxlength':     '이름은 32 글자 이하이어야 합니다.'
     },
     phone: {
@@ -64,7 +63,7 @@ export class LevelTestComponent {
     this.uid = this.app.getClientId();
 
     this.form = fb.group({
-      name:   ['' , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      name:   ['' , [Validators.required, Validators.maxLength(32)]],
       phone:  ['', [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
@@ -95,7 +94,7 @@ export class LevelTestComponent {
         this.selectedDay = date;
         this.form.patchValue( {date: day.date + " (" + day.day + ")" } );
       }
-      if (this.days.length >= 3) break;
+      if (this.days.length >= 5) break;
     }
 
 
