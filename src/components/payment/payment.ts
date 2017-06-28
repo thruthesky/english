@@ -35,14 +35,17 @@ export class PaymentComponent implements AfterViewInit {
   constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
 
 
+    if (app.paymentOption) {
 
-    this.selectedMinutes = this.app.paymentOption.defaultMinutes + '';
-    this.selectedDays = this.app.paymentOption.defaultDays + '';
-    this.selectedMonths = this.app.paymentOption.defaultMonths + '';
-    
+      this.selectedMinutes = this.app.paymentOption.defaultMinutes + '';
+      this.selectedDays = this.app.paymentOption.defaultDays + '';
+      this.selectedMonths = this.app.paymentOption.defaultMonths + '';
+
+    }
+
     window.addEventListener('message', (e) => {
       let msg = <string>e.data;
-      if ( ! /^payment\-/.test(msg) ) return;
+      if (! /^payment\-/.test(msg)) return;
       firebaseDatabase.push("payment", {
         status: msg,
         id: user.info.id
@@ -54,33 +57,33 @@ export class PaymentComponent implements AfterViewInit {
 
     // console.log(this.selectedDays);
     // console.log( this.app.paymentOption );
-    
+
   }
 
-  money_format( amount ) : string {
-    if ( ! amount ) return "0";
-    let n = parseInt( amount );
-    if ( ! n ) return "0";
+  money_format(amount): string {
+    if (!amount) return "0";
+    let n = parseInt(amount);
+    if (!n) return "0";
 
-    return n.toString().split('').reverse().reduce( (t, v, i, a ) => {
-      return t = t + v.toString() + ( i < a.length -1 && (i+1) % 3 == 0 ? ',' : '' );
-    }, '' ).split('').reverse().join('');
-    
-    
+    return n.toString().split('').reverse().reduce((t, v, i, a) => {
+      return t = t + v.toString() + (i < a.length - 1 && (i + 1) % 3 == 0 ? ',' : '');
+    }, '').split('').reverse().join('');
+
+
   }
-  
+
 
   getAmount() {
 
-    if ( this.selectedMinutes == '0' ) return this.customAmount;
+    if (this.selectedMinutes == '0') return this.customAmount;
 
     // console.log( this.selectedDays );
-    let minutes = this.app.paymentOption.minutes_months_days[ this.selectedMinutes ];
-    if ( ! minutes ) return 0; // alert( this.selectedMinutes + " Minutes not set in payment option");
-    let months = minutes [ this.selectedMonths ];
-    if ( ! months ) return 0; // alert( this.selectedMonths + " Months not set in payment option");
-    let days = months[ this.selectedDays ];
-    if ( ! days ) return 0; // alert( this.selectedDays + " days not set in payment options");
+    let minutes = this.app.paymentOption.minutes_months_days[this.selectedMinutes];
+    if (!minutes) return 0; // alert( this.selectedMinutes + " Minutes not set in payment option");
+    let months = minutes[this.selectedMonths];
+    if (!months) return 0; // alert( this.selectedMonths + " Months not set in payment option");
+    let days = months[this.selectedDays];
+    if (!days) return 0; // alert( this.selectedDays + " days not set in payment options");
 
     return days;
 
@@ -88,10 +91,10 @@ export class PaymentComponent implements AfterViewInit {
   }
 
   getAmountByMonths(days) {
-    if ( this.selectedMinutes == '0' ) return 0;
-    if ( this.getAmount() == 0 ) return 0;
-    let months = this.app.paymentOption.minutes_months_days[ this.selectedMinutes ];
-    return this.money_format ( months[ this.selectedMonths ][ days ] );
+    if (this.selectedMinutes == '0') return 0;
+    if (this.getAmount() == 0) return 0;
+    let months = this.app.paymentOption.minutes_months_days[this.selectedMinutes];
+    return this.money_format(months[this.selectedMonths][days]);
   }
   onClickPayment() {
 
@@ -103,6 +106,7 @@ export class PaymentComponent implements AfterViewInit {
 
     //let amount = this.getAmount().replace(/,/g, '');
     let amount = this.getAmount();
+    if (amount == 0) return alert('수업료를 선택해 주세요.');
     this.user.data(this.user.info.id).subscribe((res) => {
 
       let user = res.data.user;
@@ -110,13 +114,14 @@ export class PaymentComponent implements AfterViewInit {
       if (!user.email) return alert("결재하기 전, 회원 정보 메뉴에서 이메일 주소를 먼저 입력해 주십시오.");
       if (!user.mobile) return alert("결재하기 전, 회원 정보 메뉴에서 전화번호를 먼저 입력해 주십시오.");
 
-      let url = `https://www.englishfordevelopers.com/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
+
+      let url = `https://` + window.location.hostname + `/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
       this.app.scrollTo('paymentIframe');
       setTimeout(() => {
         this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
       }, 300);
-      
+
     }, e => this.user.alert(e));
 
   }
