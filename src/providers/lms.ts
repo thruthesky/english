@@ -120,6 +120,7 @@ export class LMS {
             let domain = this.getDomain();
             data['classid'] = this.share.defaultClassId;
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
+            console.log("kajskasd",url);
             this.http.get(url).subscribe(re => {
                 let json = null;
                 try {
@@ -162,11 +163,19 @@ export class LMS {
     }
 
     openVe() {
+        /*
+        Safari is blocking any call to window.open() which is made inside an async call.
+        The solution that I found to this problem is to call window.open
+        before making an asnyc call and set the location when the promise resolves.
+        Ref:https://stackoverflow.com/questions/20696041/window-openurl-blank-not-working-on-imac-safari
+        */
+        let newwindow: any = window.open();
+        
         this.getNextClass(data => {
             if (!data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();
             let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
-            window.open(url, "_blank");
+            newwindow.location = url;
         }, error => {
             alert("앗! 예약된 수업이 없습니다.");
         });

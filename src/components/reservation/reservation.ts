@@ -62,7 +62,7 @@ export class ReservationComponent implements OnInit {
     }
     selectNewDate( data: _NewDate ) {
         this.year = parseInt(data.Y);
-        this.month =new Date(Date.parse(`${data.m} +1, ${data.Y}`)).getMonth()+1;
+        this.month =new Date(Date.parse(`${data.m} +1, ${data.Y}`)).getMonth() + 1;
         this.getNewCalendar();
     }
     getPreviousMonths() {

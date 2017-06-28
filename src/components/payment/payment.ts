@@ -11,10 +11,6 @@ import { FirebaseChat } from './../../providers/firebase';
 export class PaymentComponent implements AfterViewInit {
 
 
-  // amounts = {
-  //   "25": 120000,
-  //   "50": 216000 
-  // };
   customAmount = '';
   selectedMinutes: string = '';
   selectedDays: string = '';
@@ -55,6 +51,7 @@ export class PaymentComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
 
+
     // console.log(this.selectedDays);
     // console.log( this.app.paymentOption );
 
@@ -68,6 +65,7 @@ export class PaymentComponent implements AfterViewInit {
     return n.toString().split('').reverse().reduce((t, v, i, a) => {
       return t = t + v.toString() + (i < a.length - 1 && (i + 1) % 3 == 0 ? ',' : '');
     }, '').split('').reverse().join('');
+
 
 
   }

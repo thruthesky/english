@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   hmr: false,
-  backendUrl: 'https://www.englishfordevelopers.com/index.php',
+  backendUrl: 'https://www.iamtalkative.com/index.php',
+  // backendUrl: 'https://www.englishfordevelopers.com/index.php',
   firebase: {
     apiKey: "AIzaSyBnvok5OR77tFUl1yk0-ZeyeVkYgMWGrcE",
     authDomain: "english-588f2.firebaseapp.com",

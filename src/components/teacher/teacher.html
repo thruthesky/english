@@ -20,7 +20,7 @@
         <div class="container">
 
             <div *ngIf="teachers" class="row">
-                <div class="col-sm-6 col-lg-4 mt-5" *ngFor=" let teacher of teachers; let i = index">
+                <div class="d-inline-block col-sm-6 col-lg-4 mt-5" *ngFor=" let teacher of teachers; let i = index">
                     <div class="mx-auto mw-12 mh-12 rounded-circle of-hidden b-white" style="border-width: 3px;">
                         <img class="w-100" src="{{ lms.url }}/{{ teacher.photo }}">
                     </div>

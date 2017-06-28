@@ -43,19 +43,25 @@ export interface ALERT_OPTION {
 }
 
 export interface _SITE_CONFIGURATION {
-    company_name_variation?: string;
-    company_name?: string;
-    company_email?: string;
-    phone_number?: number;
-    copyright_line1?: string;
-    copyright_line2?: string;
-    copyright_line3?: string;
-    copyright_line4?: string;
-    company_name_eul?: string;
-    company_name_en?: string;
-    company_name_wa?: string;
-    logo_idx?: number;
-    logo_url?: string;
+  company_name_variation?: string;
+  company_name?: string;
+  company_email?: string;
+  phone_number?: number;
+  copyright_line1?: string;
+  copyright_line2?: string;
+  copyright_line3?: string;
+  copyright_line4?: string;
+  company_name_eul?: string;
+  company_name_en?: string;
+  company_name_wa?: string;
+  reminder_key?: string;
+  reminder_message?: string;
+  announcement_key?: string;
+  announcement_message?: string;
+  atg_credit_card?: string;
+  payment_banner_info?: string;
+  logo_idx?: number;
+  logo_url?: string;
 }
 
 
@@ -710,7 +716,7 @@ export class App {
         else this.config['company_name_ga'] = this.config.company_name + '가';
 
 
-        // console.log("site:", this.config);
+
 
     }
 
@@ -808,7 +814,7 @@ export class App {
 
         return true;
     }
-    
+
 
     get noOfClasses() : number {
         if ( this.classInfo ) {

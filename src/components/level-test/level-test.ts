@@ -2,7 +2,10 @@ import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
 import {App} from './../../providers/app';
 import {FirebaseChat} from './../../providers/firebase';
-import {User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE } from "angular-backend";
+import {
+  User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE, _USER_DATA_RESPONSE, _RESPONSE,
+  _USER_RESPONSE
+} from "angular-backend";
 import {ShareService} from "../../providers/share-service";
 
 @Component({
@@ -12,7 +15,7 @@ import {ShareService} from "../../providers/share-service";
 })
 export class LevelTestComponent {
 
-  uid:string;
+  uid: string;
   days = [];
   selectedDay;
   form: FormGroup;
@@ -27,7 +30,6 @@ export class LevelTestComponent {
   validationMessages = {
     name: {
       'required':      '이름을 입력하십시오.',
-      'minlength':     '이름은 3 글자 이상이어야 합니다.',
       'maxlength':     '이름은 32 글자 이하이어야 합니다.'
     },
     phone: {
@@ -46,6 +48,9 @@ export class LevelTestComponent {
 
   };
 
+
+  data = <_USER_RESPONSE>{};
+
   constructor(public app: App,
               private user: User,
               private fb: FormBuilder,
@@ -57,31 +62,43 @@ export class LevelTestComponent {
 
     this.uid = this.app.getClientId();
 
-
     this.form = fb.group({
-      name:   [ this.user.info.name , [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      name:   ['' , [Validators.required, Validators.maxLength(32)]],
       phone:  ['', [Validators.required, this.mobileValidator]],
       date:   ['', [Validators.required]],
       time:   ['', [Validators.required]]
     });
 
+    if ( user.logged ) {
+      this.user.data().subscribe((res: _USER_DATA_RESPONSE) => {
+        this.data = res.data.user;
+        this.form.patchValue( {
+          name: this.data.name,
+          phone: this.data.mobile,
+        });
+      }, (err: _RESPONSE) => {
+        //console.log('error::', err);
+      });
+    }
 
 
-
-
+    let d = (new Date);
+    console.log('newDate::', new Date(d.getFullYear(), d.getMonth(), d.getDate()));
     for (let i = 0; i < 100; i++) {
-      let d = (new Date);
       let newDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;
-      let date = newDate.getMonth() + '-' + newDate.getDate();
+      let date = ( newDate.getMonth() + 1 ) + '-' + newDate.getDate();
       let day = {date: date, day: app.DAYS[newDate.getDay()]};
       this.days.push(day);
       if ( ! this.selectedDay ) {
         this.selectedDay = date;
-        this.form.patchValue({date: day.date + " (" + day.day + ")" });
+        this.form.patchValue( {date: day.date + " (" + day.day + ")" } );
       }
-      if (this.days.length >= 3) break;
+      if (this.days.length >= 5) break;
     }
+
+
+
 
 
     this.form.valueChanges
@@ -123,7 +140,8 @@ export class LevelTestComponent {
     let create = <_POST_CREATE> {
       title: p,
       content: p,
-      post_config_id: 'qna'
+      post_config_id: 'qna',
+      mobile: this.form.value.phone
     };
     if( this.user.logged ) create.name = this.user.info.name;
     else {
@@ -162,14 +180,15 @@ export class LevelTestComponent {
 
 
   mobileValidator(c: AbstractControl): { [key: string]: any } {
-    if ( c.value.length < 9 ) {
-      return { 'minlength' : '' };
+    if ( ! c.value ) return;
+    if (c.value && c.value.length && c.value.length < 9) {
+      return { 'minlength': '' };
     }
-    if ( c.value.length > 15 ) {
-      return { 'maxlength' : '' };
+    if (c.value &&  c.value.length &&  c.value.length > 15) {
+      return { 'maxlength': '' };
     }
-    let re = new RegExp( /^(\d+-?)+\d+$/ ).test( <string> c.value );
-    if ( re ) return;
+    let re = new RegExp(/^(\d+-?)+\d+$/).test(<string>c.value);
+    if (re) return;
     else return { 'malformed': '' };
   }
 

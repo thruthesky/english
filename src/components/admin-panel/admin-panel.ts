@@ -37,8 +37,8 @@ export class AdminPanelComponent implements OnInit {
   initial = true;
 
   constructor(public app: App,
-              private fc: FirebaseChat)
-  {
+              private fc: FirebaseChat
+  ) {
     this.uid = this.app.getClientId();
     if (app.user.logged) {
       this.userId = app.user.info.id;
@@ -46,7 +46,7 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      console.log('all_message', res)
+      //console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();
@@ -86,6 +86,7 @@ export class AdminPanelComponent implements OnInit {
 
   ngOnInit() {
     this.setChatNoOfLines();
+    this.setChatNoOfWidth();
     this.setChatDisplay();
   }
 
@@ -182,11 +183,13 @@ export class AdminPanelComponent implements OnInit {
     if (line) {
       localStorage.setItem('chatNoOfWidth', line);
     }
-    else line = this.getOptionChatNoOfLines;
+    else line = this.getOptionChatNoOfWidth;
     let $messages = $('.messages');
+    console.log('width::line:: ', 'width', line + 'em');
     $messages.css('width', line + 'em');
     this.scrollMessage.next();
   }
+
 
   setChatDisplay(display?) {
     if (display) {
@@ -201,7 +204,7 @@ export class AdminPanelComponent implements OnInit {
 
   scrollMessageBox() {
     let $messages = $('.display .messages');
-    if ($messages && $messages.length && $messages[0].scrollHeight) { // add $messages.length by Mr. Song JaeHo. 
+    if ($messages && $messages.length && $messages[0].scrollHeight) { // add $messages.length by Mr. Song JaeHo.
       $messages.animate({scrollTop: $messages[0].scrollHeight}, 300);
     }
   }
