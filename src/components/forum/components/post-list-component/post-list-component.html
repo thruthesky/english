@@ -27,11 +27,11 @@
       <td>
         <div style=" overflow:hidden;width:6em; white-space:nowrap;">
           <span type="text" name="author" placeholder="Author">
-          {{post.name}}
+          {{ post.name == 'anonymous' ? '비회원' : post.name }}
 
         </span>
         </div>
-        
+
       </td>
       <td>
         <span type="text" name="created" placeholder="Date">

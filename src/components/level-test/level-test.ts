@@ -83,7 +83,7 @@ export class LevelTestComponent {
 
 
     let d = (new Date);
-    console.log('newDate::', new Date(d.getFullYear(), d.getMonth(), d.getDate()));
+    //console.log('newDate::', new Date(d.getFullYear(), d.getMonth(), d.getDate()));
     for (let i = 0; i < 100; i++) {
       let newDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i);
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;

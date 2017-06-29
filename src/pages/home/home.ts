@@ -19,11 +19,10 @@ export class HomePage implements AfterViewInit {
     teachers: TEACHERS = null;
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
-        public app : App,
+        public app: App,
         public user: User,
         private lms: LMS
-            )
-    {
+    ) {
             this.lms.getTeachers( teachers => this.teachers = teachers );
     }
 

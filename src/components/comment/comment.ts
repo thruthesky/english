@@ -7,6 +7,7 @@ import {
   _LIST, _POST_COMMON_WRITE_FIELDS,_POST_LIST_RESPONSE, _POSTS,
   PostData
 } from "angular-backend";
+import {CONFIRM_OPTION} from "../../providers/bootstrap/confirm/confirm";
 export interface _POST_COMMON_WRITE_FIELDS_SHOWMORE extends _POST_COMMON_WRITE_FIELDS{
     show_more_content?: boolean;
 }
@@ -74,7 +75,7 @@ export class CommentComponent {
 
   onClickDelete( _post ) {
 
-    let option = {
+    let option: CONFIRM_OPTION = {
       class: 'enhance-modal',
       title: '글 삭제',
       content: '정말 삭제를 하시겠습니까?',
