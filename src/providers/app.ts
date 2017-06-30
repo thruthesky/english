@@ -249,7 +249,7 @@ export class App {
      * @note No need to cache for speedup since it is only being called once every bounce time.
      */
     scrolled(event?) {
-        let windowTop = Math.round(this.getWindowOffset().top);
+        let windowTop = Math.ceil(this.getWindowOffset().top);
         let selectedId = null;
         let parts = this.getParts();
         if (parts && parts.length) {
