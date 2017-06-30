@@ -22,9 +22,9 @@
     "scp": "cd www && scp -r * englishfordevelopers@www.englishfordevelopers.com:./www",
     "build:prod": "ng build --prod --aot --output-path=www --base-href=/",
     "build:aot": "ng build --prod --aot --output-path=www --base-href=/",
-    "push:englishfordevelopers": "cd www && scp index.html *.css *.js englishfordevelopers@witheng.com:./www",
-    "push:katalkenglish": "cd www && scp index.html *.css *.js katalkenglish@witheng.com:./www",
-    "push:iamtalkative": "cd www && scp index.html *.css *.js newtalkative@witheng.com:./www"
+    "push:englishfordevelopers": "cd www && scp index.html *.css *.js *.json englishfordevelopers@witheng.com:./www",
+    "push:katalkenglish": "cd www && scp index.html *.css *.js *.json katalkenglish@witheng.com:./www",
+    "push:iamtalkative": "cd www && scp index.html *.css *.js *.json newtalkative@witheng.com:./www"
   },
   "private": true,
   "dependencies": {

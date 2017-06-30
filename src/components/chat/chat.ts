@@ -99,9 +99,9 @@ export class ChatComponent implements OnInit {
 
 
   sendPushMessage( msg: _FIREBASE_CHAT  ) {
-    this.message.send( msg.name, msg.message );
+    this.message.send( "LiveChat", msg.message );
   }
-  
+
   pushMessage( msg: _FIREBASE_CHAT ) {
       this.user_message.push(msg);
       this.all_message.push(msg);
