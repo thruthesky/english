@@ -26,7 +26,7 @@ export class BigHeaderComponent {
         public share: ShareService,
         public lms: LMS
     ) {
-        
+
     }
 
     ngOnInit() {
@@ -38,8 +38,9 @@ export class BigHeaderComponent {
 
         if (this.app.firstVisit) {
             setTimeout(() => this.nextHelp('logo'), 3000);
+        } else {
+            setTimeout(() => this.pLogin.open(), 2000);
         }
-
 
         this.app.loginCount.subscribe(n => {
             console.log("login count: ", n);

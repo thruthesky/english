@@ -7,7 +7,9 @@ import { Message } from './message';
 
 
 import {
-  User, Meta, _USER_LOGIN_RESPONSE, _USER_CREATE, _META_LIST_RESPONSE, _LIST,
+  User, Meta,
+  _USER_LOGIN_RESPONSE,
+  _USER_CREATE,
   _USER_DATA_RESPONSE
 } from 'angular-backend';
 
@@ -15,8 +17,10 @@ import { LMS } from './lms';
 
 // import * as config from './../app/config';
 
-import { Alert } from './bootstrap/alert/alert';
-import { Confirm } from './bootstrap/confirm/confirm';
+import { Alert, ALERT_OPTION } from './bootstrap/alert/alert';
+import { Confirm, CONFIRM_OPTION} from './bootstrap/confirm/confirm';
+import { Announcement, ANNOUNCEMENT_OPTION } from './bootstrap/announcement/announcement';
+import { Reminder, REMINDER_OPTION } from './bootstrap/reminder/reminder';
 import { FirebaseChat } from "./firebase";
 
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -27,7 +31,9 @@ import { ShareService } from '../providers/share-service';
 
 import { Subject } from 'rxjs/Subject';
 
-import { _ClassInformation } from '../components/reservation/reservation-interface'
+import { _ClassInformation } from '../components/reservation/reservation-interface';
+
+
 
 
 
@@ -38,12 +44,6 @@ export interface SOCIAL_LOGIN {
     email: string;
 };
 
-export interface ALERT_OPTION {
-    title?: string;
-    content: string;
-    'class'?: string;
-    timeout?: number;
-}
 
 export interface _SITE_CONFIGURATION {
   company_name_variation?: string;
@@ -61,11 +61,14 @@ export interface _SITE_CONFIGURATION {
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;
+  announcement_photo_idx?: number;
+  announcement_photo_url?: string;
   atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
   logo_url?: string;
 }
+
 
 
 export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
@@ -107,6 +110,8 @@ export class App {
         private ngZone: NgZone,
         private alertService: Alert,
         private confirmService: Confirm,
+        private announcementService: Announcement,
+        private reminderService: Reminder,
         public afAuth: AngularFireAuth,
         public user: User,
         public meta: Meta,
@@ -125,8 +130,8 @@ export class App {
 
         /**
          * Payment Customizing. See # https://docs.google.com/document/d/1pRx_T5DwH9fZRZMgj43IGjqppROL8SAUkx7SzmN6fpQ/edit#heading=h.wiz92gphk3qm
-         * 
-         * 
+         *
+         *
          */
 
          this.paymentOption = window['payment_customization'];
@@ -646,7 +651,7 @@ export class App {
         this.showModal(option);
     }
 
-    private showConfirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
+    private showConfirmModal(option: CONFIRM_OPTION, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
         this.confirmService.openConfirmModal(option, result => {
             console.info("openMobileUpload:: " + result);
             if (resultCallback) resultCallback(result);
@@ -656,7 +661,7 @@ export class App {
     }
 
 
-    confirmModal(option, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
+    confirmModal(option: CONFIRM_OPTION, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
         this.showConfirmModal(option, result => {
             if (resultCallback) resultCallback(result);
         }, reason => {
@@ -711,10 +716,12 @@ export class App {
                 config = res.data.config;
                 try {
                     this.config = JSON.parse(config);
-
                 } catch (e) { }
+                console.log('meta.config:json:', this.config);
                 localStorage.setItem(this.site_config, config);
                 this.preConfig();
+                this.showAnnouncement();
+                //this.showReminder();
             }
 
         }, error => this.meta.errorResponse(error));
@@ -740,10 +747,10 @@ export class App {
         if (this.config.company_name_variation === '1') this.config['company_name_ga'] = this.config.company_name + '이';
         else this.config['company_name_ga'] = this.config.company_name + '가';
 
-
-
-
     }
+
+
+
 
 
     get siteInfo(): _SITE_CONFIGURATION {
@@ -850,6 +857,53 @@ export class App {
         }
         return 0;
     }
+
+
+
+  showAnnouncement() {
+    const ls_key = 'popup-announcement';
+    let popup = localStorage.getItem( ls_key );
+    console.log(popup + '!==' + this.config.announcement_key);
+    console.log(popup !== this.config.announcement_key);
+    if ( this.config.announcement_key && popup !== this.config.announcement_key ) {
+
+      let option: ANNOUNCEMENT_OPTION = {
+        content: this.config.announcement_photo_url,
+      };
+      this.announcementService.open(option, result => {
+        //console.log('announcement:: ' + result);
+        localStorage.setItem( ls_key, this.config.announcement_key );
+        this.showReminder();
+      }, reason => {
+        this.showReminder();
+        //console.log('announcement::reason ' + reason);
+      });
+    } else {
+      this.showReminder();
+    }
+    
+  }
+
+  showReminder() {
+    const ls_key = 'popup-reminder';
+    let popup = localStorage.getItem( ls_key );
+    console.log(popup + '!==' + this.config.reminder_key);
+    console.log(popup !== this.config.reminder_key);
+    if ( this.config.reminder_key && popup !== this.config.reminder_key ) {
+
+      let option: REMINDER_OPTION = {
+        title: 'Reminders',
+        content: this.config.reminder_message
+      };
+      this.reminderService.open(option, result => {
+        localStorage.setItem( ls_key, this.config.reminder_key );
+      }, reason => {
+      });
+    }
+  }
+
+
+
 
 
 }

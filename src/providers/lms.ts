@@ -122,7 +122,7 @@ export class LMS {
             let domain = this.getDomain();
             data['classid'] = this.share.defaultClassId;
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-            console.log("kajskasd",url);
+            //console.log("kajskasd",url);
             this.http.get(url).subscribe(re => {
                 let json = null;
                 try {
@@ -172,7 +172,7 @@ export class LMS {
         Ref:https://stackoverflow.com/questions/20696041/window-openurl-blank-not-working-on-imac-safari
         */
         let newwindow: any = window.open();
-        
+
         this.getNextClass(data => {
             if (!data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();

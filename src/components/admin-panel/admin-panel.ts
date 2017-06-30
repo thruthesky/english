@@ -185,7 +185,7 @@ export class AdminPanelComponent implements OnInit {
     }
     else line = this.getOptionChatNoOfWidth;
     let $messages = $('.messages');
-    console.log('width::line:: ', 'width', line + 'em');
+    //console.log('width::line:: ', 'width', line + 'em');
     $messages.css('width', line + 'em');
     this.scrollMessage.next();
   }

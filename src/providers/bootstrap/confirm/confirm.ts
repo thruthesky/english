@@ -5,7 +5,7 @@ import { ConfirmContent } from './confirm-content';
 export interface CONFIRM_OPTION {
   title: string;
   content: string;
-  submit: string;
+  confirm: string;
   cancel: string;
   'class'?: string;
   timeout?: number;
@@ -29,6 +29,8 @@ export class Confirm {
 
     this.modalRef.componentInstance['title'] = option.title;
     this.modalRef.componentInstance['content'] = option.content;
+    this.modalRef.componentInstance['confirm'] = option.confirm;
+    this.modalRef.componentInstance['cancel'] = option.cancel;
 
     this.modalRef.result.then((result) => {
       if (yesCallback) yesCallback();
