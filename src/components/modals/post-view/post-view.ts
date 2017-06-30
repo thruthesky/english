@@ -41,7 +41,7 @@ export class PostViewModal {
 
         this.postComment.create(req).subscribe(res => {
 
-            console.log(res);
+            //console.log(res);
 
             let post = this.post;
             if (post === void 0) return;

@@ -167,7 +167,7 @@ export class App {
         let header = document.querySelector('header nav');
         if (!header) return;
         this.headerHeight = header.clientHeight;
-        console.log("headerHeight: ", this.headerHeight);
+        //console.log("headerHeight: ", this.headerHeight);
     }
 
     renderPage() {
@@ -649,7 +649,7 @@ export class App {
     }
     error(e) {
         if (e.code == -80011) e.message = "앗! 인터넷이 연결되지 않았습니다. 인터넷을 연결해 주세요.";
-        console.log(e);
+        //console.log(e);
         this.toast(e.message);
     }
 
@@ -692,7 +692,7 @@ export class App {
                 try {
                     this.config = JSON.parse(config);
                 } catch (e) { }
-                console.log('meta.config:json:', this.config);
+                //console.log('meta.config:json:', this.config);
                 localStorage.setItem(this.site_config, config);
                 this.preConfig();
                 this.showAnnouncement();
@@ -838,9 +838,9 @@ export class App {
   showAnnouncement() {
     const ls_key = 'popup-announcement';
     let popup = localStorage.getItem( ls_key );
-    console.log(popup + '!==' + this.config.announcement_key);
-    console.log(popup !== this.config.announcement_key);
-    if ( this.config.announcement_key && popup !== this.config.announcement_key ) {
+    //console.log(popup + '!==' + this.config.announcement_key);
+    //console.log(popup !== this.config.announcement_key);
+    if ( this.config.announcement_key && this.config.announcement_photo_url && popup !== this.config.announcement_key ) {
 
       let option: ANNOUNCEMENT_OPTION = {
         content: this.config.announcement_photo_url,
@@ -856,15 +856,15 @@ export class App {
     } else {
       this.showReminder();
     }
-    
+
   }
 
   showReminder() {
     const ls_key = 'popup-reminder';
     let popup = localStorage.getItem( ls_key );
-    console.log(popup + '!==' + this.config.reminder_key);
-    console.log(popup !== this.config.reminder_key);
-    if ( this.config.reminder_key && popup !== this.config.reminder_key ) {
+    //console.log(popup + '!==' + this.config.reminder_key);
+    //console.log(popup !== this.config.reminder_key);
+    if ( this.config.reminder_key && this.config.reminder_message && popup !== this.config.reminder_key ) {
 
       let option: REMINDER_OPTION = {
         title: 'Reminders',

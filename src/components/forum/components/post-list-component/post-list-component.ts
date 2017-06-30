@@ -65,7 +65,7 @@ export class PostListComponent  {
     testOpenPost(id) {
 
         setTimeout(() => {
-            console.log("check id: ", id);
+            //console.log("check id: ", id);
             if ( $("#post147").length ) $("#post147").click();
             else this.testOpenPost(id);
         }, 200);
@@ -131,7 +131,7 @@ export class PostListComponent  {
         this.searchQuery.bind  = '0,1';
         this.searchQuery.extra['post_config_id'] = this.post_config_id ? this.post_config_id : null;
         this.searchQuery.extra['comment'] = true;
-        
+
         this.postData.list( this.searchQuery ).subscribe( (res: _POST_LIST_RESPONSE ) => {
             this.posts = res.data.posts;
             this.pageOption.totalRecord = res.data.total;

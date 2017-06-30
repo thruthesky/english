@@ -61,8 +61,8 @@ export class AdminPanelComponent implements OnInit {
           else this.initial = false;
 
           if (this.username && user && this.username != user) {
-            console.log('this.username:: ', this.username);
-            console.log('user:: ', user);
+            //console.log('this.username:: ', this.username);
+            //console.log('user:: ', user);
             this.someoneTalking = true;
           }
           this.scrollMessage.next();

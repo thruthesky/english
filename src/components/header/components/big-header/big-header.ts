@@ -43,7 +43,7 @@ export class BigHeaderComponent {
         }
 
         this.app.loginCount.subscribe(n => {
-            console.log("login count: ", n);
+            //console.log("login count: ", n);
             if (n <= 3) {
                 setTimeout(() => this.pClass.open(), 2000);
             }
