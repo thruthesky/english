@@ -788,6 +788,9 @@ export class App {
     }
 
 
+    /**
+     * count on login
+     */
     increaseLoginCount() {
         let vc = localStorage.getItem(this.keyLoginCount);
         let num = 0;
@@ -797,6 +800,10 @@ export class App {
 
         this.loginCount.next(num);
     }
+
+    /**
+     * Returns the number of login.
+     */
     getLoginCount(): number {
         let vc = localStorage.getItem(this.keyLoginCount);
         let num = 0;

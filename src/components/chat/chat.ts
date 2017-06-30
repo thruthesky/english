@@ -99,7 +99,7 @@ export class ChatComponent implements OnInit {
 
 
   sendPushMessage( msg: _FIREBASE_CHAT  ) {
-    this.message.send( "LiveChat", msg.message );
+    this.message.send( "LiveChat", msg.message, "/" );
   }
 
   pushMessage( msg: _FIREBASE_CHAT ) {

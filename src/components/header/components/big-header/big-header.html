@@ -138,7 +138,7 @@
         </td>
         <td valign="middle">
           <div class="right">
-            <ul class="list-style-none list-float-left pointers fs-80 clearfix" style="color: #bbb;">
+            <ul class="list-style-none list-float-left pointers fs-90 clearfix" style="color: #ccc;">
               <li class="item mr-1" *ngIf=" app.isAdmin() ">
                 <div class="text">
                   <a href="/admin/index.html" class="white" target="_blank">관리자</a>
@@ -176,8 +176,8 @@
                 <div class="text">로그인</div>
               </li>
             </ul>
-            <span class="d-none" id="naver_id_login"></span>
-            <div *ngIf=" ! user.logged " class="pointer"><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>
+            <!--<span class="d-none" id="naver_id_login"></span>
+            <div *ngIf=" ! user.logged " class="pointer"><img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3-small.png"></div>-->
 
             <div class="username pt-1 fs-1rem white" *ngIf=" user.logged ">
               {{ user.info.name }}

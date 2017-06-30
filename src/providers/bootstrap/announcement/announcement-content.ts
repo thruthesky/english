@@ -13,8 +13,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       <img class="w-100" src="{{content}}">
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('confirm')">Dont Show</button>
-      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">Close</button>
+      <button type="button" class="btn btn-secondary border-0 rounded-0 black pointer" (click)="activeModal.close('confirm')">다음부터 보지 않기</button>
+      <button type="button" class="btn btn-secondary  border-0 rounded-0 black pointer" (click)="activeModal.dismiss('cancel')">닫기 <i class="fa fa-times"></i></button>
     </div>
   `
 })

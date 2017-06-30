@@ -30,7 +30,7 @@ export class BigHeaderComponent {
     }
 
     ngOnInit() {
-        this.app.initializeNaverLogin();
+        // this.app.initializeNaverLogin();
     }
 
     ngAfterViewInit() {
@@ -38,7 +38,8 @@ export class BigHeaderComponent {
 
         if (this.app.firstVisit) {
             setTimeout(() => this.nextHelp('logo'), 3000);
-        } else {
+        }
+        else if ( this.app.getLoginCount() < 3 ) {
             setTimeout(() => this.pLogin.open(), 2000);
         }
 

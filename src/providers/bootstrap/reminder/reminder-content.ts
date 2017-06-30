@@ -10,8 +10,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
         {{content}}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('confirm')">Dont Show</button>
-      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">Close</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close('confirm')">다음부터 보지 않기</button>
+      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">닫기 <i class="fa fa-times"></i></button>
     </div>
   `,
   styles: [`
@@ -45,7 +45,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ReminderContent {
   title: string = 'Reminders';
   content: string = '';
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) { }
 }
 
 
