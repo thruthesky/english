@@ -20,7 +20,7 @@ export class Announcement {
     let modalOption = {};
     if (option.class) modalOption['windowClass'] = option.class;
     else modalOption['windowClass'] = 'enhance-modal';
-    modalOption['backdrop'] = false;
+    modalOption['backdrop'] = true;
     modalOption['size'] = 'lg';
     this.modalRef = this.modalService
       .open( AnnouncementContent, modalOption);

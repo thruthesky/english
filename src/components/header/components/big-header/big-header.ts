@@ -39,7 +39,9 @@ export class BigHeaderComponent {
         if (this.app.firstVisit) {
             setTimeout(() => this.nextHelp('logo'), 3000);
         } else {
-            setTimeout(() => this.pLogin.open(), 2000);
+            if ( ! this.user.logged ) {
+              setTimeout(() => this.pLogin.open(), 2000);
+            }
         }
 
         this.app.loginCount.subscribe(n => {
@@ -95,6 +97,7 @@ export class BigHeaderComponent {
         this.app.scrollTo(name);
     }
     onClickLogin() {
+        if (this.pLogin) this.pLogin.close();
         this.onLogin.emit();
     }
     onClickGotoClassRoom() {
