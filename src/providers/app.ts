@@ -58,6 +58,7 @@ export interface _SITE_CONFIGURATION {
   company_name_en?: string;
   company_name_wa?: string;
   reminder_key?: string;
+  reminder_title?: string;
   reminder_message?: string;
   announcement_key?: string;
   announcement_message?: string;
@@ -248,7 +249,7 @@ export class App {
      * @note No need to cache for speedup since it is only being called once every bounce time.
      */
     scrolled(event?) {
-        let windowTop = Math.round(this.getWindowOffset().top);
+        let windowTop = Math.ceil(this.getWindowOffset().top);
         let selectedId = null;
         let parts = this.getParts();
         if (parts && parts.length) {
@@ -515,7 +516,7 @@ export class App {
 
     /**
      * All login including 'social login naver/kakao/facebook' and 'registration' comes here.
-     * 
+     *
      * Must call this method for all logins. This may be the last thing to do on each login.
      */
     loginSuccess() {
@@ -523,8 +524,8 @@ export class App {
     }
 
     /**
-     
-     
+
+
      */
     // registerSuccess( name ) {
     //     this.message.send( "회원 가입", `${name}님이 가입하였습니다.`);
@@ -560,7 +561,7 @@ export class App {
 
 
         if (e['code'] == -40102) {              // user not exists ==> register. This is the only place for social login to register into backend.
-            
+
             /**
              * @WARNING @BUG the callbacks of success, error in this.bakendRegister( 'success', 'error' )
              *                  Are NOT called !!
@@ -827,7 +828,7 @@ export class App {
     /**
      * @todo @check it may need to memory cache.
      */
-    get classInfo() : _ClassInformation {
+    get classInfo(): _ClassInformation {
         let str = localStorage.getItem( this.keyClassInfo );
         if ( ! str ) return null;
         try {
@@ -855,7 +856,7 @@ export class App {
     }
 
 
-    get noOfClasses() : number {
+    get noOfClasses(): number {
         if ( this.classInfo ) {
             let count = 0;
             if ( this.classInfo.no_of_past ) count += parseInt( this.classInfo.no_of_past );
@@ -870,20 +871,16 @@ export class App {
   showAnnouncement() {
     const ls_key = 'popup-announcement';
     let popup = localStorage.getItem( ls_key );
-    //console.log(popup + '!==' + this.config.announcement_key);
-    //console.log(popup !== this.config.announcement_key);
     if ( this.config.announcement_key && this.config.announcement_photo_url && popup !== this.config.announcement_key ) {
 
       let option: ANNOUNCEMENT_OPTION = {
         content: this.config.announcement_photo_url,
       };
       this.announcementService.open(option, result => {
-        //console.log('announcement:: ' + result);
         localStorage.setItem( ls_key, this.config.announcement_key );
         this.showReminder();
       }, reason => {
         this.showReminder();
-        //console.log('announcement::reason ' + reason);
       });
     } else {
       this.showReminder();
@@ -894,12 +891,10 @@ export class App {
   showReminder() {
     const ls_key = 'popup-reminder';
     let popup = localStorage.getItem( ls_key );
-    //console.log(popup + '!==' + this.config.reminder_key);
-    //console.log(popup !== this.config.reminder_key);
     if ( this.config.reminder_key && this.config.reminder_message && popup !== this.config.reminder_key ) {
 
       let option: REMINDER_OPTION = {
-        title: 'Reminders',
+        title: this.config.reminder_title,
         content: this.config.reminder_message
       };
       this.reminderService.open(option, result => {

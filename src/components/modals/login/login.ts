@@ -24,6 +24,8 @@ export class LoginModal implements OnInit {
     result: _RESPONSE = <_RESPONSE>{};
     saveid: boolean = false;
     form: FormGroup;
+
+    loading: boolean = false;
     constructor(
         public activeModal: NgbActiveModal,
         public app: App,
@@ -87,15 +89,27 @@ export class LoginModal implements OnInit {
         this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
     }
 
+
+    resetResult() {
+      this.loading = true;
+      this.result = <_RESPONSE> {
+        code: 0,
+        message: ''
+      };
+    }
+
     onClickLogin() {
         if (this.validate() == false) return;
+        this.resetResult();
         let loginData = this.form.value;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
             let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
             checkRequired.componentInstance.checkRequired = true;
+            this.loading = false;
         }, error => {
             this.error(error);
+            this.loading = false;
         });
     }
 

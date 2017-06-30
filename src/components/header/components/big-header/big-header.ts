@@ -36,10 +36,11 @@ export class BigHeaderComponent {
     ngAfterViewInit() {
 
 
+
         if (this.app.firstVisit) {
             setTimeout(() => this.nextHelp('logo'), 3000);
         }
-        else if ( this.app.getLoginCount() < 3 ) {
+        else if ( ! this.user.logged && this.app.getLoginCount() < 3 ) {
             setTimeout(() => this.pLogin.open(), 2000);
         }
 
@@ -96,6 +97,7 @@ export class BigHeaderComponent {
         this.app.scrollTo(name);
     }
     onClickLogin() {
+        if (this.pLogin) this.pLogin.close();
         this.onLogin.emit();
     }
     onClickGotoClassRoom() {

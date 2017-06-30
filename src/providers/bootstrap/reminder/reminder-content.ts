@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'reminder-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">{{ title }}</h4>
+      <h4 class="modal-title p-3">{{ title }}</h4>
     </div>    
     <div class="modal-body">
         {{content}}

@@ -45,6 +45,11 @@
         <div *ngIf="formErrors.password" class="alert alert-danger mt-3 mb-0">
           <span class="errors"> {{ formErrors.password }} </span>
         </div>
+
+        <div *ngIf="loading" class="loading mt-3">
+          <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> 회원 정보 등록중입니다. 잠시만 기다려주세요.
+        </div>
+
         <div class="error alert alert-danger" role="alert" *ngIf="result.message">
           {{ result?.message }}
         </div>
@@ -55,6 +60,8 @@
         <div class="text-center">
           아직 {{ app.config.company_name }} 회원이 아니세요?
         </div>
+
+
 
         <div class="button-signup">
           <button type="button" class="btn btn-block border-0 slategrey"

@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between p-2">
                 <div class="icons p-1">
 
-                    
+
                     <span id="naver_id_login" [style.display]=" user.logged ? 'none' : 'inline' "></span>
 
                     <ng-container *ngIf=" ! user.logged ">
@@ -35,9 +35,8 @@
             </div>
             <div class="panel" [class.active]="this.more">
                 <ul class="menus list-panel-menu fs-120">
-                    <li class="menu" *ngIf=" ! user.logged ">
-
-                        <span (click)="onClickLogin()">
+                    <li class="menu" *ngIf=" ! user.logged " (click)="onClickLogin()">
+                        <span >
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-sign-in fa-stack-1x fa-inverse"></i>
@@ -46,9 +45,9 @@
                         </span>
 
                         <div class="mt-1 ml-4">
-                            <img (click)="app.onClickLoginWithNaver()" class="h-2" src="assets/images/social-login/naver-3.png">
-                            <img (click)="app.onClickLoginWithKakao()" class="h-2" src="assets/images/social-login/kakao-3.png">
-                            <img *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()" class="h-2" src="assets/images/social-login/facebook-3.png">
+                            <img (click)="app.onClickLoginWithNaver();$event.stopPropagation();" class="h-2" src="assets/images/social-login/naver-3.png">
+                            <img (click)="app.onClickLoginWithKakao();$event.stopPropagation();" class="h-2" src="assets/images/social-login/kakao-3.png">
+                            <img *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook();$event.stopPropagation();" class="h-2" src="assets/images/social-login/facebook-3.png">
                         </div>
                     </li>
                     <li id="small-header-register-button" class="menu" *ngIf="! user.logged " (click)="onClickRegister()">

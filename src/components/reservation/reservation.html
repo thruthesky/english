@@ -45,7 +45,7 @@
 
             </div>
 
-            <table class="schedule-table" width="100%">
+            <table class="schedule-table" width="100%" >
                 <thead class="text-white">
                     <th class="normal" *ngFor=" let d of app.DAYS; let i = index " [attr.day]=" i ">{{ d }}</th>
                 </thead>
@@ -86,7 +86,7 @@
                                                   
                                             </div>
                                         </ng-template>
-                                        <div [ngbPopover]="popContent" #p="ngbPopover" *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" [innerHTML]="info?.icon"></div>
+                                        <div [ngbPopover]="popContent" #p="ngbPopover"  (document:click)="p.close()" (click)="$event.stopPropagation()" *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" [innerHTML]="info?.icon"></div>
                                         
                                         <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
                                     </div>
