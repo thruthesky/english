@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { App } from '../../../providers/app';
-
+import { Message } from '../../../providers/message';
 import { FindIdModal } from '../find-id/find-id';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password';
 import { RegisterComponent } from '../register/register';
@@ -29,7 +29,8 @@ export class LoginModal implements OnInit {
         public app: App,
         private modal: NgbModal,
         private fb: FormBuilder,
-        private user: User) {
+        private user: User,
+        private message: Message ) {
             this.createForm();
 
     }
@@ -103,6 +104,12 @@ export class LoginModal implements OnInit {
         //     eventType: "login-success"
         // });
 
+
+        console.log(res);
+
+        if ( res.data.admin ) {
+            this.message.requestPermission();
+        }
         this.app.loginSuccess();
         this.activeModal.close('success');
     }

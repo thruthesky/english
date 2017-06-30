@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../../providers/message';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
 import { App } from './../../providers/app';
@@ -36,7 +37,8 @@ export class ChatComponent implements OnInit {
   constructor(
     public app: App,
     private user: User,
-    private fc: FirebaseChat
+    private fc: FirebaseChat,
+    private message: Message
   ) {
     this.uid = this.app.getClientId();
     if (user.logged) this.userId = user.info.id;
@@ -91,10 +93,15 @@ export class ChatComponent implements OnInit {
       message: this.form.message
     };
     this.pushMessage( msg );
+    this.sendPushMessage( msg );
     this.form.message = '';
   }
 
 
+  sendPushMessage( msg: _FIREBASE_CHAT  ) {
+    this.message.send( msg.name, msg.message );
+  }
+  
   pushMessage( msg: _FIREBASE_CHAT ) {
       this.user_message.push(msg);
       this.all_message.push(msg);

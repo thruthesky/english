@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
 import {App} from './../../providers/app';
+import {Message} from './../../providers/message';
+
 import {FirebaseChat} from './../../providers/firebase';
 import {
   User, PostData, _POST_CREATE, _POST_CREATE_RESPONSE, _USER_DATA_RESPONSE, _RESPONSE,
@@ -57,6 +59,7 @@ export class LevelTestComponent {
               private fc: FirebaseChat,
               private postData: PostData,
               public share: ShareService,
+              private message: Message
   ) {
 
 
@@ -150,6 +153,7 @@ export class LevelTestComponent {
     }
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
       this.share.posts.unshift( res.data );
+      this.message.send('레벨테스트', p );
       this.fc.sendLevelTest( this.form.value, this.uid ).then( res => {
         this.app.alertModal("레벨테스트가 신청되었습니다. 관리자가 확인 후 레벨테스트를 예약하고 연락을 드릴 것입니다.");
         this.form.reset();

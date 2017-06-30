@@ -3,6 +3,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 
+import { Message } from './message';
+
+
 import {
   User, Meta,
   _USER_LOGIN_RESPONSE,
@@ -115,7 +118,8 @@ export class App {
         private fc: FirebaseChat,
         private modal: NgbModal,
         private lms: LMS,
-        private share: ShareService
+        private share: ShareService,
+        private message: Message
     ) {
         this.myEvent = new EventEmitter();
         this.checkFirstVisit();
@@ -510,11 +514,21 @@ export class App {
     }
 
     /**
+     * All login including 'social login naver/kakao/facebook' and 'registration' comes here.
+     * 
      * Must call this method for all logins. This may be the last thing to do on each login.
      */
     loginSuccess() {
         this.increaseLoginCount();
     }
+
+    /**
+     
+     
+     */
+    // registerSuccess( name ) {
+    //     this.message.send( "회원 가입", `${name}님이 가입하였습니다.`);
+    // }
     backendSuccess(res: _USER_LOGIN_RESPONSE, callback?) {
 
 
@@ -542,8 +556,19 @@ export class App {
     backendFailed(e, callback?) {
         let user = this.getSocialLogin();
         let id = user.uid + '@' + user.provider;
-        if (e['code'] == -40102) {              // user not exists ==> register
-            this.backendRegister(r => this.backendSuccess(r, callback), e => this.backendFailed(e, callback));
+
+
+
+        if (e['code'] == -40102) {              // user not exists ==> register. This is the only place for social login to register into backend.
+            
+            /**
+             * @WARNING @BUG the callbacks of success, error in this.bakendRegister( 'success', 'error' )
+             *                  Are NOT called !!
+             *                  But this is harmless.
+             */
+            this.backendRegister(r => {
+                this.backendSuccess(r, callback);
+            }, e => this.backendFailed(e, callback));
         }
         else {
             // alert("backendFailed: " + this.user.alert(e));
@@ -570,6 +595,7 @@ export class App {
             name: user.name
         };
         this.user.register(req).subscribe(r => {
+            this.message.send( "회원 가입", `${user.name}님이 가입하였습니다.`);
             this.fc.newRegisteredUser(req);
             this.backendSuccess(r);
         }, e => this.backendFailed(e));
@@ -656,7 +682,6 @@ export class App {
     showRequiredInfoModal() {
 
       this.user.data().subscribe( (res: _USER_DATA_RESPONSE) => {
-
         if ( res.code == 0 && res.data.user ) {
           let user = res.data.user;
           if ( !user.name || !user.nickname || !user.mobile || !user.email ) {

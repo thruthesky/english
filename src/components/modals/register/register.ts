@@ -5,6 +5,9 @@ import { FirebaseChat } from '../../../providers/firebase';
 import { ShareService } from './../../../providers/share-service';
 
 import { LMS } from '../../../providers/lms';
+import { Message } from '../../../providers/message';
+
+
 import { ChangePasswordComponent } from '../change-password/change-password';
 
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -48,7 +51,8 @@ export class RegisterComponent {
         private fb: FormBuilder,
         private fc: FirebaseChat,
         private modal: NgbModal,
-        public share: ShareService
+        public share: ShareService,
+        private message: Message
     ) {
         this.form = fb.group({
             name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
@@ -168,6 +172,8 @@ export class RegisterComponent {
         this.user.register(register).subscribe((res: _USER_CREATE_RESPONSE) => {
             this.fc.newRegisteredUser(msg);
             this.resetResult();
+            // this.app.registerSuccess( res.data.name );
+            this.message.send( "회원 가입", `${res.data.name}님이 가입하였습니다.`);
             callback();
         }, error => {
             this.setError(error);
@@ -209,6 +215,13 @@ export class RegisterComponent {
         if (this.userData.birth_day.length < 2) this.userData.birth_day = "0" + this.userData.birth_day;
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" + this.userData.birth_day;
     }
+
+
+    /**
+     * @todo see if this method is being used. If not, remove this method.
+     * 
+     * @param res 
+     */
     successRegister(res: _USER_CREATE_RESPONSE) {
         this.activeModal.close();
     }

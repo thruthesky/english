@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { App } from './../../providers/app';
+import { Message } from './../../providers/message';
 import { User } from 'angular-backend';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FirebaseChat } from './../../providers/firebase';
@@ -28,7 +29,13 @@ export class PaymentComponent implements AfterViewInit {
 
   iframeUrl: SafeResourceUrl;
 
-  constructor(public app: App, public user: User, private domSanitizer: DomSanitizer, private firebaseDatabase: FirebaseChat) {
+  constructor(
+    public app: App,
+    public user: User,
+    private domSanitizer: DomSanitizer,
+    private firebaseDatabase: FirebaseChat,
+    private message: Message
+    ) {
 
 
     if (app.paymentOption) {
@@ -112,6 +119,8 @@ export class PaymentComponent implements AfterViewInit {
       if (!user.email) return alert("결재하기 전, 회원 정보 메뉴에서 이메일 주소를 먼저 입력해 주십시오.");
       if (!user.mobile) return alert("결재하기 전, 회원 정보 메뉴에서 전화번호를 먼저 입력해 주십시오.");
 
+      /// @todo needs to be test !!
+      this.message.send( "수업료 결재", `${user.name} 님께서 결재를 시도합니다.`);
 
       let url = `https://` + window.location.hostname + `/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
