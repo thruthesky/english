@@ -42,6 +42,11 @@ export class ChatComponent implements OnInit {
   ) {
     this.uid = this.app.getClientId();
     if (user.logged) this.userId = user.info.id;
+
+
+    console.log(this.app.noOfClasses);
+
+
     this.all_message = this.fc.getAllMessageList();
     this.last_message = this.fc.getLastMessage();
     this.user_message = this.fc.getUserMessage(this.uid, {
@@ -79,6 +84,9 @@ export class ChatComponent implements OnInit {
       .subscribe(res => {
         this.scrollMessageBox();
     });
+
+
+
 
   }
 
