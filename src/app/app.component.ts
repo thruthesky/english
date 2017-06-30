@@ -6,6 +6,9 @@ import { App } from '../providers/app';
 import { Backend } from 'angular-backend';
 import { Observable } from 'rxjs/Observable';
 
+import { Message } from './../providers/message';
+
+
 @Component({
   selector: 'app-root',
   template: `
@@ -17,7 +20,8 @@ export class AppComponent {
 
   constructor (
     private app: App,
-    private backend: Backend
+    private backend: Backend,
+    private message: Message
   ) {
 
     if ( environment.backendUrl ) backend.setBackendUrl( environment.backendUrl  );

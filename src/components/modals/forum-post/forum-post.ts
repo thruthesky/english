@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { App } from './../../../providers/app';
+import { Message } from './../../../providers/message';
 import {
     PostData,
     User,
@@ -41,7 +42,8 @@ export class ForumPostComponent implements OnInit {
         private postData: PostData,
         private activeModal  : NgbActiveModal,
         public  user         : User,
-        private app: App
+        private app: App,
+        private message: Message
     ) {
         if ( this.user.logged ) this.userName = user.info.name;
     }
@@ -87,6 +89,7 @@ export class ForumPostComponent implements OnInit {
     }
 
     createSuccess( post: _POST ) {
+        this.message.send( "질문", post.title );
         this.reset();
         this.created.emit( post );
         this.activeModal.close();

@@ -6,6 +6,7 @@ import { User } from 'angular-backend';
 
 // import * as config from './../app/config';
 
+import { Message } from './message';
 
 import { ShareService } from '../providers/share-service';
 
@@ -31,7 +32,8 @@ export class LMS {
     constructor(private http: Http,
         public user: User,
         //public app: App,
-        private share: ShareService
+        private share: ShareService,
+        private message: Message
     ) {
 
 

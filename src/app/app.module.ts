@@ -65,6 +65,8 @@ import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
 import { ValidateOnBlurDirective } from '../directives/validate-on-blur';
 
+import { Message } from './../providers/message';
+
 
 const appRoutes:Routes = [
   { path: '', component: HomePage },
@@ -119,7 +121,7 @@ const appRoutes:Routes = [
     AngularBackendComponents,
     BootstrapModule
   ],
-  providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService ],
+  providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService, Message ],
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterComponent,
