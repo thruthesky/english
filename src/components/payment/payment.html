@@ -1,125 +1,123 @@
 <section id="payment" class="part">
-    <div class="content-wrapper" style="padding-top: 0;">
-        <div class="title mb-5 pl-5 " style="padding-top: 3rem;">
-            <h1 class="mb-3 fs-3rem">수업료 결제</h1>
-            <span>무통장 입금 안내<br>{{app.config.payment_banner_info}}</span>
-          <!--국민은행 655-601-04-1644-08 예금주: 송재호-->
-        </div>
-        <div *ngIf=" ! app.paymentOption " class="p-5">수업료 설정을 하십시오.</div>
-        <div *ngIf=" app.paymentOption " class="payment-form">
-            <form>
-                <div class="mb-3 row content" style="margin-left:.1rem">
-                    <div class="p-0 col-md-4 col-sm-4">
-                        <div class="mt-3 mr-3 p-2 h-22 d-block bg-whitesmoke" style="height:18rem">
-                            <div class="text-center">
-                                <img src="assets/images/payment/payment1.png">
-                            </div>
-                            <div class="mb-3 text-center fs-2rem">
-                                수업
-                            </div>
-                            <div class="d-flex mx-3 flex-column">
-
-                                <ng-container *ngIf=" app.paymentOption.text.minutes[25] ">
-                                <label for="min_25">
-                            <input id="min_25" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes" value="25">
-                            {{ app.paymentOption.text.minutes[25] }}
-                        </label>
-
-                        </ng-container>
-
-                                <ng-container *ngIf=" app.paymentOption.text.minutes[50] ">
-                                <label for="min_50">
-                            <input id="min_50" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes" value="50">
-                            {{ app.paymentOption.text.minutes[50] }}
-                            </label>
-                                </ng-container>
-                            
-                            또는
-
-
-
-
-                                <ng-container *ngIf=" app.paymentOption.customAmountInput ">
-
-                                    <label for="input-amount" class="input-amount-text">
-                            <input id="input-amount" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes" value="0">
-
-
-                            수업료 직접 입력
-                            </label>
-                                    <input *ngIf=" selectedMinutes == '0' " type="text" name=" customAmount " [(ngModel)]=" customAmount ">
-
-                                </ng-container>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="p-0 col-md-4 col-sm-4">
-                        <div class="mt-3 mr-3 p-2 h-22 d-block bg-whitesmoke" style="height:18rem">
-                            <div class="text-center">
-                                <img src="assets/images/payment/payment3.png">
-                            </div>
-                            <div class="mb-3 text-center fs-2rem">
-                                수업 요일
-                            </div>
-
-                            <div class="d-flex mx-3 flex-column">
-                                <label for="day_5">
-                            <input id="day_5" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="5">
-                            {{ app.paymentOption.text.days[5] }} {{ getAmountByMonths(5) }} 원
-
-                        </label>
-                                <label for="day_4">
-                            <input id="day_4" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="4">
-                            {{ app.paymentOption.text.days[4] }} {{ getAmountByMonths(4) }} 원
-                        </label>
-                                <label for="day_3">
-                            <input id="day_3" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="3">
-                            {{ app.paymentOption.text.days[3] }} {{ getAmountByMonths(3) }} 원                
-
-                        </label>
-                            </div>
-                            <div class="mt-2 py-0 px-3">
-                                <label for="months">기간 선택</label>
-                                <select class="ml-2" id="months" name="selectedMonths" [(ngModel)]="selectedMonths">
-                            <option value="1">{{ app.paymentOption.text.months[1] }}</option>
-                            <option value="3">{{ app.paymentOption.text.months[3] }}</option>
-                            <option value="6">{{ app.paymentOption.text.months[6] }}</option>
-                            <option value="12">{{ app.paymentOption.text.months[12] }}</option>
-                        </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="p-0 col-md-4 col-sm-4">
-                        <div class="mt-3 mr-3 p-2 d-block bg-whitesmoke" style="height:18rem">
-                            <div class="text-center">
-                                <img src="assets/images/payment/payment2.png">
-                            </div>
-                            <div class="mb-3 text-center fs-2rem">
-                                결제 방식
-                            </div>
-
-                            <div class="d-flex mx-3 flex-column">
-                                <label for="onlycardselfnormal">
-                            <input id="onlycardselfnormal" type="radio" name="method" value="onlycard" checked="1">
-
-                            카드결제                            
-                        </label> 카드결제 또는 무통장 입금을 할 수 있습니다.
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <nav class="p-0 w-100">
-                    <div class="mt-3 fs-15rem p-2 text-right black pay-total">수업료 합계: {{ money_format( getAmount() ) }}</div>
-                    <div (click)="onClickPayment()" class="mt-3 fs-15rem p-2 bg-chocolate text-center text-white button-total pointer">결제하기</div>
-                </nav>
-            </form>
-            <section id="paymentIframe" class="part">
-                <iframe *ngIf="iframeUrl" [src]="iframeUrl" class="w-100 border-0" style="height: 800px;"></iframe>
-            </section>
-        </div>
+  <div class="content-wrapper" style="padding-top: 0;">
+    <div class="title mb-5 pl-5 " style="padding-top: 3rem;">
+      <h1 class="mb-3 fs-3rem">수업료 결제</h1>
+      <span>무통장 입금 안내<br>{{app.config.payment_banner_info}}</span>
+      <!--국민은행 655-601-04-1644-08 예금주: 송재호-->
     </div>
+    <div *ngIf=" ! app.paymentOption " class="p-5">수업료 설정을 하십시오.</div>
+    <div *ngIf=" app.paymentOption " class="payment-form">
+      <form>
+        <div class="mb-3 row content" style="padding-left:.1rem">
+          <div class="p-0 col-md-4 col-sm-4">
+            <div class="mt-3 mr-3 p-2 h-22 d-block bg-whitesmoke" style="height:18rem">
+              <div class="text-center">
+                <img src="assets/images/payment/payment1.png">
+              </div>
+              <div class="mb-3 text-center fs-2rem">
+                수업
+              </div>
+              <div class="d-flex mx-3 flex-column">
+
+                <ng-container *ngIf=" app.paymentOption.text.minutes[25] ">
+                  <label for="min_25" class="pointer">
+                    <input id="min_25" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes" value="25">
+                    {{ app.paymentOption.text.minutes[25] }}
+                  </label>
+
+                </ng-container>
+
+                <ng-container *ngIf=" app.paymentOption.text.minutes[50] ">
+                  <label for="min_50" class="pointer">
+                    <input id="min_50" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes" value="50">
+                    {{ app.paymentOption.text.minutes[50] }}
+                  </label>
+                </ng-container>
+
+                또는
+
+
+                <ng-container *ngIf=" app.paymentOption.customAmountInput ">
+                  <label for="input-amount" class="input-amount-text pointer">
+                    <input id="input-amount" type="radio" name="selectedMinutes" [(ngModel)]="selectedMinutes"
+                           value="0">
+                    수업료 직접 입력
+                  </label>
+                  <input *ngIf=" selectedMinutes == '0' " type="text" name=" customAmount "
+                         [(ngModel)]=" customAmount ">
+
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="p-0 col-md-4 col-sm-4">
+            <div class="mt-3 mr-3 p-2 h-22 d-block bg-whitesmoke" style="height:18rem">
+              <div class="text-center">
+                <img src="assets/images/payment/payment3.png">
+              </div>
+              <div class="mb-3 text-center fs-2rem">
+                수업 요일
+              </div>
+
+              <div class="d-flex mx-3 flex-column">
+                <label for="day_5" class="pointer">
+                  <input id="day_5" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="5">
+                  {{ app.paymentOption.text.days[5] }} {{ getAmountByMonths(5) }} 원
+
+                </label>
+                <label for="day_4" class="pointer">
+                  <input id="day_4" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="4">
+                  {{ app.paymentOption.text.days[4] }} {{ getAmountByMonths(4) }} 원
+                </label>
+                <label for="day_3" class="pointer">
+                  <input id="day_3" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="3">
+                  {{ app.paymentOption.text.days[3] }} {{ getAmountByMonths(3) }} 원
+
+                </label>
+              </div>
+              <div class="mt-2 py-0 px-3">
+                <label for="months">기간 선택</label>
+                <select class="ml-2 pointer" id="months" name="selectedMonths" [(ngModel)]="selectedMonths">
+                  <option value="1">{{ app.paymentOption.text.months[1] }}</option>
+                  <option value="3">{{ app.paymentOption.text.months[3] }}</option>
+                  <option value="6">{{ app.paymentOption.text.months[6] }}</option>
+                  <option value="12">{{ app.paymentOption.text.months[12] }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-0 col-md-4 col-sm-4">
+            <div class="mt-3 mr-3 p-2 d-block bg-whitesmoke" style="height:18rem">
+              <div class="text-center">
+                <img src="assets/images/payment/payment2.png">
+              </div>
+              <div class="mb-3 text-center fs-2rem">
+                결제 방식
+              </div>
+
+              <div class="d-flex mx-3 flex-column">
+                <label for="onlycardselfnormal" class="pointer">
+                  <input id="onlycardselfnormal" type="radio" name="method" value="onlycard" checked="1">
+                  카드결제
+                </label> 카드결제 또는 무통장 입금을 할 수 있습니다.
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <nav class="p-0 w-100">
+          <div class="mt-3 fs-15rem p-2 text-right black pay-total">수업료 합계: {{ money_format( getAmount() ) }}</div>
+          <div (click)="onClickPayment()"
+               class="mt-3 fs-15rem p-2 bg-chocolate text-center text-white button-total pointer">결제하기
+          </div>
+        </nav>
+      </form>
+      <section id="paymentIframe" class="part">
+        <iframe *ngIf="iframeUrl" [src]="iframeUrl" class="w-100 border-0" style="height: 800px;"></iframe>
+      </section>
+    </div>
+  </div>
 </section>
