@@ -55,7 +55,7 @@ import { BooksComponent } from '../components/books/books';
 
 import { LevelTestButtonComponent } from '../components/level-test-button/level-test-button';
 
-
+import { AsideComponent } from '../components/aside/aside';
 import { ChatComponent } from '../components/chat/chat';
 import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
 
@@ -101,6 +101,7 @@ const appRoutes:Routes = [
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,
+    AsideComponent,
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
