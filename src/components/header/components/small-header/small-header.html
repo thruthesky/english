@@ -5,16 +5,17 @@
                 <div class="icons p-1">
 
 
-                    <span id="naver_id_login" [style.display]=" user.logged ? 'none' : 'inline' "></span>
+                    <span class="pointer" id="naver_id_login" [style.display]=" user.logged ? 'none' : 'inline' "></span>
 
                     <ng-container *ngIf=" ! user.logged ">
-                        <span><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
-                        <span *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
+                        <span class="pointer"><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
+                        <span class="pointer" *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
                     </ng-container>
 
                     <div class="username pt-1 fs-1rem" *ngIf=" user.logged ">
                         {{ user.info.name }}
                     </div>
+
 
                 </div>
                 <div class="p-2 fs-130 pointer">
