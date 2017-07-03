@@ -97,12 +97,12 @@ export class BigHeaderComponent {
         this.app.scrollTo(name);
     }
     onClickLogin() {
-        if (this.pLogin) this.pLogin.close();
+        setTimeout(() => { if (this.pLogin) this.pLogin.close(); }, 2000);
         this.onLogin.emit();
     }
-    onClickGotoClassRoom() {
-        this.classroom.emit();
-    }
+    // onClickGotoClassRoom() {
+    //     this.classroom.emit();
+    // }
 
     onClickRegister() {
         this.register.emit();

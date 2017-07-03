@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {App} from './../../providers/app';
-import {FirebaseChat} from './../../providers/firebase';
+import {FirebaseChat, _FIREBASE_CHAT} from './../../providers/firebase';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {} from 'jquery';
@@ -46,7 +46,7 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      //console.log('all_message', res)
+      // console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();
@@ -94,7 +94,7 @@ export class AdminPanelComponent implements OnInit {
 
     if (this.form.message.length == 0) return;
 
-    let msg = {
+    let msg: _FIREBASE_CHAT = {
       user: this.uid,
       name: this.userId,
       message: this.form.message
@@ -262,6 +262,10 @@ export class AdminPanelComponent implements OnInit {
         return 'N';
       }
     }
+  }
+
+  onClickClass(userId) {
+    // console.log(userId);
   }
 
 }

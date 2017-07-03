@@ -3,17 +3,10 @@ import { Message } from '../../providers/message';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
 import { App } from './../../providers/app';
-import { FirebaseChat } from './../../providers/firebase';
+import { FirebaseChat, _FIREBASE_CHAT } from './../../providers/firebase';
 import { Subject } from 'rxjs/Subject';
 
-export interface _FIREBASE_CHAT {
-  user: string;
-  name: string;
-  message: string;
-  time?: number;
-  count?: number;
-  newVisitor?: boolean;
-}
+
 
 @Component({
   moduleId: module.id,
@@ -43,9 +36,9 @@ export class ChatComponent implements OnInit {
     this.uid = this.app.getClientId();
     if (user.logged) this.userId = user.info.id;
 
-
-    console.log(this.app.noOfClasses);
-
+    // console.log('classInfo::', this.app.classInfo);
+    // console.log('userID::', this.userId);
+    // console.log('noOfClasses::', this.app.noOfClasses);
 
     this.all_message = this.fc.getAllMessageList();
     this.last_message = this.fc.getLastMessage();
@@ -98,7 +91,8 @@ export class ChatComponent implements OnInit {
     let msg: _FIREBASE_CHAT = {
       user: this.uid,
       name: this.userId,
-      message: this.form.message
+      message: this.form.message,
+      noOfClasses: this.app.noOfClasses
     };
     this.pushMessage( msg );
     this.sendPushMessage( msg );

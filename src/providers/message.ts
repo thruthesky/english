@@ -104,7 +104,9 @@ export class Message {
                 "to": token
             };
         this.http.post("https://fcm.googleapis.com/fcm/send", data, this.requestOptions)
-            .subscribe(res => console.log(res), e => console.error(e));
+            .subscribe(res => {
+              //console.log(res);
+            }, e => console.error(e));
     }
 
     get requestOptions(): RequestOptions {

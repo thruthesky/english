@@ -104,8 +104,9 @@ export class LoginModal implements OnInit {
         let loginData = this.form.value;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
-            let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
-            checkRequired.componentInstance.checkRequired = true;
+            // let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
+            // checkRequired.componentInstance.checkRequired = true;
+            this.app.showRequiredInfoModal();
             this.loading = false;
         }, error => {
             this.error(error);
@@ -119,7 +120,7 @@ export class LoginModal implements OnInit {
         // });
 
 
-        console.log(res);
+        // console.log(res);
 
         if ( res.data.admin ) {
             this.message.requestPermission();

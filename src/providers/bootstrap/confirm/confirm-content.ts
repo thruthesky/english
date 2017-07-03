@@ -5,7 +5,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   template: `
     <div class="modal-header">
       <h4 class="modal-title">{{ title }}</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <button type="button" class="close pointer" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -14,8 +14,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       {{ content }}
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('confirm')">{{confirm}}</button>
-      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">{{cancel}}</button>
+      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.close('confirm')">{{confirm}}</button>
+      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.dismiss('cancel')">{{cancel}}</button>
     </div>
   `
 })
