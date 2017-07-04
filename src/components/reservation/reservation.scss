@@ -6,20 +6,18 @@
         img {
             width: 3em;
             height: auto;
-            
+
         }
     }
 
     /deep/ .popover {
-        font-size: 1.3em;
         .popover-title {
             background-color: rgba( 0, 0, 0, .8 );
         }
         .popover-data {
-            
+
             display: block;
-            margin: .2em 0;
-            padding: .5em;
+            padding: .2em .2em 0;
             border-radius: 0;
             width: 100%;
             background-color: rgba( 255, 255, 255, .5);
@@ -30,12 +28,12 @@
         .popover-content {
             padding: 0;
             .comment {
-                height: 11em;
                 span {
+                    overflow-y: scroll;
                     height: 10em;
                     display: block;
-                    overflow: scroll;
-                }    
+                    white-space:pre-line
+                }
             }
         }
     }

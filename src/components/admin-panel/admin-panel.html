@@ -79,7 +79,7 @@
               <span (click)=" onClickUser( lm ) " class="d-block p-2 mb-1 rounded bg-white pointer">
                 <span *ngIf="lm.name"  [class]="getUserIcon( lm.name )" >{{ getUserIcon( lm.name ) }}</span>
                 {{ getUserName( lm ) }} : {{ lm.message }} [Msg:{{lm.count}}]
-              <span *ngIf="lm.noOfClasses" (click)="onClickClass( getUserName( lm ) );$event.stopPropagation();">[Class:{{lm.noOfClasses}}]</span>
+              <span *ngIf="lm.noOfClasses" class="pointer" (click)="onClickClass( getUserName( lm ) );$event.stopPropagation();">[Class:{{lm.noOfClasses}}]</span>
               </span>
             </li>
           </ng-container>
@@ -88,7 +88,7 @@
           <li class="message d-flex talkbubble {{ m.name == userLoginName ? 'justify-content-end bubble-right': 'bubble-left'}}" *ngFor="let m of user_message | async">
             <span class="d-block p-2 mb-1 rounded" [ngClass]="{'bg-white': m.name != userLoginName, 'bg-yellow': m.name == userLoginName } " >
               {{ m.name == userLoginName ? '' : getUserName( m ) + ' : ' }}{{ m.message }}
-              <span *ngIf="m.noOfClasses" (click)="onClickClass( getUserName( m ) );$event.stopPropagation();">[Class:{{m.noOfClasses}}]</span>
+              <span *ngIf="m.noOfClasses" class="pointer" (click)="onClickClass( getUserName( m ) );$event.stopPropagation();">[Class:{{m.noOfClasses}}]</span>
             </span>
           </li>
         </ul>
@@ -114,6 +114,5 @@
       </div>
     </div>
   </div>
-
 
 </section>

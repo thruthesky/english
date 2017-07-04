@@ -163,7 +163,7 @@ export class ReservationComponent implements OnInit {
     }
     onClickPrev() {
         this.month --;
-        if( this.month < 1) {
+        if ( this.month < 1) {
             this.year --;
             this.month = 12;
         }
@@ -192,5 +192,15 @@ export class ReservationComponent implements OnInit {
             return re;
         }
         else return "예약된 수업이 없습니다.";
+    }
+
+    getPlacement( i ) {
+      if ( i === 1) {
+        return 'right';
+      } else if ( i === 5 ) {
+        return 'left';
+      } else {
+        return 'top';
+      }
     }
 }

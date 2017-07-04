@@ -24,7 +24,7 @@ export class Message {
 
 
         this.messaging.onMessage((payload) => {
-            if (payload['notification']['title'] == 'LiveChat') return;
+            if ( payload && payload['notification'] && payload['notification']['title'] == 'LiveChat') return;
             alert(payload['notification']['title'] + "\n" + payload['notification']['body']);
             location.href = payload['notification']['click_action'];
         });
