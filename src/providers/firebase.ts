@@ -75,21 +75,21 @@ export class FirebaseChat {
     return this.db.list('/level_test/inquiry/' + uid).push(data);
   }
 
-  newRegisteredUser( req ){
-    let msg = {
-      id: req.id,
-      email: req.email,
-      name: req.name
-    };
-    this.new_user = this.db.list('/users/');
-
-    this.new_user.push( msg ).then( res => {
-    }, err => {
-      alert('newRegisteredUserError'+ err);
-    }).catch( e => {
-      alert('newRegisteredUserErrorOnCatch'+ e);
-    });
-  }
+  // newRegisteredUser( req ){
+  //   let msg = {
+  //     id: req.id,
+  //     email: req.email,
+  //     name: req.name
+  //   };
+  //   this.new_user = this.db.list('/users/');
+  //
+  //   this.new_user.push( msg ).then( res => {
+  //   }, err => {
+  //     alert('newRegisteredUserError'+ err);
+  //   }).catch( e => {
+  //     alert('newRegisteredUserErrorOnCatch'+ e);
+  //   });
+  // }
 
 
 
