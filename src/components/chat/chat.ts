@@ -3,17 +3,11 @@ import { Message } from '../../providers/message';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
 import { App } from './../../providers/app';
-import { FirebaseChat } from './../../providers/firebase';
+import { FirebaseChat, _FIREBASE_CHAT } from './../../providers/firebase';
 import { Subject } from 'rxjs/Subject';
+import {ShareService} from "../../providers/share-service";
 
-export interface _FIREBASE_CHAT {
-  user: string;
-  name: string;
-  message: string;
-  time?: number;
-  count?: number;
-  newVisitor?: boolean;
-}
+
 
 @Component({
   moduleId: module.id,
@@ -31,21 +25,22 @@ export class ChatComponent implements OnInit {
   min: boolean = true;
   max: boolean = false;
   firstList = true;
-  userId: string = null;
   scrollMessage: Subject<any> = new Subject();
 
   constructor(
     public app: App,
     private user: User,
     private fc: FirebaseChat,
-    private message: Message
+    private message: Message,
+    private shared: ShareService
   ) {
     this.uid = this.app.getClientId();
-    if (user.logged) this.userId = user.info.id;
-
-
-    console.log(this.app.noOfClasses);
-
+    if ( user.logged ) {
+      this.shared.clientChatId = user.info.id;
+    }
+    // console.log('classInfo::', this.app.classInfo);
+    // console.log('userID::', this.userId);
+    // console.log('noOfClasses::', this.app.noOfClasses);
 
     this.all_message = this.fc.getAllMessageList();
     this.last_message = this.fc.getLastMessage();
@@ -63,7 +58,7 @@ export class ChatComponent implements OnInit {
         let now ='visit ' + d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() ;
         let msg: _FIREBASE_CHAT = {
           user: this.uid,
-          name: this.userId,
+          name: this.shared.clientChatId,
           message: now,
           newVisitor: true
         };
@@ -97,8 +92,9 @@ export class ChatComponent implements OnInit {
     if (this.form.message.length == 0) return;
     let msg: _FIREBASE_CHAT = {
       user: this.uid,
-      name: this.userId,
-      message: this.form.message
+      name: this.shared.clientChatId,
+      message: this.form.message,
+      noOfClasses: this.app.noOfClasses
     };
     this.pushMessage( msg );
     this.sendPushMessage( msg );

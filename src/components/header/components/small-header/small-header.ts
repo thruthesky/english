@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 
 
@@ -11,7 +11,7 @@ import { LMS } from './../../../../providers/lms';
     selector: 'small-header-component',
     templateUrl: 'small-header.html'
 })
-export class SmallHeaderComponent {
+export class SmallHeaderComponent implements OnInit{
     event: any = {};
     more: boolean = false;
     @Input() login: boolean;
@@ -52,10 +52,10 @@ export class SmallHeaderComponent {
         this.more = false;
         this.onLogin.emit();
     }
-    onClickGotoClassRoom() {
-        this.more = false;
-        this.classroom.emit();
-    }
+    // onClickGotoClassRoom() {
+    //     this.more = false;
+    //     this.classroom.emit();
+    // }
 
     onClickRegister() {
         this.more = false;

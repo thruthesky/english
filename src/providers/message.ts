@@ -24,7 +24,7 @@ export class Message {
 
 
         this.messaging.onMessage((payload) => {
-            if (payload['notification']['title'] == 'LiveChat') return;
+            if ( payload && payload['notification'] && payload['notification']['title'] == 'LiveChat') return;
             alert(payload['notification']['title'] + "\n" + payload['notification']['body']);
             location.href = payload['notification']['click_action'];
         });
@@ -104,7 +104,9 @@ export class Message {
                 "to": token
             };
         this.http.post("https://fcm.googleapis.com/fcm/send", data, this.requestOptions)
-            .subscribe(res => console.log(res), e => console.error(e));
+            .subscribe(res => {
+              //console.log(res);
+            }, e => console.error(e));
     }
 
     get requestOptions(): RequestOptions {

@@ -1,5 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+
+export interface _FIREBASE_CHAT {
+  user: string;
+  name: string;
+  message: string;
+  time?: number;
+  count?: number;
+  newVisitor?: boolean;
+  noOfClasses?: number;
+}
+
+
+
 @Injectable()
 export class FirebaseChat {
 

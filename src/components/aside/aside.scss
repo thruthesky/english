@@ -1,0 +1,80 @@
+@import '../../theme/variables.scss';
+:host {
+    background: rgba( 255, 255, 255, .9 );
+    .list-panel-menu {
+        //small
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li {
+                &:hover {
+                    background: #f3f3f3;
+                }
+            }
+        }
+        small {
+            color: #888b92;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .text {
+            display: inline-block;
+        }
+        
+    }
+    //big
+    @media( min-width: $md ) {
+        background: none;
+        position: fixed;
+        left: $gutter * 2;
+        bottom: $gutter * 2;
+        z-index: 1000;
+        ul {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                position: relative;
+                cursor: pointer;
+                margin-top: $gutter * 2;
+                width: 100px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                span {
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    bottom: .4em;
+                    color: #fff;
+                    font-size: .8em;
+                    text-align: center;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+
+// :host {
+//     ul {
+//         padding:0;
+//         list-style: none;
+//         li {
+//             float: left;
+//             width: 50%;
+//             img {
+//                 display: block;
+//                 width: 100%;
+//                 height: auto;
+//             }
+//         }
+//     }
+//     @media( min-width: $sm ) {
+
+//     }
+// }

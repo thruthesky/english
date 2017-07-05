@@ -13,6 +13,7 @@ import {
     _USER_LOGIN,
     _USER_LOGIN_RESPONSE
 } from 'angular-backend';
+import {ShareService} from "../../../providers/share-service";
 
 @Component({
     selector: 'login-component',
@@ -32,7 +33,9 @@ export class LoginModal implements OnInit {
         private modal: NgbModal,
         private fb: FormBuilder,
         private user: User,
-        private message: Message ) {
+        private message: Message,
+        private shared: ShareService
+    ) {
             this.createForm();
 
     }
@@ -104,8 +107,9 @@ export class LoginModal implements OnInit {
         let loginData = this.form.value;
         this.user.login(loginData).subscribe((res: _USER_LOGIN_RESPONSE) => {
             this.success(res);
-            let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
-            checkRequired.componentInstance.checkRequired = true;
+            // let checkRequired =   this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
+            // checkRequired.componentInstance.checkRequired = true;
+            this.app.showRequiredInfoModal();
             this.loading = false;
         }, error => {
             this.error(error);
@@ -119,7 +123,7 @@ export class LoginModal implements OnInit {
         // });
 
 
-        console.log(res);
+        this.shared.clientChatId = this.user.info.id;
 
         if ( res.data.admin ) {
             this.message.requestPermission();

@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FirebaseListObservable} from 'angularfire2/database';
 import {App} from './../../providers/app';
-import {FirebaseChat} from './../../providers/firebase';
+import {FirebaseChat, _FIREBASE_CHAT} from './../../providers/firebase';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {} from 'jquery';
+import {Router} from '@angular/router';
+import {ShareService} from "../../providers/share-service";
 
 @Component({
   moduleId: module.id,
@@ -37,16 +39,18 @@ export class AdminPanelComponent implements OnInit {
   initial = true;
 
   constructor(public app: App,
-              private fc: FirebaseChat
+              private fc: FirebaseChat,
+              private router: Router,
+              private shared: ShareService
   ) {
     this.uid = this.app.getClientId();
     if (app.user.logged) {
-      this.userId = app.user.info.id;
+      this.shared.clientChatId  = app.user.info.id;
       this.userLoginName = app.user.info.name;
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      //console.log('all_message', res)
+      // console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();
@@ -94,9 +98,9 @@ export class AdminPanelComponent implements OnInit {
 
     if (this.form.message.length == 0) return;
 
-    let msg = {
+    let msg: _FIREBASE_CHAT = {
       user: this.uid,
-      name: this.userId,
+      name: this.shared.clientChatId,
       message: this.form.message
     };
 
@@ -116,7 +120,7 @@ export class AdminPanelComponent implements OnInit {
         count: count,
         user: this.username,
         name: this.userSenderId,
-        message: `[${this.userId}]` + msg.message
+        message: `[${this.shared.clientChatId}]` + msg.message
       });
 
     });
@@ -237,7 +241,7 @@ export class AdminPanelComponent implements OnInit {
     return localStorage.getItem('chatDisplay');
   }
 
-  getUserName( lm ){
+  getUserName( lm ) {
 
     if ( lm['name'] ) {
       let arName = lm['name'].split('@');
@@ -262,6 +266,11 @@ export class AdminPanelComponent implements OnInit {
         return 'N';
       }
     }
+  }
+
+  onClickClass(userId) {
+    localStorage.setItem('chat-uid', userId);
+    window.open('/admin/index.html?userId=' + userId, '_blank');
   }
 
 }

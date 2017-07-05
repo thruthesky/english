@@ -5,13 +5,11 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   template: `
     <div class="modal-header">
       <h4 class="modal-title p-3">{{ title }}</h4>
-    </div>    
-    <div class="modal-body">
-        {{content}}
     </div>
+    <div class="modal-body" [innerHTML]="content"></div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('confirm')">다음부터 보지 않기</button>
-      <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">닫기 <i class="fa fa-times"></i></button>
+      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.close('confirm')">다음부터 보지 않기</button>
+      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.dismiss('cancel')">닫기 <i class="fa fa-times"></i></button>
     </div>
   `,
   styles: [`
@@ -29,6 +27,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
       padding: .8em;
       line-height: 180%;
       text-align: center;
+      white-space:pre-line;
     }
 
     button {

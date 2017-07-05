@@ -1,0 +1,36 @@
+<div  *ngIf="app.widthSize == 'big'">
+    <ul>
+        <li (click)="onClickKakao()">
+            <img src="assets/images/aside/k.png">
+            <span>카카오 가이드</span>
+        </li>
+        <li (click)="onClickSaeha()">
+            <img src="assets/images/aside/d.jpg">
+            <span>새하 가이드</span>
+        </li>
+        
+    </ul>
+</div>
+<div *ngIf="app.widthSize == 'small'">
+    <ul  class="list-panel-menu fs-120">
+        <li (click)="onClickKakao()">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-comment-o fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="text">카카오 가이드</span>
+            <small> Kakao Guide</small>
+        </li>
+        <li (click)="onClickSaeha()">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-video-camera fa-stack-1x fa-inverse"></i>
+            </span>
+            <span class="text">새하 가이드</span>
+            <small> Saeha Guide</small>
+        </li>
+        
+    </ul>
+</div>
+
+

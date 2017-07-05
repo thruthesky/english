@@ -26,6 +26,8 @@ import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
 import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
 
+import { GuideKakaoComponent } from '../components/modals/guide-kakao/guide-kakao';
+import { GuideSaehaComponent } from '../components/modals/guide-saeha/guide-saeha';
 import { ClassInfoModal } from '../components/modals/class-info/class-info';
 import { LoginModal } from '../components/modals/login/login';
 import { RegisterComponent } from '../components/modals/register/register';
@@ -55,7 +57,7 @@ import { BooksComponent } from '../components/books/books';
 
 import { LevelTestButtonComponent } from '../components/level-test-button/level-test-button';
 
-
+import { AsideComponent } from '../components/aside/aside';
 import { ChatComponent } from '../components/chat/chat';
 import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
 
@@ -82,6 +84,8 @@ const appRoutes:Routes = [
     ForgotPasswordComponent,
     ChangePasswordComponent,
     FindIdModal,
+    GuideKakaoComponent,
+    GuideSaehaComponent,
     ClassInfoModal,
     LoginModal,
     PostViewModal,
@@ -101,6 +105,7 @@ const appRoutes:Routes = [
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,
+    AsideComponent,
     ChatComponent,
     AdminPanelComponent,
     BooksComponent,
@@ -125,6 +130,8 @@ const appRoutes:Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterComponent,
+    GuideKakaoComponent,
+    GuideSaehaComponent,
     FindIdModal,
     LoginModal,
     ClassInfoModal,
