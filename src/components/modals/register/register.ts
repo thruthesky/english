@@ -170,7 +170,7 @@ export class RegisterComponent {
             register.birth_day = date[2];
         }
         this.user.register(register).subscribe((res: _USER_CREATE_RESPONSE) => {
-            this.fc.newRegisteredUser(msg);
+            // this.fc.newRegisteredUser(msg);
             this.resetResult();
             // this.app.registerSuccess( res.data.name );
             this.message.send( "회원 가입", `${res.data.name}님이 가입하였습니다.`);
@@ -219,8 +219,8 @@ export class RegisterComponent {
 
     /**
      * @todo see if this method is being used. If not, remove this method.
-     * 
-     * @param res 
+     *
+     * @param res
      */
     successRegister(res: _USER_CREATE_RESPONSE) {
         this.activeModal.close();

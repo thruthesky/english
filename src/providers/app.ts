@@ -597,7 +597,7 @@ export class App {
         };
         this.user.register(req).subscribe(r => {
             this.message.send( "회원 가입", `${user.name}님이 가입하였습니다.`);
-            this.fc.newRegisteredUser(req);
+            // this.fc.newRegisteredUser(req);
             this.backendSuccess(r);
         }, e => this.backendFailed(e));
     }
@@ -654,7 +654,7 @@ export class App {
 
     private showConfirmModal(option: CONFIRM_OPTION, resultCallback?: (result) => void, dismissCallback?: (reason) => void) {
         this.confirmService.openConfirmModal(option, result => {
-            console.info("openMobileUpload:: " + result);
+            //console.info("openMobileUpload:: " + result);
             if (resultCallback) resultCallback(result);
         }, reason => {
             if (dismissCallback) dismissCallback(reason);
