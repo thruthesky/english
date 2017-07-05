@@ -19,7 +19,7 @@
     "publish": "ng build --prod --aot --output-path=www --base-href=/ && npm run scp",
     "republish": "ng build --prod --aot --output-path=www --base-href=/ && cd www && scp index.html *.css *.js englishfordevelopers@www.englishfordevelopers.com:./www",
     "republish:iamtalkative": "ng build --prod --aot --output-path=www --base-href=/ && cd www && scp index.html *.css *.js newtalkative@witheng.com:./www",
-    "scp": "cd www && scp -r * englishfordevelopers@www.englishfordevelopers.com:./www",
+    "scp": "cd www && scp -r * newtalkative@witheng.com:./www",
     "build:prod": "ng build --prod --aot --output-path=www --base-href=/",
     "build:aot": "ng build --prod --aot --output-path=www --base-href=/",
     "push:englishfordevelopers": "cd www && scp index.html *.css *.js *.json englishfordevelopers@witheng.com:./www",
