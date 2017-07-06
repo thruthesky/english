@@ -3,18 +3,24 @@
 
 <section id="content" [class]="app.widthSize">
         <!--<aside-component *ngIf="app.widthSize == 'big'"></aside-component>-->
-        <intro-component></intro-component>
-        <teacher-component [teachers]="teachers"></teacher-component>
-        <curriculum-component></curriculum-component>
-        <books-component></books-component>
-        <level-test-component></level-test-component>
-        <comment-component></comment-component>
-        <payment-component></payment-component>
-        <reservation-component *ngIf="user.logged"></reservation-component>
-        <forum-component></forum-component>
+
+        <div class="{{ shared.page !== 'main' ? 'd-none': ''}}">
+              <intro-component></intro-component>
+              <teacher-component [teachers]="teachers"></teacher-component>
+              <curriculum-component></curriculum-component>
+              <books-component></books-component>
+              <level-test-component></level-test-component>
+              <comment-component></comment-component>
+              <payment-component></payment-component>
+              <reservation-component *ngIf="user.logged"></reservation-component>
+              <forum-component></forum-component>
+        </div>
+        <saeha-component class="{{ shared.page !== 'saeha' ? 'd-none': ''}}"></saeha-component>
 </section>
 
+
+
 <chat-component *ngIf=" ! app.isAdmin() "></chat-component>
-<admin-panel-component *ngIf=" app.isAdmin() "></admin-panel-component>
+<!--<admin-panel-component *ngIf=" app.isAdmin() "></admin-panel-component>-->
 
 <footer-component></footer-component>

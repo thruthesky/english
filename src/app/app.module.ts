@@ -45,6 +45,8 @@ import { ReservationComponent } from '../components/reservation/reservation';
 import { FooterComponent } from '../components/footer/footer';
 import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
+import { SaehaComponent } from '../components/saeha/saeha';
+
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
 //import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
@@ -110,7 +112,8 @@ const appRoutes:Routes = [
     AdminPanelComponent,
     BooksComponent,
     LevelTestButtonComponent,
-    ValidateOnBlurDirective
+    ValidateOnBlurDirective,
+    SaehaComponent
   ],
   imports: [
     BrowserModule,

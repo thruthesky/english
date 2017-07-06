@@ -1,0 +1,276 @@
+<section id="saeha" class="part">
+  <div class="content-wrapper">
+    <h2>화상강의실 설치</h2>
+    <div class="my-5 text-center">
+      <button type="button" class="btn px-5 py-3 bg-slategrey white pointer">화상프로그램 설치 다운로드</button>
+    </div>
+
+    <div class="page row">
+      <div class="col-6">
+        <span class="option py-3" [ngClass]="{'active': option}" (click)="option = true">PC 설정</span>
+      </div>
+      <div class="col-6">
+        <span class="option py-3" [ngClass]="{'active': !option}" (click)="option = false">모바일 설정</span>
+      </div>
+    </div>
+
+
+    <div class="pc_tab" *ngIf=" option ">
+
+      <!-- step1 -->
+      <div class="set_area">
+        <div class="chk_area type1">
+          <div class="title">
+            <div class="cycle"><span class="check">STEP<br>#01</span></div>
+            <div class="title_info">
+              <p>화상카메라, 헤드셋 준비</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="set_view_area view1">
+          <ul>
+            <li class="col-sm-12 col-md-6 pb-5">
+              <p class="pic">
+                <img src="/assets/images/saeha/set_bg_01.jpg" alt="">
+                <a
+                  href="http://shopping.naver.com/detail/detail.nhn?query=%EC%9B%B9%EC%BA%A0&amp;cat_id=50001598&amp;nv_mid=5762459074&amp;frm=NVSCPRO"
+                  class="pic_a" target="_blank">추천 카메라</a>
+              </p>
+              <p class="tit">화상카메라 설치</p>
+              <p class="text">화상카메라는 <span class="tab_green">USB단자에 꼽기만 하면 드라이버가 자동 설치</span>되는 <br>제품을 권해드립니다.<br>화상카메라에
+                마이크가 내장되어 있는 경우 헤드셋의 마이크와 충돌을 일으켜 <br>에코현상이 발생할 수 있으니 <span
+                  class="tab_green">수업시에서는 꼭 내장마이크를 꺼주시기</span> 바랍니다.</p>
+            </li>
+            <li class="col-sm-12 col-md-6 pb-3">
+              <p class="pic">
+                <img src="/assets/images/saeha/set_bg_02.jpg" alt="">
+                <a
+                  href="http://shopping.naver.com/detail/detail.nhn?cat_id=40009940&amp;nv_mid=4044354357&amp;frm=NVSCMOD&amp;section=price"
+                  class="pic_a" target="_blank">추천 헤드셋</a>
+              </p>
+              <p class="tit">헤드셋 설치</p>
+              <p class="text">헤드셋도 USB단자에 꼽기만 하면 드라이버가 <span class="tab_green">자동 설치되는 제품</span>을 권해드립니다.<br>저가품이어도
+                상관없으나 꼭 <span class="tab_green">마이크가 달린 헤드셋을 구매</span>해 주시기 바랍니다. <br>만약 분홍색과 연두색이 잭이 달린 헤드셋을 구매하셨다면<br>컴퓨터
+                뒷면이나 앞면에 위치한 잭에 꼽으시면 됩니다. </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="set_area">
+        <div class="chk_area v2">
+          <div class="title">
+            <div class="cycle"><span class="check">STEP<br>#02</span></div>
+            <div class="title_info">
+              <p>화상강의실 설치 방법</p>
+              <p class="sub_tit">상단의 화상프로그램설치 버튼을 클릭한 후 팝업창의 지시에 따라 프로그램을 설치하시면 됩니다.</p>
+              <p class="sub_txt mT10"><span class="tab_green">크롬(Chrome)브라우저에서는 화상솔루션이 설치되지 않습니다.</span> Window10 기본
+                브라우저인 <span class="tab_green">Edge에서는 Internet Explorer 11을 실행한 후 설치해</span> 주시기 바랍니다.<br><span
+                  class="tab_green">Internet Explorer 11 실행방법 </span>: 윈도우 시작버튼 &gt; 보조프로그램 &gt; Internet Explorer 11
+                실행 &gt; 화상솔루션 설치</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="set_view_area view2">
+          <ul>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">01. 화상솔루션설치 클릭</p>
+              <p class="text">홈페이지 우측 상단에 위치한 [화상강의실 설치]버튼를 클릭합니다.</p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_03.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">02.ActiveX 설치</p>
+              <p class="text">사이트 하단의 추가기능 설치를 클릭, 프로그램을 설치합니다. </p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_04.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">03.헤드셋 연결확인</p>
+              <p class="text">오디오/비디오 설정마법사를 진행합니다. 처음 헤드셋 연결확인창이 나오면<br>상단의 [스피커시험]을 클릭하여 소리를 확인하고, 들리지 않으면<br>[다른
+                스피커 장치]를 선택합니다. </p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_05.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">04.마이크동작 확인</p>
+              <p class="text">마이크장치를 선택한 후 상단의 [마이크시험]을 클릭하여 마이크볼륨막대기에<br>변화가 없으면, 다른 마이크장치를 선택합니다.</p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_06.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">05.비디오 연결확인</p>
+              <p class="text">사용할 [비디오]장치를 선택한 후 정상 작동하면 다음을 클릭합니다. </p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_07.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">06.장비세팅 완료</p>
+              <p class="text">모든 장치가 정상적으로 설치되었는지 확인하고 다음을 클릭하여 설치를 마칩니다.</p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_08.jpg" alt=""></a></p>
+            </li>
+          </ul>
+          <div class="set_view_btm">
+            <p class="tit">정상 설치 테스트</p>
+            <p class="text">실제 수업환경과 동일한 상태에서 화상 및 음성대화에 이상이 없는 지 확인 점검하는 테스트입니다.<br>만약, 설치 순서대로 했음에도 여전히 정상적으로 동작하지
+              않으면 <span class="tab_red">고객센터(1544-0159)</span>로 연락하여 <span class="tab_red">원격지원</span>을 받으시기 바랍니다.</p>
+            <button type="button"
+                    onclick="customConfirm('정상설치 테스트는 로그인 하신 후에 테스트가 가능합니다.', function(){login_layer();}, function(){});">
+              정상 설치 테스트
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mobile_tab" *ngIf=" ! option ">
+
+      <div class="set_area">
+        <div class="chk_area type1">
+          <div class="title">
+            <div class="cycle"><span class="check">STEP<br>#01</span></div>
+            <div class="title_info">
+              <p>모바일 화상강의실 설치방법</p>
+              <p class="sub_tit">먼저, 스마트폰용 이어폰을 준비해 주세요.</p>
+              <p class="sub_tit"><span class="tab_red">화상강의실 설치버튼</span>을 클릭하여 <span class="tab_green">이티폰 화상앱</span>을
+                다운받은 다음 설치하시면 됩니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="set_view_area view1">
+          <ul>
+            <li class="col-sm-12 col-md-6">
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_12.jpg" alt=""></a></p>
+              <p class="tit">01.화상강의실설치 클릭</p>
+              <p class="text">이티폰 모바일 화면 메뉴의 [모바일화상강의실 설치]버튼을 클릭합니다.</p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_13.jpg" alt=""></a></p>
+              <p class="tit">02.화상솔루션 설치</p>
+              <p class="text">스마트폰의 운영체제에 맞는 아이콘을 클릭하여 파일을 다운로드합니다.</p>
+            </li>
+          </ul>
+          <p class="sub_txt mT10">iOS용(아이폰/패드) 기기는<span class="tab_red">설정 &gt; 일반 &gt; 기기관리(프로파일) -&gt; SAEHACOMMS.CO.LTD</span>를
+            신뢰한다고 체크를 해주셔야 강의실 설치가 가능합니다.</p>
+
+
+        </div>
+      </div>
+
+      <div class="set_area">
+        <div class="chk_area">
+          <div class="title">
+            <div class="cycle"><span class="check">STEP<br>#02</span></div>
+            <div class="title_info">
+              <p>모바일 화상강의실 입장 방법과 자동녹화</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="set_view_area view3">
+          <ul>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">레벨테스트 입장 방법</p>
+              <p class="text"><span class="tab_green">예약시간 5분전</span>부터 홈페이지 우측 상단의 <span class="tab_green">[화상테스트 강의실입장]버튼이</span><br><span
+                class="tab_green">활성화</span>됩니다. 이 버튼을 클릭하여 강의실로 입장해 계시면<br>강사님이 예약시간에 강의실로 입장하여 테스트가 진행됩니다.</p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_14.jpg" alt=""></a></p>
+            </li>
+            <li class="col-sm-12 col-md-6">
+              <p class="tit">수강생 입장 방법</p>
+              <p class="text">예약시간 5분전부터 내강의실의 [화상강의실 입장]버튼이<br>활성화됩니다. 이 버튼을 클릭하여 강의실로 입장해 계시면<br><span
+                class="tab_green">강사님이 예약시간에 강의실로 입장</span>하여 수업이 진행됩니다.</p>
+              <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_15.jpg" alt=""></a></p>
+            </li>
+          </ul>
+          <div class="set_view_btm">
+            <p class="tit">자동 녹화 안내</p>
+            <p class="text">이티폰의 진행된 모든 레벨테스트와 화상수업은 <span class="tab_red">자동으로 녹화</span>됩니다. 다만 고화질 녹화를 위하여 sc파일로
+              녹화되므로 <span class="tab_red">모바일에서는 재생이 되지 않습니다.</span></p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</section>
+
+
+<div id="container">
+  <div class="contents">
+    <div class="con_wrap">
+
+      <!-- 두번째(모바일 설정) 탭패널 -->
+      <div id="pannel_2" class="tab_pannel" style="display: none;">
+
+        <div class="set_area">
+          <div class="chk_area type1">
+            <div class="title">
+              <div class="cycle"><span class="check">STEP<br>#01</span></div>
+              <div class="title_info">
+                <p>모바일 화상강의실 설치방법</p>
+                <p class="sub_tit">먼저, 스마트폰용 이어폰을 준비해 주세요.</p>
+                <p class="sub_tit"><span class="tab_red">화상강의실 설치버튼</span>을 클릭하여 <span class="tab_green">이티폰 화상앱</span>을
+                  다운받은 다음 설치하시면 됩니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="set_view_area view1">
+            <ul>
+              <li>
+                <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_12.jpg" alt=""></a></p>
+                <p class="tit">01.화상강의실설치 클릭</p>
+                <p class="text">이티폰 모바일 화면 메뉴의 [모바일화상강의실 설치]버튼을 클릭합니다.</p>
+              </li>
+              <li>
+                <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_13.jpg" alt=""></a></p>
+                <p class="tit">02.화상솔루션 설치</p>
+                <p class="text">스마트폰의 운영체제에 맞는 아이콘을 클릭하여 파일을 다운로드합니다.</p>
+              </li>
+            </ul>
+            <p class="sub_txt mT10">iOS용(아이폰/패드) 기기는<span class="tab_red">설정 &gt; 일반 &gt; 기기관리(프로파일) -&gt; SAEHACOMMS.CO.LTD</span>를
+              신뢰한다고 체크를 해주셔야 강의실 설치가 가능합니다.</p>
+
+
+          </div>
+        </div>
+
+        <div class="set_area">
+          <div class="chk_area">
+            <div class="title">
+              <div class="cycle"><span class="check">STEP<br>#02</span></div>
+              <div class="title_info">
+                <p>모바일 화상강의실 입장 방법과 자동녹화</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="set_view_area view3">
+            <ul>
+              <li>
+                <p class="tit">레벨테스트 입장 방법</p>
+                <p class="text"><span class="tab_green">예약시간 5분전</span>부터 홈페이지 우측 상단의 <span class="tab_green">[화상테스트 강의실입장]버튼이</span><br><span
+                  class="tab_green">활성화</span>됩니다. 이 버튼을 클릭하여 강의실로 입장해 계시면<br>강사님이 예약시간에 강의실로 입장하여 테스트가 진행됩니다.</p>
+                <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_14.jpg" alt=""></a></p>
+              </li>
+              <li>
+                <p class="tit">수강생 입장 방법</p>
+                <p class="text">예약시간 5분전부터 내강의실의 [화상강의실 입장]버튼이<br>활성화됩니다. 이 버튼을 클릭하여 강의실로 입장해 계시면<br><span
+                  class="tab_green">강사님이 예약시간에 강의실로 입장</span>하여 수업이 진행됩니다.</p>
+                <p class="pic"><a href="#n"><img src="/assets/images/saeha/set_bg_15.jpg" alt=""></a></p>
+              </li>
+            </ul>
+            <div class="set_view_btm">
+              <p class="tit">자동 녹화 안내</p>
+              <p class="text">이티폰의 진행된 모든 레벨테스트와 화상수업은 <span class="tab_red">자동으로 녹화</span>됩니다. 다만 고화질 녹화를 위하여 sc파일로
+                녹화되므로 <span class="tab_red">모바일에서는 재생이 되지 않습니다.</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--// 두번째(모바일 설정) 탭패널 -->
+
+    </div>
+  </div>
+</div>

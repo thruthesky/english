@@ -4,6 +4,7 @@ import { App } from '../../providers/app';
 import { User } from 'angular-backend';
 import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
+import {ShareService} from '../../providers/share-service';
 
 
 
@@ -21,7 +22,8 @@ export class HomePage implements AfterViewInit {
     constructor(
         public app: App,
         public user: User,
-        private lms: LMS
+        private lms: LMS,
+        public shared: ShareService
     ) {
             this.lms.getTeachers( teachers => this.teachers = teachers );
     }
