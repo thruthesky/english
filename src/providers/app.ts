@@ -122,7 +122,7 @@ export class App {
         private fc: FirebaseChat,
         private modal: NgbModal,
         private lms: LMS,
-        private share: ShareService,
+        public share: ShareService,
         private message: Message
     ) {
         this.myEvent = new EventEmitter();
