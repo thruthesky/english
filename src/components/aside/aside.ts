@@ -15,13 +15,9 @@ export class AsideComponent{
   constructor( public app: App,
           private modal: NgbModal,) {}
   onClickKakao() {
-    if( this.app.widthSize == 'small') this.kakao.emit();
-    let modalRef = this.modal.open( GuideKakaoComponent, { windowClass: 'enhance-modal'} );
-    console.log("onClickKakao");
+    if ( this.app.widthSize === 'small') this.kakao.emit();
   }
   onClickSaeha() {
-    if( this.app.widthSize == 'small') this.saeha.emit();
-    let modalRef = this.modal.open( GuideSaehaComponent, { windowClass: 'enhance-modal'} );
-    console.log("onClickSaeha");
+    if ( this.app.widthSize === 'small') this.saeha.emit();
   }
 }

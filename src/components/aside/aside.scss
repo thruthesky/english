@@ -1,34 +1,11 @@
 @import '../../theme/variables.scss';
 :host {
-    background: rgba( 255, 255, 255, .9 );
-    .list-panel-menu {
-        //small
-        ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            li {
-                &:hover {
-                    background: #f3f3f3;
-                }
-            }
-        }
-        small {
-            color: #888b92;
-            font-weight: bold;
-            font-style: italic;
-        }
-        .text {
-            display: inline-block;
-        }
-        
-    }
-    //big
+
     @media( min-width: $md ) {
         background: none;
         position: fixed;
-        left: $gutter * 2;
-        bottom: $gutter * 2;
+        right: $gutter * 2;
+        top: $header-height + $gutter * 2;
         z-index: 1000;
         ul {
             position: relative;
@@ -58,23 +35,3 @@
         }
     }
 }
-
-
-// :host {
-//     ul {
-//         padding:0;
-//         list-style: none;
-//         li {
-//             float: left;
-//             width: 50%;
-//             img {
-//                 display: block;
-//                 width: 100%;
-//                 height: auto;
-//             }
-//         }
-//     }
-//     @media( min-width: $sm ) {
-
-//     }
-// }

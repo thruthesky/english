@@ -12,4 +12,8 @@ export class SaehaComponent {
   constructor( ) {}
 
 
+  onClickOpenSaeha() {
+    window.open("http://video-english.svc.saeha.com/sso/avset.do","_blank");
+  }
+
 }

@@ -1,3 +1,4 @@
+@import './../../theme/variables';
 .page .option {
   display: block;
   text-align: center;
@@ -99,6 +100,7 @@
       .pic {
         img {
           max-width: 100%;
+          padding:5px;
         }
       }
     }
@@ -119,7 +121,9 @@
 
     &.view1 li:first-child,
     &.view3 li:first-child {
-      border-right: 1px solid #c6cbd1;
+      @media ( min-width: $md ) {
+        border-right: 1px solid #c6cbd1;
+      }
     }
     &.view1 {
       .text {
@@ -149,6 +153,7 @@
       }
       .text {
         min-height: 65px;
+        max-height: 65px;
       }
     }
     .set_view_btm {
@@ -164,19 +169,6 @@
         color: #4d4c58;
         margin-bottom: 0;
         min-height: auto;
-      }
-      button {
-        width: 227px;
-        height: 38px;
-        line-height: 38px;
-        color: #fff;
-        text-align: center;
-        background: #59aec9;
-        border: 1px solid #4b9eb8;
-        font-size: 14px;
-        margin-top: 20px;
-        vertical-align: middle;
-        cursor: pointer;
       }
     }
 
