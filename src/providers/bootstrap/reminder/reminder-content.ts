@@ -8,7 +8,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     </div>
     <div class="modal-body" [innerHTML]="content"></div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.close('confirm')">다음부터 보지 않기</button>
+      <button type="button" class="btn btn-secondary pointer" (click)="activeModal.close('confirm')">오늘 하루 보이지 않기</button>
       <button type="button" class="btn btn-secondary pointer" (click)="activeModal.dismiss('cancel')">닫기 <i class="fa fa-times"></i></button>
     </div>
   `,

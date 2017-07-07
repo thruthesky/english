@@ -7,6 +7,7 @@ import * as firebase from 'firebase/app';
 import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
 import { App } from '../../../../providers/app';
 import { LMS } from './../../../../providers/lms';
+import {ShareService} from "../../../../providers/share-service";
 @Component({
     selector: 'small-header-component',
     templateUrl: 'small-header.html'
@@ -23,7 +24,8 @@ export class SmallHeaderComponent implements OnInit{
     constructor(
         public user: User,
         public app: App,
-        public lms: LMS
+        public lms: LMS,
+        public shared: ShareService
     ) {
     }
 
@@ -44,18 +46,15 @@ export class SmallHeaderComponent implements OnInit{
     onClickMoreMenu() {
         this.more = !this.more;
     }
-    onClickPanelMenu(name) {
-        this.more = false;
-        this.app.scrollTo(name);
+    onClickPanelMenu(name, page = null) {
+          this.shared.page = page ? page : 'main';
+          this.more = false;
+          this.app.scrollTo(name);
     }
     onClickLogin() {
         this.more = false;
         this.onLogin.emit();
     }
-    // onClickGotoClassRoom() {
-    //     this.more = false;
-    //     this.classroom.emit();
-    // }
 
     onClickRegister() {
         this.more = false;
@@ -65,6 +64,10 @@ export class SmallHeaderComponent implements OnInit{
     onClickVe() {
         this.more = false;
         this.lms.openVe();
+    }
+
+    onClickKakao() {
+      window.open('https://open.kakao.com/o/s3H2K1s', '_blank');
     }
 
 

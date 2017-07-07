@@ -23,7 +23,7 @@ export class BigHeaderComponent {
     constructor(
         public user: User,
         public app: App,
-        public share: ShareService,
+        public shared: ShareService,
         public lms: LMS
     ) {
 
@@ -92,7 +92,8 @@ export class BigHeaderComponent {
         this.more = !this.more;
         this.closeAllHelp();
     }
-    onClickPanelMenu(name) {
+    onClickPanelMenu(name, page = null) {
+        this.shared.page = page ? page : 'main';
         this.more = false;
         this.app.scrollTo(name);
     }

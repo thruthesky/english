@@ -28,6 +28,7 @@ nav {
     transition-duration: .3s;
     &.active {
         max-height: $sm;
+        overflow-y: scroll;
     }
 }
 

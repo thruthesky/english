@@ -107,6 +107,9 @@ export class App {
 
     paymentOption = null;
 
+    d: Date = (new Date);
+    now: string = '' + this.d.getFullYear() + (this.d.getMonth() + 1) + this.d.getDate();
+
     constructor(
         private ngZone: NgZone,
         private alertService: Alert,
@@ -871,13 +874,14 @@ export class App {
   showAnnouncement() {
     const ls_key = 'popup-announcement';
     let popup = localStorage.getItem( ls_key );
-    if ( this.config.announcement_key && this.config.announcement_photo_url && popup !== this.config.announcement_key ) {
+    let announcementKey = this.config.announcement_key + '+' + this.now;
+    if ( this.config && this.config.announcement_key && this.config.announcement_photo_url && popup !== announcementKey ) {
 
       let option: ANNOUNCEMENT_OPTION = {
         content: this.config.announcement_photo_url,
       };
       this.announcementService.open(option, result => {
-        localStorage.setItem( ls_key, this.config.announcement_key );
+        localStorage.setItem( ls_key, announcementKey );
         this.showReminder();
       }, reason => {
         this.showReminder();
@@ -885,20 +889,20 @@ export class App {
     } else {
       this.showReminder();
     }
-
   }
 
   showReminder() {
     const ls_key = 'popup-reminder';
     let popup = localStorage.getItem( ls_key );
-    if ( this.config.reminder_key && this.config.reminder_message && popup !== this.config.reminder_key ) {
+    let reminderKey = this.config.reminder_key + '+' + this.now;
+    if ( this.config && this.config.reminder_key && this.config.reminder_message && popup !== reminderKey ) {
 
       let option: REMINDER_OPTION = {
         title: this.config.reminder_title,
         content: this.config.reminder_message
       };
       this.reminderService.open(option, result => {
-        localStorage.setItem( ls_key, this.config.reminder_key );
+        localStorage.setItem( ls_key, reminderKey);
       }, reason => {
       });
     }

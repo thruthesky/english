@@ -1,0 +1,179 @@
+@import './../../theme/variables';
+.page .option {
+  display: block;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #7c7c89;
+  color: #6e6f79;
+  cursor: pointer;
+  &:hover, &.active {
+    background: #f14d4c;
+    border: 1px solid #e03231;
+    color: #fff;
+  }
+}
+
+.tab_green {
+  color: #00b5b7;
+}
+
+.tab_red {
+  color: #f14d4c;
+}
+
+.mT10 {
+  margin-top: 10px !important;
+}
+
+.set_area {
+  .chk_area {
+    padding: 3em 0;
+    border-top: 1px dotted #c7cad2;
+    &.v2 {
+      padding-bottom: 0;
+    }
+    &.type1 {
+      border-top: 0;
+    }
+    &>.title {
+      display: table;
+      width: 100%;
+      .cycle {
+        display: table-cell;
+        vertical-align: top;
+        width: 50px;
+        height: 100px;
+      }
+      .check {
+        display: inline-block;
+        width: 5em;
+        height: 5em;
+        padding-top: 1.25em;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        border-radius: 50px;
+        background: #444457;
+        line-height: 130%;
+        font-weight: bold;
+      }
+      .title_info {
+        padding: 1.3em 0 0 1.8em;
+        vertical-align: middle;
+        p {
+          font-size: 30px;
+          color: #4d4c58;
+          font-weight: bold;
+          &.sub_tit {
+            font-size: 16px;
+            color: #4d4c58;
+            font-weight: normal;
+          }
+          &.sub_txt {
+            font-size: 14px;
+            color: #4d4c58;
+            padding-left: 30px;
+            line-height: 20px;
+            font-weight: 500;
+            background: url('/assets/images/saeha/ico_input_phone.png') no-repeat;
+          }
+        }
+      }
+    }
+  }
+
+  .set_view_area {
+    > ul {
+      padding: 0;
+      list-style: none;
+      &:after {
+        display: block;
+        content: "";
+        clear: both;
+      }
+    }
+    li {
+      float: left;
+      padding: 0 10px;
+      line-height: 100%;
+      text-align: center;
+      .pic {
+        img {
+          max-width: 100%;
+          padding:5px;
+        }
+      }
+    }
+    .tit {
+      font-size: 24px;
+      font-weight: bold;
+      color: #34313e;
+      margin-bottom: 20px;
+    }
+    .text {
+      font-size: 14px;
+      color: #4d4c58;
+      margin-bottom: 20px;
+      line-height: 22px;
+      letter-spacing: -0.5px;
+      font-weight: 500;
+    }
+
+    &.view1 li:first-child,
+    &.view3 li:first-child {
+      @media ( min-width: $md ) {
+        border-right: 1px solid #c6cbd1;
+      }
+    }
+    &.view1 {
+      .text {
+        margin-bottom: 0;
+      }
+      .pic {
+        position: relative;
+        text-align: center;
+        margin-bottom: 30px;
+        a.pic_a {
+          position: absolute;
+          bottom: -11px;
+          left: 50%;
+          margin-left: -100px;
+          width: 200px;
+          height: 34px;
+          background: url('/assets/images/saeha/set_bg_01_a01.jpg') no-repeat;
+          color: #fff;
+          line-height: 34px;
+        }
+      }
+    }
+    &.view2{
+      li {
+        margin: 4em 0 0;
+        padding: 0;
+      }
+      .text {
+        min-height: 65px;
+        max-height: 65px;
+      }
+    }
+    .set_view_btm {
+      margin-top: 50px;
+      .tit {
+        font-size: 24px;
+        color: #34313e;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      .text {
+        font-size: 14px;
+        color: #4d4c58;
+        margin-bottom: 0;
+        min-height: auto;
+      }
+    }
+
+
+
+  }
+}
+

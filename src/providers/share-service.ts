@@ -8,7 +8,7 @@ import {
 } from 'angular-backend';
 @Injectable()
 export class ShareService {
-
+    page: string = 'main';
     clientChatId: string = null;
     ve_url: string = null;
     VE_ENDPOINT_URL = "http://onlineenglish.kr/~witheng/etc/ve_open.php";

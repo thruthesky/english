@@ -1,43 +1,45 @@
 <header class="small">
-    <nav class="navbar fixed-top p-0">
-        <div class="top  bg-snow">
-            <div class="d-flex justify-content-between p-2">
-                <div class="icons p-1">
+  <nav class="navbar fixed-top p-0">
+    <div class="top  bg-snow">
+      <div class="d-flex justify-content-between p-2">
+        <div class="icons p-1">
 
 
-                    <span class="pointer" id="naver_id_login" [style.display]=" user.logged ? 'none' : 'inline' "></span>
+          <span class="pointer" id="naver_id_login" [style.display]=" user.logged ? 'none' : 'inline' "></span>
 
-                    <ng-container *ngIf=" ! user.logged ">
-                        <span class="pointer"><img (click)="app.onClickLoginWithKakao()" src="./../../../../assets/images/social-login/k.png"></span>
-                        <span class="pointer" *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()"><img src="./../../../../assets/images/social-login/f.png"></span>
-                    </ng-container>
+          <ng-container *ngIf=" ! user.logged ">
+            <span class="pointer"><img (click)="app.onClickLoginWithKakao()"
+                                       src="./../../../../assets/images/social-login/k.png"></span>
+            <span class="pointer" *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook()"><img
+              src="./../../../../assets/images/social-login/f.png"></span>
+          </ng-container>
 
-                    <div class="username pt-1 fs-1rem" *ngIf=" user.logged ">
-                        {{ user.info.name }}
-                    </div>
+          <div class="username pt-1 fs-1rem" *ngIf=" user.logged ">
+            {{ user.info.name }}
+          </div>
 
-
-                </div>
-                <div class="p-2 fs-130 pointer">
-                    <span *ngIf="user.logged" (click)="onClickVe()">강의실 입장</span>
-                    <span *ngIf=" ! user.logged " (click)="onClickPanelMenu('level-test')">무료 레벨 테스트</span>
-                </div>
-            </div>
 
         </div>
-        <div class="bottom">
-            <div class="d-flex justify-content-between p-2">
-                <div class="logo pointer" (click)="onClickPanelMenu('intro')">
-                    <img src="{{ app.logoUrl }}" class="ml-1" style="height: 32px;">
-                </div>
-                <div class="" (click)="onClickMoreMenu()">
-                    <i class="icon pointer fa fa-bars fa-2x p-1"></i>
-                </div>
-            </div>
-            <div class="panel" [class.active]="this.more">
-                <ul class="menus list-panel-menu fs-120">
-                    <li class="menu" *ngIf=" ! user.logged " (click)="onClickLogin()">
-                        <span >
+        <div class="p-2 fs-130 pointer">
+          <span *ngIf="user.logged" (click)="onClickVe()">강의실 입장</span>
+          <span *ngIf=" ! user.logged " (click)="onClickPanelMenu('level-test')">무료 레벨 테스트</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom">
+      <div class="d-flex justify-content-between p-2">
+        <div class="logo pointer" (click)="onClickPanelMenu('intro')">
+          <img src="{{ app.logoUrl }}" class="ml-1" style="height: 32px;">
+        </div>
+        <div class="" (click)="onClickMoreMenu()">
+          <i class="icon pointer fa fa-bars fa-2x p-1"></i>
+        </div>
+      </div>
+      <div class="panel" [class.active]="this.more">
+        <ul class="menus list-panel-menu fs-120">
+          <li class="menu" *ngIf=" ! user.logged " (click)="onClickLogin()">
+                        <span>
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-sign-in fa-stack-1x fa-inverse"></i>
@@ -45,110 +47,128 @@
                         <span class="text">로그인</span>
                         </span>
 
-                        <div class="mt-1 ml-4">
-                            <img (click)="app.onClickLoginWithNaver();$event.stopPropagation();" class="h-2" src="assets/images/social-login/naver-3.png">
-                            <img (click)="app.onClickLoginWithKakao();$event.stopPropagation();" class="h-2" src="assets/images/social-login/kakao-3.png">
-                            <img *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook();$event.stopPropagation();" class="h-2" src="assets/images/social-login/facebook-3.png">
-                        </div>
-                    </li>
-                    <li id="small-header-register-button" class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
+            <div class="mt-1 ml-4">
+              <img (click)="app.onClickLoginWithNaver();$event.stopPropagation();" class="h-2"
+                   src="assets/images/social-login/naver-3.png">
+              <img (click)="app.onClickLoginWithKakao();$event.stopPropagation();" class="h-2"
+                   src="assets/images/social-login/kakao-3.png">
+              <img *ngIf=" app.useFacebook " (click)="app.onClickLoginWithFacebook();$event.stopPropagation();"
+                   class="h-2" src="assets/images/social-login/facebook-3.png">
+            </div>
+          </li>
+          <li id="small-header-register-button" class="menu" *ngIf="! user.logged " (click)="onClickRegister()">
 
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="text">회원 가입</span>
-                        <small>Register</small>
-                    </li>
-                    <li class="menu" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
+            <span class="text">회원 가입</span>
+            <small>Register</small>
+          </li>
+          <li class="menu" *ngIf=" user.logged " (click)="onClickUpdateProfile()">
 
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="text">회원 정보 변경</span>
-                        <small>Profile Update</small>
+            <span class="text">회원 정보 변경</span>
+            <small>Profile Update</small>
 
-                    </li>
-                    <li class="menu" *ngIf=" user.logged " (click)="onClickLogout()">
+          </li>
+          <li class="menu" *ngIf=" user.logged " (click)="onClickLogout()">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-sign-out fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="text">로그아웃</span>
-                        <small>Logout</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
+            <span class="text">로그아웃</span>
+            <small>Logout</small>
+          </li>
+
+          <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-language fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="text">수업 과정</span>
-                        <small>Curriculum</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='books' " (click)="onClickPanelMenu('books')">
+            <span class="text">수업 과정</span>
+            <small>Curriculum</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='books' " (click)="onClickPanelMenu('books')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-language fa-stack-1x fa-inverse"></i>
                         </span>
-                        <span class="text">교재 안내</span>
-                        <small>Books</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
+            <span class="text">교재 안내</span>
+            <small>Books</small>
+          </li>
+
+          <li [class.active]=" app.scrollId =='saeha' " (click)="onClickPanelMenu('saeha', 'saeha')">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-video-camera fa-stack-1x fa-inverse"></i>
+                </span>
+            <span class="text">강의실설치</span>
+            <small>Saeha</small>
+          </li>
+          <li class="menu" (click)="onClickKakao()">
+              <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-comment fa-stack-1x fa-inverse"></i>
+              </span>
+            <span class="text">카톡문의</span>
+            <small>Kakao Talk</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='teacher' " (click)="onClickPanelMenu('teacher')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-users fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="text">영어 선생님 소개</span>
-                        <small>English Teachers</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
+            <span class="text">영어 선생님 소개</span>
+            <small>English Teachers</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='level-test' " (click)="onClickPanelMenu('level-test')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-delicious fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="text">무료 레벨테스트</span>
-                        <small>Level Test</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
+            <span class="text">무료 레벨테스트</span>
+            <small>Level Test</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='comment' " (click)="onClickPanelMenu('comment')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-comments fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="text">수업 후기</span>
-                        <small>Student Comments</small>
-                    </li>
-                    <li *ngIf="user.logged" class="menu" [class.active]=" app.scrollId =='reservation' " (click)="onClickPanelMenu('reservation')">
+            <span class="text">수업 후기</span>
+            <small>Student Comments</small>
+          </li>
+          <li *ngIf="user.logged" class="menu" [class.active]=" app.scrollId =='reservation' "
+              (click)="onClickPanelMenu('reservation')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-camera fa-stack-1x"></i>
                             <i class="fa fa-ban fa-stack-2x text-danger"></i>
                         </span>
-                        <span class="text">나의 수업 확인</span>
-                        <small>My Reservations</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
+            <span class="text">나의 수업 확인</span>
+            <small>My Reservations</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='payment' " (click)="onClickPanelMenu('payment')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-credit-card fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="text">수업료</span>
-                        <small>Tution Fees</small>
-                    </li>
-                    <li class="menu" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
+            <span class="text">수업료</span>
+            <small>Tution Fees</small>
+          </li>
+          <li class="menu" [class.active]=" app.scrollId =='forum' " (click)="onClickPanelMenu('forum')">
                         <span class="fa-stack fa-lg">
                             <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                             <i class="fa fa-question fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-                        <span class="text">질문과 답변</span>
-                        <small>Q&amp;A Forum</small>
-                    </li>
-                </ul>
-                <!--<aside-component -->
-                <!--(kakao) = " this.more = false "-->
-                <!--(saeha) = " this.more = false "-->
-                <!--*ngIf="app.widthSize == 'small'"></aside-component>-->
-            </div>
+            <span class="text">질문과 답변</span>
+            <small>Q&amp;A Forum</small>
+          </li>
+        </ul>
+      </div>
 
-        </div>
-    </nav>
+    </div>
+  </nav>
 </header>
