@@ -1,11 +1,10 @@
 @import '../../theme/variables.scss';
 :host {
-
     @media( min-width: $md ) {
         background: none;
         position: fixed;
         right: $gutter * 2;
-        top: $header-height + $gutter * 2;
+        top: $header-height + 120px;
         z-index: 1000;
         ul {
             position: relative;
@@ -15,7 +14,7 @@
             li {
                 position: relative;
                 cursor: pointer;
-                margin-top: $gutter * 2;
+                margin-top: $gutter / 2;
                 width: 100px;
                 img {
                     width: 100%;
@@ -33,5 +32,18 @@
                 }
             }
         }
+    }
+}
+
+
+.today-class {
+    position: relative;
+    .text {
+        position: absolute;
+        top: 34px;
+        width: 100px;
+        text-align: center;
+        font-size: .9rem;
+        color: white;
     }
 }

@@ -164,7 +164,34 @@ export class LMS {
         }, e => alert("앗!, 수업 정보를 가져오는데 문제가 발생했습니다."));
     }
 
+    add0(n:number) : string {
+        return n < 10 ? '0' + n : n.toString();
+    }
+    getTotalClassOfToday( success, failure ) {
+        let d = new Date();
+        let y = d.getFullYear();
+        let m = d.getMonth() + 1;
+        let da = d.getDate();
+        let today = y + this.add0(m) + this.add0(da);
+        let url = LMS_ENDPOINT_URL + `?function=api_count&date_begin=${today}&date_end=${today}`;
+        this.http.get(url).subscribe(re => {
+            let json = null;
+            try {
+                json = JSON.parse(re['_body']);
+            }
+            catch (e) {
+                //alert("앗! 데이터베이스 서버로 부터 수업 정보를 가져오는데 문제가 발생하였습니다.");
+                return failure();
+            }
+            if (json['data']) success(json['data']);
+            else failure(' error on getting next class ');
+        }, e => failure );
+
+    }
+
     openVe() {
+        if ( ! this.user.logged ) return alert("앗! 회원 로그인을 해 주세요.");
+
         /*
         Safari is blocking any call to window.open() which is made inside an async call.
         The solution that I found to this problem is to call window.open
@@ -172,7 +199,6 @@ export class LMS {
         Ref:https://stackoverflow.com/questions/20696041/window-openurl-blank-not-working-on-imac-safari
         */
         let newwindow: any = window.open();
-
         this.getNextClass(data => {
             if (!data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();
