@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { App } from '../../../providers/app';
 import {
-  _DELETE_RESPONSE, _FILE, _POST_CREATE, _POST_CREATE_RESPONSE, PostData,
+  _DELETE_RESPONSE, _POST_CREATE, _POST_CREATE_RESPONSE, PostData,
   User,
   File, _POST, _POST_EDIT, _POST_EDIT_RESPONSE,
 } from 'angular-backend';

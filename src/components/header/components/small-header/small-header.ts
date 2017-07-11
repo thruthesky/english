@@ -1,18 +1,14 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
-
-
-import * as firebase from 'firebase/app';
-
-import { User, _USER_LOGIN_RESPONSE, _USER_CREATE } from 'angular-backend';
+import { User } from 'angular-backend';
 import { App } from '../../../../providers/app';
 import { LMS } from './../../../../providers/lms';
-import {ShareService} from "../../../../providers/share-service";
+import {ShareService} from '../../../../providers/share-service';
 @Component({
     selector: 'small-header-component',
     templateUrl: 'small-header.html'
 })
-export class SmallHeaderComponent implements OnInit{
+export class SmallHeaderComponent implements OnInit {
     event: any = {};
     more: boolean = false;
     @Input() login: boolean;
@@ -69,7 +65,6 @@ export class SmallHeaderComponent implements OnInit{
     onClickKakao() {
       window.open('https://open.kakao.com/o/s3H2K1s', '_blank');
     }
-
 
 
 }

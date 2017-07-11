@@ -4,13 +4,11 @@ import { App } from './../../../../providers/app';
 import { ShareService } from '../../../../providers/share-service';
 import { ForumPostComponent} from '../../../modals/forum-post/forum-post';
 import { PostViewModal} from '../../../modals/post-view/post-view';
-import { Subject } from 'rxjs/Subject';
 import {
     User,
     PostData,
     _LIST,
     _POST_LIST_RESPONSE,
-    _POST,
     _POSTS,
     _DELETE_RESPONSE,
     _POST_COMMON_WRITE_FIELDS,
@@ -33,12 +31,10 @@ export class PostListComponent  {
         limitPerNavigation: 4,
         totalRecord: 0
     };
-    searchPostForm: _POST = <_POST> {};
     searchQuery = <_LIST>{
         limit: this.pageOption['limitPerPage'],
         extra: {file: true}
     };
-    searchPostChangeDebounce = new Subject();
     userIdx: number = null;
     constructor(
         public share: ShareService,
@@ -55,9 +51,6 @@ export class PostListComponent  {
         // this.searchPostChangeDebounce
         // .debounceTime(300)
         // .subscribe(() => this.onChangedPostSearch());
-
-
-
         // this.testOpenPost('post147');
     }
 
@@ -142,33 +135,6 @@ export class PostListComponent  {
             this.app.error( err );
         });
     }
-    onChangePostSearch() {
-        this.searchPostChangeDebounce.next();
-    }
-
-    // onChangedPostSearch() {
-    //     if (this.searchPostForm.title) {
-    //     if (this.searchPostForm.title.length < 2) return;
-    //     }
-    //     if (this.searchPostForm.content) {
-    //     if (this.searchPostForm.content.length < 2) return;
-    //     }
-
-    //     let cond = '';
-    //     let bind = '';
-
-    //     if (this.searchPostForm.title) cond += "title LIKE ? ";
-    //     if (this.searchPostForm.title) bind += `%${this.searchPostForm.title}%`;
-
-    //     if (this.searchPostForm.content) cond += cond ? "AND content LIKE ? " : "content LIKE ?";
-    //     if (this.searchPostForm.content) bind += bind ? `,%${this.searchPostForm.content}%` : `%${this.searchPostForm.content}%`;
-
-    //     this.searchQuery.where = cond;
-    //     this.searchQuery.bind = bind;
-    //     this.searchQuery.order= 'idx DESC';
-    //     this.pageOption.currentPage = 1;
-    //     this.loadPostData();
-    // }
 
     onPostPageClick( $event ) {
         this.pageOption['currentPage'] = $event;

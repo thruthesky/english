@@ -5,8 +5,7 @@ import {FirebaseChat, _FIREBASE_CHAT} from './../../providers/firebase';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {} from 'jquery';
-import {Router} from '@angular/router';
-import {ShareService} from "../../providers/share-service";
+import {ShareService} from '../../providers/share-service';
 
 @Component({
   moduleId: module.id,
@@ -35,12 +34,10 @@ export class AdminPanelComponent implements OnInit {
   config: boolean = false; // toogle admin config box.
   chatDisplay: string = 'user';
 
-  userId: string = null;
   initial = true;
 
   constructor(public app: App,
               private fc: FirebaseChat,
-              private router: Router,
               private shared: ShareService
   ) {
     this.uid = this.app.getClientId();

@@ -23,13 +23,9 @@ export class PostViewModal {
         private postComment: PostComment
     ) {
     }
-    ngOnInit() {
-        // console.log("post on view:", this.post);
-    }
     onClickDismiss() {
         this.activeModal.close();
     }
-
 
     onClickCreateComment() {
 

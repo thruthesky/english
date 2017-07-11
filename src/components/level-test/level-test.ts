@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from "@angular/forms";
+import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
 import {App} from './../../providers/app';
 import {Message} from './../../providers/message';
 

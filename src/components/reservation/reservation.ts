@@ -13,10 +13,8 @@ export class ReservationComponent implements OnInit {
     noFirstClass: string = "예약된 수업이 없습니다.";
     noNextClass: string = "예약된 수업이 없습니다.";
     data: _BOOKS = [];
-    maxDay:number = 42;
     calendarLoad:boolean = true;
     books: _BOOKS = [];
-    chemy: _BOOKS = [];
     weeks: _WEEKS = [];
     date:Date = new Date();
     year:number = this.date.getFullYear();
@@ -25,31 +23,14 @@ export class ReservationComponent implements OnInit {
     nextMonths: Array<_NextMonths> = [];
     listOfYears: Array<_ListOfYears> = [];
     classinformation: _ClassInformation = null;
-    showPrevious: boolean = false;
-    showNext: boolean = false;
-    showYear: boolean = false;
     constructor(
         public app     : App,
         public user     : User,
         private lms     : LMS,
         public share    : ShareService
     ) {
-        //this.listenEvents();
     }
-    // listenEvents(){
-    //     this.app.myEvent.subscribe( item =>{
-    //         if( item.eventType == 'login-success'  ){
-    //             this.getNewReservationData();
-    //         }
-    //         if( item.eventType == 'logout-success'  ){
-    //             setTimeout(()=>{
-    //                 this.data = [];
-    //                 this.listCalendar(this.month, this.year);
-    //                 this.share.class_info = null;
-    //             },100);
-    //         }
-    //     });
-    // }
+
     ngOnInit() {
         this.listCalendar(this.month, this.year);
         this.getNewCalendar();
@@ -60,11 +41,7 @@ export class ReservationComponent implements OnInit {
         this.getNextMonths();
         this.getListOfYears();
     }
-    selectNewDate( data: _NewDate ) {
-        this.year = parseInt(data.Y);
-        this.month =new Date(Date.parse(`${data.m} +1, ${data.Y}`)).getMonth() + 1;
-        this.getNewCalendar();
-    }
+
     getPreviousMonths() {
         this.prevMonths = [];
         for(let i=0; i < 13;i++ ) {

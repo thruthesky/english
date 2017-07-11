@@ -219,7 +219,7 @@ const BOOKS: BOOKS = [
             desc:`주제별, 상황별 의사소통을 위한 Vocabulary, Speaking, Writing 등의 요소를 중심으로 엮은 교재. 단순한 언어 학습 뿐만 아니라 논리적 사고력 향상을 위한 교재.`
         },
     ];
-    
+
 @Component({
     selector: 'books-component',
     templateUrl: 'books.html',
@@ -228,7 +228,6 @@ const BOOKS: BOOKS = [
 export class BooksComponent {
     showBook:boolean = false;
     books: BOOKS = null; // container of books to display on browser.
-    first_8_books: BOOKS = null; // first_8
     constructor( public app: App ) {
         this.takeSomeTemporaryBooks();
     }

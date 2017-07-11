@@ -226,16 +226,6 @@ export class RegisterComponent {
         return this.userData.birth_year + "-" + this.userData.birth_month + "-" + this.userData.birth_day;
     }
 
-
-    /**
-     * @todo see if this method is being used. If not, remove this method.
-     *
-     * @param res
-     */
-    successRegister(res: _USER_CREATE_RESPONSE) {
-        this.activeModal.close();
-    }
-
     error(error) {
         if (error.code == -40101) error.message = "아이디가 이미 존재합니다. 다른 아이디를 선택하십시오.";
         if (error.message == 'variable nickname must not be numeric') error.message = "닉네임을 숫자로 입력하시면 안됩니다.";

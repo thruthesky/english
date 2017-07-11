@@ -1,9 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { App } from '../../providers/app';
 import { LMS } from './../../providers/lms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { GuideKakaoComponent } from '../modals/guide-kakao/guide-kakao';
-import { GuideSaehaComponent } from '../modals/guide-saeha/guide-saeha';
 @Component({
   moduleId: module.id,
   selector: 'aside-component',
@@ -16,12 +13,8 @@ export class AsideComponent {
 
   count: any = "로딩 중";
   constructor(public app: App,
-    private lms: LMS,
-    private modal: NgbModal, ) {
-
-
-
-
+    private lms: LMS
+  ) {
     this.lms.getTotalClassOfToday(re => {
       //console.log("count: ", re);
       if (re == '0' || re == 0) this.count = 0;
@@ -34,16 +27,10 @@ export class AsideComponent {
     }, e => {
       console.log("failure");
     });
-
-
   }
   onClickKakao() {
     if (this.app.widthSize === 'small') this.kakao.emit();
   }
-  onClickSaeha() {
-    if (this.app.widthSize === 'small') this.saeha.emit();
-  }
-
 
   onClickVe() {
     this.lms.openVe();
@@ -53,7 +40,5 @@ export class AsideComponent {
     this.app.share.page = 'saeha'
     this.app.scrollTo(name);
   }
-
-
 
 }
