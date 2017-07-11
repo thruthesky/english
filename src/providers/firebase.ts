@@ -71,7 +71,7 @@ export class FirebaseChat {
     return this.db.list('/messages/last/', {query});
   }
 
-  sendLevelTest(data, uid) {
+  sendLevelTest(data) {
     return this.db.list('/level_test/').push(data);
   }
 

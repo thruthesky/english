@@ -77,6 +77,13 @@ export class RegisterComponent {
         else if (/\@facebook\.com$/.test(id)) id = `페이스북 로그인 ${id}`;
         return id;
     }
+
+    getUserClassid( classid ) {
+      if( classid === 'solution' ) classid = 'Internet Explorer';
+      else if ( classid === 've' ) classid = 'Chrome Browser';
+      else if ( classid === 'skype' ) classid = 'Skype Class';
+      return classid;
+    }
     onClickChangePassword() {
         this.activeModal.close();
         this.modal.open(ChangePasswordComponent, { windowClass: 'enhance-modal' });
@@ -112,6 +119,7 @@ export class RegisterComponent {
 
 
     onValueChanged(data?: any) {
+      //console.log(this.form.value);
         if (!this.form) return;
         const form = this.form;
         for (const field in this.formErrors) {
@@ -156,10 +164,12 @@ export class RegisterComponent {
     register(callback?) {
         this.resetResult();
         let register = <_USER_CREATE>this.form.value;
+        //console.log(register);
         let msg = {
             id: register.id,
             email: register.email,
-            name: register.name
+            name: register.name,
+            city: this.share.defaultClassId
         };
         register.file_hooks = [this.primary_photo_idx];
         if (register['birthday']) {
@@ -234,7 +244,9 @@ export class RegisterComponent {
     }
 
     lmsRegister() {
-        this.lms.register(this.form, res => {
+        let data = this.form.value;
+        data['city'] = this.share.defaultClassId;
+        this.lms.register(data, res => {
             this.activeModal.close();
         }, error => alert(' error on registration ' + error))
     }
@@ -275,7 +287,9 @@ export class RegisterComponent {
         if (res.data.admin == 1) this.user.deleteSessionInfo();
     }
     updateLMSprofile() {
-        this.lms.update(this.form, res => {
+        let data = this.form.value;
+        data.city = this.userData.city;
+        this.lms.update(data, res => {
             this.activeModal.close();
         }, err => { })
     }

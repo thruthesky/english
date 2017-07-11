@@ -11,7 +11,7 @@
       </button>
   </div>
 
-    <div class="modal-body">
+    <div class="modal-body p-0">
       <div class="p-3" *ngIf="showRequiredError">
         <span>
           회원 정보에서입력 되지 않은 부분이 있습니다. 올바른 수업 관리를 위해서 빠진 정보를 기입해 주세요.
@@ -49,8 +49,9 @@
                 <span class="errors"> {{ formErrors.id }} </span>
             </div>
 
-            <div class="row user-id pt-4" *ngIf=" user.logged ">
-               회원아이디 : {{ getUserId( user.info.id ) }}
+            <div class="user-id pt-4" *ngIf=" user.logged ">
+              <div>회원아이디 : {{ getUserId( user.info.id ) }}</div>
+              <div *ngIf="userData && userData.city">Classid : {{ getUserClassid( userData.city ) }}</div>
             </div>
 
             <div class="input-group" *ngIf=" ! user.logged ">

@@ -23,7 +23,7 @@ export class AsideComponent {
 
 
     this.lms.getTotalClassOfToday(re => {
-      console.log("count: ", re);
+      //console.log("count: ", re);
       if (re == '0' || re == 0) this.count = 0;
       else {
         this.count = parseInt(re) + 1000;
