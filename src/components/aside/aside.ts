@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { App } from '../../providers/app';
 import { LMS } from './../../providers/lms';
+import {ShareService} from '../../providers/share-service';
 @Component({
   moduleId: module.id,
   selector: 'aside-component',
@@ -13,7 +14,8 @@ export class AsideComponent {
 
   count: any = "로딩 중";
   constructor(public app: App,
-    private lms: LMS
+              private lms: LMS,
+              private shared: ShareService
   ) {
     this.lms.getTotalClassOfToday(re => {
       //console.log("count: ", re);
@@ -37,8 +39,13 @@ export class AsideComponent {
   }
 
   onClickInstall() {
-    this.app.share.page = 'saeha'
-    this.app.scrollTo(name);
+    this.app.share.page = 'saeha';
+    this.app.scrollTo('saeha');
+  }
+
+  onClickShowFAQ() {
+    this.shared.page = 'faq';
+    this.app.scrollTo('faq');
   }
 
 }

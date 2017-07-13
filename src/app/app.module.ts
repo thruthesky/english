@@ -43,6 +43,7 @@ import { FooterComponent } from '../components/footer/footer';
 import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
 import { SaehaComponent } from '../components/saeha/saeha';
+import { FAQComponent } from '../components/faq/faq';
 
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
@@ -105,7 +106,8 @@ const appRoutes:Routes = [
     BooksComponent,
     LevelTestButtonComponent,
     ValidateOnBlurDirective,
-    SaehaComponent
+    SaehaComponent,
+    FAQComponent
   ],
   imports: [
     BrowserModule,

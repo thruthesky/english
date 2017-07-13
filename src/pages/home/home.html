@@ -16,6 +16,7 @@
               <forum-component></forum-component>
         </div>
         <saeha-component class="{{ shared.page !== 'saeha' ? 'd-none': ''}}"></saeha-component>
+        <faq-component *ngIf="shared.page === 'faq'"></faq-component>
 </section>
 
 
