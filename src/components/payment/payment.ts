@@ -59,8 +59,8 @@ export class PaymentComponent implements AfterViewInit {
   ngAfterViewInit() {
 
 
-    // console.log(this.selectedDays);
-    // console.log( this.app.paymentOption );
+    //console.log(this.selectedDays);
+    //console.log( this.app.paymentOption );
 
   }
 
@@ -82,7 +82,7 @@ export class PaymentComponent implements AfterViewInit {
 
     if (this.selectedMinutes == '0') return this.customAmount;
 
-    // console.log( this.selectedDays );
+    //console.log( this.selectedDays );
     let minutes = this.app.paymentOption.minutes_months_days[this.selectedMinutes];
     if (!minutes) return 0; // alert( this.selectedMinutes + " Minutes not set in payment option");
     let months = minutes[this.selectedMonths];

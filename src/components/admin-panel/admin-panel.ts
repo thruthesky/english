@@ -47,7 +47,7 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
     this.all_message.subscribe(res => {
-      // console.log('all_message', res)
+      //console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();

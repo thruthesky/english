@@ -32,7 +32,7 @@ export class FAQComponent {
   }
 
   getSiteConfig() {
-    console.log('meta.getSiteConfig');
+    //onsole.log('meta.getSiteConfig');
     this.meta.config('name').subscribe( (res) => {
       //console.log('meta.config::name', res);
       if ( res && res.data && res.data.config ) {
@@ -41,7 +41,7 @@ export class FAQComponent {
           this.faqs_config.faqs.map( v => {
             v['more'] = this.faqs_config.view_mode;
           });
-          console.log('this.faqs_config::', this.faqs_config);
+          //console.log('this.faqs_config::', this.faqs_config);
         } catch (e) {
         }
       }
