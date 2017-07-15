@@ -57,7 +57,7 @@ export class FirebaseChat {
     return this.db.list('/messages/users/' + uid, {query} )
   }
 
-  getLastMessage( req? ):FirebaseListObservable<any[]>{
+  getLastMessage( req? ): FirebaseListObservable<any[]>{
 
     let query = {};
     if( req  ) {
@@ -71,27 +71,9 @@ export class FirebaseChat {
     return this.db.list('/messages/last/', {query});
   }
 
-  sendLevelTest(data, uid){
-    return this.db.list('/level_test/inquiry/' + uid).push(data);
+  sendLevelTest(data) {
+    return this.db.list('/level_test/').push(data);
   }
-
-  // newRegisteredUser( req ){
-  //   let msg = {
-  //     id: req.id,
-  //     email: req.email,
-  //     name: req.name
-  //   };
-  //   this.new_user = this.db.list('/users/');
-  //
-  //   this.new_user.push( msg ).then( res => {
-  //   }, err => {
-  //     alert('newRegisteredUserError'+ err);
-  //   }).catch( e => {
-  //     alert('newRegisteredUserErrorOnCatch'+ e);
-  //   });
-  // }
-
-
 
 
 }

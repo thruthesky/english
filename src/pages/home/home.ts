@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, Injectable } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 
 import { App } from '../../providers/app';
 import { User } from 'angular-backend';

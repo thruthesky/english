@@ -26,13 +26,10 @@ import { HeaderComponent } from '../components/header/header';
 import { BigHeaderComponent } from '../components/header/components/big-header/big-header';
 import { SmallHeaderComponent } from '../components/header/components/small-header/small-header';
 
-import { GuideKakaoComponent } from '../components/modals/guide-kakao/guide-kakao';
-import { GuideSaehaComponent } from '../components/modals/guide-saeha/guide-saeha';
 import { ClassInfoModal } from '../components/modals/class-info/class-info';
 import { LoginModal } from '../components/modals/login/login';
 import { RegisterComponent } from '../components/modals/register/register';
 import { ForgotPasswordComponent } from '../components/modals/forgot-password/forgot-password';
-import { FindIdModal } from '../components/modals/find-id/find-id';
 import { IntroComponent } from '../components/intro/intro';
 import { PostViewModal } from '../components/modals/post-view/post-view';
 
@@ -46,10 +43,10 @@ import { FooterComponent } from '../components/footer/footer';
 import { ChangePasswordComponent } from '../components/modals/change-password/change-password';
 
 import { SaehaComponent } from '../components/saeha/saeha';
+import { FAQComponent } from '../components/faq/faq';
 
 import { ForumComponent} from '../components/forum/forum';
 import { PostListComponent } from '../components/forum/components/post-list-component/post-list-component';
-//import { PostViewComponent } from '../components/forum/components/post-view-component/post-view-component';
 import { FileFormComponent } from '../components/forum/components/file-form-component/file-form-component';
 
 import { ForumPostComponent } from '../components/modals/forum-post/forum-post';
@@ -85,9 +82,6 @@ const appRoutes:Routes = [
     SmallHeaderComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    FindIdModal,
-    GuideKakaoComponent,
-    GuideSaehaComponent,
     ClassInfoModal,
     LoginModal,
     PostViewModal,
@@ -103,7 +97,6 @@ const appRoutes:Routes = [
     FooterComponent,
     ForumComponent,
     PostListComponent,
-    //PostViewComponent,
     FileFormComponent,
     ForumPostComponent,
     CommentReviewComponent,
@@ -113,7 +106,8 @@ const appRoutes:Routes = [
     BooksComponent,
     LevelTestButtonComponent,
     ValidateOnBlurDirective,
-    SaehaComponent
+    SaehaComponent,
+    FAQComponent
   ],
   imports: [
     BrowserModule,
@@ -133,9 +127,6 @@ const appRoutes:Routes = [
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterComponent,
-    GuideKakaoComponent,
-    GuideSaehaComponent,
-    FindIdModal,
     LoginModal,
     ClassInfoModal,
     PostViewModal,

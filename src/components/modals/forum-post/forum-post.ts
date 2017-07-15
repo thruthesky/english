@@ -1,20 +1,16 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { App } from './../../../providers/app';
 import { Message } from './../../../providers/message';
 import {
     PostData,
     User,
     File,
-    NUMBERS,
     _FILE,
     _POST, _POST_CREATE,
     _POST_CREATE_RESPONSE,
     _POST_EDIT,
     _POST_EDIT_RESPONSE,
-    _USER_RESPONSE,
-    _USER_DATA_RESPONSE
 } from 'angular-backend';
 import { ShareService } from '../../../providers/share-service';
 @Component({
@@ -42,7 +38,6 @@ export class ForumPostComponent implements OnInit {
         private postData: PostData,
         private activeModal  : NgbActiveModal,
         public  user         : User,
-        private app: App,
         private message: Message
     ) {
         if ( this.user.logged ) this.userName = user.info.name;
@@ -130,9 +125,6 @@ export class ForumPostComponent implements OnInit {
 
     isCreate() {
         return this.post === void 0 || this.post.idx === void 0;
-    }
-    isEdit() {
-        return ! this.isCreate();
     }
     onClickDismiss(){
         this.activeModal.close();

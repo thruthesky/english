@@ -3,14 +3,12 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { App } from '../../../providers/app';
 import { Message } from '../../../providers/message';
-import { FindIdModal } from '../find-id/find-id';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password';
 import { RegisterComponent } from '../register/register';
 
 import {
     User,
     _RESPONSE,
-    _USER_LOGIN,
     _USER_LOGIN_RESPONSE
 } from 'angular-backend';
 import {ShareService} from "../../../providers/share-service";
@@ -81,12 +79,6 @@ export class LoginModal implements OnInit {
         this.modal.open(ForgotPasswordComponent, { windowClass: 'enhance-modal' } )
     }
 
-    onClickFindId() {
-        this.activeModal.close();
-        this.modal.open(FindIdModal, { windowClass: 'enhance-modal' } );
-    }
-
-
     onClickRegister() {
         this.activeModal.close();
         this.modal.open(RegisterComponent, { windowClass: 'enhance-modal' } );
@@ -118,11 +110,6 @@ export class LoginModal implements OnInit {
     }
 
     success(res: _USER_LOGIN_RESPONSE) {
-        // this.app.myEvent.emit({
-        //     eventType: "login-success"
-        // });
-
-
         this.shared.clientChatId = this.user.info.id;
 
         if ( res.data.admin ) {

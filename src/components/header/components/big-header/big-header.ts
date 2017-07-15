@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {Component, Input, Output, EventEmitter, ViewChild, AfterViewInit} from '@angular/core';
 import { User } from 'angular-backend';
 import { App } from '../../../../providers/app';
 import { LMS } from './../../../../providers/lms';
@@ -8,7 +8,7 @@ import { ShareService } from '../../../../providers/share-service';
     templateUrl: 'big-header.html',
     styleUrls: ['big-header.scss']
 })
-export class BigHeaderComponent {
+export class BigHeaderComponent implements AfterViewInit{
     more: boolean = false;
     @Input() login: boolean;
     @Output() logout = new EventEmitter();
@@ -28,15 +28,7 @@ export class BigHeaderComponent {
     ) {
 
     }
-
-    ngOnInit() {
-        // this.app.initializeNaverLogin();
-    }
-
     ngAfterViewInit() {
-
-
-
         if (this.app.firstVisit) {
             setTimeout(() => this.nextHelp('logo'), 3000);
         }
@@ -79,10 +71,7 @@ export class BigHeaderComponent {
     onClickVe() {
         this.lms.openVe();
     }
-
-
     onClickLogout() {
-
         this.logout.emit();
     }
     onClickUpdateProfile() {
@@ -101,9 +90,6 @@ export class BigHeaderComponent {
         setTimeout(() => { if (this.pLogin) this.pLogin.close(); }, 2000);
         this.onLogin.emit();
     }
-    // onClickGotoClassRoom() {
-    //     this.classroom.emit();
-    // }
 
     onClickRegister() {
         this.register.emit();

@@ -1,0 +1,18 @@
+<section id="faq" class="part">
+  <div class="content-wrapper">
+    <h2 class="mb-5">{{faqs_config.title}}</h2>
+    <div class="container">
+
+      <ng-container *ngFor="let faq of faqs_config['faqs']; let i = index">
+        <div  *ngIf="faq.question && faq.answer" class="card rounded-0 mb-3" >
+          <div class="card-header border-0 rounded-0 pointer m-0" (click)="faq['more'] = !faq['more']">
+            <i class="fa {{ faq['more'] ? 'fa-arrow-circle-o-down' : 'fa-arrow-circle-o-right'}} fs-110"></i> {{faq.question}}
+          </div>
+          <div class="card-block" *ngIf="faq['more']" >
+            <p class="card-text" style="white-space:pre-line;">{{faq.answer}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

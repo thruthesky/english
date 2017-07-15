@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Message } from '../../providers/message';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { User, _USER_DATA_RESPONSE, _USER_RESPONSE } from 'angular-backend';
+import { User } from 'angular-backend';
 import { App } from './../../providers/app';
 import { FirebaseChat, _FIREBASE_CHAT } from './../../providers/firebase';
 import { Subject } from 'rxjs/Subject';
-import {ShareService} from "../../providers/share-service";
+import {ShareService} from '../../providers/share-service';
 
 
 
@@ -14,7 +14,7 @@ import {ShareService} from "../../providers/share-service";
   selector: 'chat-component',
   templateUrl: 'chat.html'
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent {
   uid: string = null;
   user_message: FirebaseListObservable<any[]>;
   all_message: FirebaseListObservable<any[]>;
@@ -79,14 +79,8 @@ export class ChatComponent implements OnInit {
       .subscribe(res => {
         this.scrollMessageBox();
     });
-
-
-
-
   }
 
-  ngOnInit() {
-  }
 
   onSubmitMessage() {
     if (this.form.message.length == 0) return;

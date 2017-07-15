@@ -65,7 +65,7 @@ export class LMS {
     register(data, success, failure: (error: string) => void) {
         if (data.value) data = data.value;
         let domain = this.getDomain();
-        data['classid'] = this.share.defaultClassId;
+        data['classid'] = data['city'] ? data['city'] : this.share.defaultClassId;
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_insert`;
         this.http.get(url).subscribe(re => {
             if (re) success(re);
@@ -101,8 +101,8 @@ export class LMS {
         return domain;
     }
     update(data, success, failure: (error: string) => void) {
-        data = data.value;
-        data['classid'] = this.share.defaultClassId;
+        // data = data.value;
+        data['classid'] = data['city'] ? data['city'] : this.share.defaultClassId;
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?id=${data['id']}&name=${data['name']}&nickname=${data['nickname']}&email=${data['email']}&mobile=${data['mobile']}&classid=${data['classid']}&domain=${domain}&domain_key=empty&function=user_update`;
         this.http.get(url).subscribe(re => {

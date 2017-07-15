@@ -16,5 +16,8 @@
                 <img src="assets/images/wing/no.png">
             </div>
         </li>
+        <li *ngIf="app.isAdmin()" class="text-center" (click)="onClickShowFAQ()">
+          <div class="d-inline-block">FAQ</div>
+        </li>
     </ul>
 </div>

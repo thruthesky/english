@@ -2,7 +2,6 @@ import { Component, OnInit  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModal } from '../../components/modals/login/login';
 import { RegisterComponent } from '../../components/modals/register/register';
-import { LMS } from '../../providers/lms';
 import { User } from 'angular-backend';
 import { App } from '../../providers/app';
 import { ShareService } from '../../providers/share-service';
@@ -14,24 +13,22 @@ import { ShareService } from '../../providers/share-service';
 export class HeaderComponent implements OnInit {
     event:any = {};
     random;
-    ctr: number = 0;
     uid;
 
 
     more: boolean = false;
     constructor(
         public user        : User,
-        private lms     : LMS,
         private modal      : NgbModal,
         public app         : App,
         public share       : ShareService
     ) {
-    
+
     }
 
 
     ngOnInit() {
-        
+
     }
 
     onClickLogin(){
@@ -45,12 +42,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onClickLogout() {
-    //   this.app.myEvent.emit( {
-    //       eventType: "logout-success"
-    //   } );
-
       this.app.logout( a => {} );
-      
     }
 
     onClickUpdateProfile(){
@@ -60,10 +52,6 @@ export class HeaderComponent implements OnInit {
 
     onClickMoreMenu() {
         this.more = ! this.more;
-    }
-
-    onClickMenu( name ) {
-        this.app.scrollTo( name );
     }
 
     onClickPanelMenu( name ) {
