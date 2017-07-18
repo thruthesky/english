@@ -45,6 +45,14 @@ export interface SOCIAL_LOGIN {
 };
 
 
+export interface _ANNOUNCEMENT {
+  key?: string;
+  photo_idx?: number;
+  photo_url?: string;
+}
+
+export type _ANNOUNCEMENTS = _ANNOUNCEMENT[];
+
 export interface _SITE_CONFIGURATION {
   company_name_variation?: string;
   company_name?: string;
@@ -64,6 +72,7 @@ export interface _SITE_CONFIGURATION {
   announcement_message?: string;
   announcement_photo_idx?: number;
   announcement_photo_url?: string;
+  announcements: _ANNOUNCEMENTS;
   atg_credit_card?: string;
   payment_banner_info?: string;
   logo_idx?: number;
@@ -80,7 +89,7 @@ export class App {
 
     useFacebook: boolean = false;
 
-    config: _SITE_CONFIGURATION = {};
+    config: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{};
     defaultLogoUrl: string = "/assets/images/logo/logo24.png";
     logoUrl: string = this.defaultLogoUrl;
 
@@ -872,24 +881,33 @@ export class App {
 
 
   showAnnouncement() {
-    const ls_key = 'popup-announcement';
-    let popup = localStorage.getItem( ls_key );
-    let announcementKey = this.config.announcement_key + '+' + this.now;
-    if ( this.config && this.config.announcement_key && this.config.announcement_photo_url && popup !== announcementKey ) {
+    const ls_key = 'popup-announcements';
+    console.log( this.config );
 
-      let option: ANNOUNCEMENT_OPTION = {
-        content: this.config.announcement_photo_url,
-      };
-      this.announcementService.open(option, result => {
-        localStorage.setItem( ls_key, announcementKey );
-        this.showReminder();
-      }, reason => {
-        this.showReminder();
+    if ( this.config && this.config.announcements && this.config.announcements.length ) {
+      let announcementKeys = '';
+      let arrPopup = [];
+      let popups = localStorage.getItem( ls_key );
+      if ( popups ) arrPopup = popups.split(',');
+      this.config.announcements.map( (v, i) => {
+        let anKey = v.key + '+' + this.now;
+        if ( v.key && v.photo_url && arrPopup[i] !== anKey ) {
+          console.log( 'v:::', v);
+          let option: ANNOUNCEMENT_OPTION = {
+            content: v.photo_url,
+          };
+          this.announcementService.open(option, result => {
+            announcementKeys += anKey + ',';
+          }, reason => {
+          });
+        }
       });
-    } else {
-      this.showReminder();
+
+      //localStorage.setItem( ls_key, announcementKeys );
     }
   }
+
+
 
   showReminder() {
     const ls_key = 'popup-reminder';

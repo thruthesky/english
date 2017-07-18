@@ -25,5 +25,10 @@ $xl: 1200px;
 $gutter: 8px;
 
 
-$header-height: 64px; // 
+$header-height: 64px; //
 $small-header-height: 109px;
+
+
+.z-index-high-important {
+  z-index: 987654321 !important;
+}

@@ -154,7 +154,9 @@ export class LevelTestComponent {
     this.postData.create( create ).subscribe( ( res: _POST_CREATE_RESPONSE ) => {
       this.share.posts.unshift( res.data );
       this.message.send('레벨테스트', p );
-      this.fc.sendLevelTest( this.form.value ).then( res => {
+      let levelTestValue = this.form.value;
+      levelTestValue['ipAddress'] = window['client_ip_address'] ? window['client_ip_address'] : 'unknown ip';
+      this.fc.sendLevelTest( levelTestValue ).then( () => {
         this.app.alertModal("레벨테스트가 신청되었습니다. 관리자가 확인 후 레벨테스트를 예약하고 연락을 드릴 것입니다.");
         this.form.reset();
       }, err => {
