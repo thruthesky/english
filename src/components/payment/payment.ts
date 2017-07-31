@@ -112,9 +112,7 @@ export class PaymentComponent implements AfterViewInit {
     //let amount = this.getAmount().replace(/,/g, '');
     let amount = this.getAmount();
     if (amount == 0) return alert('수업료를 선택해 주세요.');
-    // so firebase message
-    
-    // eo
+
     this.user.data(this.user.info.id).subscribe((res) => {
 
       let user = res.data.user;
@@ -132,7 +130,10 @@ export class PaymentComponent implements AfterViewInit {
       //   this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
       // }, 300);
 
-      location.href=url;
+      setTimeout( () => {
+        location.href = url;
+      }, 400);
+      
 
     }, e => this.user.alert(e));
 
