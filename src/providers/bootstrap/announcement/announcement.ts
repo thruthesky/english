@@ -25,6 +25,8 @@ export class Announcement {
     this.modalRef = this.modalService
       .open( AnnouncementContent, modalOption);
 
+
+
     this.modalRef.componentInstance['content'] = option.content;
 
     this.modalRef.result.then((result) => {
@@ -34,11 +36,6 @@ export class Announcement {
     });
 
 
-    if ( option.timeout ) {
-      setTimeout(() => {
-        this.modalRef.close();
-      }, option.timeout);
-    }
 
     return this.modalRef;
   }

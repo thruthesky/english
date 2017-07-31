@@ -27,7 +27,7 @@ export class AsideComponent {
         }, '').split('').reverse().join('');
       }
     }, e => {
-      console.log("failure");
+      //console.log("failure");
     });
   }
   onClickKakao() {

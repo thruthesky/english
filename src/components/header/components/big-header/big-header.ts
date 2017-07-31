@@ -69,6 +69,8 @@ export class BigHeaderComponent implements AfterViewInit{
     }
 
     onClickVe() {
+
+
         this.lms.openVe();
     }
     onClickLogout() {

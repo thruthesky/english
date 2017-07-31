@@ -32,6 +32,7 @@ import { ShareService } from '../providers/share-service';
 import { Subject } from 'rxjs/Subject';
 
 import { _ClassInformation } from '../components/reservation/reservation-interface';
+import {split} from "ts-node/dist";
 
 
 
@@ -117,7 +118,8 @@ export class App {
     paymentOption = null;
 
     d: Date = (new Date);
-    now: string = '' + this.d.getFullYear() + (this.d.getMonth() + 1) + this.d.getDate();
+    today: string = '' + this.d.getFullYear() + (this.d.getMonth() + 1) + this.d.getDate();
+    announcementKeys = '';
 
     constructor(
         private ngZone: NgZone,
@@ -881,38 +883,46 @@ export class App {
 
 
   showAnnouncement() {
-    const ls_key = 'popup-announcements';
-    console.log( this.config );
-
     if ( this.config && this.config.announcements && this.config.announcements.length ) {
-      let announcementKeys = '';
-      let arrPopup = [];
-      let popups = localStorage.getItem( ls_key );
-      if ( popups ) arrPopup = popups.split(',');
-      this.config.announcements.map( (v, i) => {
-        let anKey = v.key + '+' + this.now;
-        if ( v.key && v.photo_url && arrPopup[i] !== anKey ) {
-          console.log( 'v:::', v);
-          let option: ANNOUNCEMENT_OPTION = {
-            content: v.photo_url,
-          };
-          this.announcementService.open(option, result => {
-            announcementKeys += anKey + ',';
-          }, reason => {
-          });
-        }
-      });
-
-      //localStorage.setItem( ls_key, announcementKeys );
+      this.nextAnnouncement();
+    }
+    else {
+      this.showReminder();
     }
   }
 
+  nextAnnouncement( ctr: number = 0 ) {
+    const ls_key = 'popup-announcements';
+
+    //localStorage.setItem( ls_key, '' );
+    if ( this.config.announcements.length === 0 ) return this.showReminder();
+    let v = this.config.announcements.shift();
+    let arrPopups = [];
+
+    let popups = localStorage.getItem( ls_key );
+    if ( popups ) arrPopups = popups.split(',');
+    let anKey = v.key + '+' + this.today;
+    //console.log('arrPopups::', arrPopups);
+
+
+    if ( v.key && v.photo_url && arrPopups[ctr] !== anKey ) {
+      let option: ANNOUNCEMENT_OPTION = {
+        content: v.photo_url,
+      };
+      this.announcementService.open(option, () => {
+        arrPopups[ctr] = anKey;
+        localStorage.setItem( ls_key, arrPopups.toString() );
+        this.nextAnnouncement(ctr + 1);
+      }, reason => this.nextAnnouncement( ctr + 1 ));
+    }
+    else this.nextAnnouncement( ctr + 1 );
+  }
 
 
   showReminder() {
     const ls_key = 'popup-reminder';
     let popup = localStorage.getItem( ls_key );
-    let reminderKey = this.config.reminder_key + '+' + this.now;
+    let reminderKey = this.config.reminder_key + '+' + this.today;
     if ( this.config && this.config.reminder_key && this.config.reminder_message && popup !== reminderKey ) {
 
       let option: REMINDER_OPTION = {
