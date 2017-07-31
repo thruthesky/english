@@ -35,7 +35,7 @@ export class PaymentComponent implements AfterViewInit {
     private domSanitizer: DomSanitizer,
     private firebaseDatabase: FirebaseChat,
     private message: Message
-    ) {
+  ) {
 
 
     if (app.paymentOption) {
@@ -112,6 +112,9 @@ export class PaymentComponent implements AfterViewInit {
     //let amount = this.getAmount().replace(/,/g, '');
     let amount = this.getAmount();
     if (amount == 0) return alert('수업료를 선택해 주세요.');
+    // so firebase message
+    
+    // eo
     this.user.data(this.user.info.id).subscribe((res) => {
 
       let user = res.data.user;
@@ -120,14 +123,16 @@ export class PaymentComponent implements AfterViewInit {
       if (!user.mobile) return alert("결재하기 전, 회원 정보 메뉴에서 전화번호를 먼저 입력해 주십시오.");
 
       /// @todo needs to be test !!
-      this.message.send( "수업료 결재", `${user.name} 님께서 결재를 시도합니다.`);
+      this.message.send("수업료 결재", `${user.name} 님께서 결재를 시도합니다.`);
 
       let url = `https://` + window.location.hostname + `/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
-      this.app.scrollTo('paymentIframe');
-      setTimeout(() => {
-        this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-      }, 300);
+      // this.app.scrollTo('paymentIframe');
+      // setTimeout(() => {
+      //   this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+      // }, 300);
+
+      location.href=url;
 
     }, e => this.user.alert(e));
 
