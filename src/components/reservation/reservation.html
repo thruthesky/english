@@ -1,106 +1,112 @@
 <section id="reservation" class="part ">
-    <div class="content-wrapper" style="padding-top: 0;">
+  <div class="content-wrapper" style="padding-top: 0;">
 
     <div class="text">
-        <h1 class="fs-3rem text-center">나의 수업</h1>
-    <div class="class-info">
-            <div class="desc" *ngIf="share && share.class_info">
+      <h1 class="fs-3rem text-center">나의 수업</h1>
+      <div class="class-info">
+        <div class="desc" *ngIf="share && share.class_info">
 
-                <div><span class="caption">다음 수업</span>  : {{ formatNextClass(share.class_info)}}</div>
-                <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
-                <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
-                <div><span class="caption">첫 수업</span>    : {{ formatFirstClass(share.class_info) }}</div>
-            </div>
-            <div class="pl-5 desc" *ngIf="share && !share.class_info">
-                예약된 수업 정보가 없습니다.
-                <ng-container *ngIf=" ! app.user.logged ">
-                    로그인을 하십시오.
-                </ng-container>
-            </div>
+          <div><span class="caption">다음 수업</span> : {{ formatNextClass(share.class_info)}}</div>
+          <div><span class="caption">예약된 수업</span> : {{share.class_info?.no_of_reservation}} 회</div>
+          <div><span class="caption">지난 수업</span> : {{share.class_info?.no_of_past}} 회</div>
+          <div><span class="caption">첫 수업</span> : {{ formatFirstClass(share.class_info) }}</div>
         </div>
+        <div class="pl-5 desc" *ngIf="share && !share.class_info">
+          예약된 수업 정보가 없습니다.
+          <ng-container *ngIf=" ! app.user.logged ">
+            로그인을 하십시오.
+          </ng-container>
+        </div>
+      </div>
     </div>
 
-        <div class="reservation-container p-relative ">
-            <div class="date-container d-flex justify-content-between my-3">
-                <div (click)="onClickPrev()" class="btn border-0 h-100 p-relative prev-month pointer" style="z-index:1; padding: 0;color: #fff;background-color: rgba(80, 88, 80, 0.81)">
-                    <div class="d-inline-block" style="padding:.6rem 1rem;">
+    <div class="reservation-container p-relative ">
+      <div class="date-container d-flex justify-content-between my-3">
+        <div (click)="onClickPrev()" class="btn border-0 h-100 p-relative prev-month pointer"
+             style="z-index:1; padding: 0;color: #fff;background-color: rgba(80, 88, 80, 0.81)">
+          <div class="d-inline-block" style="padding:.6rem 1rem;">
                     <span class="d-inline-block show-list fs-1rem pr-2">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     </span>
-                    {{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}
-                    </div>
+            {{ prevMonths[1]?.m}} {{ prevMonths[1]?.Y}}
+          </div>
 
-                </div>
-                <div class="btn border-0 h-100 p-relative this-month" style="z-index:1; padding:0;color: #fff;background-color: rgba(80, 88, 80, 0.81)" >
-                    <div class="d-inline-block" style="padding:.6rem 1rem;"><span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
-                </div>
-                <div (click)="onClickNext()" class="btn border-0 h-100 p-relative next-month pointer" style="z-index:1; padding:0;color: #fff;background-color: rgba(80, 88, 80, 0.81);">
-                    <div class="d-inline-block" style="padding:.6rem 1rem;">
-                        {{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}
-                        <span class="d-inline-block show-list fs-1rem pl-2">
+        </div>
+        <div class="btn border-0 h-100 p-relative this-month"
+             style="z-index:1; padding:0;color: #fff;background-color: rgba(80, 88, 80, 0.81)">
+          <div class="d-inline-block" style="padding:.6rem 1rem;">
+            <span>{{ prevMonths[0]?.m}} {{ prevMonths[0]?.Y}}</span></div>
+        </div>
+        <div (click)="onClickNext()" class="btn border-0 h-100 p-relative next-month pointer"
+             style="z-index:1; padding:0;color: #fff;background-color: rgba(80, 88, 80, 0.81);">
+          <div class="d-inline-block" style="padding:.6rem 1rem;">
+            {{ nextMonths[0]?.m}} {{ nextMonths[0]?.Y}}
+            <span class="d-inline-block show-list fs-1rem pl-2">
                             <i class="fa fa-arrow-right " aria-hidden="true"></i>
                         </span>
+          </div>
+        </div>
+
+      </div>
+
+      <table class="schedule-table" width="100%">
+        <thead class="text-white">
+        <th class="normal" *ngFor=" let d of app.DAYS; let i = index " [attr.day]=" i ">{{ d }}</th>
+        </thead>
+        <tbody>
+        <tr valign="top" *ngFor="let week of weeks">
+          <td *ngFor="let day of week; let i = index" [attr.day]=" i ">
+            <div *ngIf="day" class="info-container" [ngClass]="{ has: day.length, none: ! day.length }">
+              <div class="date">{{day?.myDate}}</div>
+              <div>
+                <div *ngFor="let info of day;" (click)="$event.stopPropagation()">
+                  <ng-template #popContent>
+                    <div class="popover-title white">
+                      <div class="d-flex justify-content-end">
+                      </div>
                     </div>
-                </div>
-
-            </div>
-
-            <table class="schedule-table" width="100%" >
-                <thead class="text-white">
-                    <th class="normal" *ngFor=" let d of app.DAYS; let i = index " [attr.day]=" i ">{{ d }}</th>
-                </thead>
-                <tbody>
-                    <tr valign="top" *ngFor="let week of weeks">
-                        <td *ngFor="let day of week; let i = index" [attr.day]=" i ">
-                            <div *ngIf="day" class="info-container" [ngClass]="{ has: day.length, none: ! day.length }">
-                                    <div class="date">{{day?.myDate}}</div>
-                                    <div>
-                                    <div *ngFor="let info of day;">
-                                        <ng-template #popContent>
-                                            <div class="popover-title white">
-                                                <div class="d-flex justify-content-end">
-                                                </div>
-                                            </div>
-                                            <div class="popover-content">
-                                                  <div class="popover-text">
-                                                    <div class="popover-data"> Teacher's Name: {{ info?.teacher?.mb_nick }}</div>
-                                                    <div class="popover-data">
+                    <div class="popover-content">
+                      <div class="popover-text">
+                        <div class="popover-data"> Teacher's Name: {{ info?.teacher?.mb_nick }}</div>
+                        <div class="popover-data">
                                                         <span>
                                                             Date: {{ info?.date }}
                                                         </span>
-                                                    </div>
-                                                    <div class="popover-data" *ngIf="info?.book">
+                        </div>
+                        <div class="popover-data" *ngIf="info?.book">
                                                         <span>
                                                             Book: {{ info?.book }}
                                                         </span>
-                                                    </div>
-                                                    <div class="popover-data" *ngIf="info?.rate_comment">
-                                                        <span>Teacher's Comment: </span>
-                                                    </div>
-                                                    <div class="popover-data comment" *ngIf="info?.rate_comment">
-                                                      <span [innerHTML]="info?.rate_comment"></span>
-                                                    </div>
-                                                </div>
+                        </div>
+                        <div class="popover-data" *ngIf="info?.rate_comment">
+                          <span>Teacher's Comment: </span>
+                        </div>
+                        <div class="popover-data comment" *ngIf="info?.rate_comment">
+                          <span [innerHTML]="info?.rate_comment"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                  <div [ngbPopover]="popContent" [placement]="getPlacement(i)" #p="ngbPopover"
+                       (document:click)="p.close()" (click)="$event.stopPropagation()" *ngIf="info?.icon"
+                       class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden"
+                       [innerHTML]="info?.icon"></div>
 
-                                            </div>
-                                        </ng-template>
-                                        <div [ngbPopover]="popContent" #p="ngbPopover" [placement]="getPlacement(i)"  (document:click)="p.close()" (click)="$event.stopPropagation()" *ngIf="info?.icon" class="my-0 mx-auto w-3 h-3 rounded-circle teacher-icon" style="overflow:hidden" [innerHTML]="info?.icon"></div>
+                  <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
+                </div>
 
-                                        <div class="text-center teacher-nick">{{info?.teacher?.mb_nick}}</div>
-                                    </div>
+              </div>
 
-                                </div>
-
-                            </div>
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div *ngIf="this.calendarLoad" class="calendar-loader">
-                <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
             </div>
-        </div>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div *ngIf="this.calendarLoad" class="calendar-loader">
+        <div class="loader"><i class="fa fa-spinner fa-pulse"></i></div>
+      </div>
     </div>
+  </div>
 </section>
 
