@@ -61,28 +61,30 @@
               <div>
                 <div *ngFor="let info of day;" (click)="$event.stopPropagation()">
                   <ng-template #popContent>
-                    <div class="popover-title white">
-                      <div class="d-flex justify-content-end">
+                    <div>
+                      <div class="popover-title white">
+                        <div class="d-flex justify-content-end">
+                        </div>
                       </div>
-                    </div>
-                    <div class="popover-content">
-                      <div class="popover-text">
-                        <div class="popover-data"> Teacher's Name: {{ info?.teacher?.mb_nick }}</div>
-                        <div class="popover-data">
+                      <div class="popover-content">
+                        <div class="popover-text">
+                          <div class="popover-data"> Teacher's Name: {{ info?.teacher?.mb_nick }}</div>
+                          <div class="popover-data">
                                                         <span>
                                                             Date: {{ info?.date }}
                                                         </span>
-                        </div>
-                        <div class="popover-data" *ngIf="info?.book">
+                          </div>
+                          <div class="popover-data" *ngIf="info?.book">
                                                         <span>
                                                             Book: {{ info?.book }}
                                                         </span>
-                        </div>
-                        <div class="popover-data" *ngIf="info?.rate_comment">
-                          <span>Teacher's Comment: </span>
-                        </div>
-                        <div class="popover-data comment" *ngIf="info?.rate_comment">
-                          <span [innerHTML]="info?.rate_comment"></span>
+                          </div>
+                          <div class="popover-data" *ngIf="info?.rate_comment">
+                            <span>Teacher's Comment: </span>
+                          </div>
+                          <div class="popover-data comment" *ngIf="info?.rate_comment">
+                            <span [innerHTML]="info?.rate_comment"></span>
+                          </div>
                         </div>
                       </div>
                     </div>

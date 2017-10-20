@@ -14,22 +14,24 @@ export class Message {
         private user: User
     ) {
 
-
+      if ('Notification' in window) {
         this.messaging = firebase.messaging();
         this.db = firebase.database();
 
         if (user.admin) {
-            this.requestPermission();
+          this.requestPermission();
         }
 
 
         this.messaging.onMessage((payload) => {
-            if ( payload && payload['notification'] ) {
-              if ( payload['notification']['title'] == 'LiveChat') return;
-              alert(payload['notification']['title'] + "\n" + payload['notification']['body']);
-              location.href = payload['notification']['click_action'];
-            }
+          if ( payload && payload['notification'] ) {
+            if ( payload['notification']['title'] == 'LiveChat') return;
+            alert(payload['notification']['title'] + "\n" + payload['notification']['body']);
+            location.href = payload['notification']['click_action'];
+          }
         });
+
+      }
 
     }
 
@@ -51,29 +53,32 @@ export class Message {
         /**
          * Request permission (to user) for receiving messages.
          */
-        this.messaging.requestPermission()
-            .then(() => {
-                this.messaging.getToken()
-                    .then((currentToken) => {
-                        if (currentToken) {
-                            //
-                            //console.log("Got token: ", currentToken);
-                            this.reduceTokens();    /// delete tokens first
-                            setTimeout(() => {      /// and then save my token.
-                                this.db.ref('/').child('push-tokens').child(currentToken).set(true);
-                            }, 2000);
-                        } else {
-                            console.log('No Instance ID token available. Request permission to generate one.');
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log('An error occurred while retrieving token. ', err);
-                    });
 
-            })
-            .catch(function (err) {
-                console.log('Unable to get permission to notify.', err);
-            });
+      if ('Notification' in window) {
+        this.messaging.requestPermission()
+          .then(() => {
+            this.messaging.getToken()
+              .then((currentToken) => {
+                if (currentToken) {
+                  //
+                  //console.log("Got token: ", currentToken);
+                  this.reduceTokens();    /// delete tokens first
+                  setTimeout(() => {      /// and then save my token.
+                    this.db.ref('/').child('push-tokens').child(currentToken).set(true);
+                  }, 2000);
+                } else {
+                  console.log('No Instance ID token available. Request permission to generate one.');
+                }
+              })
+              .catch(function (err) {
+                console.log('An error occurred while retrieving token. ', err);
+              });
+
+          })
+          .catch(function (err) {
+            console.log('Unable to get permission to notify.', err);
+          });
+      }
     }
 
     send(title, body, url?) {
