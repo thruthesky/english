@@ -4,7 +4,7 @@
         background: none;
         position: fixed;
         right: $gutter * 2;
-        top: $header-height + 36px;
+        top: $header-height + 5px;
         z-index: 1000;
         ul {
             position: relative;
@@ -14,7 +14,7 @@
             li {
                 position: relative;
                 cursor: pointer;
-                margin-top: $gutter / 2;
+                margin-top: $gutter / 4;
                 width: 100px;
                 img {
                     width: 100%;
