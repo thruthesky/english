@@ -67,14 +67,16 @@
                   {{ app.paymentOption.text.days[5] }} {{ getAmountByMonths(5) }} 원
 
                 </label>
-                <label for="day_4" class="pointer">
-                  <input id="day_4" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="4">
-                  {{ app.paymentOption.text.days[4] }} {{ getAmountByMonths(4) }} 원
-                </label>
+
                 <label for="day_3" class="pointer">
                   <input id="day_3" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="3">
                   {{ app.paymentOption.text.days[3] }} {{ getAmountByMonths(3) }} 원
 
+                </label>
+
+                <label for="day_2" class="pointer">
+                  <input id="day_2" type="radio" name="selectedDays" [(ngModel)]="selectedDays" value="2">
+                  {{ app.paymentOption.text.days[2] }} {{ getAmountByMonths(2) }} 원
                 </label>
               </div>
               <div class="mt-2 py-0 px-3">

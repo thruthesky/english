@@ -141,10 +141,35 @@ export class PostListComponent  {
         this.loadPostData();
     }
     onClickView( post ) {
-        let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
-        modalRef.componentInstance['post'] = post;
-        modalRef.result.then( () => {
-        }).catch( e => {} );
+
+        if ( post.name === "anonymous" && !this.app.isAdmin()) {
+          let password = prompt("비밀번호를 입력하세요.");
+          if( password == void 0 || password.length == 0) return;
+          let req: _POST_EDIT = { idx: post.idx, password: password };
+          this.postData.edit( req ).subscribe( (res: _POST_EDIT_RESPONSE ) => {
+            // console.log('res::',res);
+            return this.viewPost(post);
+          }, e => {
+            if ( e.code == -40109 ) alert("비밀번호가 틀립니다.");
+            else this.postData.alert( e );
+            return;
+          } );
+        }
+
+        if ( post.name != this.user.info.name && !this.app.isAdmin() ) {
+           return this.app.alertModal("본인게시글만 열람이 가능합니다.");
+        }
+
+        this.viewPost(post);
+
+
+    }
+
+    viewPost( post ) {
+      let modalRef = this.modal.open( PostViewModal, { windowClass: 'enhance-modal' }  );
+      modalRef.componentInstance['post'] = post;
+      modalRef.result.then( () => {
+      }).catch( e => {} );
     }
 
 }
