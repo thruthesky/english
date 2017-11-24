@@ -16,6 +16,13 @@
                         [text_upload_description]=" '첨부 파일, 사진을 등록해 주세요.' "
                     ></file-form-component>
                     <div class="input-group">
+                        <select *ngIf="isCreate()" class="custom-select" name="category" [(ngModel)]="category" [ngModelOptions]="{standalone: true}" style="margin-top: 1px">
+                          <option value="레벨테스트" selected>레벨테스트</option>
+                          <option value="수강문의">수강문의</option>
+                          <option value="수업관련">수업관련</option>
+                            <option value="기타문의">기타문의</option>
+                          <option value="결제 및 환불">결제 및 환불</option>
+                        </select>
                         <input style="border: 1px solid #dfdbdb;" validate-onblur  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="제목을 입력하세요.">
                     </div>
                     <small class="form-text text-muted my-2">제목을 입력하세요.</small>

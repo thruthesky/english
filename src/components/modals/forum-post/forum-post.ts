@@ -31,6 +31,8 @@ export class ForumPostComponent implements OnInit {
     formGroup: FormGroup;
     files: Array<_FILE> = [];
     userName: string = null;
+
+    category: string = '레벨테스트';
     constructor(
         public share: ShareService,
         private fb: FormBuilder,
@@ -100,7 +102,8 @@ export class ForumPostComponent implements OnInit {
     }
 
     createPost() {
-        let create = <_POST_CREATE> this.formGroup.value;
+        let create: _POST_CREATE = Object.assign({}, this.formGroup.value );
+        create['title'] = '(' + this.category + ') ' + create['title'];
         create.post_config_id = this.post_config_id;
         create.file_hooks = this.files.map( (f:_FILE) => f.idx );
         if( this.user.logged ) create.name = this.userName;
