@@ -23,7 +23,7 @@
                             <option value="기타문의">기타문의</option>
                           <option value="결제 및 환불">결제 및 환불</option>
                         </select>
-                        <input style="border: 1px solid #dfdbdb;" validate-onblur  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="제목을 입력하세요.">
+                        <input style="border: 1px solid #dfdbdb;" validate-onblur  formControlName="title"  name="title" type="text" class="form-control form-control-sm" placeholder="제목을 입력하세요." value="">
                     </div>
                     <small class="form-text text-muted my-2">제목을 입력하세요.</small>
                     <div *ngIf="formErrors.title" class="alert alert-danger">
@@ -44,7 +44,7 @@
                         <span class="errors"> {{ formErrors.password }} </span>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 post" ><button type="button"class="input-group btn form-control white" style="background-color:#8fa3ad" (click)="onSubmit()"  [disabled]="!formGroup.valid">등록하기</button></div>
+                        <div class="col-md-12 post" ><button type="button" role="button" class="input-group btn form-control white" style="background-color:#8fa3ad" (click)="onSubmit()"  [disabled]="!formGroup.valid">등록하기</button></div>
                     </div>
                     <hr/>
                 </form>

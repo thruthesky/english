@@ -57,7 +57,7 @@ export class ForumPostComponent implements OnInit {
         if ( this.isCreate() ) {
             this.files = [];
             this.formGroup = this.fb.group({
-                title: [ '', [ Validators.required ] ],
+                title: [ '', [] ],
                 content: [ '', [ Validators.required ] ]
             });
         }
@@ -152,9 +152,6 @@ export class ForumPostComponent implements OnInit {
     password: ''
   };
   validationMessages = {
-    title: {
-      'required':      '제목을 입력하십시오.'
-    },
     content: {
       'required':      '내용을 입력하십시오.'
     },
