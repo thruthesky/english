@@ -151,8 +151,8 @@ export class LMS {
     getNextClass(success, failure) {
         // test
 
-        let domain = 'talkative.onlineenglish.kr'; /// TEST
-        // let domain = this.getDomain();
+        // let domain = 'talkative.onlineenglish.kr'; /// TEST
+        let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + domain;
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
