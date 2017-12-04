@@ -10,7 +10,7 @@ import { Message } from './message';
 
 import { ShareService } from '../providers/share-service';
 
-export const LMS_URL = "//witheng.com";
+export const LMS_URL = "https://witheng.com";
 export const LMS_ENDPOINT_URL = LMS_URL + "/ajax.php";
 export interface TEACHER {
     birthday: string;
@@ -149,7 +149,12 @@ export class LMS {
     }
 
     getNextClass(success, failure) {
-        let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + this.getDomain();
+        // test
+
+        let domain = 'talkative.onlineenglish.kr'; /// TEST
+        // let domain = this.getDomain();
+        let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + domain;
+        console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
             let json = null;
             try {
@@ -164,10 +169,10 @@ export class LMS {
         }, e => alert("앗!, 수업 정보를 가져오는데 문제가 발생했습니다."));
     }
 
-    add0(n:number) : string {
+    add0(n: number): string {
         return n < 10 ? '0' + n : n.toString();
     }
-    getTotalClassOfToday( success, failure ) {
+    getTotalClassOfToday(success, failure) {
         let d = new Date();
         let y = d.getFullYear();
         let m = d.getMonth() + 1;
@@ -185,12 +190,13 @@ export class LMS {
             }
             if (json['data']) success(json['data']);
             else failure(' error on getting next class ');
-        }, e => failure );
+        }, e => failure);
 
     }
 
     openVe() {
-        if ( ! this.user.logged ) return alert("앗! 회원 로그인을 해 주세요.");
+        
+        if (!this.user.logged) return alert("앗! 회원 로그인을 해 주세요.");
 
         /*
         Safari is blocking any call to window.open() which is made inside an async call.
@@ -200,9 +206,10 @@ export class LMS {
         */
         let newwindow: any = window.open();
         this.getNextClass(data => {
-            if (!data) return alert("data is false on openVe()");
+            if ( !data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();
-            let url = `http://onlineenglish.kr/~witheng/etc/ve_open.php?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
+            let url = this.share.VE_ENDPOINT_URL + `?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
+            console.log('url: ', url);
             newwindow.location = url;
         }, error => {
             alert("앗! 예약된 수업이 없습니다.");

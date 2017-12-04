@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { _ClassInformation } from '../components/reservation/reservation-interface'
+import { _ClassInformation } from '../components/reservation/reservation-interface';
 import {
     PostData,
     _LIST,
@@ -11,7 +11,7 @@ export class ShareService {
     page: string = 'main';
     clientChatId: string = null;
     ve_url: string = null;
-    VE_ENDPOINT_URL = "http://onlineenglish.kr/~witheng/etc/ve_open.php";
+    VE_ENDPOINT_URL = "http://witheng.com/ve_open.php";
     post_config_id: string = '';
     posts: _POSTS = [];
     class_info: _ClassInformation = null;
