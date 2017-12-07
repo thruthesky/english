@@ -64,10 +64,13 @@
                                 aria-hidden="true"></i>
                         </div>
                         <div *ngIf="teacher.play_video" class="youtube-player">
-                            <object>
-                        <param name="movie" [value]='teacher.url_youtube'/>
-                        <embed class="youtube-video" [src]='teacher.url_youtube'  type="text/html" />
-                    </object>
+                          <iframe class="youtube-video"
+                                  [src]="teacher.url_youtube">
+                          </iframe>
+                            <!--<object>-->
+                              <!--<param name="movie" [value]='teacher.url_youtube'/>-->
+                              <!--<embed class="youtube-video" [src]="teacher.url_youtube" type="text/html"/>-->
+                            <!--</object>-->
                         </div>
                     </div>
                 </div>

@@ -40,19 +40,19 @@ export class TeacherComponent {
                 teacher.img_youtube = teacher.img_youtube.match(/youtube.com/g, "img.youtube.com")? teacher.img_youtube.replace(/youtube.com/g, "img.youtube.com") + "/mqdefault.jpg":'assets/images/teacher/no-video.jpg';
                 teacher.img_youtube = this.sanitizer.bypassSecurityTrustUrl(teacher.img_youtube);
                 if( teacher.url_youtube ) {
-                    teacher.url_youtube = teacher.url_youtube + "?autoplay=1&autohide=1&controls=0&border=0&scrolling=no";
+                    teacher.url_youtube = teacher.url_youtube + "?autoplay=1&loop=1";
                     teacher.url_youtube = this.sanitizer.bypassSecurityTrustResourceUrl(teacher.url_youtube);
                 }
                 else teacher.url_youtube = false;
             });
         }
         this.first_9_teachers = this.teachers.filter(this.firstDisplayTeacherIndex);
-        
+
         this.rest_teacher = this.teachers.filter(e => this.first_9_teachers.findIndex(x => e.nickname == x.nickname) == -1);
         this.checkFirstNineTeachers();
         this.whole_teacher = this.first_9_teachers.concat(this.rest_teacher);
         this.teachers = this.first_9_teachers;
-        
+
     }
     checkFirstNineTeachers() {
         if( this.first_9_teachers.length < 9 ) {
