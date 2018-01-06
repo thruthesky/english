@@ -1,24 +1,28 @@
-<h5>LMS Record</h5>
 <div class="row py-3">
-    <div class="col-sm-6">
-        <h5>My Achievements</h5>
+    <div class="col-sm-6 mb-3">
+        <h5>My LMS Record</h5>
         <ul class="list-style-none">
-            <li>ID: MyID</li>
-            <li>My Member No.: student[mb_id]</li>
-            <li>Name: MyName</li>
-            <li>Reserve Session: 17</li>
-            <li>Past Session:31</li>
-            <li>Next Session: 10pm Jan 7 2018</li>
-            <li>Phone Number: 0999877665544</li>
-            <li>Email: MyName@email.com</li>
+            <li>ID: {{app.user.info.id}}</li>
+            <li>My Member No.: {{data?.mb_id}}</li>
+            <li>Name: {{app.user.info.name}}</li>
+            <li>Reserve Session: {{data?.count_reservation}}</li>
+            <li>Past Session: {{data?.count_past}}</li>
+            <li>Next Session: {{data?.next_class}}</li>
+            <li>My Level: {{ data?.level }}</li>
+            <li>Current Book: {{ data?.book_info }}</li>
+            <li>Phone Number: {{data?.phone_number}}</li>
+            <li>Email: {{data?.email}}</li>
         </ul>
 
     </div>
-    <div class="col-sm-6">
-        <h5>Others</h5>
+    <div class="col-sm-6" *ngIf="data && data.latest_comments && data.latest_comments.length">
+        <h5>Teacher Comment</h5>
         <ul class="list-style-none">
-            <li>My Level</li>
-            <li>Latest comments from teacher</li>
+            <li *ngFor="let comment of data.latest_comments">
+                <div>Teacher : {{comment.teacher.mb_nick}}</div>
+                <div>Date: {{comment.kdate}} Class begin: {{comment.class_begin}} ~ Class end: {{comment.class_end}} Duration: {{comment.mins}}</div>
+                <div>Comment : {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
+            </li>
         </ul>
     </div>
 </div>

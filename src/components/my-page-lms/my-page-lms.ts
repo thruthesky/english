@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LMS } from '../../providers/lms';
+import { App } from '../../providers/app';
 
 @Component({
     selector: 'my-page-lms-component',
@@ -7,7 +9,23 @@ import { Component } from '@angular/core';
 })
 export class MyPageLMSComponent {
 
-    constructor( ) {}
+
+    data = {};
+
+    constructor(
+        public app: App,
+        private lms: LMS,
+    ) {
+
+        this.lms.getLMSInformation(data => {
+            if ( ! data) return alert("Error on retrieving the LMS Information");
+            console.log(data);
+            this.data = data;
+        }, error => {
+            alert("Error on retrieving the LMS Information" + error);
+        });
+
+    }
 
 }
 

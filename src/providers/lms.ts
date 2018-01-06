@@ -195,7 +195,7 @@ export class LMS {
     }
 
     openVe() {
-        
+
         if (!this.user.logged) return alert("앗! 회원 로그인을 해 주세요.");
 
         /*
@@ -214,6 +214,27 @@ export class LMS {
         }, error => {
             alert("앗! 예약된 수업이 없습니다.");
         });
+    }
+
+
+
+
+    getLMSInformation(success, failure) {
+        let domain = this.getDomain();
+        let url = LMS_ENDPOINT_URL + `?function=api_my_lms&student_id=${this.user.info.id}@` + domain;
+        console.log("URL: " , url);
+        this.http.get(url).subscribe(re => {
+            let json = null;
+            try {
+                json = JSON.parse(re['_body']);
+            }
+            catch (e) {
+                alert("앗! 데이터베이스 서버로 부터 수업 정보를 가져오는데 문제가 발생하였습니다.");
+                return;
+            }
+            if (json['data']) success(json['data']);
+            else failure(' error on getting next class ');
+        }, e => alert("앗!, 수업 정보를 가져오는데 문제가 발생했습니다."));
     }
 
 }
