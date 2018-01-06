@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LMS } from '../../providers/lms';
+import {LMS, LMS_URL} from '../../providers/lms';
 import { App } from '../../providers/app';
 
 @Component({
@@ -21,6 +21,12 @@ export class MyPageLMSComponent {
             if ( ! data) return alert("Error on retrieving the LMS Information");
             console.log(data);
             this.data = data;
+
+            data.latest_comments.forEach((res) => {
+                console.log(res);
+                if (  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
+                    LMS_URL + '/data');
+            });
         }, error => {
             alert("Error on retrieving the LMS Information" + error);
         });

@@ -19,10 +19,12 @@
         <h5>Teacher Comment</h5>
         <ul class="list-style-none">
             <li *ngFor="let comment of data.latest_comments">
-                <div>Teacher : {{comment.teacher.mb_nick}}</div>
-                <div>Date: {{comment.kdate}} Duration: {{comment.mins}}</div>
+                <div [innerHTML]="comment.icon"></div>
+                <div>Teacher: {{comment.teacher.mb_nick}}</div>
+                <div>Date: {{comment.kdate}} Duration:</div>
+                <div>{{comment.mins}}</div>
                 <div>Class begin: {{comment.class_begin}} ~ Class end: {{comment.class_end}}</div>
-                <div>Comment : {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
+                <div>Comment: {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
             </li>
         </ul>
     </div>
