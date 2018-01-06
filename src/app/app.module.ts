@@ -58,7 +58,7 @@ import { LevelTestButtonComponent } from '../components/level-test-button/level-
 
 import { AsideComponent } from '../components/aside/aside';
 import { ChatComponent } from '../components/chat/chat';
-import { AdminPanelComponent } from './../components/admin-panel/admin-panel'
+import { AdminPanelComponent } from '../components/admin-panel/admin-panel';
 
 import { FirebaseChat } from '../providers/firebase';
 import { LMS } from '../providers/lms';
@@ -66,7 +66,9 @@ import { AngularBackendModule } from 'angular-backend';
 import { AngularBackendComponents } from '../angular-backend-components/angular-backend-components.module';
 import { ValidateOnBlurDirective } from '../directives/validate-on-blur';
 
-import { Message } from './../providers/message';
+import { Message } from '../providers/message';
+
+import { MyPageComponent } from '../components/my-page/my-page';
 
 
 const appRoutes:Routes = [
@@ -107,7 +109,8 @@ const appRoutes:Routes = [
     LevelTestButtonComponent,
     ValidateOnBlurDirective,
     SaehaComponent,
-    FAQComponent
+    FAQComponent,
+    MyPageComponent
   ],
   imports: [
     BrowserModule,

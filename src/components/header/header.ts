@@ -59,5 +59,9 @@ export class HeaderComponent implements OnInit {
         this.app.scrollTo( name );
     }
 
+    onClickMyPage() {
+
+    }
+
 
 }

@@ -74,6 +74,10 @@
                 <div class="text">로그인</div>
               </button>
 
+              <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('intro', 'my-page'); p.close()">
+                <div class="text">My Page</div>
+              </button>
+
               <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('reservation'); p.close()">
                 <div class="text">나의수업</div>
               </button>

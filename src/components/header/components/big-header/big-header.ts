@@ -88,6 +88,7 @@ export class BigHeaderComponent implements AfterViewInit{
         this.more = false;
         this.app.scrollTo(name);
     }
+
     onClickLogin() {
         setTimeout(() => { if (this.pLogin) this.pLogin.close(); }, 2000);
         this.onLogin.emit();

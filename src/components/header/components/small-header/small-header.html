@@ -83,6 +83,14 @@
             <span class="text">로그아웃</span>
             <small>Logout</small>
           </li>
+          <li [class.active]=" app.scrollId =='my-page' " *ngIf=" user.logged " (click)="onClickPanelMenu('saeha', 'my-page')">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-sign-out fa-stack-1x fa-inverse"></i>
+                        </span>
+            <span class="text">My Page</span>
+            <small>My Page</small>
+          </li>
 
           <li class="menu" [class.active]=" app.scrollId =='curriculum' " (click)="onClickPanelMenu('curriculum')">
                         <span class="fa-stack fa-lg">
