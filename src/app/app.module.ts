@@ -69,6 +69,10 @@ import { ValidateOnBlurDirective } from '../directives/validate-on-blur';
 import { Message } from '../providers/message';
 
 import { MyPageComponent } from '../components/my-page/my-page';
+import { MyPageLMSComponent } from '../components/my-page-lms/my-page-lms';
+import { MyPageAchievementComponent } from '../components/my-paeg-achievement/my-page-achievement';
+import { MyPageEnglishNewsComponent } from '../components/my-paeg-english-news/my-page-english-news';
+import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-page-leveltest';
 
 
 const appRoutes:Routes = [
@@ -110,7 +114,11 @@ const appRoutes:Routes = [
     ValidateOnBlurDirective,
     SaehaComponent,
     FAQComponent,
-    MyPageComponent
+    MyPageComponent,
+    MyPageLMSComponent,
+    MyPageAchievementComponent,
+    MyPageEnglishNewsComponent,
+    MyPageLeveltestComponent
   ],
   imports: [
     BrowserModule,
