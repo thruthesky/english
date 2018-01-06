@@ -20,7 +20,8 @@
         <ul class="list-style-none">
             <li *ngFor="let comment of data.latest_comments">
                 <div>Teacher : {{comment.teacher.mb_nick}}</div>
-                <div>Date: {{comment.kdate}} Class begin: {{comment.class_begin}} ~ Class end: {{comment.class_end}} Duration: {{comment.mins}}</div>
+                <div>Date: {{comment.kdate}} Duration: {{comment.mins}}</div>
+                <div>Class begin: {{comment.class_begin}} ~ Class end: {{comment.class_end}}</div>
                 <div>Comment : {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
             </li>
         </ul>
