@@ -15,8 +15,8 @@
               <reservation-component *ngIf="user.logged"></reservation-component>
               <forum-component></forum-component>
         </div>
-        <saeha-component class="{{ shared.page !== 'saeha' ? 'd-none': ''}}"></saeha-component>
-        <my-page-component class="{{ shared.page !== 'my-page' ? 'd-none': ''}}"></my-page-component>
+        <saeha-component *ngIf="shared.page === 'saeha'"></saeha-component>
+        <my-page-component *ngIf="shared.page === 'my-page'"></my-page-component>
 
         <faq-component *ngIf="shared.page === 'faq'"></faq-component>
 </section>

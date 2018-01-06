@@ -1,0 +1,8 @@
+@for $i from 0 through 9 {
+    .a-height-#{$i} { height:($i+1)*30px}
+}
+
+.a-width {
+    border: 1px solid black;
+    width: 10px;
+}

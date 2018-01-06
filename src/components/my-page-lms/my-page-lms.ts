@@ -18,12 +18,12 @@ export class MyPageLMSComponent {
     ) {
 
         this.lms.getLMSInformation(data => {
-            if ( ! data) return alert("Error on retrieving the LMS Information");
+            if ( ! data) return alert("LMS Information is empty...");
             console.log(data);
             this.data = data;
 
             data.latest_comments.forEach((res) => {
-                console.log(res);
+                // console.log(res);
                 if (  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
                     LMS_URL + '/data');
             });
