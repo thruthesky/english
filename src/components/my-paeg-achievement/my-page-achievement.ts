@@ -22,29 +22,28 @@ export class MyPageAchievementComponent {
     ) {
         // for testing only
 
-        let dt = new Date();
+        // let dt = new Date();
 
-        for (let num = 1; num <= this.limit; num++) {
-            let nd = new Date(dt.setDate((dt.getDate() + num )))
-            this.data.push({
-                rate_level: Math.ceil(Math.random() * 9),
-                kdate: this.m[nd.getMonth()] + '/' + nd.getDay()
-            });
-        }
-
-        this.pre(this.data);
+        // for (let num = 1; num <= this.limit; num++) {
+        //     let nd = new Date(dt.setDate((dt.getDate() + num )))
+        //     this.data.push({
+        //         rate_level: Math.ceil(Math.random() * 9),
+        //         kdate: this.m[nd.getMonth()] + '/' + nd.getDay()
+        //     });
+        // }
+        // this.pre(this.data);
 
         // end of testing
 
-        // this.lms.getLatestPastSession(this.limit, data => {
-        //     if ( ! data) return alert("No Data Found...");
-        //     console.log(data);
-        //     this.data = data;
-        //     this.pre(data);
-        //
-        // }, error => {
-        //     alert("Error on retrieving the Class Sessions" + error);
-        // });
+        this.lms.getLatestPastSession(this.limit, data => {
+            if ( ! data) return alert("No Data Found...");
+            console.log(data);
+            this.data = data;
+            this.pre(data);
+
+        }, error => {
+            alert("Error on retrieving the Class Sessions" + error);
+        });
 
     }
 

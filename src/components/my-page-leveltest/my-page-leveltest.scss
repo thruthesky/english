@@ -1,0 +1,53 @@
+.achievement-line-0 {
+    height: 5px;
+    margin-top: 9 * 10 - 5px;
+}
+
+@for $i from 1 through 9 {
+    .leveltest-line-#{$i} {
+        height:($i)*20px;
+        margin-top:(9-$i)*20px;
+        width: 20%;
+        border: 1px white solid;
+    }
+}
+
+
+.leveltest-graph {
+    position: relative;
+    .graph-line {
+        position: relative;
+        display: inline-block;
+        height: 180px;
+        width: 100%;
+        white-space: nowrap;
+        font-size: 0;
+        //border: 1px solid grey;
+        .line {
+            display: inline-block;
+            white-space: normal;
+            background-color: #001296;
+            border: 5px white solid;
+            border-bottom: 0;
+        }
+
+        .line:nth-child(1) {
+            border-left: 0;
+        }
+        .line:nth-child(5) {
+            border-right: 0;
+        }
+    }
+
+    .graph-info {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        .info {
+            display: inline-block;
+            word-wrap: break-word;
+            vertical-align: top;
+        }
+    }
+}

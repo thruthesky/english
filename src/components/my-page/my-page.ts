@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MyPageComponent {
 
-    option: number = 2;
+    option: number = 4;
     constructor( ) {}
 
 }

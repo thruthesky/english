@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {LMS, LMS_URL} from "../../providers/lms";
+import {App} from "../../providers/app";
 
 @Component({
     selector: 'my-page-leveltest-component',
@@ -7,6 +9,29 @@ import { Component } from '@angular/core';
 })
 export class MyPageLeveltestComponent {
 
-    constructor( ) {}
+
+    data = {};
+
+    constructor(
+        public app: App,
+        private lms: LMS,
+    ) {
+
+        this.lms.getFirstClass(data => {
+            if ( ! data) return alert("LMS Information is empty...");
+            console.log(data);
+            this.data = data;
+                // if (  data.icon.match(/.\/data/g) )
+                //     data.icon = data.icon.replace(/.\/data/g, LMS_URL + '/data');
+
+
+            let re = data.icon.match(/<img.*?src=['"](.*?)['"]/);
+            if(!re) return;
+            data.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
+        }, error => {
+            alert("Error on retrieving the LMS Information" + error);
+        });
+
+    }
 
 }

@@ -237,9 +237,10 @@ export class LMS {
         }, e => alert("Error in retrieving LMS Information..."));
     }
 
-    getLatestPastSession(no = 10,success, failure) {
+    getLatestPastSession(no = 10, success, failure) {
         let domain = this.getDomain();
-        let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=${this.user.info.id}@` + domain + `&no${no}`;
+        // let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=${this.user.info.id}@` + domain + `&no=${no}`;
+        let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=jessica1126@talkative.onlineenglish.kr&no=${no}`;
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
             let json = null;
@@ -254,5 +255,26 @@ export class LMS {
             else failure(' Error in retrieving latest past sessions.. ');
         }, e => alert(" Error in retrieving latest past sessions... "));
     }
+
+
+    getFirstClass(success, failure) {
+        let domain = this.getDomain();
+        // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=${this.user.info.id}@` + domain;
+        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=jessica1126@talkative.onlineenglish.kr`; // test
+        console.log("URL: " , url);
+        this.http.get(url).subscribe(re => {
+            let json = null;
+            try {
+                json = JSON.parse(re['_body']);
+            }
+            catch (e) {
+                alert("Error in retrieving first leveltest.");
+                return;
+            }
+            if (json['data']) success(json['data']);
+            else failure(' Error in retrieving first leveltest.. ');
+        }, e => alert(" Error in retrieving first leveltest... "));
+    }
+
 
 }

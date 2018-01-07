@@ -1,26 +1,40 @@
-<h5>Leveltest Results</h5>
+<h5>Level Test Result</h5>
 <div class="row py-3">
-    <div class="col-sm-6">
-        <h5>My Achievements</h5>
-        <ul class="list-style-none">
-            <li>Name: MyName</li>
-            <li>Reserve Session: 17</li>
-            <li>Past Session:31</li>
-            <li>Next Session: 10pm Jan 7 2018</li>
-            <li>Phone Number: 0999877665544</li>
-            <li>Email: MyName@email.com</li>
+    <div class="col-sm-4  text-center">
+        <h5>Teacher</h5>
+        <ul class="list-style-none mb-3">
+            <li *ngIf="data.icon"><img src="{{data.icon}}" style="max-width: 100%"></li>
+            <li><div>Teacher {{data?.teacher?.mb_nick}}</div></li>
         </ul>
-
     </div>
-    <div class="col-sm-6">
-        <h5>Others</h5>
+    <div class="col-sm-8">
+        <h5 class="text-center">My Test Results</h5>
+        <div class="leveltest-graph mb-3">
+            <div class="graph-info mb-2">
+                <span class="info px-3"><i class="fa fa-square purple"></i> Expression: {{data?.rate_expression}}</span>
+                <span class="info px-3"><i class="fa fa-square red"></i> Speed: {{data?.rate_speed}}</span>
+                <span class="info px-3"><i class="fa fa-square green"></i> Grammar: {{data?.rate_grammar}}</span>
+                <span class="info px-3"><i class="fa fa-square skyblue"></i> Vocabulary: {{data?.rate_vocabulary}}</span>
+                <span class="info px-3"><i class="fa fa-square orange"></i> Pronunciation: {{data?.rate_pronounciation}}</span>
+            </div>
+            <div class="graph-line">
+                <span class="line bg-purple leveltest-line-{{data?.rate_expression}}"></span>
+                <span class="line bg-red leveltest-line-{{data?.rate_speed}}"></span>
+                <span class="line bg-green leveltest-line-{{data?.rate_grammar}}"></span>
+                <span class="line bg-skyblue leveltest-line-{{data?.rate_vocabulary}}"></span>
+                <span class="line bg-orange leveltest-line-{{data?.rate_pronounciation}}"></span>
+            </div>
+        </div>
         <ul class="list-style-none">
-            <li>Name: MyName</li>
-            <li>Reserve Session: 17</li>
-            <li>Past Session:31</li>
-            <li>Next Session: 10pm Jan 7 2018</li>
-            <li>Phone Number: 0999877665544</li>
-            <li>Email: MyName@email.com</li>
+            <li>Class ID: {{data?.idx}}</li>
+            <li>Date: {{data?.kdate}}</li>
+            <li>Begin Hour: {{data?.ktime}} for {{data?.mins}} mins</li>
         </ul>
+    </div>
+</div>
+<div class="row px-3">
+    Teacher Comment:
+    <div>
+        {{data.rate_comment}}
     </div>
 </div>
