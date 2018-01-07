@@ -239,8 +239,8 @@ export class LMS {
 
     getLatestPastSession(no = 10, success, failure) {
         let domain = this.getDomain();
-        // let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=${this.user.info.id}@` + domain + `&no=${no}`;
-        let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=jessica1126@talkative.onlineenglish.kr&no=${no}`;
+        let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=${this.user.info.id}@` + domain + `&no=${no}`;
+        // let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=jessica1126@talkative.onlineenglish.kr&no=${no}`;
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
             let json = null;
@@ -259,8 +259,8 @@ export class LMS {
 
     getFirstClass(success, failure) {
         let domain = this.getDomain();
-        // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=${this.user.info.id}@` + domain;
-        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=jessica1126@talkative.onlineenglish.kr`; // test
+        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=${this.user.info.id}@` + domain;
+        // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=jessica1126@talkative.onlineenglish.kr`; // test
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
             let json = null;
