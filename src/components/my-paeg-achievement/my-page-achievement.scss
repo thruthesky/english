@@ -11,7 +11,8 @@
 }
 
 .achievement-graph {
-    margin-bottom: 50px;
+    position: relative;
+    margin: 3em 0;
     .graph-line {
         position: relative;
         display: inline-block;
@@ -25,7 +26,7 @@
             display: inline-block;
             white-space: normal;
             background-color: #001296;
-            //border: 2px black solid;
+            border: 1px white solid;
         }
     }
 
@@ -37,6 +38,7 @@
         .info {
             display: inline-block;
             word-wrap: break-word;
+            vertical-align: top;
         }
     }
 }

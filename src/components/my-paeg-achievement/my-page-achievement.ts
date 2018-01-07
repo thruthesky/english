@@ -28,10 +28,11 @@ export class MyPageAchievementComponent {
             let nd = new Date(dt.setDate((dt.getDate() + num )))
             this.data.push({
                 rate_level: Math.ceil(Math.random() * 9),
-                style: this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / this.data.length) + '%'),
-                kdate: (nd.getMonth()+1) + '/' + nd.getDay()
+                kdate: this.m[nd.getMonth()] + '/' + nd.getDay()
             });
         }
+
+        this.pre(this.data);
 
         // end of testing
 
