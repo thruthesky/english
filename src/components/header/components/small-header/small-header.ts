@@ -45,7 +45,7 @@ export class SmallHeaderComponent implements OnInit {
     onClickPanelMenu(name, page = null) {
           this.shared.page = page ? page : 'main';
           this.more = false;
-          this.app.scrollTo(name);
+          setTimeout( () => this.app.scrollTo(name), 0);
     }
     onClickLogin() {
         this.more = false;

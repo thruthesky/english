@@ -1,0 +1,42 @@
+.achievement-line-0 {
+    height: 5px;
+    margin-top: 9 * 30 - 5px;
+}
+
+@for $i from 1 through 9 {
+    .achievement-line-#{$i} {
+        height:($i)*30px;
+        margin-top:(9-$i)*30px;
+    }
+}
+
+.achievement-graph {
+    margin-bottom: 50px;
+    .graph-line {
+        position: relative;
+        display: inline-block;
+        height: 270px;
+        width: 100%;
+        //border: 1px darkgrey solid;
+        white-space: nowrap;
+        font-size: 0;
+
+        .line {
+            display: inline-block;
+            white-space: normal;
+            background-color: #001296;
+            //border: 2px black solid;
+        }
+    }
+
+    .graph-info {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        .info {
+            display: inline-block;
+            word-wrap: break-word;
+        }
+    }
+}

@@ -1,26 +1,14 @@
 <h5>Achievements</h5>
-<div class="row py-3">
-    <div class="col-sm-6">
-        <h5>My Achievements</h5>
-        <ul class="list-style-none">
-            <li>Name: MyName</li>
-            <li>Reserve Session: 17</li>
-            <li>Past Session:31</li>
-            <li>Next Session: 10pm Jan 7 2018</li>
-            <li>Phone Number: 0999877665544</li>
-            <li>Email: MyName@email.com</li>
-        </ul>
+<div class="achievement-graph">
 
+
+    <div class="graph-line">
+        <span *ngFor="let s of data" class="line achievement-line-{{s.rate_level}}" [style]="s.style"></span>
     </div>
-    <div class="col-sm-6">
-        <h5>Others</h5>
-        <ul class="list-style-none">
-            <li>Name: MyName</li>
-            <li>Reserve Session: 17</li>
-            <li>Past Session:31</li>
-            <li>Next Session: 10pm Jan 7 2018</li>
-            <li>Phone Number: 0999877665544</li>
-            <li>Email: MyName@email.com</li>
-        </ul>
+
+    <div class="graph-info">
+        <span  *ngFor="let s of data" class="info" [style]="s.style">{{s.kdate}}</span>
     </div>
+
+
 </div>

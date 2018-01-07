@@ -229,12 +229,30 @@ export class LMS {
                 json = JSON.parse(re['_body']);
             }
             catch (e) {
-                alert("앗! 데이터베이스 서버로 부터 수업 정보를 가져오는데 문제가 발생하였습니다.");
+                alert("Error in retrieving LMS Information.");
                 return;
             }
             if (json['data']) success(json['data']);
-            else failure(' error on getting next class ');
-        }, e => alert("앗!, 수업 정보를 가져오는데 문제가 발생했습니다."));
+            else failure(' Error in retrieving LMS Information.. ');
+        }, e => alert("Error in retrieving LMS Information..."));
+    }
+
+    getLatestPastSession(no = 10,success, failure) {
+        let domain = this.getDomain();
+        let url = LMS_ENDPOINT_URL + `?function=api_latest_past_class&student_id=${this.user.info.id}@` + domain + `&no${no}`;
+        console.log("URL: " , url);
+        this.http.get(url).subscribe(re => {
+            let json = null;
+            try {
+                json = JSON.parse(re['_body']);
+            }
+            catch (e) {
+                alert("Error in retrieving latest past sessions.");
+                return;
+            }
+            if (json['data']) success(json['data']);
+            else failure(' Error in retrieving latest past sessions.. ');
+        }, e => alert(" Error in retrieving latest past sessions... "));
     }
 
 }
