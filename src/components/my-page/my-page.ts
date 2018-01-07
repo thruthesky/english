@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { App } from '../../providers/app';
+
 
 
 @Component({
@@ -8,7 +10,20 @@ import { Component } from '@angular/core';
 })
 export class MyPageComponent {
 
-    option: number = 4;
-    constructor( ) {}
+    option = 1; // by default 1st tab ( MY LMS INFO ) will be shown.
+    constructor(
+        public app: App
+    ) {
+        
+        if ( app.classInfo && app.classInfo.no_of_past ) {
+            if ( parseInt(app.classInfo.no_of_past, 10) < 4 ) {
+                this.option = 4;
+            }
+        }
+
+
+
+
+    }
 
 }
