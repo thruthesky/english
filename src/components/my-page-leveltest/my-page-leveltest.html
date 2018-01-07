@@ -9,6 +9,11 @@
     </div>
     <div class="col-sm-8">
         <h5 class="text-center">My Test Results</h5>
+        <ul class="list-style-none">
+            <li>Class ID: {{data?.idx}}</li>
+            <li>Date: {{data?.kdate}}</li>
+            <li>Begin Hour: {{data?.ktime}} for {{data?.mins}} mins</li>
+        </ul>
         <div class="leveltest-graph mb-3">
             <div class="graph-info mb-2">
                 <span class="info px-3"><i class="fa fa-square purple"></i> Expression: {{data?.rate_expression}}</span>
@@ -25,11 +30,7 @@
                 <span class="line bg-orange leveltest-line-{{data?.rate_pronounciation}}"></span>
             </div>
         </div>
-        <ul class="list-style-none">
-            <li>Class ID: {{data?.idx}}</li>
-            <li>Date: {{data?.kdate}}</li>
-            <li>Begin Hour: {{data?.ktime}} for {{data?.mins}} mins</li>
-        </ul>
+
     </div>
 </div>
 <div class="row px-3">
