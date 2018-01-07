@@ -28,7 +28,7 @@ export class MyPageAchievementComponent {
             let nd = new Date(dt.setDate((dt.getDate() + num )))
             this.data.push({
                 rate_level: Math.ceil(Math.random() * 9),
-                style: this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / this.limit) + '%'),
+                style: this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / this.data.length) + '%'),
                 kdate: (nd.getMonth()+1) + '/' + nd.getDay()
             });
         }
