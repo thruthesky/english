@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {LMS, LMS_URL} from "../../providers/lms";
 import {App} from "../../providers/app";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'my-page-achievement-component',
@@ -10,20 +11,48 @@ import {App} from "../../providers/app";
 export class MyPageAchievementComponent {
 
     data = [];
-    limit = 10
+    limit = 40;
+    m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
     constructor(
         public app: App,
         private lms: LMS,
+        public sanitizer: DomSanitizer
     ) {
+        // for testing only
 
-        this.lms.getLatestPastSession(this.limit, data => {
-            if ( ! data) return alert("No Data Found...");
-            console.log(data);
-            this.data = data;
+        let dt = new Date();
 
-        }, error => {
-            alert("Error on retrieving the Class Sessions" + error);
-        });
+        for (let num = 1; num <= this.limit; num++) {
+            let nd = new Date(dt.setDate((dt.getDate() + num )))
+            this.data.push({
+                rate_level: Math.ceil(Math.random() * 9),
+                style: this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / this.limit) + '%'),
+                kdate: (nd.getMonth()+1) + '/' + nd.getDay()
+            });
+        }
+
+        // end of testing
+
+        // this.lms.getLatestPastSession(this.limit, data => {
+        //     if ( ! data) return alert("No Data Found...");
+        //     console.log(data);
+        //     this.data = data;
+        //     this.pre(data);
+        //
+        // }, error => {
+        //     alert("Error on retrieving the Class Sessions" + error);
+        // });
 
     }
+
+    pre(data) {
+        data.forEach( s => {
+            s['style'] = this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / data.length) + '%');
+        });
+    }
+
+
+
 }

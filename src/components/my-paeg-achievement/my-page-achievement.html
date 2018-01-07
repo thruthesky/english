@@ -1,4 +1,14 @@
 <h5>Achievements</h5>
-<div class="row py-3">
-    <span *ngFor="let s of data" class="bg-whitesmoke a-height-{{s.rate_level}} a-width"  ></span>
+<div class="achievement-graph">
+
+
+    <div class="graph-line">
+        <span *ngFor="let s of data" class="line achievement-line-{{s.rate_level}}" [style]="s.style"></span>
+    </div>
+
+    <div class="graph-info">
+        <span  *ngFor="let s of data" class="info" [style]="s.style">{{s.kdate}}</span>
+    </div>
+
+
 </div>
