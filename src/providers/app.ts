@@ -243,6 +243,7 @@ export class App {
 
     scrollTo(id) {
         //console.log("clicked id: ", id);
+
         let parts = this.getParts();
         if (parts && parts.length) {
             for (let i = 0, len = parts.length; i < len; i++) {
@@ -256,6 +257,8 @@ export class App {
                 }
             }
         }
+        
+        
     }
 
     /**
