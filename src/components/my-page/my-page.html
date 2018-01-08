@@ -1,6 +1,9 @@
 <section id="my-page" class="part">
+        <div class="page-header">
+            <h2 class="text-center py-3 py-md-5">마이페이지</h2>
+        </div>
     <div class="content-wrapper">
-        <h2 class="text-center mb-3">My Page</h2>
+
         <nav class="row mb-3">
             <button class="col-sm-6 col-md-3" [class.bold]=" option == 1 " (click)="option=1">My LMS</button>
             <button class="col-sm-6 col-md-3" [class.bold]=" option == 2 " (click)="option=2">Achievements</button>
@@ -14,4 +17,5 @@
         <my-page-leveltest-component *ngIf="option == 4"></my-page-leveltest-component>
 
     </div>
+
 </section>

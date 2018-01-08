@@ -2,6 +2,7 @@
 export const environment = {
   production: false,
   hmr: true,
+  backendUrl: 'https://www.iamtalkative.com/index.php',
   firebase: {
     apiKey: "AIzaSyBnvok5OR77tFUl1yk0-ZeyeVkYgMWGrcE",
     authDomain: "english-588f2.firebaseapp.com",
