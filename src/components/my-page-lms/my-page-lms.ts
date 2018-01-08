@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LMS, LMS_URL} from '../../providers/lms';
+import { LMS, LMS_URL } from '../../providers/lms';
 import { App } from '../../providers/app';
 
 @Component({
@@ -18,14 +18,18 @@ export class MyPageLMSComponent {
     ) {
 
         this.lms.getLMSInformation(data => {
-            if ( ! data) return alert("LMS Information is empty...");
+            if (!data) return alert("LMS Information is empty...");
             console.log(data);
             this.data = data;
 
             data.latest_comments.forEach((res) => {
-                // console.log(res);
-                if (  res.icon.match(/.\/data/g))  res.icon = res.icon.replace(/.\/data/g,
-                    LMS_URL + '/data');
+
+                let re = res.icon.match(/<img.*?src=['"](.*?)['"]/);
+                if (!re) return;
+                res.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
+
+                let b = <string>res.class_begin;
+                res.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
             });
         }, error => {
             alert("Error on retrieving the LMS Information" + error);

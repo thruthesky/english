@@ -1,0 +1,115 @@
+$red: #F15854;
+$orange: #FAA43A;
+// colors from http://www.mulinblog.com/a-color-palette-optimized-for-data-visualization/
+.wrapper {
+    position: relative;
+}
+
+.chart {
+    background: conic-gradient( $red 40%, $orange 0);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    padding-top: 50%;
+    padding-right: 20px;
+}
+
+.overwrap {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
+
+.lms-left {
+    font-size: 1rem;
+    li {
+        display: flex;
+    }
+    span {
+        display: block;
+        margin-bottom: .5em;
+        margin-right: 1rem;
+        padding: .7em 1em;
+        width: 40%;
+        background-color: #C5CAE9;
+    }
+    i {
+        display: block;
+        margin-bottom: .5em;
+        padding: .7em 1em;
+        width: 60%;
+        background-color: white;
+    }
+}
+
+.lms-desc {
+    margin-bottom: 1.5em;
+    padding: 1em;
+    background-color: #9FA8DA;
+    font-size: 1rem!important;
+}
+
+.lms-right {
+    .photo {
+        width: 100px;
+        img {
+            width: 100%!important;
+            height: auto!important;
+        }
+    }
+    .class-info {
+        text-align: center;
+        font-size: .85rem!important;
+    }
+    .rate-title {
+        margin-left: 16px;
+        margin-right: 8px;
+        padding-top: 3px;
+    }
+    .rate {
+        height: 22px;
+        padding-top: 3px;
+        @media all and ( min-width: 748px) {
+            padding-top: 2px;
+        }
+        padding-left: 16px;
+        border-radius: 3px;
+        color: white;
+        &[rate='1'] {
+            background-color: #607D8B;
+        }
+        &[rate='2'] {
+            background-color: #795548;
+            width: 4em;
+        }
+        &[rate='3'] {
+            background-color: #FF9800;
+            width: 6em;
+        }
+        &[rate='4'] {
+            background-color: #FFC107;
+            width: 8em;
+        }
+        &[rate='5'] {
+            background-color: #8BC34A;
+            width: 10em;
+        }
+        &[rate='6'] {
+            background-color: #03A9F4;
+            width: 12em;
+        }
+        &[rate='7'] {
+            background-color: #673AB7;
+            width: 14em;
+        }
+        &[rate='8'] {
+            background-color: #E91E63;
+            width: 16em;
+        }
+        &[rate='9'] {
+            background-color: #F44336;
+            width: 18em;
+        }
+    }
+}

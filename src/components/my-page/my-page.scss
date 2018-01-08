@@ -1,6 +1,5 @@
 #my-page {
-    background-color: #eee;
-
+    background-color: #f3f3f3;
     .page-header {
         padding: 1em;
         background-color: #3F51B5;
@@ -11,4 +10,19 @@
             font-weight: 100;
         }
     }
+    .tabs {
+        button {
+            border: 0;
+            background-color: #283593;
+            color: white;
+            font-weight: 100;
+            font-size: 1rem!important;
+            &.selected {
+                font-weight: 500;
+                background-color: #1A237E;
+                color: yellow;
+            }
+        }
+    }
 }
+

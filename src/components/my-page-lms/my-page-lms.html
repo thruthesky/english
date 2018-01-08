@@ -1,29 +1,140 @@
+<div class="warpper">
+    <div class="chart"></div>
+    <div class="overwrap">...over...</div>
+</div>
+
 <div class="row py-3">
     <div class="col-sm-6 mb-3">
-        <h5>My LMS Record</h5>
-        <ul class="list-style-none">
-            <li>ID: {{app.user.info.id}}</li>
-            <li>My Member No.: {{data?.mb_id}}</li>
-            <li>Name: {{app.user.info.name}}</li>
-            <li>Reserve Session: {{data?.count_reservation}}</li>
-            <li>Past Session: {{data?.count_past}}</li>
-            <li>Next Session: {{data?.next_class}}</li>
-            <li>My Level: {{ data?.level }}</li>
-            <li>Current Book: {{ data?.book_info }}</li>
-            <li>Phone Number: {{data?.phone_number}}</li>
-            <li>Email: {{data?.email}}</li>
-        </ul>
+        <div class='lms-left'>
+            <div class="lms-desc">
+                <b>{{app.user.info.id}}</b>님의 수업 현황입니다. 간략한 수업 정보와 선생님의 코멘트를 보시 수 있습니다.
+            </div>
+            <ul class="list-style-none">
+                <li>
+                    <span>로그인 아이디</span>
+                    <i>{{app.user.info.id}}</i>
+                </li>
+                <li>
+                    <span>회원 번호</span>
+                    <i>{{data?.mb_id}}</i>
+                </li>
+                <li>
+                    <span>이름</span>
+                    <i>{{app.user.info.name}}</i>
+                </li>
+                <li>
+                    <span>전화번호</span>
+                    <i>{{data?.phone_number}}</i>
+                </li>
+                <li>
+                    <span>이메일</span>
+                    <i>{{data?.email}}</i>
+                </li>
+                <li>
+                    <span>남은 강의</span>
+                    <i>{{data?.count_reservation}}</i>
+                </li>
+                <li>
+                    <span>지난 강의</span>
+                    <i>{{data?.count_past}}</i>
+                </li>
+                <li>
+                    <span>다음 강의</span>
+                    <i>{{data?.next_class}}</i>
+                </li>
+                <li>
+                    <span>레벨</span>
+                    <i>{{ data?.level }}</i>
+                </li>
+                <li>
+                    <span>수업 교재</span>
+                    <i>{{ data?.book_info }}</i>
+                </li>
+            </ul>
+        </div>
 
     </div>
-    <div class="col-sm-6" *ngIf="data && data.latest_comments && data.latest_comments.length">
-        <h5>Teacher Comment</h5>
+    <div class="lms-right col-sm-6" *ngIf="data && data.latest_comments && data.latest_comments.length">
+        <div class="lms-desc">
+            강의 평가
+            <br>
+            <b>{{app.user.info.id}}</b>님의 최근 수업에 대한 코멘트와 강의 평가입니다.
+        </div>
         <ul class="list-style-none">
             <li *ngFor="let comment of data.latest_comments">
-                <div [innerHTML]="comment.icon"></div>
-                <div>Teacher: {{comment.teacher.mb_nick}}</div>
-                <div>Date: {{comment.kdate}} Duration:</div>
-                <div>{{comment.mins}}</div>
-                <div>Class begin: {{comment.class_begin}} ~ Class end: {{comment.class_end}}</div>
+                <table>
+                    <tr valign="top">
+                        <td>
+                            <div class="class-info">
+                                <div class="photo">
+                                    <img src="{{ comment.icon }}">
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="rate-title">표현</div>
+                                    </td>
+                                    <td>
+                                        <div class="rate expression" [attr.rate]="comment.rate_expression">{{ comment.rate_expression }}0점</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rate-title">어휘</div>
+                                    </td>
+                                    <td>
+                                        <div class="rate vocabulary" [attr.rate]="comment.rate_vocabulary">{{ comment.rate_vocabulary }}0점</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rate-title">문법</div>
+                                    </td>
+                                    <td>
+                                        <div class="rate grammar" [attr.rate]="comment.rate_grammar">{{ comment.rate_grammar }}0점</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rate-title">발음</div>
+                                    </td>
+                                    <td>
+                                        <div class="rate pronounciation" [attr.rate]="comment.rate_pronounciation">{{ comment.rate_pronounciation }}0점</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="rate-title">속도</div>
+                                    </td>
+                                    <td>
+                                        <div class="rate speed" [attr.rate]="comment.rate_speed">{{ comment.rate_speed }}0점</div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="text-center">{{comment.teacher.mb_nick}}</div>
+                        </td>
+                        <td>
+                            <div class="text-center">날짜/시간: {{comment.kdate}} {{comment.class_begin}} {{comment.mins}} 분</div>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
+
+
                 <div>Comment: {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
             </li>
         </ul>
