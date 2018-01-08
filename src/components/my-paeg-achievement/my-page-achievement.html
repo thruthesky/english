@@ -1,14 +1,68 @@
-<h5>Achievements</h5>
-<div class="achievement-graph">
+<h3 class="text-center">Achievements</h3>
 
-
-    <div class="graph-line">
-        <span *ngFor="let s of data" class="line achievement-line-{{s.rate_level}}" [style]="s.style"></span>
+<div class="row">
+    <div class="col-12 col-md-6">
+    <div class="pieContainer ">
+        <div class="pieBackground"></div>
+        <div id="pieSlice1" class="hold">
+            <div class="pie bg-blue" style="transform:rotate(90deg)"></div>
+        </div>
+        <div id="pieSlice2" class="hold" style="transform:rotate(90deg)">
+            <div class="pie bg-blue" style="transform:rotate(90deg)"></div>
+        </div>
+        <div class="innerCircle">
+            <div class="content"><span class="fs-25rem">80%</span></div>
+        </div>
+    </div>
     </div>
 
-    <div class="graph-info hidden-sm-down">
-        <span  *ngFor="let s of data" class="info" [style]="s.style">{{s.kdate}}</span>
+    <div class="col-12 col-md-6">
+    <div class="pieContainer">
+        <div class="pieBackground"></div>
+        <div id="pieSlice1" class="hold">
+            <div class="pie bg-blue" style="transform:rotate(10deg)"></div>
+        </div>
+        <div id="pieSlice2" class="hold" style="transform:rotate(9deg)">
+            <div class="pie bg-blue" style="transform:rotate(10deg)"></div>
+        </div>
+        <div class="innerCircle">
+            <div class="content"><span class="fs-25rem">80%</span></div>
+        </div>
+    </div>
     </div>
 
+    <div class="col-12 col-md-6">
+
+    <div class="pieContainer">
+        <div class="pieBackground"></div>
+        <div id="pieSlice1" class="hold">
+            <div class="pie bg-blue" style="transform:rotate(70deg)"></div>
+        </div>
+        <div id="pieSlice2" class="hold" style="transform:rotate(69deg)">
+            <div class="pie bg-blue" style="transform:rotate(70deg)"></div>
+        </div>
+        <div class="innerCircle">
+            <div class="content"><span class="fs-25rem">80%</span></div>
+        </div>
+    </div>
+
+    </div>
+
+    <div class="col-12 col-md-6">
+
+    <div class="pieContainer">
+        <div class="pieBackground"></div>
+        <div id="pieSlice1" class="hold">
+            <div class="pie bg-blue" style="transform:rotate(70deg)"></div>
+        </div>
+        <div id="pieSlice2" class="hold" style="transform:rotate(69deg)">
+            <div class="pie bg-blue" style="transform:rotate(70deg)"></div>
+        </div>
+        <div class="innerCircle">
+            <div class="content"><span class="fs-25rem">80%</span></div>
+        </div>
+    </div>
+
+    </div>
 
 </div>
