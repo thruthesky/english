@@ -59,8 +59,6 @@
                                     </tr>
                             </table>
 
-                            
-                            
                         </td>
                     </tr>
                     <tr>
@@ -69,12 +67,12 @@
                     </tr>
                 </table>
                 
-
-                
-                
-                
-                
-                <div>Comment: {{comment.rate_comment ? comment.rate_comment: "no comment yet"}}</div>
+                <div class="comment">
+                    <div class="p-3 pointer" (click)=" comment['show'] = true " *ngIf="!comment['show']">
+                        코멘트 보기
+                    </div>
+                    <div class="p-3" *ngIf="comment['show']">{{comment.rate_comment ? comment.rate_comment: "코멘트가 없습니다."}}</div>
+                </div>
             </li>
         </ul>
     </div>
