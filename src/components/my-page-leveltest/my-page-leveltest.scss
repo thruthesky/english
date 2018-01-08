@@ -22,7 +22,6 @@
         width: 100%;
         white-space: nowrap;
         font-size: 0;
-        //border: 1px solid grey;
         .line {
             display: inline-block;
             white-space: normal;
@@ -30,7 +29,6 @@
             border: 5px white solid;
             border-bottom: 0;
         }
-
         .line:nth-child(1) {
             border-left: 0;
         }

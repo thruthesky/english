@@ -71,7 +71,7 @@ import { Message } from '../providers/message';
 import { MyPageComponent } from '../components/my-page/my-page';
 import { MyPageLMSComponent } from '../components/my-page-lms/my-page-lms';
 import { MyPageAchievementComponent } from '../components/my-paeg-achievement/my-page-achievement';
-import { MyPageEnglishNewsComponent } from '../components/my-paeg-english-news/my-page-english-news';
+import { EnglishNewsComponent } from '../components/english-news/english-news';
 import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-page-leveltest';
 
 
@@ -117,8 +117,8 @@ const appRoutes:Routes = [
     MyPageComponent,
     MyPageLMSComponent,
     MyPageAchievementComponent,
-    MyPageEnglishNewsComponent,
-    MyPageLeveltestComponent
+    MyPageLeveltestComponent,
+    EnglishNewsComponent,
   ],
   imports: [
     BrowserModule,

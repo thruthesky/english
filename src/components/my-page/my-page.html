@@ -5,16 +5,14 @@
     <div class="content-wrapper">
 
         <nav class="row mb-3">
-            <button class="col-sm-6 col-md-3" [class.bold]=" option == 1 " (click)="option=1">My LMS</button>
-            <button class="col-sm-6 col-md-3" [class.bold]=" option == 2 " (click)="option=2">Achievements</button>
-            <button class="col-sm-6 col-md-3" [class.bold]=" option == 3 " (click)="option=3">English News</button>
-            <button class="col-sm-6 col-md-3" [class.bold]=" option == 4 " (click)="option=4">Level Test Result</button>
+            <button class="col-sm-6 col-md-4" [class.bold]=" option == 1 " (click)="option=1">My LMS</button>
+            <button class="col-sm-6 col-md-4" [class.bold]=" option == 2 " (click)="option=2">Achievements</button>
+            <button class="col-sm-6 col-md-4" [class.bold]=" option == 3 " (click)="option=3">Level Test Result</button>
         </nav>
 
         <my-page-lms-component *ngIf="option == 1"></my-page-lms-component>
         <my-page-achievement-component *ngIf="option == 2"></my-page-achievement-component>
-        <my-page-english-news-component *ngIf="option == 3"></my-page-english-news-component>
-        <my-page-leveltest-component *ngIf="option == 4"></my-page-leveltest-component>
+        <my-page-leveltest-component *ngIf="option == 3"></my-page-leveltest-component>
 
     </div>
 

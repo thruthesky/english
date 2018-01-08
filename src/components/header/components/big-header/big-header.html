@@ -74,7 +74,7 @@
                 <div class="text">로그인</div>
               </button>
 
-              <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('intro', 'my-page'); p.close()">
+              <button class="btn" *ngIf=" user.logged " (click)="onClickPanelMenu('my-page', 'my-page'); p.close()">
                 <div class="text">My Page</div>
               </button>
 
@@ -103,8 +103,12 @@
                 </button>
               </a>
 
-              <button type="button" class="btn" (click)="onClickPanelMenu('intro', 'saeha'); p.close()">
+              <button type="button" class="btn" (click)="onClickPanelMenu('saeha', 'saeha'); p.close()">
                 <div class="text">강의실설치</div>
+              </button>
+
+              <button type="button" class="btn" (click)="onClickPanelMenu('english-news', 'english-news'); p.close()">
+                <div class="text">English News</div>
               </button>
 
               <button class="profile btn" *ngIf=" user.logged " (click)="onClickUpdateProfile(); p.close()">

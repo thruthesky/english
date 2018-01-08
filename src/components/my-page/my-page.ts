@@ -14,10 +14,10 @@ export class MyPageComponent {
     constructor(
         public app: App
     ) {
-        
+
         if ( app.classInfo && app.classInfo.no_of_past ) {
             if ( parseInt(app.classInfo.no_of_past, 10) < 4 ) {
-                this.option = 4;
+                this.option = 3;
             }
         }
 
