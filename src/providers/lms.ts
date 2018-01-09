@@ -261,7 +261,9 @@ export class LMS {
     getFirstClass(success, failure) {
         let domain = this.getDomain();
         // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=${this.user.info.id}@` + domain;
-        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=ymac99@talkative.onlineenglish.kr`; // test
+        // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=ymac99@talkative.onlineenglish.kr`; // test
+        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=coin47@talkative.onlineenglish.kr`; // test
+        
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
             let json = null;
