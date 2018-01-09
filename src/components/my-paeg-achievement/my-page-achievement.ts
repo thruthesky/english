@@ -10,20 +10,31 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MyPageAchievementComponent {
 
-    data = [];
-    limit = 40;
-    m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
+    data: {
+        max_score?: number;
+        no_of_classes?: number;
+        no_of_failure?: number;
+        no_of_success?: number;
+        rates?: {
+            expression?: number;
+            grammar?: number;
+            pronounciation?: number;
+            speed?: number;
+            vocabulary?: number;
+        }
+    } = {};
+    limit = 50;
+    no_of_points = 0;
+    no_of_max_points = 0;
+    performance_percentage = 0;
+    average_level = '';
 
+    expression_percentage = 0;
+    grammar_percentage = 0;
+    pronounciation_percentage = 0;
+    speed_percentage = 0;
+    vocabulary_percentage = 0;
 
-    expression = 0;
-    vocabulary = 0;
-    grammar = 0;
-    pronounciation = 0;
-
-    success_sessions = 0;
-    failed_sessions = 0;
 
     constructor(
         public app: App,
@@ -49,7 +60,26 @@ export class MyPageAchievementComponent {
             if ( ! data) return alert("No Data Found...");
             console.log(data);
             this.data = data;
-            this.pre(data);
+            const rate = data['rates'];
+            this.no_of_max_points = data['no_of_success'] * 9;
+            this.no_of_points = rate['expression'] +  rate['grammar'] + rate['speed'] + rate['vocabulary'] + rate['pronounciation'];
+
+            this.expression_percentage = Math.floor(rate['expression'] * 100 / (data['no_of_success'] * 9));
+            this.grammar_percentage = Math.floor(rate['grammar'] * 100 / (data['no_of_success'] * 9));
+            this.pronounciation_percentage = Math.floor(rate['pronounciation'] * 100 / (data['no_of_success'] * 9));
+            this.speed_percentage = Math.floor(rate['speed'] * 100 / (data['no_of_success'] * 9));
+            this.vocabulary_percentage = Math.floor(rate['vocabulary'] * 100 / (data['no_of_success'] * 9));
+
+
+            this.performance_percentage = Math.floor(this.no_of_points * 100 / data['max_score']);
+            const level = parseInt(this.performance_percentage.toString()[0], 10);
+            if ( level === 9 ) {
+                this.average_level = '8-9';
+            } else if ( level === 0) {
+                this.average_level = '1';
+            } else {
+                this.average_level = `${level}-${level + 1}`;
+            }
 
         }, error => {
             alert("Error on retrieving the Class Sessions" + error);
@@ -57,26 +87,6 @@ export class MyPageAchievementComponent {
 
     }
 
-    pre(data) {
-        data.forEach( s => {
-            if ( s['absent_student'] || s['absent_student'] ) {
-                this.failed_sessions ++;
-            } else if ( s['rate_level'] > 0 ) {
-                this.success_sessions ++;
-                this.expression += s['rate_expression'];
-                this.vocabulary += s['rate_vocabulary'];
-                this.grammar += s['rate_grammar'];
-                this.pronounciation += s['rate_pronounciation'];
-            }
-        });
-
-        console.log("success_sessions", this.success_sessions);
-        console.log("failed_sessions", this.failed_sessions);
-        console.log("expression", this.expression);
-        console.log("vocabulary", this.vocabulary);
-        console.log("grammar", this.grammar);
-        console.log("pronounciation", this.pronounciation);
-    }
 
 
 
