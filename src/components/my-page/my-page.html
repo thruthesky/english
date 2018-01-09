@@ -1,15 +1,27 @@
 <section id="my-page" class="part">
-        <div class="page-header">
-            <h2 class="text-center py-3 py-md-5">마이페이지</h2>
-        </div>
-    <div class="content-wrapper">
+    <div class="page-header">
+        <h2 class="text-center py-3 py-md-5">마이페이지</h2>
+        @todo: 학업성취도에서 마지막 수업 50개 가져 올 때, 데이터 압축할 것. 수업 번호, 날짜 등도 필요없다.
+        e, v, p, s, g 등으로 1글자로 키를 정하고 숫자로 값만 가져온다. 이렇게 하면 50개라도 양이 많지 않다.
+        <br>
+        에러처리를 확실히 할 것.
+    </div>
 
-        <nav class="tabs row mb-3">
-            <div class="col-4 px-1"><button class="w-100 p-3" [class.selected]=" option == 1 " (click)="option=1">학업 성취도</button></div>
-            <div class="col-4 pl-3"><button class="w-100 p-3" [class.selected]=" option == 2 " (click)="option=2">수업 정보</button></div>
-            <div class="col-4 pr-3"><button class="w-100 p-3" [class.selected]=" option == 3 " (click)="option=3">레벨테스트</button></div>
+    
+
+    <nav class="tabs row mt-sm-3 mb-3">
+            <div class="col-4 p-0 pl-sm-3 pl-xl-0">
+                <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 1 " (click)="option=1">학업성취도</button>
+            </div>
+            <div class="col-4 p-0 px-sm-1">
+                <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 2 " (click)="option=2">수업정보</button>
+            </div>
+            <div class="col-4 p-0 pr-sm-3 pr-xl-0">
+                <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 3 " (click)="option=3">레벨테스트</button>
+            </div>
         </nav>
 
+    <div class="content-wrapper">
         <my-page-achievement-component *ngIf="option == 1"></my-page-achievement-component>
         <my-page-lms-component *ngIf="option == 2"></my-page-lms-component>
         <my-page-leveltest-component *ngIf="option == 3"></my-page-leveltest-component>
