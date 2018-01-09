@@ -15,6 +15,16 @@ export class MyPageAchievementComponent {
     m = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
+
+
+    expression = 0;
+    vocabulary = 0;
+    grammar = 0;
+    pronounciation = 0;
+
+    success_sessions = 0;
+    failed_sessions = 0;
+
     constructor(
         public app: App,
         private lms: LMS,
@@ -49,8 +59,23 @@ export class MyPageAchievementComponent {
 
     pre(data) {
         data.forEach( s => {
-            s['style'] = this.sanitizer.bypassSecurityTrustStyle('width: ' + (100 / data.length) + '%');
+            if ( s['absent_student'] || s['absent_student'] ) {
+                this.failed_sessions ++;
+            } else if ( s['rate_level'] > 0 ) {
+                this.success_sessions ++;
+                this.expression += s['rate_expression'];
+                this.vocabulary += s['rate_vocabulary'];
+                this.grammar += s['rate_grammar'];
+                this.pronounciation += s['rate_pronounciation'];
+            }
         });
+
+        console.log("success_sessions", this.success_sessions);
+        console.log("failed_sessions", this.failed_sessions);
+        console.log("expression", this.expression);
+        console.log("vocabulary", this.vocabulary);
+        console.log("grammar", this.grammar);
+        console.log("pronounciation", this.pronounciation);
     }
 
 

@@ -1,61 +1,116 @@
-.pieContainer {
-    height: 150px;
-    margin-left: 30px;
-    position: relative;
+.achievement {
+
+    background-color: black;
+    color: white;
+    .header {
+        padding: 1em 0;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .summary {
+        .icon {
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+        .title {
+            margin-left: 50px;
+        }
+    }
+
+
+
 }
 
-.pieBackground {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .pie {
-    transition: all 1s;
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    clip: rect(0, 75px, 150px, 0px);
-}
+    border: 1px solid darkgrey;
 
-.hold {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    clip: rect(0, 150px, 150px, 75px);
-}
+    .pieContainer {
+        position: relative;
+        display: inline-block;
+        float: left;
+        width: 150px;
+        height: 150px;
+    }
 
-.innerCircle {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background-color: #ffffff;
-    border-radius: 60px;
-    top: 15px;
-    left: 15px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5) inset;
-    color: #000000;
-}
-.innerCircle .content {
-    position: absolute;
-    display: block;
-    width: 120px;
-    top: 30px;
-    left: 0;
-    text-align: center;
-    font-size: 14px;
-}
+    .pieBackground {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    }
 
-h1 {
-    font-size: 20px;
-    margin-left: 30px;
-    padding-left: 20px;
-    color: white;
-    margin-bottom: 20px;
-    border-bottom: 4px solid #fff;
-    width: 130px;
+    .pie {
+        transition: all 1s;
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+        clip: rect(0, 75px, 150px, 0px);
+    }
+
+    .hold {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        border-radius: 75px;
+        clip: rect(0, 150px, 150px, 75px);
+    }
+
+    .innerCircle {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background-color: #ffffff;
+        border-radius: 60px;
+        top: 15px;
+        left: 15px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) inset;
+        color: #000000;
+    }
+    .innerCircle .content {
+        position: absolute;
+        display: block;
+        width: 120px;
+        top: 30px;
+        left: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .pieInformation {
+        height: 150px;
+        margin-left: 150px;
+        text-align: center;
+        .pieTop, .pieBottom {
+            border: 1px solid darkgrey;
+            height: 75px;
+        }
+    }
 }
