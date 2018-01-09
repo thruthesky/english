@@ -28,6 +28,10 @@ export class MyPageLeveltestComponent {
             let re = data.icon.match(/<img.*?src=['"](.*?)['"]/);
             if(!re) return;
             data.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
+
+            let b = <string>data.class_begin;
+            data.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
+
         }, error => {
             alert("Error on retrieving the LMS Information" + error);
         });

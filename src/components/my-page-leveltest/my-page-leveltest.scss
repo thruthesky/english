@@ -3,6 +3,11 @@
     margin-top: 9 * 10 - 5px;
 }
 
+.photo img {
+    width: 140px;
+    height: auto;
+}
+
 @for $i from 1 through 9 {
     .leveltest-line-#{$i} {
         height:($i)*20px;
@@ -29,19 +34,18 @@
             border: 5px white solid;
             border-bottom: 0;
         }
-        .line:nth-child(1) {
-            border-left: 0;
-        }
-        .line:nth-child(5) {
-            border-right: 0;
-        }
+        // .line:nth-child(1) {
+        //     border-left: 0;
+        // }
+        // .line:nth-child(5) {
+        //     border-right: 0;
+        // }
     }
 
     .graph-info {
         position: relative;
         display: inline-block;
         width: 100%;
-        text-align: center;
         .info {
             display: inline-block;
             word-wrap: break-word;
