@@ -25,11 +25,11 @@ export class MyPageLeveltestComponent {
             if ( data ) {
                 if (data['first_class']) {
                     this.first_class = data['first_class'];
-                    this.pre(this.first_class);
+                    this.pre(data['first_class']);
                 }
                 if (data['last_class']) {
                     this.last_class = data['last_class'];
-                    this.pre(this.last_class);
+                    this.pre(data['last_class']);
                 }
             } else {
                 alert("No past class yet...");
@@ -57,10 +57,6 @@ export class MyPageLeveltestComponent {
 
     pre(session) {
         if (!session.icon) { return; }
-        if (  session.icon.match(/.\/data/g) ) {
-            session.icon = session.icon.replace(/.\/data/g, LMS_URL + '/data');
-        }
-
         const re = session.icon.match(/<img.*?src=['"](.*?)['"]/);
         if (!re) { return; }
         session.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
