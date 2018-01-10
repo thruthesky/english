@@ -17,7 +17,7 @@ export class MyPageLeveltestComponent {
         private lms: LMS,
     ) {
 
-        this.lms.getFirstClass(data => {
+        this.lms.getFirstAndLastClasses(data => {
             if ( ! data) return alert("LMS Information is empty...");
             console.log(data);
             this.data = data;

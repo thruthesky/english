@@ -258,11 +258,11 @@ export class LMS {
     }
 
 
-    getFirstClass(success, failure) {
+    getFirstAndLastClasses(success, failure) {
         let domain = this.getDomain();
         // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=${this.user.info.id}@` + domain;
         // let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=ymac99@talkative.onlineenglish.kr`; // test
-        let url = LMS_ENDPOINT_URL + `?function=api_first_class&student_id=coin47@talkative.onlineenglish.kr`; // test
+        let url = LMS_ENDPOINT_URL + `?function=api_first_and_last_classes&student_id=coin47@talkative.onlineenglish.kr`; // test
         
         console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
