@@ -17,12 +17,25 @@
                         {{ app.config.company_name_en }} 일대일 맞춤 화상영어 수업을 통해 학생이 부족한 부분을 집중적으로 관리하여 듣고 말하기를 완벽하게 해 드립니다.
                     </div>
                 </div>
+                
 
-                <div class="button">
-                    <button (click)="app.scrollTo('level-test')" type="button" class="hidden-md-up pointer">무료수업 신청</button>
-                    <button (click)="app.scrollTo('level-test')" type="button" class="hidden-sm-down pointer">{{ app.config.company_name }} 무료수업 신청하기</button>
-                </div>
+            <div class="button alert-few-classes-left" *ngIf=" ( app.share.class_info && app.share.class_info['no_of_past'] && app.share.class_info['no_of_past'] >= 7 && app.share.class_info['no_of_reservation'] <= 3) ; else freeClass ">
+                <button>앗, 예약된 수업이 {{ app.classInfo.no_of_reservation }} 회 밖에 남지 않았습니다. 수업 연장을 해 주세요.</button>
             </div>
+
+            <ng-template #freeClass>
+                    <div class="button">
+                            <button (click)="app.scrollTo('level-test')" type="button" class="hidden-md-up pointer">무료수업 신청</button>
+                            <button (click)="app.scrollTo('level-test')" type="button" class="hidden-sm-down pointer">{{ app.config.company_name }} 무료수업 신청하기</button>
+                        </div>
+            </ng-template>
+
+
+                
+
+            </div>
+
+
 
         </div>
 
@@ -63,10 +76,8 @@
                 <div class="desc">학생 위주의 수업. 부족한 부분을 집중 관리.</div>
             </div>
         </div>
+
         <level-test-button></level-test-button>
 
-        <div class="alert-few-classes-left" *ngIf=" alertFewClassesLeft ">
-            You have only {{ app.classInfo.no_of_past }} classes left. please extend your reservatios.
-        </div>
     </div>
 </section>

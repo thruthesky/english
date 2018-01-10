@@ -121,8 +121,10 @@ export class LMS {
             let m = parseInt(data['m']) < 10 ? '0' + data['m'] : data['m'];
             let domain = this.getDomain();
             data['classid'] = this.share.defaultClassId;
+            
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-            //console.log("kajskasd",url);
+            
+            // console.log("TEST URL:",url);
             this.http.get(url).subscribe(re => {
                 let json = null;
                 try {
