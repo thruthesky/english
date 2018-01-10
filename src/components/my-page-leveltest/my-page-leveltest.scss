@@ -10,36 +10,71 @@
 
 @for $i from 1 through 9 {
     .leveltest-line-#{$i} {
-        height:($i)*20px;
-        margin-top:(9-$i)*20px;
-        width: 20%;
+        height: ($i)*20px;
+        margin-top: (9-$i)*20px;
+        width: 10%;
         border: 1px white solid;
     }
 }
 
+.leveltest-rank {
+    position: relative;
+    top: -180px;
+    left: 2px;
+    width: 100%;
+    height: 180px;
+    z-index: 1;
+    margin-bottom: -180px;
+    font-size: 14px;
+    div {
+        position: relative;
+        border-bottom: 1px dotted #C4C4C4;
+        height: 20px;
+        line-height: 16px;
+        font-size: .7em;
+        p {
+            position: absolute;
+            left: -14px;
+            top: -14px;
+            margin: 0 0 0 0.5em;
+        }
+    }
+}
 
 .leveltest-graph {
     position: relative;
+    background: transparent;
+    font-size: 0;
+    //z-index: 10;
     .graph-line {
         position: relative;
         display: inline-block;
         height: 180px;
         width: 100%;
         white-space: nowrap;
-        font-size: 0;
-        .line {
+
+        .graph-col {
             display: inline-block;
-            white-space: normal;
-            background-color: #001296;
-            border: 5px white solid;
-            border-bottom: 0;
+            width: 20%;
+
+            .line, .line2 {
+                display: inline-block;
+                white-space: normal;
+                background-color: #001296;
+                border: 2px white solid;
+                border-bottom: 0;
+                border-top: 0;
+            }
+
+            .line {
+                //border-right: 0;
+            }
+
+            .line2 {
+                //border-left: 0;
+            }
         }
-        // .line:nth-child(1) {
-        //     border-left: 0;
-        // }
-        // .line:nth-child(5) {
-        //     border-right: 0;
-        // }
+
     }
 
     .graph-info {
@@ -52,4 +87,82 @@
             vertical-align: top;
         }
     }
+}
+
+
+
+
+#q-graph tr, #q-graph th, #q-graph td {
+    position: absolute;
+    bottom: 0;
+    width: 150px;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#q-graph td {
+    transition: all .3s ease;
+
+    &:hover {
+        background-color: desaturate(#85144b, 100);
+        opacity: .9;
+        color: white;
+    }
+}
+
+#q-graph thead tr {
+    left: 100%;
+    top: 50%;
+    bottom: auto;
+    margin: -2.5em 0 0 5em;}
+#q-graph thead th {
+    width: 7.5em;
+    height: auto;
+    padding: 0.5em 1em;
+}
+#q-graph thead th.sent {
+    top: 0;
+    left: 0;
+    line-height: 2;
+}
+#q-graph thead th.paid {
+    top: 2.75em;
+    line-height: 2;
+    left: 0;
+}
+
+#q-graph tbody tr {
+    height: 296px;
+    padding-top: 2px;
+    border-right: 1px dotted #C4C4C4;
+    color: #AAA;
+}
+#q-graph #q1 {
+    left: 0;
+}
+#q-graph #q2 {left: 150px;}
+#q-graph #q3 {left: 300px;}
+#q-graph #q4 {left: 450px; border-right: none;}
+#q-graph tbody th {bottom: -1.75em; vertical-align: top;
+    font-weight: normal; color: #333;}
+#q-graph .bar {
+    width: 60px;
+    border: 1px solid;
+    border-bottom: none;
+    color: #000;
+}
+#q-graph .bar p {
+    margin: 5px 0 0;
+    padding: 0;
+    opacity: .4;
+}
+#q-graph .first {
+    left: 13px;
+    border-color: transparent;
+}
+#q-graph .last {
+    left: 77px;
+    border-color: transparent;
 }

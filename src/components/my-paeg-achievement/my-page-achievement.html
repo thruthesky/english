@@ -1,23 +1,22 @@
 <div class="achievement no-gutters">
-    <h3 class="header text-center">Achievements</h3>
     <div class="summary row no-gutters mb-3">
         <div class="col-12 col-sm-4 px-1 mb-2">
             <div class="p-3" style="background-color: #4a8cef">
-                <div class="icon"><i class="fa fa-area-chart fs-3rem"></i></div>
+                <div class="icon"><i class="fa fa-area-chart fs-3rem white"></i></div>
                 <div class="title pl-2">Earn Score</div>
                 <div class="title pl-2">{{no_of_points}}/{{data['max_score']}}</div>
             </div>
         </div>
         <div class="col-12 col-sm-4 px-1 mb-2">
             <div class="p-3" style="background-color: #58b854">
-                <div class="icon"><i class="fa fa-bar-chart fs-3rem"></i></div>
+                <div class="icon"><i class="fa fa-bar-chart fs-3rem white"></i></div>
                 <div class="title pl-2">Performance</div>
                 <div class="title pl-2">{{performance_percentage}}%</div>
             </div>
         </div>
         <div class="col-12 col-sm-4 px-1 mb-2">
             <div class="p-3" style="background-color: #f5ac40">
-                <div class="icon"><i class="fa fa-line-chart fs-3rem"></i></div>
+                <div class="icon"><i class="fa fa-line-chart fs-3rem white"></i></div>
                 <div class="title pl-2">Level</div>
                 <div class="title pl-2">{{average_level}}</div>
             </div>
@@ -31,10 +30,10 @@
                 <div class="pieContainer">
                     <div class="pieBackground"></div>
                     <div class="hold">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
+                        <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
                     </div>
                     <div class="hold" [ngStyle]="{'transform': 'rotate(' + (expression_percentage - 1) + 'deg)' }">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
+                        <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
                     </div>
                     <div class="innerCircle">
                         <div class="content"><span class="fs-25rem">{{expression_percentage}}%</span></div>
@@ -59,10 +58,10 @@
                 <div class="pieContainer">
                     <div class="pieBackground"></div>
                     <div class="hold">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
+                        <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
                     </div>
                     <div class="hold" [ngStyle]="{'transform': 'rotate(' + (grammar_percentage - 1) + 'deg)' }">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
+                        <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
                     </div>
                     <div class="innerCircle">
                         <div class="content"><span class="fs-25rem">{{grammar_percentage}}%</span></div>
@@ -115,10 +114,10 @@
                 <div class="pieContainer">
                     <div class="pieBackground"></div>
                     <div class="hold">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
+                        <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
                     </div>
                     <div class="hold" [ngStyle]="{'transform': 'rotate(' + (vocabulary_percentage - 1) + 'deg)' }">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
+                        <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
                     </div>
                     <div class="innerCircle">
                         <div class="content"><span class="fs-25rem">{{vocabulary_percentage}}%</span></div>
@@ -137,16 +136,16 @@
             </div>
         </div>
         <div class="col-12 col-md-6 mb-3">
-            <div class="title pl-3 fs-150 text-center">Speed</div>
+            <div class="title pl-3 fs-150 text-center">Speaking Speed</div>
 
             <div class="pie m-2">
                 <div class="pieContainer">
                     <div class="pieBackground"></div>
                     <div class="hold">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
+                        <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
                     </div>
                     <div class="hold" [ngStyle]="{'transform': 'rotate(' + (speed_percentage - 1) + 'deg)' }">
-                        <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
+                        <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
                     </div>
                     <div class="innerCircle">
                         <div class="content"><span class="fs-25rem">{{speed_percentage}}%</span></div>

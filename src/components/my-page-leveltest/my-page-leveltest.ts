@@ -11,6 +11,8 @@ export class MyPageLeveltestComponent {
 
 
     data = {};
+    first_class = {};
+    last_class = {};
 
     constructor(
         public app: App,
@@ -20,22 +22,51 @@ export class MyPageLeveltestComponent {
         this.lms.getFirstAndLastClasses(data => {
             if ( ! data) return alert("LMS Information is empty...");
             console.log(data);
-            this.data = data;
+            if ( data ) {
+                if (data['first_class']) {
+                    this.first_class = data['first_class'];
+                    this.pre(this.first_class);
+                }
+                if (data['last_class']) {
+                    this.last_class = data['last_class'];
+                    this.pre(this.last_class);
+                }
+            } else {
+                alert("No past class yet...");
+            }
+
+            console.log("first_class", this.first_class);
+            console.log("last_class", this.last_class);
                 // if (  data.icon.match(/.\/data/g) )
                 //     data.icon = data.icon.replace(/.\/data/g, LMS_URL + '/data');
 
 
-            let re = data.icon.match(/<img.*?src=['"](.*?)['"]/);
-            if(!re) return;
-            data.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
-
-            let b = <string>data.class_begin;
-            data.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
+            // let re = data.icon.match(/<img.*?src=['"](.*?)['"]/);
+            // if(!re) return;
+            // data.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
+            //
+            // let b = <string>data.class_begin;
+            // data.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
 
         }, error => {
             alert("Error on retrieving the LMS Information" + error);
         });
 
+    }
+
+
+    pre(session) {
+        if (!session.icon) { return; }
+        if (  session.icon.match(/.\/data/g) ) {
+            session.icon = session.icon.replace(/.\/data/g, LMS_URL + '/data');
+        }
+
+        const re = session.icon.match(/<img.*?src=['"](.*?)['"]/);
+        if (!re) { return; }
+        session.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
+
+        const b = <string>session.class_begin;
+        session.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
     }
 
 }
