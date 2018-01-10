@@ -64,5 +64,9 @@
             </div>
         </div>
         <level-test-button></level-test-button>
+
+        <div class="alert-few-classes-left" *ngIf=" alertFewClassesLeft ">
+            You have only {{ app.classInfo.no_of_past }} classes left. please extend your reservatios.
+        </div>
     </div>
 </section>
