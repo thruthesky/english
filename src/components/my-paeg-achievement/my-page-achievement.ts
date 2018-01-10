@@ -24,16 +24,16 @@ export class MyPageAchievementComponent {
         }
     } = {};
     limit = 50;
-    no_of_points = 0;
-    no_of_max_points = 0;
-    performance_percentage = 0;
+    no_of_points = 1;
+    no_of_max_points = 1;
+    performance_percentage = 1;
     average_level = '';
 
-    expression_percentage = 0;
-    grammar_percentage = 0;
-    pronounciation_percentage = 0;
-    speed_percentage = 0;
-    vocabulary_percentage = 0;
+    expression_percentage = 1;
+    grammar_percentage = 1;
+    pronounciation_percentage = 1;
+    speed_percentage = 1;
+    vocabulary_percentage = 1;
 
 
     constructor(
