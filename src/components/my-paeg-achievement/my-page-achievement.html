@@ -1,4 +1,15 @@
 <div class="achievement no-gutters">
+
+    <div class="information row no-gutters mb-3">
+        <ul class="list-style-none">
+            <li><span>Base on # of Classes</span><i>{{data.no_of_classes}}</i></li>
+            <li><span>No of Successful Session</span><i>{{data.no_of_success}} ({{ data.no_of_success * 100 / data.no_of_classes | number: "1.0"}}%)</i></li>
+            <li><span>No of Failed Session</span><i>{{data.no_of_failure}} ({{ data.no_of_failure * 100 / data.no_of_classes | number: "1.0"}}%)</i></li>
+            <li><span>No of Earn Score</span><i>{{no_of_points}}  ({{ no_of_points * 100 / no_of_max_points | number: "1.2-2"}}%)</i></li>
+            <li><span>No of Max Score</span><i>{{no_of_max_points}}</i></li>
+
+        </ul>
+    </div>
     <div class="summary row no-gutters mb-3">
         <div class="col-12 col-sm-4 px-1 mb-2">
             <div class="p-3" style="background-color: #4a8cef">
@@ -21,7 +32,6 @@
                 <div class="title pl-2">{{average_level}}</div>
             </div>
         </div>
-
     </div>
     <div class="pieGroup row no-gutter">
         <div class="col-12 col-md-6 mb-3">

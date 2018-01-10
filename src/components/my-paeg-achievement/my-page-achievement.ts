@@ -61,7 +61,7 @@ export class MyPageAchievementComponent {
             console.log(data);
             this.data = data;
             const rate = data['rates'];
-            this.no_of_max_points = data['no_of_success'] * 9;
+            this.no_of_max_points = data['max_score'];
             this.no_of_points = rate['expression'] +  rate['grammar'] + rate['speed'] + rate['vocabulary'] + rate['pronounciation'];
 
             this.expression_percentage = Math.floor(rate['expression'] * 100 / (data['no_of_success'] * 9));

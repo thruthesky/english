@@ -13,7 +13,6 @@
         height: ($i)*20px;
         margin-top: (9-$i)*20px;
         width: 45%;
-        border: 1px white solid;
     }
 }
 
@@ -35,7 +34,7 @@
         p {
             position: absolute;
             left: -14px;
-            top: -14px;
+            top: -7px;
             margin: 0 0 0 0.5em;
         }
     }
@@ -54,20 +53,42 @@
         white-space: nowrap;
 
         .graph-col {
+            position: relative;
             display: inline-block;
             border-right: 1px dotted #C4C4C4;
             width: 20%;
             &:last-child {
                 border-right: none;
             }
+            &:first-child {
+                border-left: 1px dotted #C4C4C4;
+            }
+            .caption {
+                position: absolute;
+                bottom: -20px;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+            }
+
+            .line {
+                margin-left: 5%;
+            }
+
             .line, .line2 {
+                position: relative;
                 display: inline-block;
                 white-space: normal;
-                background-color: #001296;
-                border: 2px white solid;
-                border-bottom: 0;
-                border-top: 0;
+                p {
+                    position: absolute;
+                    width: 100%;
+                    color: #fff;
+                    font-size: 10px;
+                    text-align: center;
+                }
             }
+
+
         }
 
     }
