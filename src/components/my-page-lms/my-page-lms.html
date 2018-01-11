@@ -1,7 +1,19 @@
+<div class="header text">
+        <i class="fa fa-flag"></i>
+        <b>{{app.user.info.id}}</b>님의 수업 정보입니다.
+    </div>
 
+
+    <div class="p-5 bg-white" *ngIf=" loading ">
+        <i class="fa fa-spinner fa-spin"></i> 수업 정보를 로드중입니다. 잠시만 기다려주세요.
+    </div>
+<div class="error p-5 bg-white red" [innerHTML]="error" *ngIf="!loading && error"></div>
+
+<ng-container *ngIf=" !loading && !error ">
+    
 <div class="row py-3">
     <div class="col-sm-6 mb-3">
-        <div class='lms-left'>
+        <div class='lms-left text'>
             <div class="lms-desc">
                     <b>{{app.user.info.id}}</b>님의 수업 현황입니다. 간략한 수업 정보와 선생님의 코멘트를 보시 수 있습니다.
             </div>
@@ -21,7 +33,7 @@
 
     </div>
     <div class="lms-right col-sm-6" *ngIf="data && data.latest_comments && data.latest_comments.length">
-            <div class="lms-desc">
+            <div class="lms-desc text">
                 강의 평가<br>
                 <b>{{app.user.info.id}}</b>님의 최근 수업에 대한 코멘트와 강의 평가입니다.
             </div>
@@ -62,14 +74,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><div class="text-center">{{comment.teacher.mb_nick}}</div></td>
-                        <td><div class="text-center">날짜/시간: {{comment.kdate}} {{comment.class_begin}} {{comment.mins}} 분</div></td>
+                        <td><div class="text-center my-2">{{comment.teacher.mb_nick}}</div></td>
+                        <td><div class="text-center my-2">날짜/시간: {{ shortDate(comment.kdate) }} {{comment.class_begin}} {{comment.mins}} 분</div></td>
                     </tr>
                 </table>
                 
-                <div class="comment">
+                <div class="comment text mb-5">
                     <div class="p-3 pointer" (click)=" comment['show'] = true " *ngIf="!comment['show']">
-                        코멘트 보기
+                        <i class="fa fa-comments"></i> 코멘트 보기<i class="fa fa-ellipsis-h"></i>
                     </div>
                     <div class="p-3" *ngIf="comment['show']">{{comment.rate_comment ? comment.rate_comment: "코멘트가 없습니다."}}</div>
                 </div>
@@ -77,3 +89,6 @@
         </ul>
     </div>
 </div>
+
+
+</ng-container>

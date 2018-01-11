@@ -1,4 +1,11 @@
+.text {
+    font-weight: 100!important;
+}
 
+.error {
+    font-size: 1.5em;
+    font-weight: 100;
+}
 .lms-left {
     font-size: 1rem;
     li {
@@ -24,7 +31,8 @@
 .lms-desc {
     margin-bottom: 1.5em;
     padding: 1em;
-    background-color: #9FA8DA;
+    background-color: rgb(143, 153, 211);
+    color: white;
     font-size: 1rem!important;
 }
 
@@ -58,13 +66,13 @@
         color: white;
         &[rate='1'] { background-color: #607D8B;}
         &[rate='2'] { background-color: #795548; width: 4em;}
-        &[rate='3'] { background-color: #FF9800; width: 6em;}
-        &[rate='4'] { background-color: #FFC107; width: 8em;}
-        &[rate='5'] { background-color: #8BC34A; width: 10em;}
-        &[rate='6'] { background-color: #03A9F4; width: 12em;}
-        &[rate='7'] { background-color: #673AB7; width: 14em;}
-        &[rate='8'] { background-color: #E91E63; width: 16em;}
-        &[rate='9'] { background-color: #F44336; width: 18em;}
+        &[rate='3'] { background-color: #FF9800; width: 5.5em;}
+        &[rate='4'] { background-color: #FFC107; width: 7em;}
+        &[rate='5'] { background-color: #8BC34A; width: 8.5em;}
+        &[rate='6'] { background-color: #03A9F4; width: 10em;}
+        &[rate='7'] { background-color: #673AB7; width: 11.5em;}
+        &[rate='8'] { background-color: #E91E63; width: 13em;}
+        &[rate='9'] { background-color: #F44336; width: 14.5em;}
     }
 
     .comment {

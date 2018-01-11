@@ -10,6 +10,8 @@ import {App} from "../../providers/app";
 export class MyPageLeveltestComponent {
 
 
+    error = null;
+    loading = true;
     data = {};
     first_class = {};
     last_class = {};
@@ -20,9 +22,16 @@ export class MyPageLeveltestComponent {
     ) {
 
         this.lms.getFirstAndLastClasses(data => {
-            if ( ! data) return alert("LMS Information is empty...");
+            this.loading = false;
+            // if ( ! data) {
+            //     this.error = "앗, 수업 예약 정보가 없습니다.";
+            //     // return alert("LMS Information is empty...");
+            // }
             console.log(data);
-            if ( data ) {
+            if ( data['first_class'] === void 0 ) {
+                this.error = "<i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.<br>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.";
+                return;
+            }
                 if (data['first_class']) {
                     this.first_class = data['first_class'];
                     this.pre(data['first_class']);
@@ -31,12 +40,9 @@ export class MyPageLeveltestComponent {
                     this.last_class = data['last_class'];
                     this.pre(data['last_class']);
                 }
-            } else {
-                alert("No past class yet...");
-            }
 
-            console.log("first_class", this.first_class);
-            console.log("last_class", this.last_class);
+            // console.log("first_class", this.first_class);
+            // console.log("last_class", this.last_class);
                 // if (  data.icon.match(/.\/data/g) )
                 //     data.icon = data.icon.replace(/.\/data/g, LMS_URL + '/data');
 
@@ -49,7 +55,9 @@ export class MyPageLeveltestComponent {
             // data.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
 
         }, error => {
-            alert("Error on retrieving the LMS Information" + error);
+            this.loading = false;
+            this.error = "앗, 레벨테스트 정보를 가져오는 데 실패하였습니다. 서버 에러가 발생하였습니다.";
+            // alert("Error on retrieving the LMS Information" + error);
         });
 
     }

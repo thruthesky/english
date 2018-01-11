@@ -8,18 +8,18 @@
     
 
     <nav class="tabs row mt-sm-3 mb-3">
-            <div class="col-4 p-0 pl-sm-3 pl-xl-0">
+            <div class="col-4 p-0 pl-sm-3 pl-lg-0">
                 <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 1 " (click)="option=1">학업성취도</button>
             </div>
             <div class="col-4 p-0 px-sm-1">
                 <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 2 " (click)="option=2">수업정보</button>
             </div>
-            <div class="col-4 p-0 pr-sm-3 pr-xl-0">
+            <div class="col-4 p-0 pr-sm-3 pr-lg-0">
                 <button class="w-100 py-2 px-1 p-sm-3" [class.selected]=" option == 3 " (click)="option=3">레벨테스트</button>
             </div>
         </nav>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper pt-0">
         <my-page-achievement-component *ngIf="option == 1"></my-page-achievement-component>
         <my-page-lms-component *ngIf="option == 2"></my-page-lms-component>
         <my-page-leveltest-component *ngIf="option == 3"></my-page-leveltest-component>

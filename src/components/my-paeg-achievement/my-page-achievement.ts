@@ -10,6 +10,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MyPageAchievementComponent {
 
+    error = null;
+    loading = true;
     data: {
         max_score?: number;
         no_of_classes?: number;
@@ -36,6 +38,8 @@ export class MyPageAchievementComponent {
     vocabulary_percentage = 1;
 
 
+    show = {};
+    
     constructor(
         public app: App,
         private lms: LMS,
@@ -57,8 +61,16 @@ export class MyPageAchievementComponent {
         // end of testing
 
         this.lms.getLatestPastSession(this.limit, data => {
-            if ( ! data) return alert("No Data Found...");
-            console.log(data);
+            this.loading = false;
+            // if ( ! data) return alert("No Data Found...");
+            // console.log(data);
+
+            if ( data['no_of_success'] < 1 ) {
+                this.error = "<i class='fa fa-warning'></i> 앗, 수업정보가 없습니다.<br>아직 수업을 하지 않아서 (또는 정상적으로 수업이 이루어지지 않아서) 수업 학업성취도를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.";
+                return;
+            }
+
+
             this.data = data;
             const rate = data['rates'];
             this.no_of_max_points = data['max_score'];
@@ -82,7 +94,9 @@ export class MyPageAchievementComponent {
             }
 
         }, error => {
-            alert("Error on retrieving the Class Sessions" + error);
+            this.loading = false;
+            this.error = "앗, 레벨테스트 정보를 가져오는 데 실패하였습니다. 서버 에러가 발생하였습니다.";
+            // alert("Error on retrieving the Class Sessions" + error);
         });
 
     }

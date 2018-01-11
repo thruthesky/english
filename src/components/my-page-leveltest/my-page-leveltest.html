@@ -1,129 +1,198 @@
-<div class="row py-3">
-    <div class="photo col-sm-4 text-center">
-        <h5>레벨테스트 강사</h5>
-        <ul class="list-style-none mb-3">
-            <li *ngIf="last_class.icon"><img src="{{first_class.icon}}" style="max-width: 100%"></li>
-            <li>
-                <div class="mt-2">Teacher {{first_class.teacher?.mb_nick}}</div>
-            </li>
-        </ul>
-    </div>
-    <div class="col-sm-8">
-        <h5 class="text-center">레벨테스트 결과</h5>
+<div class="header text">
+    <i class="fa fa-flag"></i>
+    <b>{{app.user.info.id}}</b>님의 처음 레벨테스트와 지금의 수업 비교입니다.
+</div>
 
 
-        <div class="row">
-            <div class="col-12 col-md-6 mb-4">
-                <div class="text-center p-2">Level Test Result</div>
-                <div class="leveltest-graph">
-                    <div class="graph-line">
-                        <div class="graph-col">
-                            <div class="caption">표현</div>
-                            <span class="line bg-grey leveltest-line-{{first_class?.rate_expression}}"><p>{{first_class?.rate_expression}}</p></span>
-                            <span class="line2 bg-purple leveltest-line-{{last_class?.rate_expression}}"><p>{{last_class?.rate_expression}}</p></span>
+<div class="p-5 bg-white" *ngIf=" loading ">
+    <i class="fa fa-spinner fa-spin"></i> 수업 정보를 로드중입니다. 잠시만 기다려주세요.
+</div>
+<div class="error p-5 bg-white red" [innerHTML]="error" *ngIf="!loading && error"></div>
+
+<ng-container *ngIf=" !loading && !error ">
+
+
+
+    <div class="row mx-1 my-3 py-3 bg-white">
+
+
+        <div class="photo col-sm-4 text-center">
+            <h5 class="title mb-md-4">레벨테스트 강사</h5>
+            <ul class="list-style-none mb-3">
+                <li *ngIf="last_class.icon">
+                    <img src="{{first_class.icon}}" style="max-width: 100%">
+                </li>
+                <li>
+                    <div class="text mt-2">Teacher {{first_class.teacher?.mb_nick}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-8">
+            <h5 class="title text-center mt-5 mt-sm-0">레벨테스트 결과</h5>
+
+
+            <div class="row px-3">
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="sub-title text-center p-2">레벨테스트 처음과 지금의 그래프 비교</div>
+                    <div class="leveltest-graph text">
+                        <div class="graph-line">
+                            <div class="graph-col">
+                                <div class="caption">표현</div>
+                                <span class="line bg-grey leveltest-line-{{first_class?.rate_expression}}">
+                                    <p>{{first_class?.rate_expression}}</p>
+                                </span>
+                                <span class="line2 bg-purple leveltest-line-{{last_class?.rate_expression}}">
+                                    <p>{{last_class?.rate_expression}}</p>
+                                </span>
+                            </div>
+                            <div class="graph-col">
+                                <div class="caption">속도</div>
+                                <span class="line bg-grey leveltest-line-{{first_class?.rate_speed}}">
+                                    <p>{{first_class?.rate_speed}}</p>
+                                </span>
+                                <span class="line2 bg-red leveltest-line-{{last_class?.rate_speed}}">
+                                    <p>{{last_class?.rate_speed}}</p>
+                                </span>
+                            </div>
+                            <div class="graph-col">
+                                <div class="caption">문법</div>
+                                <span class="line bg-grey leveltest-line-{{first_class?.rate_grammar}}">
+                                    <p>{{first_class?.rate_grammar}}</p>
+                                </span>
+                                <span class="line2 bg-green leveltest-line-{{last_class?.rate_grammar}}">
+                                    <p>{{last_class?.rate_grammar}}</p>
+                                </span>
+                            </div>
+                            <div class="graph-col">
+                                <div class="caption">어휘</div>
+                                <span class="line bg-grey leveltest-line-{{first_class?.rate_vocabulary}}">
+                                    <p>{{first_class?.rate_vocabulary}}</p>
+                                </span>
+                                <span class="line2 bg-skyblue leveltest-line-{{last_class?.rate_vocabulary}}">
+                                    <p>{{last_class?.rate_vocabulary}}</p>
+                                </span>
+                            </div>
+                            <div class="graph-col">
+                                <div class="caption">발음</div>
+                                <span class="line bg-grey leveltest-line-{{first_class?.rate_pronounciation}}">
+                                    <p>{{first_class?.rate_pronounciation}}</p>
+                                </span>
+                                <span class="line2 bg-orange leveltest-line-{{last_class?.rate_pronounciation}}">
+                                    <p>{{last_class?.rate_pronounciation}}</p>
+                                </span>
+                            </div>
                         </div>
-                        <div class="graph-col">
-                            <div class="caption">속도</div>
-                            <span class="line bg-grey leveltest-line-{{first_class?.rate_speed}}"><p>{{first_class?.rate_speed}}</p></span>
-                            <span class="line2 bg-red leveltest-line-{{last_class?.rate_speed}}"><p>{{last_class?.rate_speed}}</p></span>
+                    </div>
+                    <div class="leveltest-rank">
+                        <div>
+                            <p>9</p>
                         </div>
-                        <div class="graph-col">
-                            <div class="caption">문법</div>
-                            <span class="line bg-grey leveltest-line-{{first_class?.rate_grammar}}"><p>{{first_class?.rate_grammar}}</p></span>
-                            <span class="line2 bg-green leveltest-line-{{last_class?.rate_grammar}}"><p>{{last_class?.rate_grammar}}</p></span>
+                        <div>
+                            <p>8</p>
                         </div>
-                        <div class="graph-col">
-                            <div class="caption">어휘</div>
-                            <span class="line bg-grey leveltest-line-{{first_class?.rate_vocabulary}}"><p>{{first_class?.rate_vocabulary}}</p></span>
-                            <span class="line2 bg-skyblue leveltest-line-{{last_class?.rate_vocabulary}}"><p>{{last_class?.rate_vocabulary}}</p></span>
+                        <div>
+                            <p>7</p>
                         </div>
-                        <div class="graph-col">
-                            <div class="caption">발음</div>
-                            <span class="line bg-grey leveltest-line-{{first_class?.rate_pronounciation}}"><p>{{first_class?.rate_pronounciation}}</p></span>
-                            <span class="line2 bg-orange leveltest-line-{{last_class?.rate_pronounciation}}"><p>{{last_class?.rate_pronounciation}}</p></span>
+                        <div>
+                            <p>6</p>
+                        </div>
+                        <div>
+                            <p>5</p>
+                        </div>
+                        <div>
+                            <p>4</p>
+                        </div>
+                        <div>
+                            <p>3</p>
+                        </div>
+                        <div>
+                            <p>2</p>
+                        </div>
+                        <div>
+                            <p>1</p>
                         </div>
                     </div>
                 </div>
-                <div class="leveltest-rank">
-                    <div><p>9</p></div>
-                    <div><p>8</p></div>
-                    <div><p>7</p></div>
-                    <div><p>6</p></div>
-                    <div><p>5</p></div>
-                    <div><p>4</p></div>
-                    <div><p>3</p></div>
-                    <div><p>2</p></div>
-                    <div><p>1</p></div>
+
+                <div class="col-12 col-md-6">
+
+                    <!-- <ul class="list-style-none">
+                                <li>Class ID: {{first_class.idx}}</li>
+                                <li>Date: {{first_class.kdate}}</li>
+                                <li>Begin Hour: {{first_class.ktime}} for {{first_class.mins}} mins</li>
+                            </ul> -->
+
+
+                    <div class="text mt-md-2 text-center text-md-left">
+                        <div class="mb-3">수업 날짜/시간:
+                            <br>{{first_class?.kdate}} {{first_class?.class_begin}} {{first_class?.mins}} 분
+                        </div>
+                        <div class="graph-info mt-3 mt-md-0 mb-2">
+                            <table border="0">
+                                <tr>
+                                    <td>항목</td>
+                                    <td>처음 점수</td>
+                                    <td>현재 점수</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="info px-3 px-sm-0 pr-sm-2">
+                                            <i class="fa fa-square purple"></i> 표현</span>
+                                    </td>
+                                    <td>{{first_class?.rate_expression}}0점</td>
+                                    <td>00점</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="info px-3 px-sm-0 pr-sm-2">
+                                            <i class="fa fa-square red"></i> 말하는속도</span>
+                                    </td>
+                                    <td>{{first_class?.rate_speed}}0점</td>
+                                    <td>00점</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="info px-3 px-sm-0 pr-sm-2">
+                                            <i class="fa fa-square green"></i> 문법</span>
+                                    </td>
+                                    <td>{{first_class?.rate_grammar}}0점</td>
+                                    <td>00점</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="info px-3 px-sm-0 pr-sm-2">
+                                            <i class="fa fa-square skyblue"></i> 어휘</span>
+                                    </td>
+                                    <td>{{first_class?.rate_vocabulary}}0점</td>
+                                    <td>00점</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="info px-3 px-sm-0 pr-sm-2">
+                                            <i class="fa fa-square orange"></i> 발음</span>
+                                    </td>
+                                    <td>{{first_class?.rate_pronounciation}}0점</td>
+                                    <td>00점</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+
                 </div>
+
             </div>
 
-            <div class="col-12 col-md-6">
-
-                <!-- <ul class="list-style-none">
-                    <li>Class ID: {{first_class.idx}}</li>
-                    <li>Date: {{first_class.kdate}}</li>
-                    <li>Begin Hour: {{first_class.ktime}} for {{first_class.mins}} mins</li>
-                </ul> -->
-
-
-                <div class="mt-md-2 text-center text-md-left">
-                    <div class="">수업 날짜/시간:<br>{{first_class?.kdate}} {{first_class?.class_begin}} {{first_class?.mins}}
-                        분
-                    </div>
-                    <div class="graph-info mb-2">
-                        <table border="1">
-                            <tr>
-                                <td>항목</td>
-                                <td>처음 점수</td>
-                                <td>현재 점수</td>
-                            </tr>
-                            <tr>
-                                <td><span class="info px-3 px-sm-0 pr-sm-2">
-                                    <i class="fa fa-square purple"></i> 표현</span></td>
-                                <td>{{first_class?.rate_expression}}0점</td>
-                                <td>00점</td>
-                            </tr>
-                            <tr>
-                                <td><span class="info px-3 px-sm-0 pr-sm-2">
-                                    <i class="fa fa-square red"></i> 말하는속도</span></td>
-                                <td>{{first_class?.rate_speed}}0점</td>
-                                <td>00점</td>
-                            </tr>
-                            <tr>
-                                <td><span class="info px-3 px-sm-0 pr-sm-2">
-                                    <i class="fa fa-square green"></i> 문법</span>
-                                </td>
-                                <td>{{first_class?.rate_grammar}}0점</td>
-                                <td>00점</td>
-                            </tr>
-                            <tr>
-                                <td><span class="info px-3 px-sm-0 pr-sm-2">
-                                    <i class="fa fa-square skyblue"></i> 어휘</span></td>
-                                <td>{{first_class?.rate_vocabulary}}0점</td>
-                                <td>00점</td>
-                            </tr>
-                            <tr>
-                                <td><span class="info px-3 px-sm-0 pr-sm-2">
-                                    <i class="fa fa-square orange"></i> 발음</span></td>
-                                <td>{{first_class?.rate_pronounciation}}0점</td>
-                                <td>00점</td>
-                            </tr>
-                        </table>
-
-                    </div>
-                </div>
-
-
-            </div>
 
         </div>
-
-
     </div>
-</div>
-<div class="row px-3">
-    Teacher Comment:
-    <div>
-        {{first_class?.rate_comment}}
+
+    <div class="text px-1">
+        <div class="mb-1">선생님의 레벨테스트 코멘트</div>
+        <div class="p-3 bg-white">
+            {{first_class?.rate_comment}}
+        </div>
     </div>
-</div>
+
+</ng-container>

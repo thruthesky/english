@@ -11,6 +11,8 @@ export class MyPageLMSComponent {
 
 
     data = {};
+    error = null;
+    loading = true;
 
     constructor(
         public app: App,
@@ -18,9 +20,14 @@ export class MyPageLMSComponent {
     ) {
 
         this.lms.getLMSInformation(data => {
-            if (!data) return alert("LMS Information is empty...");
-            console.log(data);
 
+            this.loading = false;
+
+            
+            if ( data['count_past'] < 1 ) {
+                this.error = "<i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.<br>정상적인 수업을 해야 수업 정보를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.";
+                return;
+            }
             data.latest_comments.forEach((res) => {
 
                 let re = res.icon.match(/<img.*?src=['"](.*?)['"]/);
@@ -33,10 +40,15 @@ export class MyPageLMSComponent {
 
             this.data = data;
         }, error => {
-            alert("Error on retrieving the LMS Information" + error);
+            this.loading = false;
+            this.error = "앗, 아직 수업을 하지 않았습니다.<br>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.";
+            // alert("Error on retrieving the LMS Information" + error);
         });
 
     }
 
+    shortDate( date: string ) {
+        return date.substr(2);
+    }
 }
 

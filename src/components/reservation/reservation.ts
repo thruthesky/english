@@ -29,7 +29,7 @@ export class ReservationComponent implements OnInit {
         private lms     : LMS,
         public share    : ShareService
     ) {
-        console.log("reservation page: recreate??");
+        // console.log("reservation page: recreate??");
     }
 
     ngOnInit() {
@@ -70,7 +70,7 @@ export class ReservationComponent implements OnInit {
     getNewReservationData() {
         this.calendarLoad = true;
         this.lms.getReservationsByMonthYear( { m:this.month , Y:this.year }, ( res )=> {
-            console.log('data: ', res);
+            // console.log('data: ', res);
             this.classinformation = {
                 first_class: res.first_class,
                 next_class: res.next_class,

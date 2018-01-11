@@ -1,7 +1,18 @@
-.achievement-line-0 {
-    height: 5px;
-    margin-top: 9 * 10 - 5px;
+.title {
+    font-weight: 100!important;
+    color: rgb(0, 0, 83);
 }
+.sub-title {
+    font-weight: 100!important;
+}
+.text {
+    font-weight: 100!important;
+}
+.error {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
 
 .photo img {
     width: 140px;
@@ -51,7 +62,6 @@
         height: 180px;
         width: 100%;
         white-space: nowrap;
-
         .graph-col {
             position: relative;
             display: inline-block;
@@ -70,29 +80,25 @@
                 text-align: center;
                 font-size: 14px;
             }
-
             .line {
                 margin-left: 5%;
             }
-
-            .line, .line2 {
+            .line,
+            .line2 {
                 position: relative;
                 display: inline-block;
                 white-space: normal;
                 p {
                     position: absolute;
+                    top: 5px;
                     width: 100%;
                     color: #fff;
                     font-size: 10px;
                     text-align: center;
                 }
             }
-
-
         }
-
     }
-
     .graph-info {
         position: relative;
         display: inline-block;
@@ -104,5 +110,3 @@
         }
     }
 }
-
-
