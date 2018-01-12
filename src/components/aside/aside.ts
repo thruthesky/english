@@ -45,7 +45,7 @@ export class AsideComponent {
 
   onClickShowFAQ() {
     this.shared.page = 'faq';
-    this.app.scrollTo('faq');
+    setTimeout( () => this.app.scrollTo('faq'), 0);
   }
 
 }
