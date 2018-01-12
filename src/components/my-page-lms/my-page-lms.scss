@@ -55,22 +55,22 @@
     .rate {
         height: 22px;
         margin-top: 3px;
-        padding-top: 3px;
+        padding-top: 5px;
         //@media all and ( min-width: 748px ) { padding-top: 3px; }
         padding-left: 16px;
         border-radius: 3px;
         line-height: 1em;
 
         color: white;
-        &[rate='1'] { background-color: #607D8B;}
+        &[rate='1'] { background-color: #607D8B; width: 4em;}
         &[rate='2'] { background-color: #795548; width: 4em;}
-        &[rate='3'] { background-color: #FF9800; width: 5.5em;}
-        &[rate='4'] { background-color: #FFC107; width: 7em;}
-        &[rate='5'] { background-color: #8BC34A; width: 8.5em;}
-        &[rate='6'] { background-color: #03A9F4; width: 10em;}
-        &[rate='7'] { background-color: #673AB7; width: 11.5em;}
-        &[rate='8'] { background-color: #E91E63; width: 13em;}
-        &[rate='9'] { background-color: #F44336; width: 14.5em;}
+        &[rate='3'] { background-color: #FF9800; width: 5em;}
+        &[rate='4'] { background-color: #FFC107; width: 6em;}
+        &[rate='5'] { background-color: #8BC34A; width: 7em;}
+        &[rate='6'] { background-color: #03A9F4; width: 8em;}
+        &[rate='7'] { background-color: #673AB7; width: 9em;}
+        &[rate='8'] { background-color: #E91E63; width: 10em;}
+        &[rate='9'] { background-color: #F44336; width: 11em;}
     }
 
     .comment {
