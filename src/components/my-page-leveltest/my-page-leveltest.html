@@ -38,46 +38,46 @@
                         <div class="graph-line">
                             <div class="graph-col">
                                 <div class="caption">표현</div>
-                                <span class="line bg-grey leveltest-line-{{first_class?.rate_expression}}">
+                                <span *ngIf="!single" class="line bg-grey leveltest-line-{{first_class?.rate_expression}}">
                                     <p>{{first_class?.rate_expression}}</p>
                                 </span>
-                                <span class="line2 bg-purple leveltest-line-{{last_class?.rate_expression}}">
+                                <span class="line2 bg-purple leveltest-line-{{last_class?.rate_expression}}" [class.single]="single">
                                     <p>{{last_class?.rate_expression}}</p>
                                 </span>
                             </div>
                             <div class="graph-col">
                                 <div class="caption">속도</div>
-                                <span class="line bg-grey leveltest-line-{{first_class?.rate_speed}}">
+                                <span *ngIf="!single" class="line bg-grey leveltest-line-{{first_class?.rate_speed}}">
                                     <p>{{first_class?.rate_speed}}</p>
                                 </span>
-                                <span class="line2 bg-red leveltest-line-{{last_class?.rate_speed}}">
+                                <span class="line2 bg-red leveltest-line-{{last_class?.rate_speed}}" [class.single]="single">
                                     <p>{{last_class?.rate_speed}}</p>
                                 </span>
                             </div>
                             <div class="graph-col">
                                 <div class="caption">문법</div>
-                                <span class="line bg-grey leveltest-line-{{first_class?.rate_grammar}}">
+                                <span *ngIf="!single" class="line bg-grey leveltest-line-{{first_class?.rate_grammar}}">
                                     <p>{{first_class?.rate_grammar}}</p>
                                 </span>
-                                <span class="line2 bg-green leveltest-line-{{last_class?.rate_grammar}}">
+                                <span class="line2 bg-green leveltest-line-{{last_class?.rate_grammar}}" [class.single]="single">
                                     <p>{{last_class?.rate_grammar}}</p>
                                 </span>
                             </div>
                             <div class="graph-col">
                                 <div class="caption">어휘</div>
-                                <span class="line bg-grey leveltest-line-{{first_class?.rate_vocabulary}}">
+                                <span *ngIf="!single" class="line bg-grey leveltest-line-{{first_class?.rate_vocabulary}}">
                                     <p>{{first_class?.rate_vocabulary}}</p>
                                 </span>
-                                <span class="line2 bg-skyblue leveltest-line-{{last_class?.rate_vocabulary}}">
+                                <span class="line2 bg-skyblue leveltest-line-{{last_class?.rate_vocabulary}}" [class.single]="single">
                                     <p>{{last_class?.rate_vocabulary}}</p>
                                 </span>
                             </div>
                             <div class="graph-col">
                                 <div class="caption">발음</div>
-                                <span class="line bg-grey leveltest-line-{{first_class?.rate_pronounciation}}">
+                                <span *ngIf="!single" class="line bg-grey leveltest-line-{{first_class?.rate_pronounciation}}">
                                     <p>{{first_class?.rate_pronounciation}}</p>
                                 </span>
-                                <span class="line2 bg-orange leveltest-line-{{last_class?.rate_pronounciation}}">
+                                <span class="line2 bg-orange leveltest-line-{{last_class?.rate_pronounciation}}" [class.single]="single">
                                     <p>{{last_class?.rate_pronounciation}}</p>
                                 </span>
                             </div>
@@ -132,7 +132,7 @@
                                 <tr>
                                     <td>항목</td>
                                     <td>처음 점수</td>
-                                    <td>현재 점수</td>
+                                    <td *ngIf="!single">현재 점수</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -140,7 +140,7 @@
                                             <i class="fa fa-square purple"></i> 표현</span>
                                     </td>
                                     <td>{{first_class?.rate_expression}}0점</td>
-                                    <td>00점</td>
+                                    <td *ngIf="!single">{{last_class?.rate_expression}}0점</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -148,7 +148,7 @@
                                             <i class="fa fa-square red"></i> 말하는속도</span>
                                     </td>
                                     <td>{{first_class?.rate_speed}}0점</td>
-                                    <td>00점</td>
+                                    <td *ngIf="!single">{{last_class?.rate_speed}}0점</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -156,7 +156,7 @@
                                             <i class="fa fa-square green"></i> 문법</span>
                                     </td>
                                     <td>{{first_class?.rate_grammar}}0점</td>
-                                    <td>00점</td>
+                                    <td *ngIf="!single">{{last_class?.rate_grammar}}0점</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -164,7 +164,7 @@
                                             <i class="fa fa-square skyblue"></i> 어휘</span>
                                     </td>
                                     <td>{{first_class?.rate_vocabulary}}0점</td>
-                                    <td>00점</td>
+                                    <td *ngIf="!single">{{last_class?.rate_vocabulary}}0점</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -172,7 +172,7 @@
                                             <i class="fa fa-square orange"></i> 발음</span>
                                     </td>
                                     <td>{{first_class?.rate_pronounciation}}0점</td>
-                                    <td>00점</td>
+                                    <td *ngIf="!single">{{last_class?.rate_pronounciation}}0점</td>
                                 </tr>
                             </table>
 

@@ -58,10 +58,12 @@
     }
     .rate {
         height: 22px;
+        margin-top: 3px;
         padding-top: 3px;
-        @media all and ( min-width: 748px ) { padding-top: 2px; }
+        //@media all and ( min-width: 748px ) { padding-top: 3px; }
         padding-left: 16px;
         border-radius: 3px;
+        line-height: 1em;
 
         color: white;
         &[rate='1'] { background-color: #607D8B;}

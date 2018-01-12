@@ -88,6 +88,12 @@
                 position: relative;
                 display: inline-block;
                 white-space: normal;
+
+                &.single {
+                    margin-left: 10%;
+                    width: 80%!important ;
+                }
+
                 p {
                     position: absolute;
                     top: 5px;

@@ -93,10 +93,13 @@
                         <div class="pieContainer">
                             <div class="pieBackground"></div>
                             <div class="hold">
-                                <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
+                                <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage*1.2 + 'deg)' }"></div>
                             </div>
-                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (expression_percentage - 1) + 'deg)' }">
-                                <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage + 'deg)' }"></div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (expression_percentage*1.2 - 1) + 'deg)' }">
+                                <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage*1.2 + 'deg)' }"></div>
+                            </div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (expression_percentage*1.2*2 - 2) + 'deg)' }">
+                                <div class="pie bg-purple" [ngStyle]="{'transform': 'rotate(' + expression_percentage*1.2+2 + 'deg)' }"></div>
                             </div>
                             <div class="innerCircle">
                                 <div class="content">
@@ -124,10 +127,13 @@
                         <div class="pieContainer">
                             <div class="pieBackground"></div>
                             <div class="hold">
-                                <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
+                                <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage*1.2 + 'deg)' }"></div>
                             </div>
-                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (grammar_percentage - 1) + 'deg)' }">
-                                <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage + 'deg)' }"></div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (grammar_percentage*1.2 - 1) + 'deg)' }">
+                                <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage*1.2 + 'deg)' }"></div>
+                            </div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (grammar_percentage*1.2*2 - 2) + 'deg)' }">
+                                <div class="pie bg-green" [ngStyle]="{'transform': 'rotate(' + grammar_percentage*1.2+2 + 'deg)' }"></div>
                             </div>
                             <div class="innerCircle">
                                 <div class="content">
@@ -155,10 +161,13 @@
                         <div class="pieContainer">
                             <div class="pieBackground"></div>
                             <div class="hold">
-                                <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + pronounciation_percentage + 'deg)' }"></div>
+                                <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + pronounciation_percentage*1.2 + 'deg)' }"></div>
                             </div>
-                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (pronounciation_percentage - 1) + 'deg)' }">
-                                <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + pronounciation_percentage + 'deg)' }"></div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (pronounciation_percentage*1.2 - 1) + 'deg)' }">
+                                <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + pronounciation_percentage*1.2 + 'deg)' }"></div>
+                            </div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (pronounciation_percentage*1.2*2 - 2) + 'deg)' }">
+                                <div class="pie bg-blue" [ngStyle]="{'transform': 'rotate(' + pronounciation_percentage*1.2+2 + 'deg)' }"></div>
                             </div>
                             <div class="innerCircle">
                                 <div class="content">
@@ -186,10 +195,13 @@
                         <div class="pieContainer">
                             <div class="pieBackground"></div>
                             <div class="hold">
-                                <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
+                                <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage*1.2 + 'deg)' }"></div>
                             </div>
-                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (vocabulary_percentage - 1) + 'deg)' }">
-                                <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage + 'deg)' }"></div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (vocabulary_percentage*1.2 - 1) + 'deg)' }">
+                                <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage*1.2 + 'deg)' }"></div>
+                            </div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (vocabulary_percentage*1.2*2 - 2) + 'deg)' }">
+                                <div class="pie bg-orange" [ngStyle]="{'transform': 'rotate(' + vocabulary_percentage*1.2+2 + 'deg)' }"></div>
                             </div>
                             <div class="innerCircle">
                                 <div class="content">
@@ -217,10 +229,13 @@
                         <div class="pieContainer">
                             <div class="pieBackground"></div>
                             <div class="hold">
-                                <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
+                                <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage*1.2 + 'deg)' }"></div>
                             </div>
-                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (speed_percentage - 1) + 'deg)' }">
-                                <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage + 'deg)' }"></div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (speed_percentage*1.2 - 1) + 'deg)' }">
+                                <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage*1.2 + 'deg)' }"></div>
+                            </div>
+                            <div class="hold" [ngStyle]="{'transform': 'rotate(' + (speed_percentage*1.2*2 - 2) + 'deg)' }">
+                                <div class="pie bg-red" [ngStyle]="{'transform': 'rotate(' + speed_percentage*1.2+2 + 'deg)' }"></div>
                             </div>
                             <div class="innerCircle">
                                 <div class="content">

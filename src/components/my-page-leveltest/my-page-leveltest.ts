@@ -16,6 +16,8 @@ export class MyPageLeveltestComponent {
     first_class = {};
     last_class = {};
 
+    single = false;
+
     constructor(
         public app: App,
         private lms: LMS,
@@ -39,6 +41,10 @@ export class MyPageLeveltestComponent {
                 if (data['last_class']) {
                     this.last_class = data['last_class'];
                     this.pre(data['last_class']);
+                }
+
+                if ( this.first_class['idx'] == this.last_class['idx'] ) {
+                    this.single = true;
                 }
 
             // console.log("first_class", this.first_class);
