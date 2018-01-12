@@ -25,7 +25,7 @@ export class MyPageLMSComponent {
 
             
             if ( data['count_past'] < 1 ) {
-                this.error = "<i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.<br>정상적인 수업을 해야 수업 정보를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.";
+                this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.</div><div class='desc'>정상적인 수업을 해야 수업 정보를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.</div>";
                 return;
             }
             data.latest_comments.forEach((res) => {

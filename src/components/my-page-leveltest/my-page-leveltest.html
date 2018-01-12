@@ -131,7 +131,10 @@
                             <table border="0">
                                 <tr>
                                     <td>항목</td>
-                                    <td>처음 점수</td>
+                                    <td>
+                                            <span *ngIf="single">레벨테스트 점수</span>
+                                            <span *ngIf="!single">처음 점수</span>
+                                    </td>
                                     <td *ngIf="!single">현재 점수</td>
                                 </tr>
                                 <tr>

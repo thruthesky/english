@@ -1,14 +1,27 @@
 // .level-test-theme {
 //     background-color: #a7dbdb;
-
-
 // }
-
-
 // #chat-component {
 //     display: none!important; // FOR TEST
 // }
-
 .display-inline-block {
     display: inline-block!important;
+}
+
+.fw-light {
+    font-weight: 100;
+}
+
+.error {
+    margin-top: 1em;
+    .title {
+        font-size: 1.5em;
+        font-weight: 100;
+    }
+    .desc {
+        margin-top: .5em;
+        font-weight: 100;
+        font-size: 1.1em;
+        color: black!important;
+    }
 }

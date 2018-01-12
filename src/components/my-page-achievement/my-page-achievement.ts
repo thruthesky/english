@@ -66,7 +66,7 @@ export class MyPageAchievementComponent {
             // console.log(data);
 
             if ( data['no_of_success'] < 1 ) {
-                this.error = "<i class='fa fa-warning'></i> 앗, 수업정보가 없습니다.<br>아직 수업을 하지 않아서 (또는 정상적으로 수업이 이루어지지 않아서) 수업 학업성취도를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.";
+                this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 수업정보가 없습니다.</div><div class='desc'>아직 수업을 하지 않아서 (또는 정상적으로 수업이 이루어지지 않아서) 수업 학업성취도를 보여드릴 수가 없습니다.<br>수업을 먼저 예약해 보세요.</div>";
                 return;
             }
 

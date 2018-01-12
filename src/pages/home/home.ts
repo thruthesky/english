@@ -26,7 +26,8 @@ export class HomePage implements AfterViewInit {
         public shared: ShareService
     ) {
             this.lms.getTeachers( teachers => this.teachers = teachers );
-            this.shared.page = 'my-page'; //test only
+            // this.shared.page = 'my-page'; //test only
+            // this.shared.page = 'english-news';
     }
 
 

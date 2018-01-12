@@ -31,7 +31,7 @@ export class MyPageLeveltestComponent {
             // }
             console.log(data);
             if ( data['first_class'] === void 0 ) {
-                this.error = "<i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.<br>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.";
+                this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.</div><div class='desc'>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.</div>";
                 return;
             }
                 if (data['first_class']) {
