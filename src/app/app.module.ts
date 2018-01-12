@@ -70,7 +70,7 @@ import { Message } from '../providers/message';
 
 import { MyPageComponent } from '../components/my-page/my-page';
 import { MyPageLMSComponent } from '../components/my-page-lms/my-page-lms';
-import { MyPageAchievementComponent } from '../components/my-paeg-achievement/my-page-achievement';
+import { MyPageAchievementComponent } from '../components/my-page-achievement/my-page-achievement';
 import { EnglishNewsComponent } from '../components/english-news/english-news';
 import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-page-leveltest';
 
