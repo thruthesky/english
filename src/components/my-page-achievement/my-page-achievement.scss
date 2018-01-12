@@ -23,7 +23,7 @@
     }
 }
 
-
+@import '../../theme/variables.scss';
 
 .information {
     border: 1px solid #e8e8e8;
@@ -40,6 +40,9 @@
             display: block;
             padding: .5em 1em;
             width: 50%;
+            @media ( min-width: $md ) {
+                width: 33%;
+            }
             background-color: #E8EAF6;
         }
         i {
