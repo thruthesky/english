@@ -56,7 +56,8 @@ export class MyPageLeveltestComponent {
             // }
             // console.log(data);
             if (data['first_class'] === void 0) {
-                this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.</div><div class='desc'>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.</div>";
+                this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.</div>" +
+                    "<div class='desc'>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.</div>";
                 return;
             }
             if (data['first_class']) {
@@ -66,7 +67,7 @@ export class MyPageLeveltestComponent {
             if (data['last_class']) {
                 this.last_class = data['last_class'];
                 this.pre(data['last_class']);
-                console.log("last_class", this.last_class);
+                // console.log("last_class", this.last_class);
 
 
                 this.rates = {
@@ -78,9 +79,10 @@ export class MyPageLeveltestComponent {
                 };
 
 
-                this.no_of_points = this.rates['expression'] + this.rates['grammar'] + this.rates['speed'] + this.rates['vocabulary'] + this.rates['pronounciation'];
+                this.no_of_points = this.rates['expression'] + this.rates['grammar'] + this.rates['speed'] +
+                    this.rates['vocabulary'] + this.rates['pronounciation'];
                 this.performance_percentage = Math.floor(this.no_of_points * 100 / this.no_of_max_points);
-                console.log("rate", this.rates);
+                // console.log("rate", this.rates);
 
                 this.expression_percentage = Math.floor(this.rates['expression'] * 100 / 9);
                 this.grammar_percentage = Math.floor(this.rates['grammar'] * 100 / 9);
@@ -102,18 +104,7 @@ export class MyPageLeveltestComponent {
                 this.single = true;
             }
 
-            // console.log("first_class", this.first_class);
-            // console.log("last_class", this.last_class);
-            // if (  data.icon.match(/.\/data/g) )
-            //     data.icon = data.icon.replace(/.\/data/g, LMS_URL + '/data');
-
-
-            // let re = data.icon.match(/<img.*?src=['"](.*?)['"]/);
-            // if(!re) return;
-            // data.icon = re[1].replace(/.\/data/g, LMS_URL + '/data');
-            //
-            // let b = <string>data.class_begin;
-            // data.class_begin = b.substr(0, 2) + '시 ' + b.substr(2, 2) + '분';
+            
 
         }, error => {
             this.loading = false;

@@ -116,12 +116,6 @@
 
                 <div class="col-12 col-md-6">
 
-                    <!-- <ul class="list-style-none">
-                                <li>Class ID: {{first_class.idx}}</li>
-                                <li>Date: {{first_class.kdate}}</li>
-                                <li>Begin Hour: {{first_class.ktime}} for {{first_class.mins}} mins</li>
-                            </ul> -->
-
 
                     <div class="text mt-md-2 text-center text-md-left">
                         <div class="mb-3">수업 날짜/시간:
@@ -197,41 +191,5 @@
             {{first_class?.rate_comment}}
         </div>
     </div>
-
-    <!--<div class="more-details text-right" (click)=" show['details'] = true " *ngIf=" ! show['details'] ">-->
-    <!--<span class="display-inline-block my-2 p-3 bg-white">-->
-    <!--<i class="fa fa-plus"></i> 자세한 평가 항목 보기-->
-    <!--<i class="fa fa-ellipsis-h"></i>-->
-    <!--</span>-->
-    <!--</div>-->
-    <!--<div class="information row no-gutters mt-3 mb-3" *ngIf=" show['details'] ">-->
-    <div class="information row no-gutters mt-3 mb-3">
-        <div class="information-title w-100">성취도 평가에 대한 자세한 항목입니다.</div>
-        <ul class="list-style-none">
-            <li class="mb-1">
-                <span>평가 수업</span>
-                <i>마지막 {{data.no_of_classes}}회 수업을 평가</i>
-            </li>
-            <li class="mb-1">
-                <span>정상 수업</span>
-                <i>{{data.no_of_success}} ({{ data.no_of_success * 100 / data.no_of_classes | number: "1.0-0"}}%)</i>
-            </li>
-            <li class="mb-1">
-                <span>문제 수업</span>
-                <i>{{data.no_of_failure}} ({{ data.no_of_failure * 100 / data.no_of_classes | number: "1.0-0"}}%)
-                    정상적으로 진행되지 않은 수업입니다. 평가에는 포함되지 않습니다.
-                </i>
-            </li>
-            <li class="mb-1">
-                <span>획득한 점수</span>
-                <i>{{no_of_points | number }} ({{ no_of_points * 100 / no_of_max_points | number: "1.0-0"}}%)</i>
-            </li>
-            <li class="mb-1">
-                <span>최대 점수</span>
-                <i>{{no_of_max_points | number }}</i>
-            </li>
-        </ul>
-    </div>
-    <!--/information-->
 
 </ng-container>
