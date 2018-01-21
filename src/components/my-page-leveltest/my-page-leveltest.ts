@@ -40,7 +40,6 @@ export class MyPageLeveltestComponent {
 
 
     first_class = {};
-    last_class = {};
 
     single = false;
 
@@ -54,29 +53,27 @@ export class MyPageLeveltestComponent {
             //     this.error = "앗, 수업 예약 정보가 없습니다.";
             //     // return alert("LMS Information is empty...");
             // }
-            console.log(data);
+            // console.log("leveltest::data:: ", data);
             if (data['first_class'] === void 0) {
                 this.error = "<div class='title'><i class='fa fa-warning'></i> 앗, 아직 수업을 하지 않았습니다.</div>" +
                     "<div class='desc'>레벨테스트는 정상적인 수업을 1개 이상 진행해야지만 결과를 볼 수 있습니다.</div>";
                 return;
             }
+
             if (data['first_class']) {
                 this.first_class = data['first_class'];
                 this.pre(data['first_class']);
-            }
-            if (data['last_class']) {
-                this.last_class = data['last_class'];
-                this.pre(data['last_class']);
-                // console.log("last_class", this.last_class);
-
+                // console.log("first_class", this.first_class);
 
                 this.rates = {
-                    expression: parseInt(this.last_class['rate_expression'], 10),
-                    grammar: parseInt(this.last_class['rate_grammar'], 10),
-                    speed: parseInt(this.last_class['rate_speed'], 10),
-                    vocabulary: parseInt(this.last_class['rate_vocabulary'], 10),
-                    pronounciation: parseInt(this.last_class['rate_pronounciation'], 10)
+                    expression: parseInt(this.first_class['rate_expression'], 10),
+                    grammar: parseInt(this.first_class['rate_grammar'], 10),
+                    speed: parseInt(this.first_class['rate_speed'], 10),
+                    vocabulary: parseInt(this.first_class['rate_vocabulary'], 10),
+                    pronounciation: parseInt(this.first_class['rate_pronounciation'], 10)
                 };
+
+                // console.log("rates:: ", this.rates);
 
 
                 this.no_of_points = this.rates['expression'] + this.rates['grammar'] + this.rates['speed'] +
@@ -100,11 +97,9 @@ export class MyPageLeveltestComponent {
                 }
             }
 
-            if (this.first_class['idx'] == this.last_class['idx']) {
-                this.single = true;
-            }
 
-            
+
+
 
         }, error => {
             this.loading = false;
