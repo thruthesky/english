@@ -10,7 +10,7 @@ import { App } from '../../providers/app';
 })
 export class MyPageComponent {
 
-    option = 3; // by default 1st tab ( MY LMS INFO ) will be shown.
+    option = 1; // by default 1st tab ( MY LMS INFO ) will be shown.
     constructor(
         public app: App
     ) {
