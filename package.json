@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "hmr": "sudo ng serve --hmr -e=hmr --ssl --ssl-key ./tmp/iamtalkative/privkey.pem --ssl-cert ./tmp/iamtalkative/fullchain.pem --host iamtalkative.com --port 443",
-    "s": "sudo ng serve --ssl --ssl-key ./tmp/iamtalkative/privkey.pem --ssl-cert ./tmp/iamtalkative/fullchain.pem --host iamtalkative.com --port 443",
+    "s": "sudo ng serve --ssl --ssl-key ./tmp/iamtalkative/privkey.pem --ssl-cert ./tmp/iamtalkative/fullchain.pem --host iamtalkative.com --port 443 --open",
     "s2": "sudo ng serve --live-reload false --ssl true --ssl-key './tmp/englishfordevelopers/privkey.pem' --ssl-cert './tmp/englishfordevelopers/fullchain.pem' --host englishfordevelopers.com --port 443",
     "sa": "sudo ng serve --aot --ssl true --ssl-key './tmp/englishfordevelopers/privkey.pem' --ssl-cert './tmp/englishfordevelopers/fullchain.pem' --host englishfordevelopers.com --port 443",
     "ssl": "ng serve --ssl --ssl-key ./tmp/englishfordevelopers/privkey.pem --ssl-cert ./tmp/englishfordevelopers/fullchain.pem --host englishfordevelopers.com --port 443",
