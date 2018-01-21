@@ -17,7 +17,7 @@ export class MyPageComponent {
 
         if ( app.classInfo && app.classInfo.no_of_past ) {
             if ( parseInt(app.classInfo.no_of_past, 10) < 4 ) {
-                this.option = 3;
+                this.option = 1;
             }
         }
 
