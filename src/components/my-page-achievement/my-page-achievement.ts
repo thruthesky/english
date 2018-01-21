@@ -55,7 +55,7 @@ export class MyPageAchievementComponent {
 
         this.lms.getFirstAndLastClasses(data => {
 
-            console.log("achievement: ", data);
+            // console.log("achievement: ", data);
             this.loading = false;
 
             if (data['first_class'] === void 0) {
