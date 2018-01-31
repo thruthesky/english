@@ -17,6 +17,8 @@ export class PaymentComponent implements AfterViewInit {
   selectedDays: string = '';
   selectedMonths: string = '';
 
+
+
   // defaultMinutes = "25";
   // defaultDays = "5";
   // daysRate = {
@@ -133,7 +135,7 @@ export class PaymentComponent implements AfterViewInit {
       setTimeout( () => {
         location.href = url;
       }, 400);
-      
+
 
     }, e => this.user.alert(e));
 

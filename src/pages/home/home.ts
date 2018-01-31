@@ -30,7 +30,6 @@ export class HomePage implements AfterViewInit {
             // this.shared.page = 'english-news';
     }
 
-
     ngAfterViewInit() {
     }
 

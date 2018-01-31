@@ -10,22 +10,21 @@
 <div class="error p-5 bg-white red" [innerHTML]="error" *ngIf="!loading && error"></div>
 
 <ng-container *ngIf=" !loading && !error ">
-    
+
 <div class="row py-3">
     <div class="col-sm-6 mb-3">
         <div class='lms-left text'>
             <div class="lms-desc">
-                    <b>{{app.user.info.id}}</b>님의 수업 현황입니다. 간략한 수업 정보와 선생님의 코멘트를 보시 수 있습니다.
+                간략한 수업정보와 교재진도 내용을 확인하실 수 있습니다.
             </div>
                 <ul class="list-style-none">
                     <li><span>로그인 아이디</span><i>{{app.user.info.id}}</i></li>
-                    <li><span>회원 번호</span><i>{{data?.mb_id}}</i></li>
                     <li><span>이름</span><i>{{app.user.info.name}}</i></li>
                     <li><span>전화번호</span><i>{{data?.phone_number}}</i></li>
                     <li><span>이메일</span><i>{{data?.email}}</i></li>
-                    <li><span>남은 강의</span><i>{{data?.count_reservation}}</i></li>
-                    <li><span>지난 강의</span><i>{{data?.count_past}}</i></li>
-                    <li><span>다음 강의</span><i>{{data?.next_class}}</i></li>
+                    <li><span>출석 횟수</span><i>{{data?.count_success}}</i></li>
+                    <li><span>다음수업일</span><i>{{data?.next_class}}</i></li>
+                    <li><span>종료수업일</span><i>{{data?.last_class}}</i></li>
                     <li><span>레벨</span><i>{{ data?.level }}</i></li>
                     <li><span>수업 교재</span><i>{{ data?.book_info }}</i></li>
                 </ul>
@@ -44,7 +43,7 @@
                         <td>
                             <div class="class-info">
                             <div class="photo"><img src="{{ comment.icon }}"></div>
-                            
+
                         </div>
                         </td>
                         <td>
@@ -78,7 +77,7 @@
                         <td><div class="text-center my-2">날짜/시간: {{ shortDate(comment.kdate) }} {{comment.class_begin}} {{comment.mins}} 분</div></td>
                     </tr>
                 </table>
-                
+
                 <div class="comment text mb-5">
                     <div class="p-3 pointer" (click)=" comment['show'] = true " *ngIf="!comment['show']">
                         <i class="fa fa-comments"></i> 코멘트 보기<i class="fa fa-ellipsis-h"></i>
