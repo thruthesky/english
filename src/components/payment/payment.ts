@@ -17,7 +17,7 @@ export class PaymentComponent implements AfterViewInit {
   selectedDays: string = '';
   selectedMonths: string = '';
 
-
+  discounts = [];
 
   // defaultMinutes = "25";
   // defaultDays = "5";
@@ -46,6 +46,8 @@ export class PaymentComponent implements AfterViewInit {
       this.selectedDays = this.app.paymentOption.defaultDays + '';
       this.selectedMonths = this.app.paymentOption.defaultMonths + '';
 
+      this.discounts = this.app.paymentOption.discounts;
+
     }
 
     window.addEventListener('message', (e) => {
@@ -70,6 +72,11 @@ export class PaymentComponent implements AfterViewInit {
     if (!amount) return "0";
     let n = parseInt(amount);
     if (!n) return "0";
+
+    // console.log(this.discountSelected);
+    //
+    // console.log(n);
+    n = Math.round(n * ( (100 - this.discountSelected) / 100));
 
     return n.toString().split('').reverse().reduce((t, v, i, a) => {
       return t = t + v.toString() + (i < a.length - 1 && (i + 1) % 3 == 0 ? ',' : '');
@@ -138,6 +145,21 @@ export class PaymentComponent implements AfterViewInit {
 
 
     }, e => this.user.alert(e));
+
+  }
+
+
+
+  get discountSelected() { // right now: ['1','3']
+    const dc =  this.discounts
+      .filter(opt => opt.checked)
+      .map(opt => opt.discount);
+
+
+    // console.log("discountSelected", dc);
+    if ( dc.length ) return dc.reduce( (a, v ) => a + v);
+
+    return 0;
 
   }
 }
