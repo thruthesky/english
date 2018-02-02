@@ -76,7 +76,10 @@ export class PaymentComponent implements AfterViewInit {
     // console.log(this.discountSelected);
     //
     // console.log(n);
-    n = Math.round(n * ( (100 - this.discountSelected) / 100));
+
+
+    const dc = this.monthDiscount + this.discountSelected;
+    n = Math.round(n * ( (100 - dc ) / 100));
 
     return n.toString().split('').reverse().reduce((t, v, i, a) => {
       return t = t + v.toString() + (i < a.length - 1 && (i + 1) % 3 == 0 ? ',' : '');
@@ -161,5 +164,10 @@ export class PaymentComponent implements AfterViewInit {
 
     return 0;
 
+  }
+
+
+  get monthDiscount() {
+    return this.app.paymentOption.months_discount[this.selectedMonths];
   }
 }
