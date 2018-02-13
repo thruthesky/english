@@ -73,14 +73,6 @@ export class PaymentComponent implements AfterViewInit {
     let n = parseInt(amount);
     if (!n) return "0";
 
-    // console.log(this.discountSelected);
-    //
-    // console.log(n);
-
-
-    const dc = this.monthDiscount + this.discountSelected;
-    n = Math.round(n * ( (100 - dc ) / 100));
-
     return n.toString().split('').reverse().reduce((t, v, i, a) => {
       return t = t + v.toString() + (i < a.length - 1 && (i + 1) % 3 == 0 ? ',' : '');
     }, '').split('').reverse().join('');
@@ -102,7 +94,10 @@ export class PaymentComponent implements AfterViewInit {
     let days = months[this.selectedDays];
     if (!days) return 0; // alert( this.selectedDays + " days not set in payment options");
 
-    return days;
+    const dc = this.monthDiscount + this.discountSelected;
+    const total = Math.round(days * ( (100 - dc ) / 100));
+
+    return total;
 
 
   }
@@ -124,6 +119,7 @@ export class PaymentComponent implements AfterViewInit {
     //let amount = this.getAmount().replace(/,/g, '');
     let amount = this.getAmount();
     if (amount == 0) return alert('수업료를 선택해 주세요.');
+
 
     this.user.data(this.user.info.id).subscribe((res) => {
 
