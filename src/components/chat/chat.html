@@ -33,16 +33,16 @@
         </div>
     </div>
     <div class="min" *ngIf="min">
-        <div class="p-3 bg-lightgrey pointer" (click)="onClickMaximize()">
+        <div class="p-3 bg-lightgrey pointer of-hidden" (click)="onClickMaximize()">
+            <i *ngIf=" !chatHide " class="fa fa-angle-double-right p-absolute r-0 t-0 fs-130 p-2 pointer" (click)="onClickHide(); $event.stopPropagation();"  ></i>
             <span class="fa-stack fa-lg float-left">
                     <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
                     <i class="fa fa-arrow-left fa-stack-1x fa-inverse" aria-hidden="true"></i>
             </span>
-            <div style="margin: 0 10px 0 45px; line-height: 1.4">
+            <div *ngIf=" !chatHide " style="margin: 0 10px 0 45px; line-height: 1.4">
                 <div>라이브 챗 : 무엇이든 물어보세요.</div>
                 <div class="fs-80">상담가능시간 평일오후3시부터 12시까지</div>
             </div>
-          <!--<i class="fa fa-angle-double-right p-absolute fs-110 p-2" style="right:0;top:0" ></i>-->
         </div>
     </div>
 </section>

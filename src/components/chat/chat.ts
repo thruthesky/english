@@ -24,6 +24,7 @@ export class ChatComponent {
   };
   min: boolean = true;
   max: boolean = false;
+  chatHide = false;
   firstList = true;
   scrollMessage: Subject<any> = new Subject();
 
@@ -123,6 +124,7 @@ export class ChatComponent {
   onClickMaximize() {
     this.min = false;
     this.max = true;
+    this.chatHide = false;
     this.scrollMessage.next();
   }
   scrollMessageBox() {
@@ -131,5 +133,10 @@ export class ChatComponent {
     if ($messages && $messages.length && $messages[0].scrollHeight) { /// // add $messages.length by Mr. Song JaeHo.
       $messages.animate({ scrollTop: $messages[0].scrollHeight }, 300);
     }
+  }
+
+
+  onClickHide() {
+    this.chatHide = true;
   }
 }
