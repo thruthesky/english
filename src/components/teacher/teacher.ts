@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import { LMS } from '../../providers/lms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { App } from './../../providers/app';
+import {TeacherCommentViewComponent} from "../modals/teacher-comment-view/teacher-comment-view";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TeacherCommentReviewComponent} from "../modals/teacher-comment-review/teacher-comment-review";
 
 @Component({
     selector: 'teacher-component',
@@ -16,8 +19,17 @@ export class TeacherComponent {
     whole_teacher: any = [];
     first_9_teachers;
     rest_teacher;
-    constructor( public app: App, public lms: LMS, public sanitizer: DomSanitizer ) {
+
+
+    modalRef = null;
+    constructor(
+      public app: App,
+      public lms: LMS,
+      public sanitizer: DomSanitizer,
+      private modal: NgbModal,
+    ) {
     }
+
     ngOnChanges(changes) {
         if (changes['teachers']) {
             if (!this.teachers) return;
@@ -90,9 +102,27 @@ export class TeacherComponent {
         this.showMore = !this.showMore;
         if (this.showMore) {
             this.teachers = this.whole_teacher;
-        }
-        else {
+        } else {
             this.teachers = this.first_9_teachers;
         }
+    }
+
+    onClickTeacherRate(teacher) {
+        console.log("onClickTeacherRate::", teacher);
+        this.modalRef = this.modal.open(TeacherCommentViewComponent, {windowClass: 'enhance-modal', size: "lg"});
+        this.modalRef.componentInstance['idx_teacher'] = teacher.idx;
+
+      this.modalRef.result.then((result) => {
+        console.log("result::", result);
+        if (result == "writeReview") {
+          if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
+          const modalRef = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
+          this.modalRef.componentInstance['idx_teacher'] = teacher.idx;
+          modalRef.result.then( res => {
+          }).catch( e => {} );
+        }
+      }, reason => {
+        console.log("reason", reason);
+      } ).catch( e => {} );;
     }
 }

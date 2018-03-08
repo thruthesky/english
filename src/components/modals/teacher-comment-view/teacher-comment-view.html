@@ -1,0 +1,50 @@
+<div class="register-modal">
+
+
+  <div class="modal-header" style="border-top: 2.5rem solid #4b5d6f;">
+    <h5 class="modal-title">
+      <span class="modal-title">Teacher Comments</span>
+    </h5>
+    <button type="button" class="close" aria-hidden="true" (click)="onClickWriteReview()">
+      Write Comment
+    </button>
+    <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+  <div class="modal-body p-0">
+    <div class="modal-container">
+      <!--<ng-container *ngFor="let comment of comments">-->
+        <div class="comment">
+          <div class="container">
+            <div class="row p-0">
+              <div class="col-4 col-sm-3 col-lg-3">
+                <div class="photo">
+                  <img src="assets/images/user/user.jpg">
+                </div>
+              </div>
+              <div class="col-8 col-sm-9 col-lg-9">
+                <div class="name mt-0 mb-2">Student Name</div>
+                <div class="date mb-2">DATE: </div>
+                <div class="rating mb-2">
+                  RATING: 1
+                  <span><i class="fa fa-star"></i></span>
+                </div>
+                <div>
+                  <span class="py-2 pointer mr-3"
+                        (click)="onClickDelete()"><i class="fa fa-trash"></i> DELETE</span>
+                  <span class="py-2 pointer"
+                        (click)="onClickCommentEdit()"><i
+                    class="fa fa-pencil"></i> EDIT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="description" [innerHTML]=""></div>
+        </div>
+      <!--</ng-container>-->
+    </div>
+  </div>
+
+</div>

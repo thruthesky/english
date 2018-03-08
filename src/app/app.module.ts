@@ -32,6 +32,8 @@ import { RegisterComponent } from '../components/modals/register/register';
 import { ForgotPasswordComponent } from '../components/modals/forgot-password/forgot-password';
 import { IntroComponent } from '../components/intro/intro';
 import { PostViewModal } from '../components/modals/post-view/post-view';
+import { TeacherCommentViewComponent } from '../components/modals/teacher-comment-view/teacher-comment-view';
+import { TeacherCommentReviewComponent } from '../components/modals/teacher-comment-review/teacher-comment-review';
 
 import { CurriculumComponent } from '../components/curriculum/curriculum';
 import { PaymentComponent } from '../components/payment/payment';
@@ -73,6 +75,7 @@ import { MyPageLMSComponent } from '../components/my-page-lms/my-page-lms';
 import { MyPageAchievementComponent } from '../components/my-page-achievement/my-page-achievement';
 import { EnglishNewsComponent } from '../components/english-news/english-news';
 import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-page-leveltest';
+
 
 
 const appRoutes:Routes = [
@@ -119,6 +122,8 @@ const appRoutes:Routes = [
     MyPageAchievementComponent,
     MyPageLeveltestComponent,
     EnglishNewsComponent,
+    TeacherCommentViewComponent,
+    TeacherCommentReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -144,7 +149,9 @@ const appRoutes:Routes = [
     ForgotPasswordComponent,
     ForumPostComponent,
     CommentReviewComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    TeacherCommentViewComponent,
+    TeacherCommentReviewComponent
   ]
 })
 export class AppModule { }

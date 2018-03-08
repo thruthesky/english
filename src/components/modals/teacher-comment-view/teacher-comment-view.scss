@@ -1,0 +1,34 @@
+:host{
+    //@mixin button-size() {
+    //    margin: 0 0 20px;
+    //    padding: 7px 22px;
+    //    width: 135px;
+    //    height: 34px;
+    //}
+    // Module -- Component -- lg
+
+  .photo {
+    width: 86px;
+    height: 86px;
+    overflow: hidden;
+    border-radius: 50%;
+    img {
+      width: 100%;
+    }
+  }
+    .register-modal {
+        .modal-header {
+            .modal-title {
+                line-height: 1.428571429;
+            }
+        }
+        .modal-body {
+            .modal-container {
+                margin-left: auto;
+                margin-right: auto;
+                padding: .6em 2em;
+                color: #555;
+            }
+        }
+    }
+}
