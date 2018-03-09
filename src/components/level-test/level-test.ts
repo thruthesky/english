@@ -44,7 +44,7 @@ export class LevelTestComponent {
       'required': 'Date is required.',
     },
     time: {
-      'required': 'time is required.',
+      'required': 'Time is required.',
     }
 
 

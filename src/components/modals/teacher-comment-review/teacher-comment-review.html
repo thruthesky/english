@@ -14,34 +14,35 @@
     <div class="form-container">
       <form  (ngSubmit)="onClickSubmit()" novalidate>
         <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden" style="width:7rem; height:7rem">
-            <span class="fa-stack fa-lg fs-1rem" style="position: absolute; z-index:100; left: 1rem; bottom: .3rem;">
-                <i class="fa fa-circle fa-stack-2x" style="color:#000"></i>
-                <i class="fa fa-camera fa-stack-1x text-white"></i>
-            </span>
-            <!--<span class="fa-stack fa-lg  fs-1rem"  (click)="onClickDeletePhoto()" style="position: absolute; z-index:100; left: 4rem; bottom: .3rem; z-index:101">-->
-                <!--<i class="fa fa-circle fa-stack-2x" style="color:#000"></i>-->
-                <!--<i class="fa fa-trash fa-stack-1x text-white"></i>-->
-            <!--</span>-->
-              <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="assets/images/user/user.jpg">
-
-            <div class="p-absolute t-0 l-0 w-100 h-100" style="max-width:15em; z-index:100; opacity: .001">
-              <input class="w-100 h-100" #userfile type="file" (change)="onChangeFileUpload( userfile )">
-            </div>
+              <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ lms.url }}/{{ teacher.photo }}">
         </div>
-
-        <div   class="mt-2 text-center grey">사진 등록</div>
-
-        <!--<div class="alert alert-danger mt-1">-->
-          <!--<span class="errors"> error </span>-->
-        <!--</div>-->
+        <div   class="mt-2 text-center grey">{{teacher.nickname}}</div>
         <div class="input-group my-3">
           <textarea name="content" class="form-control form-control-sm" id="content" placeholder="수업 후기를 작성해 주세요." rows="3"></textarea>
         </div>
-        <!--<div class="alert alert-danger mt-1">-->
-          <!--<span class="errors">form error</span>-->
-        <!--</div>-->
         <div class="row mt-2">
-          <div class="col-md-12 post" ><button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">등록</button></div>
+          <div class="col-md-12 post" >
+            <button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">
+              <i class="fa fa-spinner fa-spin"></i> 등록
+            </button>
+          </div>
+          <div class="col-md-12 post pointers" >
+            RATING : {{rate}}
+            <span *ngIf="rate < 1" (click)="rate=1"><i class="fa fa-star-o"></i></span>
+            <span *ngIf="rate >= 1" (click)="rate=1"><i class="fa fa-star"></i></span>
+
+            <span *ngIf="rate < 2" (click)="rate=2"><i class="fa fa-star-o"></i></span>
+            <span *ngIf="rate >= 2" (click)="rate=2"><i class="fa fa-star"></i></span>
+
+            <span *ngIf="rate < 3" (click)="rate=3"><i class="fa fa-star-o"></i></span>
+            <span *ngIf="rate >= 3" (click)="rate=3"><i class="fa fa-star"></i></span>
+
+            <span *ngIf="rate < 4" (click)="rate=4"><i class="fa fa-star-o"></i></span>
+            <span *ngIf="rate >= 4" (click)="rate=4"><i class="fa fa-star"></i></span>
+
+            <span *ngIf="rate < 5" (click)="rate=5"><i class="fa fa-star-o"></i></span>
+            <span *ngIf="rate >= 5" (click)="rate=5"><i class="fa fa-star"></i></span>
+          </div>
         </div>
         <hr/>
       </form>

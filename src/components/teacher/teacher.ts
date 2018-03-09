@@ -20,8 +20,6 @@ export class TeacherComponent {
     first_9_teachers;
     rest_teacher;
 
-
-    modalRef = null;
     constructor(
       public app: App,
       public lms: LMS,
@@ -109,20 +107,21 @@ export class TeacherComponent {
 
     onClickTeacherRate(teacher) {
         console.log("onClickTeacherRate::", teacher);
-        this.modalRef = this.modal.open(TeacherCommentViewComponent, {windowClass: 'enhance-modal', size: "lg"});
-        this.modalRef.componentInstance['idx_teacher'] = teacher.idx;
+        const modalRefView = this.modal.open(TeacherCommentViewComponent, {windowClass: 'enhance-modal', size: "lg"});
+        modalRefView.componentInstance['idx_teacher'] = teacher.idx;
 
-      this.modalRef.result.then((result) => {
+      modalRefView.result.then((result) => {
         console.log("result::", result);
         if (result == "writeReview") {
           if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
-          const modalRef = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
-          this.modalRef.componentInstance['idx_teacher'] = teacher.idx;
-          modalRef.result.then( res => {
+          const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
+          modalRefReview.componentInstance['idx_teacher'] = teacher.idx;
+          modalRefReview.componentInstance['teacher'] = teacher;
+          modalRefReview.result.then( res => {
           }).catch( e => {} );
         }
       }, reason => {
         console.log("reason", reason);
-      } ).catch( e => {} );;
+      } ).catch( e => {} );
     }
 }
