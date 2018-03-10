@@ -121,9 +121,9 @@ export class LMS {
             let m = parseInt(data['m']) < 10 ? '0' + data['m'] : data['m'];
             let domain = this.getDomain();
             data['classid'] = this.share.defaultClassId;
-            
+
             let url = LMS_URL + `/ajax.php?id=${this.user.info.id}&email=${this.user.info.email}&domain=${domain}&domain_key=empty&function=class_list_by_month&Y=${data['Y']}&m=${m}&classid=${data['classid']}`;
-            
+
             // console.log("TEST URL:",url);
             this.http.get(url).subscribe(re => {
                 let json = null;
@@ -156,7 +156,7 @@ export class LMS {
         // let domain = 'talkative.onlineenglish.kr'; /// TEST
         let domain = this.getDomain();
         let url = LMS_ENDPOINT_URL + `?function=api_next_class&id_member=${this.user.info.id}@` + domain;
-        console.log("URL: " , url);
+        console.log("URL: ", url);
         this.http.get(url).subscribe(re => {
             let json = null;
             try {
@@ -208,7 +208,7 @@ export class LMS {
         */
         let newwindow: any = window.open();
         this.getNextClass(data => {
-            if ( !data) return alert("data is false on openVe()");
+            if (!data) return alert("data is false on openVe()");
             let student_id = this.user.info.id + '@' + this.getDomain();
             let url = this.share.VE_ENDPOINT_URL + `?confcode=${data.teacher.classid}&teacher_id=${data.teacher.classid}&student_id=${student_id}&teacher_nickname=${data.teacher.name}&conftype=2&usertype=0&class_no=${data.idx}&class_date=${data.date}&class_begin=${data.class_begin}&class_end=${data.class_end}`;
             console.log('url: ', url);
@@ -254,7 +254,7 @@ export class LMS {
                 return;
             }
             success(json['data']);
-            
+
         }, e => alert(" Error in retrieving latest past sessions... "));
     }
 
@@ -264,7 +264,7 @@ export class LMS {
         let url = LMS_ENDPOINT_URL + `?function=api_first_and_last_classes&student_id=${this.user.info.id}@` + domain;
         // let url = LMS_ENDPOINT_URL + `?function=api_first_and_last_classes&student_id=ymac99@talkative.onlineenglish.kr`; // test
         // let url = LMS_ENDPOINT_URL + `?function=api_first_and_last_classes&student_id=coin47@talkative.onlineenglish.kr`; // test
-        
+
         // console.log("URL: " , url);
         this.http.get(url).subscribe(re => {
 
@@ -282,5 +282,15 @@ export class LMS {
         });
     }
 
+
+    isMyTeacher(idx_teacher, callback) {
+        const domain = this.getDomain();
+        const url = LMS_ENDPOINT_URL +
+            `?function=api_is_my_teacher&student_id=${this.user.info.id}@` + domain + '&idx_teacher=' + idx_teacher;
+        this.http.get(url).subscribe( re => {
+            console.log('isMyTeacher re: ', re);
+            callback(re);
+        });
+    }
 
 }

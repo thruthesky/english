@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 
 import { BootstrapModule } from '../providers/bootstrap/bootstrap';
@@ -134,6 +135,7 @@ const appRoutes:Routes = [
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireAuthModule,
     AngularBackendModule.forRoot(),
     AngularBackendComponents,

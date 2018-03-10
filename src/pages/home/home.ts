@@ -28,6 +28,11 @@ export class HomePage implements AfterViewInit {
             this.lms.getTeachers( teachers => this.teachers = teachers );
             // this.shared.page = 'my-page'; //test only
             // this.shared.page = 'english-news';
+
+
+            // this.lms.isMyTeacher( 27830, re => {
+            //     console.log("home: re", re);
+            // } );
     }
 
     ngAfterViewInit() {

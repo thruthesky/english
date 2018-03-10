@@ -50,6 +50,10 @@ export class TeacherCommentReviewComponent implements OnInit {
 
 
 
+  onClickSubmit() {
+    
+  }
+
 
 
 

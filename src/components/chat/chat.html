@@ -8,7 +8,7 @@
         </div>
         <div class="messages h-20">
             <ul class="list-style-none p-3">
-              <ng-container *ngFor="let m of user_message | async">
+              <ng-container *ngFor="let m of display_user_messages | async ">
                 <li *ngIf=" ! m.newVisitor " class="message d-flex talkbubble {{ m.user == uid  ? 'justify-content-end bubble-right': 'bubble-left'  }}" >
                     <span  class="text d-block" [ngClass]="{'bg-white': m.user != uid, 'bg-yellow': m.user == uid } ">{{ m.user != uid ? "Admin : " : "" }}{{ m.message }}</span>
                 </li>

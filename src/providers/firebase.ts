@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 
 export interface _FIREBASE_CHAT {
   user: string;
@@ -18,7 +18,7 @@ export class FirebaseChat {
 
 
 
-  new_user: FirebaseListObservable<any[]>;
+  new_user: AngularFireList<any[]>;
 
 
   constructor(
@@ -28,15 +28,8 @@ export class FirebaseChat {
 
   }
 
-  getAllMessageList( req? ) : FirebaseListObservable<any[]>{
-      let query = {};
-      if( req  ) {
-        query = req;
-        if( !query['limitToLast']) query['limitToLast'] = 20;
-      }
-      else { query['limitToLast'] = 20; }
-
-    return this.db.list('/messages/all/', {query});
+  getAllMessageList(): AngularFireList<any[]>{
+    return this.db.list('/messages/all/', ref => ref.limitToLast(20));
   }
 
 
@@ -45,30 +38,26 @@ export class FirebaseChat {
   }
 
 
-  getUserMessage( uid, req? ): FirebaseListObservable<any[]>{
-    let query = {};
-    if( req  ) {
-      query = req;
-      if( !query['limitToLast']) query['limitToLast'] = 10;
-    }
-    else { query['limitToLast'] = 10; }
-
-
-    return this.db.list('/messages/users/' + uid, {query} )
+  getUserMessage( uid, no = 10 ): AngularFireList<any[]>{
+    return this.db.list('/messages/users/' + uid, ref => ref.orderByKey().limitToLast(no) );
   }
 
-  getLastMessage( req? ): FirebaseListObservable<any[]>{
+  // userMessage( uid ) {
+  //   return this.db.database.ref().child('/messages/users/' + uid);
+  // }
 
-    let query = {};
-    if( req  ) {
-      query = req;
-      if( !query['limitToLast']) query['limitToLast'] = 5;
-    }
-    else { query['limitToLast'] = 5; }
+  getLastMessage(): AngularFireList<any[]>{
+    return this.db.list('/messages/last/', ref => ref.orderByChild('time').limitToLast(10) );
+  }
 
-    query['orderByChild'] = 'time';
-
-    return this.db.list('/messages/last/', {query});
+  /**
+   * 
+   * Returns last massage chat ref
+   * 
+   * @param uid User id
+   */
+  lastMessage(uid: string) {
+    return this.db.database.ref().child('/messages/last/' + uid);
   }
 
   sendLevelTest(data) {

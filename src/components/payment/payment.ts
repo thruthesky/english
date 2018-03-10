@@ -121,7 +121,7 @@ export class PaymentComponent implements AfterViewInit {
     if (amount == 0) return alert('수업료를 선택해 주세요.');
 
 
-    this.user.data(this.user.info.id).subscribe((res) => {
+    this.user.data(<any>this.user.info.id).subscribe((res) => {
 
       let user = res.data.user;
       if (!user.name) return alert("결재하기 전, 회원 정보 메뉴에서 이름을 먼저 입력해 주십시오.");

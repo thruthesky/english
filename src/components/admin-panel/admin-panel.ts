@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FirebaseListObservable} from 'angularfire2/database';
+import {AngularFireList} from 'angularfire2/database';
 import {App} from './../../providers/app';
 import {FirebaseChat, _FIREBASE_CHAT} from './../../providers/firebase';
 import {Observable} from 'rxjs/Observable';
@@ -16,9 +16,9 @@ import {ShareService} from '../../providers/share-service';
 
 export class AdminPanelComponent implements OnInit {
   uid: string = null;
-  all_message: FirebaseListObservable<any[]>;
-  user_message: FirebaseListObservable<any[]>;
-  last_message: FirebaseListObservable<any[]>;
+  all_message: AngularFireList<any[]>;
+  user_message: AngularFireList<any[]>;
+  last_message: AngularFireList<any[]>;
   form = {
     message: ''
   };
@@ -46,14 +46,14 @@ export class AdminPanelComponent implements OnInit {
       this.userLoginName = app.user.info.name;
     }
     this.all_message = this.fc.getAllMessageList();
-    this.all_message.subscribe(res => {
+    this.all_message.snapshotChanges().subscribe(res => {
       //console.log('all_message', res)
       if( res && res.length ) {
         let node = res[ res.length - 1 ];
         //let node = res.pop();
 
-        if (node && node.user) {
-          let user = node.user;
+        if (node && node['user']) {
+          let user = node['user'];
           if( this.minimized && !this.initial ) {
             this.minimized = false ;
             this.initial = true;
@@ -80,7 +80,7 @@ export class AdminPanelComponent implements OnInit {
 
 
     this.last_message = this.fc.getLastMessage();
-    this.last_message.subscribe(res => {
+    this.last_message.snapshotChanges().subscribe(res => {
     });
 
   }
@@ -101,11 +101,12 @@ export class AdminPanelComponent implements OnInit {
       message: this.form.message
     };
 
-    this.user_message.push(msg);
+    this.user_message.push(<any>msg);
 
-    let $node = this.last_message.$ref['child'](this.username);
+    // let $node = this.last_message.$ref['child'](this.username);
+    const $node = this.fc.lastMessage( this.username );
     $node.once("value", snapshot => {
-      let node = snapshot.val();
+      const node = snapshot.val();
       let count = 1;
 
       if (node && node['count']) {
@@ -130,8 +131,10 @@ export class AdminPanelComponent implements OnInit {
   onClickUser(lastMessage) {
     this.username = lastMessage.user;
     this.userSenderId = lastMessage.name ? lastMessage.name : '';
-    this.user_message = this.fc.getUserMessage(this.username);
-    this.user_message.$ref.on('value', snapshot => {
+    this.user_message = this.fc.getUserMessage(this.username, 1);
+
+    /// edited 2018-03-10
+    this.user_message.snapshotChanges().subscribe(snapshot => {
       this.countDownForChatClose();
       this.scrollMessage.next();
     });
