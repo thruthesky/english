@@ -19,6 +19,8 @@ import { BootstrapModule } from '../providers/bootstrap/bootstrap';
 import { App } from '../providers/app';
 import { ShareService } from '../providers/share-service';
 
+import { ReviewService } from '../providers/review-service';
+
 import { AppComponent } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -141,7 +143,7 @@ const appRoutes:Routes = [
     AngularBackendComponents,
     BootstrapModule
   ],
-  providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService, Message ],
+  providers: [ App, FirebaseChat, LMS, NgbActiveModal, ShareService, Message, ReviewService ],
   bootstrap: [AppComponent],
   entryComponents: [
     RegisterComponent,

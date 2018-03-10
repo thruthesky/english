@@ -6,8 +6,7 @@ import { LMS, TEACHERS } from '../../providers/lms';
 import { ReservationComponent } from './../../components/reservation/reservation';
 import {ShareService} from '../../providers/share-service';
 
-
-
+import { ReviewService } from '../../providers/review-service';
 
 
 @Component( {
@@ -23,7 +22,8 @@ export class HomePage implements AfterViewInit {
         public app: App,
         public user: User,
         private lms: LMS,
-        public shared: ShareService
+        public shared: ShareService,
+        review: ReviewService
     ) {
             this.lms.getTeachers( teachers => this.teachers = teachers );
             // this.shared.page = 'my-page'; //test only
@@ -33,6 +33,13 @@ export class HomePage implements AfterViewInit {
             // this.lms.isMyTeacher( 27830, re => {
             //     console.log("home: re", re);
             // } );
+
+
+            // console.log("db: ", db);
+
+
+
+
     }
 
     ngAfterViewInit() {

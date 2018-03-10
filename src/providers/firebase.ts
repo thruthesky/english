@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+
+
 import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 
 export interface _FIREBASE_CHAT {
@@ -15,7 +17,6 @@ export interface _FIREBASE_CHAT {
 
 @Injectable()
 export class FirebaseChat {
-
 
 
   new_user: AngularFireList<any[]>;
