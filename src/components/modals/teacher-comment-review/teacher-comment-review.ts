@@ -21,9 +21,12 @@ export class TeacherCommentReviewComponent implements OnInit {
 
   idx_teacher: number = null;
   teacher: any = null;
+
+  comment = '';
   rate = 3;
 
   loader = true;
+  sending = false;
 
   constructor(
     public app: App,
@@ -51,7 +54,7 @@ export class TeacherCommentReviewComponent implements OnInit {
         } else {
           console.log("N");
           this.activeModal.dismiss();
-          this.app.alertModal("No Past Class Yet with Teacher " + this.teacher.nickname, "Not Your Teacher");
+          this.app.alertModal("선생님과 수업을 해야지만 후기를 작성 할 수 있습니다.", "Not Your Teacher");
         }
       });
     }
@@ -68,6 +71,14 @@ export class TeacherCommentReviewComponent implements OnInit {
 
 
   onClickSubmit() {
+    this.sending = true;
+
+    const data = {
+      comment: this.comment,
+      rate: this.rate
+    };
+
+    console.log("data::", data);
 
   }
 

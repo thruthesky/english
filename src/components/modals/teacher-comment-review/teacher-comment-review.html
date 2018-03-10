@@ -26,31 +26,32 @@
         </div>
         <div   class="mt-2 text-center grey">{{teacher.nickname}}</div>
         <div class="input-group my-3">
-          <textarea name="content" class="form-control form-control-sm" id="content" placeholder="수업 후기를 작성해 주세요." rows="3"></textarea>
+          <textarea name="content" class="form-control form-control-sm" id="content" [(ngModel)]="comment" placeholder="수업 후기를 작성해 주세요." rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12 post pointers" >
+          RATING : {{rate}}
+          <span *ngIf="rate < 1" (click)="rate=1"><i class="fa fa-star-o"></i></span>
+          <span *ngIf="rate >= 1" (click)="rate=1"><i class="fa fa-star"></i></span>
+
+          <span *ngIf="rate < 2" (click)="rate=2"><i class="fa fa-star-o"></i></span>
+          <span *ngIf="rate >= 2" (click)="rate=2"><i class="fa fa-star"></i></span>
+
+          <span *ngIf="rate < 3" (click)="rate=3"><i class="fa fa-star-o"></i></span>
+          <span *ngIf="rate >= 3" (click)="rate=3"><i class="fa fa-star"></i></span>
+
+          <span *ngIf="rate < 4" (click)="rate=4"><i class="fa fa-star-o"></i></span>
+          <span *ngIf="rate >= 4" (click)="rate=4"><i class="fa fa-star"></i></span>
+
+          <span *ngIf="rate < 5" (click)="rate=5"><i class="fa fa-star-o"></i></span>
+          <span *ngIf="rate >= 5" (click)="rate=5"><i class="fa fa-star"></i></span>
         </div>
         <div class="row mt-2">
           <div class="col-md-12 post" >
-            선생님과 수업을 해야지만 후기를 작성 할 수 있습니다.
+
             <button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">
-              <i class="fa fa-spinner fa-spin"></i> 등록
+              <i class="fa fa-spinner fa-spin" *ngIf="sending"></i> 등록
             </button>
-          </div>
-          <div class="col-md-12 post pointers" >
-            RATING : {{rate}}
-            <span *ngIf="rate < 1" (click)="rate=1"><i class="fa fa-star-o"></i></span>
-            <span *ngIf="rate >= 1" (click)="rate=1"><i class="fa fa-star"></i></span>
-
-            <span *ngIf="rate < 2" (click)="rate=2"><i class="fa fa-star-o"></i></span>
-            <span *ngIf="rate >= 2" (click)="rate=2"><i class="fa fa-star"></i></span>
-
-            <span *ngIf="rate < 3" (click)="rate=3"><i class="fa fa-star-o"></i></span>
-            <span *ngIf="rate >= 3" (click)="rate=3"><i class="fa fa-star"></i></span>
-
-            <span *ngIf="rate < 4" (click)="rate=4"><i class="fa fa-star-o"></i></span>
-            <span *ngIf="rate >= 4" (click)="rate=4"><i class="fa fa-star"></i></span>
-
-            <span *ngIf="rate < 5" (click)="rate=5"><i class="fa fa-star-o"></i></span>
-            <span *ngIf="rate >= 5" (click)="rate=5"><i class="fa fa-star"></i></span>
           </div>
         </div>
         <hr/>
