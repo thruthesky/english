@@ -112,14 +112,17 @@ export class TeacherComponent {
 
       modalRefView.result.then((result) => {
         console.log("result::", result);
-        if (result == "writeReview") {
-          if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
-          const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
-          modalRefReview.componentInstance['idx_teacher'] = teacher.idx;
-          modalRefReview.componentInstance['teacher'] = teacher;
-          modalRefReview.result.then( res => {
-          }).catch( e => {} );
+
+        if(! result ) return;
+
+        if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
+        const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
+        modalRefReview.componentInstance['teacher'] = teacher;
+        if (result['action'] == "editReview") {
+          modalRefReview.componentInstance['data'] = result['data'];
         }
+        modalRefReview.result.then( res => {
+        }).catch( e => {} );
       }, reason => {
         console.log("reason", reason);
       } ).catch( e => {} );

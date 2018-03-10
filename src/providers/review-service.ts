@@ -5,10 +5,10 @@ import "firebase/firestore";
 
 
 /**
- * 
- * 
+ *
+ *
  * @example
- * 
+ *
             /// how to add a review.
             const d = new Date();
             review.create({
@@ -41,7 +41,7 @@ import "firebase/firestore";
             });
 
 
-            
+
  */
 
 @Injectable()
@@ -54,9 +54,9 @@ export class ReviewService {
   }
 
   /**
-   * 
-   * 
-   * 
+   *
+   *
+   *
             review.create({
                 idxStudent: user.info.idx,
                 studentName: user.info.name,
@@ -66,16 +66,22 @@ export class ReviewService {
             });
 
    */
-  create(data) {
+  create(data, callback) {
     data['time'] = (new Date).getTime();
-    this.db.collection('review').add(data);
+    this.db.collection('review').add(data).then( re => {
+      console.log("Review Created: ", re);
+      callback(re.id);
+      }).catch( error => {
+      console.log("Error creating review: ", error);
+      alert("Comment Create Failed");
+    });
   }
 
 
   gets(req, callback) {
     this.db.collection("review").where("idxTeacher", "==", req['idxTeacher'])
       .get()
-      .then(function (querySnapshot) {
+      .then((querySnapshot) => {
         const re = [];
         querySnapshot.forEach(function (doc) {
           // doc.data() is never undefined for query doc snapshots
@@ -83,10 +89,10 @@ export class ReviewService {
           const data = doc.data();
           data['documentID'] = doc.id;
           re.push(data);
-          callback(re);
         });
+        callback({data: re, next: querySnapshot.docs[querySnapshot.docs.length - 1] });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log("Error getting documents: ", error);
         alert("후기 목록 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
       });
@@ -106,7 +112,7 @@ export class ReviewService {
         console.log("No such document!");
         alert("수업 후기가 존재하지 않습니다.");
       }
-    }).catch(function (error) {
+    }).catch( (error) => {
       console.log("Error getting document:", error);
       alert("후기 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
     });
@@ -115,6 +121,7 @@ export class ReviewService {
   edit(data, callback) {
     const id = data.id;
     delete data.id;
+    data['time'] = (new Date).getTime();
     this.db.collection('review').doc(id).set(data)
       .then(re => callback(true))
       .catch(e => {
@@ -122,6 +129,7 @@ export class ReviewService {
         alert("후기 수정. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
       });
   }
+
   delete(id, callback) {
     this.db.collection('review').doc(id).delete()
       .then(re => callback(true))

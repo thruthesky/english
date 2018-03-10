@@ -5,42 +5,48 @@
     <h5 class="modal-title">
       <span class="modal-title">Teacher Comments</span>
     </h5>
-    <button type="button" class="close" aria-hidden="true" (click)="onClickWriteReview()">
-      Write Comment
-    </button>
+    <div class="pointer" (click)="onClickWriteReview()">
+      <i class="fa fa-comment-o"></i> Write Comment
+    </div>
     <button type="button" class="close" aria-hidden="true" (click)="onClickDismiss()">
       <span aria-hidden="true">×</span>
     </button>
   </div>
 
   <div class="modal-body p-0">
-    <div class="modal-container">
-      <!--<ng-container *ngFor="let comment of comments">-->
-        <div class="comment">
-          <div class="container">
+    <div class="modal-container p-2">
+
+      <div class="fs-2rem text-center p-5" *ngIf=" ! comments.length ">
+        <i class="fa fa-spinner fa-spin"></i> Connecting to Server
+      </div>
+      <ng-container *ngFor="let comment of comments; let odd = odd">
+
+
+        <div class="comment bg-white p-2 mb-2" *ngIf="comment.documentID">
+          <div class="container p-0">
             <div class="row p-0">
-              <div class="col-4 col-sm-3 col-lg-3">
-                <div class="name mt-0 mb-2">Student Name</div>
-                <div class="date mb-2">DATE: </div>
+              <div class="col-12 col-sm-4">
+                <div class="name mt-0 mb-2">{{comment.studentName}}</div>
+                <div class="date mb-2">{{comment.time | date:'short'}}</div>
                 <div class="rating mb-2">
-                  RATING: 1
-                  <span><i class="fa fa-star"></i></span>
+                  RATE: 1 <i class="fa fa-star" *ngFor="let star of stars(comment.rate)"></i>
                 </div>
-                <div>
-                  <span class="py-2 pointer mr-3"
-                        (click)="onClickDelete()"><i class="fa fa-trash"></i> DELETE</span>
-                  <span class="py-2 pointer"
-                        (click)="onClickCommentEdit()"><i
-                    class="fa fa-pencil"></i> EDIT</span>
+                <div *ngIf="comment.idxStudent == user.info.idx">
+                  <div class="d-inline-block py-2 pointer mr-3" (click)="onClickDelete( comment )">
+                    <i class="fa {{ comment['delete'] ? 'fa-spinner fa-spin': 'fa-trash'}}"></i> DELETE
+                  </div>
+                  <div class="d-inline-block py-2 pointer" (click)="onClickCommentEdit( comment )">
+                    <i class="fa fa-pencil"></i> EDIT
+                  </div>
                 </div>
               </div>
-              <div class="col-8 col-sm-9 col-lg-9">
-                <div class="description" [innerHTML]="">Sample Comment from student, the message will show here.</div>
+              <div class="col-12 col-sm-8">
+                <div class="description" [innerHTML]="comment.comment"></div>
               </div>
             </div>
           </div>
         </div>
-      <!--</ng-container>-->
+      </ng-container>
     </div>
   </div>
 

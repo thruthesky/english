@@ -10,6 +10,7 @@ import {
 } from 'angular-backend';
 import { ShareService } from '../../../providers/share-service';
 import {LMS} from "../../../providers/lms";
+import {ReviewService} from "../../../providers/review-service";
 
 
 @Component({
@@ -19,8 +20,8 @@ import {LMS} from "../../../providers/lms";
 })
 export class TeacherCommentReviewComponent implements OnInit {
 
-  idx_teacher: number = null;
   teacher: any = null;
+  data: any = null;
 
   comment = '';
   rate = 3;
@@ -31,8 +32,10 @@ export class TeacherCommentReviewComponent implements OnInit {
   constructor(
     public app: App,
     public lms: LMS,
+    public user: User,
     public activeModal: NgbActiveModal,
     public share: ShareService,
+    public review: ReviewService
   ) {
 
 
@@ -41,15 +44,19 @@ export class TeacherCommentReviewComponent implements OnInit {
   ngOnInit() {
 
     console.log(this.lms.url);
-    console.log('IDX_TEACHER::', this.idx_teacher);
     console.log('TEACHER::', this.teacher);
+    console.log('Data::', this.data);
 
-    if ( this.idx_teacher ) {
-      this.lms.isMyTeacher(this.idx_teacher, res => {
+    if ( this.teacher.idx ) {
+      this.lms.isMyTeacher(this.teacher.idx, res => {
         console.log(res);
         if ( res > 0 ) {
           console.log("Y");
           this.loader = false;
+          if (this.data) {
+            this.rate = this.data.rate;
+            this.comment = this.data.comment;
+          }
 
         } else {
           console.log("N");
@@ -60,27 +67,51 @@ export class TeacherCommentReviewComponent implements OnInit {
     }
   }
 
-
-
-
-
   onClickDismiss() {
     this.activeModal.dismiss();
   }
 
-
-
   onClickSubmit() {
     this.sending = true;
 
+
+    const d = new Date();
     const data = {
+      idxStudent: this.user.info.idx,
+      studentName: this.user.info.name,
+      idxTeacher: this.teacher.idx,
+      teacherName: this.teacher.nickname,
+      rate: this.rate,
       comment: this.comment,
-      rate: this.rate
+      date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
     };
 
-    console.log("data::", data);
+    /// how to add a review.
+    if ( this.data && this.data['documentID']) {
+      this.editReview(data);
+    } else {
+      this.createReview(data);
+    }
 
   }
+
+  createReview(data) {
+    this.review.create( data , re => {
+      console.log("onClickSubmit:: ", re);
+      this.activeModal.close("reviewCreated");
+      alert("Review Successfully Created.");
+    });
+  }
+
+  editReview(data) {
+    data['id'] = this.data.documentID;
+    this.review.edit( data, re => {
+      console.log("editReview", re);
+      this.activeModal.close("reviewUpdated");
+      alert("Review Success Updated.");
+    });
+  }
+
 
 
 
