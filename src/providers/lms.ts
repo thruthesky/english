@@ -288,8 +288,17 @@ export class LMS {
         const url = LMS_ENDPOINT_URL +
             `?function=api_no_of_past_classes_with_teacher&student_id=${this.user.info.id}@` + domain + '&idx_teacher=' + idx_teacher;
         this.http.get(url).subscribe( re => {
-            console.log('isMyTeacher re: ', re);
-            callback(re);
+            // console.log('isMyTeacher re: ', re);
+          let json = null;
+          try {
+            json = JSON.parse(re['_body']);
+          } catch (e) {
+            alert("Error in retrieving isMyTeacher.");
+            return;
+          }
+          callback(json['data']);
+        }, e => {
+          alert(" Error in retrieving isMyTeacher..");
         });
     }
 

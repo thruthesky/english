@@ -10,10 +10,16 @@
 
   </div>
 
-  
-
   <div class="modal-body">
     <div class="form-container">
+      <div class="p-absolute l-0 r-0 t-0 b-0 bg-dimgrey text-center z-index-medium" style="opacity: .7" *ngIf="loader">
+        <div class="p-relative h-100 white p-5 fs-2rem">
+          <span class="py-5 text-center"><i class="fa fa-spinner fa-spin"></i> Loading</span>
+          <!--<div>-->
+            <!--You don't have any past class with this teacher.-->
+          <!--</div>-->
+        </div>
+      </div>
       <form  (ngSubmit)="onClickSubmit()" novalidate>
         <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden" style="width:7rem; height:7rem">
               <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ lms.url }}/{{ teacher.photo }}">

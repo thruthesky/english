@@ -23,6 +23,8 @@ export class TeacherCommentReviewComponent implements OnInit {
   teacher: any = null;
   rate = 3;
 
+  loader = true;
+
   constructor(
     public app: App,
     public lms: LMS,
@@ -38,6 +40,21 @@ export class TeacherCommentReviewComponent implements OnInit {
     console.log(this.lms.url);
     console.log('IDX_TEACHER::', this.idx_teacher);
     console.log('TEACHER::', this.teacher);
+
+    if ( this.idx_teacher ) {
+      this.lms.isMyTeacher(this.idx_teacher, res => {
+        console.log(res);
+        if ( res > 0 ) {
+          console.log("Y");
+          this.loader = false;
+
+        } else {
+          console.log("N");
+          this.activeModal.dismiss();
+          this.app.alertModal("No Past Class Yet with Teacher " + this.teacher.nickname, "Not Your Teacher");
+        }
+      });
+    }
   }
 
 
@@ -51,7 +68,7 @@ export class TeacherCommentReviewComponent implements OnInit {
 
 
   onClickSubmit() {
-    
+
   }
 
 
