@@ -286,7 +286,7 @@ export class LMS {
     isMyTeacher(idx_teacher, callback) {
         const domain = this.getDomain();
         const url = LMS_ENDPOINT_URL +
-            `?function=api_is_my_teacher&student_id=${this.user.info.id}@` + domain + '&idx_teacher=' + idx_teacher;
+            `?function=api_no_of_past_classes_with_teacher&student_id=${this.user.info.id}@` + domain + '&idx_teacher=' + idx_teacher;
         this.http.get(url).subscribe( re => {
             console.log('isMyTeacher re: ', re);
             callback(re);
