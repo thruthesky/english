@@ -39,7 +39,7 @@ export class TeacherCommentViewComponent implements OnInit {
       idxTeacher: this.idx_teacher,
       limit: this.limit
     };
-    // if ( this.next ) req['next'] = this.next;
+    if ( this.next ) req['next'] = this.next;
     console.log(req);
     this.review.gets( req, re => {
       console.log("gets re: ", re);

@@ -79,8 +79,14 @@ export class ReviewService {
 
 
   gets(req, callback) {
-    this.db.collection("review").where("idxTeacher", "==", req['idxTeacher'])
-      .get()
+    const col = this.db.collection("review")
+      .where("idxTeacher", "==", req['idxTeacher'])
+      .orderBy("time")
+      .limit(req['limit']);
+
+      if ( req['next'] ) col.startAfter(req['next']);
+
+      col.get()
       .then((querySnapshot) => {
         const re = [];
         querySnapshot.forEach(function (doc) {
