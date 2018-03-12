@@ -16,9 +16,6 @@
   <div class="modal-body p-0">
     <div class="modal-container p-2">
 
-      <div class="fs-2rem text-center p-5" *ngIf=" ! comments.length ">
-        <i class="fa fa-spinner fa-spin"></i> Connecting to Server
-      </div>
       <ng-container *ngFor="let comment of comments; let odd = odd">
 
 
@@ -47,6 +44,15 @@
           </div>
         </div>
       </ng-container>
+      <div class="fs-2rem text-center py-3" *ngIf=" loading ">
+        <i class="fa fa-spinner fa-spin"></i> Connecting to Server
+      </div>
+      <div class="text-center pointer" (click)="loadReview()" *ngIf="showMore && !loading">
+        <i class="fa fa-arrow-circle-down"></i> Show More...
+      </div>
+      <div class="py-3 text-center" *ngIf="!showMore && !loading">
+        No More Comment...
+      </div>
     </div>
   </div>
 

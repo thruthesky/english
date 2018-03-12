@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import * as firebase from 'firebase';
 import "firebase/firestore";
@@ -9,9 +9,9 @@ import "firebase/firestore";
  *
  * @example
  *
-            /// how to add a review.
-            const d = new Date();
-            review.create({
+ /// how to add a review.
+ const d = new Date();
+ review.create({
                 idxStudent: user.info.idx,
                 studentName: user.info.name,
                 idxTeacher: 200,
@@ -21,14 +21,14 @@ import "firebase/firestore";
                 date: d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
             });
 
-            /// list review.
-            review.gets( { idxTeacher: 27830, from: 5, to: 10 }, re => {
+ /// list review.
+ review.gets( { idxTeacher: 27830, from: 5, to: 10 }, re => {
                 console.log("gets re: ", re);
 
             });
 
 
-            review.get('TWNirdxOp9twFiRphwqL', data => {
+ review.get('TWNirdxOp9twFiRphwqL', data => {
                 console.log("get: re: ", data);
                 data['comment'] = 'Comment is updated for this teacher ... !';
                 review.edit( data, re => {
@@ -48,6 +48,7 @@ import "firebase/firestore";
 export class ReviewService {
 
   db: firebase.firestore.Firestore;
+
   constructor() {
 
     this.db = firebase.firestore();
@@ -57,7 +58,7 @@ export class ReviewService {
    *
    *
    *
-            review.create({
+   review.create({
                 idxStudent: user.info.idx,
                 studentName: user.info.name,
                 teacherName: 'TeacherWho',
@@ -68,10 +69,10 @@ export class ReviewService {
    */
   create(data, callback) {
     data['time'] = (new Date).getTime();
-    this.db.collection('review').add(data).then( re => {
+    this.db.collection('review').add(data).then(re => {
       console.log("Review Created: ", re);
       callback(re.id);
-      }).catch( error => {
+    }).catch(error => {
       console.log("Error creating review: ", error);
       alert("Comment Create Failed");
     });
@@ -79,14 +80,24 @@ export class ReviewService {
 
 
   gets(req, callback) {
-    const col = this.db.collection("review")
-      .where("idxTeacher", "==", req['idxTeacher'])
-      .orderBy("time")
-      .limit(req['limit']);
+    let query;
 
-      if ( req['next'] ) col.startAfter(req['next']);
+    if ( !req['limit'] ) req['limit'] = 10;
 
-      col.get()
+    if (req['next']) {
+      query = this.db.collection("review")
+        .where("idxTeacher", "==", req['idxTeacher'])
+        .orderBy("time", "desc")
+        .limit(req['limit'])
+        .startAfter(req['next']);
+    } else {
+      query = this.db.collection("review")
+        .where("idxTeacher", "==", req['idxTeacher'])
+        .orderBy("time", "desc")
+        .limit(req['limit']);
+    }
+
+    query.get()
       .then((querySnapshot) => {
         const re = [];
         querySnapshot.forEach(function (doc) {
@@ -96,7 +107,7 @@ export class ReviewService {
           data['documentID'] = doc.id;
           re.push(data);
         });
-        callback({data: re, next: querySnapshot.docs[querySnapshot.docs.length - 1] });
+        callback({data: re, next: querySnapshot.docs[querySnapshot.docs.length - 1]});
       })
       .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -118,7 +129,7 @@ export class ReviewService {
         console.log("No such document!");
         alert("수업 후기가 존재하지 않습니다.");
       }
-    }).catch( (error) => {
+    }).catch((error) => {
       console.log("Error getting document:", error);
       alert("후기 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
     });

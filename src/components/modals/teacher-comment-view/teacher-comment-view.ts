@@ -20,6 +20,9 @@ export class TeacherCommentViewComponent implements OnInit {
     next = null;
     limit = 1;
 
+    showMore = true;
+    loading = false;
+
     constructor(
         private activeModal: NgbActiveModal,
         public share: ShareService,
@@ -35,6 +38,7 @@ export class TeacherCommentViewComponent implements OnInit {
   }
 
   loadReview() {
+    this.loading = true;
     const req = {
       idxTeacher: this.idx_teacher,
       limit: this.limit
@@ -43,8 +47,15 @@ export class TeacherCommentViewComponent implements OnInit {
     console.log(req);
     this.review.gets( req, re => {
       console.log("gets re: ", re);
-      this.comments = re['data'];
+      if ( re['data'].length < this.limit ) this.showMore = false;
+      if ( re['data'] && re['data'].length ){
+        re['data'].forEach( v => {
+          this.comments.push(v);
+        });
+      }
+
       this.next = re['next'];
+      this.loading = false;
     });
   }
 
