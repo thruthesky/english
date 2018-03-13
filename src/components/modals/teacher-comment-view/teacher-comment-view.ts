@@ -48,7 +48,7 @@ export class TeacherCommentViewComponent implements OnInit {
     this.review.gets( req, re => {
       console.log("gets re: ", re);
       if ( re['data'].length < this.limit ) this.showMore = false;
-      if ( re['data'] && re['data'].length ){
+      if ( re['data'] && re['data'].length ) {
         re['data'].forEach( v => {
           this.comments.push(v);
         });
@@ -69,7 +69,7 @@ export class TeacherCommentViewComponent implements OnInit {
       console.log(comment.documentID);
       this.review.delete(comment.documentID , () => {
         comment.documentID = null;
-        alert("Comment has been deleted");
+        alert("Comment has been deleted.");
       });
   }
 

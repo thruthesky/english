@@ -29,6 +29,8 @@ export class TeacherCommentReviewComponent implements OnInit {
   loader = true;
   sending = false;
 
+  errorMessage: string = null;
+
   constructor(
     public app: App,
     public lms: LMS,
@@ -73,6 +75,15 @@ export class TeacherCommentReviewComponent implements OnInit {
 
   onClickSubmit() {
     this.sending = true;
+    this.errorMessage = '';
+
+
+    if ( !this.comment || this.comment.length < 10 ) {
+      this.errorMessage = "Minimum comment cant be less than 10 character.";
+      this.sending = false;
+      return;
+    }
+
 
 
     const d = new Date();

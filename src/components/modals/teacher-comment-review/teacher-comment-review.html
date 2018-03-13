@@ -46,8 +46,11 @@
           <span *ngIf="rate < 5" (click)="rate=5"><i class="fa fa-star-o"></i></span>
           <span *ngIf="rate >= 5" (click)="rate=5"><i class="fa fa-star"></i></span>
         </div>
+        <div class="row mt-2" *ngIf="errorMessage">
+          <div class="col-md-12 post"><i class="fa fa-info-circle"></i> {{errorMessage}}</div>
+        </div>
         <div class="row mt-2">
-          <div class="col-md-12 post" >
+          <div class="col-md-12 post">
             <button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">
               <i class="fa fa-spinner fa-spin" *ngIf="sending"></i> 등록
             </button>
