@@ -19,6 +19,13 @@ export class AdminPanelComponent implements OnInit {
   all_message: AngularFireList<any[]>;
   user_message: AngularFireList<any[]>;
   last_message: AngularFireList<any[]>;
+
+
+  all_message_new;
+  last_message_new;
+  user_message_new;
+
+
   form = {
     message: ''
   };
@@ -46,6 +53,11 @@ export class AdminPanelComponent implements OnInit {
       this.userLoginName = app.user.info.name;
     }
     this.all_message = this.fc.getAllMessageList();
+
+    this.all_message_new = this.all_message.valueChanges();
+
+
+
     this.all_message.snapshotChanges().subscribe(res => {
       //console.log('all_message', res)
       if( res && res.length ) {
@@ -80,6 +92,8 @@ export class AdminPanelComponent implements OnInit {
 
 
     this.last_message = this.fc.getLastMessage();
+
+    this.last_message_new = this.last_message.valueChanges();
     this.last_message.snapshotChanges().subscribe(res => {
     });
 
@@ -124,6 +138,8 @@ export class AdminPanelComponent implements OnInit {
     });
 
 
+
+
     this.form.message = '';
     this.countDownForChatClose();
   }
@@ -131,8 +147,9 @@ export class AdminPanelComponent implements OnInit {
   onClickUser(lastMessage) {
     this.username = lastMessage.user;
     this.userSenderId = lastMessage.name ? lastMessage.name : '';
-    this.user_message = this.fc.getUserMessage(this.username, 1);
+    this.user_message = this.fc.getUserMessage(this.username, 20);
 
+    this.user_message_new = this.user_message.valueChanges();
     /// edited 2018-03-10
     this.user_message.snapshotChanges().subscribe(snapshot => {
       this.countDownForChatClose();
