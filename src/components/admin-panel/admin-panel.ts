@@ -54,16 +54,18 @@ export class AdminPanelComponent implements OnInit {
     }
     this.all_message = this.fc.getAllMessageList();
 
-    this.all_message_new = this.all_message.valueChanges();
+    this.all_message_new = this.all_message.valueChanges(); // all_message_new
 
 
+    // this.all_message.snapshotChanges();
 
-    this.all_message.snapshotChanges().subscribe(res => {
-      //console.log('all_message', res)
+    this.all_message.valueChanges().subscribe(res => {
+      // console.log('all_message', res)
       if( res && res.length ) {
-        let node = res[ res.length - 1 ];
-        //let node = res.pop();
+        // let node = res[ res.length - 1 ];
+        let node = res.pop();
 
+        // console.log('node: ', node);
         if (node && node['user']) {
           let user = node['user'];
           if( this.minimized && !this.initial ) {
@@ -91,11 +93,11 @@ export class AdminPanelComponent implements OnInit {
       });
 
 
-    this.last_message = this.fc.getLastMessage();
+    this.last_message = this.fc.getLastMessage(); //.valueChanges();
 
     this.last_message_new = this.last_message.valueChanges();
-    this.last_message.snapshotChanges().subscribe(res => {
-    });
+    // this.last_message.snapshotChanges().subscribe(res => {
+    // });
 
   }
 
@@ -147,11 +149,12 @@ export class AdminPanelComponent implements OnInit {
   onClickUser(lastMessage) {
     this.username = lastMessage.user;
     this.userSenderId = lastMessage.name ? lastMessage.name : '';
-    this.user_message = this.fc.getUserMessage(this.username, 20);
+    this.user_message = this.fc.getUserMessage(this.username, 10);
+    
 
     this.user_message_new = this.user_message.valueChanges();
     /// edited 2018-03-10
-    this.user_message.snapshotChanges().subscribe(snapshot => {
+    this.user_message.valueChanges().subscribe(snapshot => {
       this.countDownForChatClose();
       this.scrollMessage.next();
     });

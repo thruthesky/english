@@ -53,7 +53,7 @@ export class ChatComponent {
 
 
 
-    this.user_message.snapshotChanges().subscribe(res => {
+    this.user_message.valueChanges().subscribe(res => {
 
       if (this.firstList) {
         //console.log('newVisitor');
