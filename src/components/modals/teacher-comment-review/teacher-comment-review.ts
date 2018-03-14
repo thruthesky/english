@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { App } from '../../../providers/app';
+import {App} from '../../../providers/app';
 import {
   _DELETE_RESPONSE, _POST_CREATE, _POST_CREATE_RESPONSE, PostData,
   User,
   File, _POST, _POST_EDIT, _POST_EDIT_RESPONSE,
 } from 'angular-backend';
-import { ShareService } from '../../../providers/share-service';
+import {ShareService} from '../../../providers/share-service';
 import {LMS} from "../../../providers/lms";
 import {ReviewService} from "../../../providers/review-service";
 
@@ -33,12 +33,11 @@ export class TeacherCommentReviewComponent implements OnInit {
 
   constructor(
     public app: App,
-    public lms: LMS,
-    public user: User,
-    public activeModal: NgbActiveModal,
-    public share: ShareService,
-    public review: ReviewService
-  ) {
+              public lms: LMS,
+              public user: User,
+              public activeModal: NgbActiveModal,
+              public share: ShareService,
+              public review: ReviewService) {
 
 
   }
@@ -49,24 +48,26 @@ export class TeacherCommentReviewComponent implements OnInit {
     console.log('TEACHER::', this.teacher);
     console.log('Data::', this.data);
 
-    if ( this.teacher.idx ) {
-      this.lms.isMyTeacher(this.teacher.idx, res => {
-        console.log(res);
-        if ( res > 0 ) {
-          console.log("Y");
-          this.loader = false;
-          if (this.data) {
-            this.rate = this.data.rate;
-            this.comment = this.data.comment;
-          }
-
-        } else {
-          console.log("N");
-          this.activeModal.dismiss();
-          this.app.alertModal("선생님과 수업을 해야지만 후기를 작성 할 수 있습니다.", "Not Your Teacher");
-        }
-      });
+    // if ( this.teacher.idx ) {
+    //
+    //
+    //   this.lms.isMyTeacher(this.teacher.idx, res => {
+    //     console.log(res);
+    //     if ( res > 0 ) {
+    //       console.log("Y");
+    this.loader = false;
+    if ( this.data ) {
+      this.rate = this.data.rate;
+      this.comment = this.data.comment;
     }
+
+    //     } else {
+    //       console.log("N");
+    //       this.activeModal.dismiss();
+    //       this.app.alertModal("선생님과 수업을 해야지만 후기를 작성 할 수 있습니다.", "Not Your Teacher");
+    //     }
+    //   });
+    // }
   }
 
   onClickDismiss() {
@@ -78,12 +79,11 @@ export class TeacherCommentReviewComponent implements OnInit {
     this.errorMessage = '';
 
 
-    if ( !this.comment || this.comment.length < 10 ) {
+    if (!this.comment || this.comment.length < 10) {
       this.errorMessage = "Minimum comment cant be less than 10 character.";
       this.sending = false;
       return;
     }
-
 
 
     const d = new Date();
@@ -98,7 +98,7 @@ export class TeacherCommentReviewComponent implements OnInit {
     };
 
     /// how to add a review.
-    if ( this.data && this.data['documentID']) {
+    if (this.data && this.data['documentID']) {
       this.editReview(data);
     } else {
       this.createReview(data);
@@ -107,7 +107,7 @@ export class TeacherCommentReviewComponent implements OnInit {
   }
 
   createReview(data) {
-    this.review.create( data , re => {
+    this.review.create(data, re => {
       console.log("onClickSubmit:: ", re);
       this.activeModal.close("reviewCreated");
       alert("Review Successfully Created.");
@@ -116,15 +116,12 @@ export class TeacherCommentReviewComponent implements OnInit {
 
   editReview(data) {
     data['id'] = this.data.documentID;
-    this.review.edit( data, re => {
+    this.review.edit(data, re => {
       console.log("editReview", re);
       this.activeModal.close("reviewUpdated");
       alert("Review Success Updated.");
     });
   }
-
-
-
 
 
 }

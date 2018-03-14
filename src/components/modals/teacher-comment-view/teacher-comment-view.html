@@ -3,7 +3,7 @@
 
   <div class="modal-header" style="border-top: 2.5rem solid #4b5d6f;">
     <h5 class="modal-title">
-      <span class="modal-title">Teacher Comments</span>
+      <span class="modal-title">Student Comments</span>
     </h5>
     <div class="pointer" (click)="onClickWriteReview()">
       <i class="fa fa-comment-o"></i> Write Comment
@@ -23,22 +23,24 @@
           <div class="container p-0">
             <div class="row p-0">
               <div class="col-12 col-sm-4">
-                <div class="name mt-0 mb-2">{{comment.studentName}}</div>
-                <div class="date mb-2">{{comment.time | date:'short'}}</div>
-                <div class="rating mb-2">
-                  RATE: 1 <i class="fa fa-star" *ngFor="let star of stars(comment.rate)"></i>
+                <div class="name mt-0 mb-2">
+                  {{comment.studentName}} <i class="fa fa-star" *ngFor="let star of stars(comment.rate)"></i>
                 </div>
                 <div *ngIf="comment.idxStudent == user.info.idx">
-                  <div class="d-inline-block py-2 pointer mr-3" (click)="onClickDelete( comment )">
+                  <div class="d-inline-block py-1 pointer mr-3" (click)="onClickDelete( comment )">
                     <i class="fa {{ comment['delete'] ? 'fa-spinner fa-spin': 'fa-trash'}}"></i> DELETE
                   </div>
-                  <div class="d-inline-block py-2 pointer" (click)="onClickCommentEdit( comment )">
+                  <div class="d-inline-block py-1 pointer" (click)="onClickCommentEdit( comment )">
                     <i class="fa fa-pencil"></i> EDIT
                   </div>
                 </div>
               </div>
               <div class="col-12 col-sm-8">
-                <div class="description" [innerHTML]="comment.comment"></div>
+                <span class="description" *ngIf="!comment['more']">{{comment.comment.slice(0,100)}} <span class="fs-xl" *ngIf="comment.comment.length>100"> ...</span></span>
+                <span class="description" *ngIf="comment['more']">{{comment.comment}}</span>
+                <ng-container *ngIf="comment.comment.length>100">
+                  <span class="pointer text-nowrap" (click)="comment['more'] = !comment['more']"> {{comment['more']? ' See Less..' : ' See More..'}}</span>
+                </ng-container>
               </div>
             </div>
           </div>

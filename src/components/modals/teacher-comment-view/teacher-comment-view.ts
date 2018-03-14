@@ -18,7 +18,7 @@ export class TeacherCommentViewComponent implements OnInit {
     comments = [];
 
     next = null;
-    limit = 1;
+    limit = 10;
 
     showMore = true;
     loading = false;
