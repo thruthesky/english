@@ -156,5 +156,56 @@ export class ReviewService {
       });
   }
 
+
+  setTeacherRate(data, callback) {
+    const idx = data.idx;
+    delete data.idx;
+    this.db.collection('review-rate').doc(idx).set(data)
+      .then(re => callback(true))
+      .catch(e => {
+        console.error(e);
+        alert("후기 수정. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
+      });
+  }
+
+  getTeacherRate(idx, callback) {
+    const docRef = this.db.collection("review-rate").doc(idx);
+
+    docRef.get().then(doc => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        const data = doc.data();
+        data['idx'] = doc.id;
+        callback(data);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+        callback(null);
+        // alert("수업 후기가 존재하지 않습니다.");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+      alert("후기 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
+    });
+  }
+
+
+
+  getTeachersRate(callback) {
+    this.db.collection("review-rate")
+      .get()
+      .then((querySnapshot) => {
+        const re = {};
+        querySnapshot.forEach(function (doc) {
+          re[doc.id] = doc.data();
+        });
+        callback(re);
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+        alert("후기 목록 읽기. 데이터베이스 에러. 관리자에게 연락해주세요."); // Database error. Please inform this to admin immediately.
+      });
+  }
+
 }
 

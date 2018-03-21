@@ -34,7 +34,7 @@ export class FAQComponent {
   getSiteConfig() {
     //onsole.log('meta.getSiteConfig');
     this.meta.config('name').subscribe( (res) => {
-      //console.log('meta.config::name', res);
+      // console.log('meta.config::name', res);
       if ( res && res.data && res.data.config ) {
         try {
           this.faqs_config = JSON.parse(res.data.config);

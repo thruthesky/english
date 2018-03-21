@@ -11,6 +11,7 @@ import {
 import {ShareService} from '../../../providers/share-service';
 import {LMS} from "../../../providers/lms";
 import {ReviewService} from "../../../providers/review-service";
+import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
 
 
 @Component({
@@ -20,16 +21,32 @@ import {ReviewService} from "../../../providers/review-service";
 })
 export class TeacherCommentReviewComponent implements OnInit {
 
-  teacher: any = null;
+
   data: any = null;
+  rate_info: {accumulated: number, total_comment: number} = null;
 
   comment = '';
-  rate = 3;
+  rate: string = '5';
 
   loader = true;
   sending = false;
 
   errorMessage: string = null;
+
+
+
+  // idx_teacher: number = null;
+  teacher: any = {};
+  comments = [];
+  //
+  next = null;
+  limit = 5;
+  //
+  showMore = true;
+  loading = false;
+
+  stars = [];
+
 
   constructor(
     public app: App,
@@ -39,35 +56,39 @@ export class TeacherCommentReviewComponent implements OnInit {
               public share: ShareService,
               public review: ReviewService) {
 
-
+    this.setStars(5);
   }
 
   ngOnInit() {
-
-    console.log(this.lms.url);
-    console.log('TEACHER::', this.teacher);
-    console.log('Data::', this.data);
-
-    // if ( this.teacher.idx ) {
-    //
-    //
-    //   this.lms.isMyTeacher(this.teacher.idx, res => {
-    //     console.log(res);
-    //     if ( res > 0 ) {
-    //       console.log("Y");
     this.loader = false;
-    if ( this.data ) {
-      this.rate = this.data.rate;
-      this.comment = this.data.comment;
-    }
+    this.loadReview();
+    this.review.getTeacherRate( this.teacher.idx, re => {
+      console.log("getTeacherRate", re);
+      this.rate_info = re;
+    });
+  }
 
-    //     } else {
-    //       console.log("N");
-    //       this.activeModal.dismiss();
-    //       this.app.alertModal("선생님과 수업을 해야지만 후기를 작성 할 수 있습니다.", "Not Your Teacher");
-    //     }
-    //   });
-    // }
+
+  loadReview() {
+    this.loading = true;
+    const req = {
+      idxTeacher: this.teacher.idx,
+      limit: this.limit
+    };
+    if ( this.next ) req['next'] = this.next;
+    console.log(req);
+    this.review.gets( req, re => {
+      console.log("gets re: ", re);
+      if ( re['data'].length < this.limit ) this.showMore = false;
+      if ( re['data'] && re['data'].length ) {
+        re['data'].forEach( v => {
+          this.comments.push(v);
+        });
+      }
+
+      this.next = re['next'];
+      this.loading = false;
+    });
   }
 
   onClickDismiss() {
@@ -79,11 +100,19 @@ export class TeacherCommentReviewComponent implements OnInit {
     this.errorMessage = '';
 
 
-    if (!this.comment || this.comment.length < 10) {
-      this.errorMessage = "Minimum comment cant be less than 10 character.";
+    if (this.comment.length < 50) {
+      this.errorMessage = "Minimum comment cant be less than 50 character.";
       this.sending = false;
       return;
     }
+
+    if (this.comment.length > 300) {
+      this.errorMessage = "Maximum comment cant be more than 300 character.";
+      this.sending = false;
+      return;
+    }
+
+
 
 
     const d = new Date();
@@ -109,8 +138,27 @@ export class TeacherCommentReviewComponent implements OnInit {
   createReview(data) {
     this.review.create(data, re => {
       console.log("onClickSubmit:: ", re);
-      this.activeModal.close("reviewCreated");
-      alert("Review Successfully Created.");
+      const summary = {
+        idx: this.teacher.idx,
+      };
+
+
+
+      if ( this.rate_info ) {
+        console.log("rate_info::", this.rate_info);
+        summary['accumulated'] = this.rate_info['accumulated'] + this.toNumber(this.rate);
+        summary['total_comment'] = ++this.rate_info['total_comment'];
+      } else {
+        summary['accumulated'] = this.toNumber(this.rate);
+        summary['total_comment'] = 1;
+      }
+      console.log("summary", summary);
+      this.review.setTeacherRate(summary, res => {
+        console.log("setTeacherRate::reviewCreated::", res);
+        this.activeModal.close("reviewCreated");
+        alert("Review Successfully Created.");
+      });
+
     });
   }
 
@@ -118,10 +166,78 @@ export class TeacherCommentReviewComponent implements OnInit {
     data['id'] = this.data.documentID;
     this.review.edit(data, re => {
       console.log("editReview", re);
-      this.activeModal.close("reviewUpdated");
-      alert("Review Success Updated.");
+      const summary = {
+        idx: this.teacher.idx,
+        accumulated: this.rate_info['accumulated'] - this.data.rate + this.toNumber(this.rate),
+        total_comment: this.rate_info['total_comment']
+      };
+      this.review.setTeacherRate(summary, res => {
+        console.log("setTeacherRate::editReview::", res);
+        this.activeModal.close("reviewUpdated");
+        alert("Review Success Updated.");
+      });
     });
   }
 
+  onClickWriteReview() {
+    this.activeModal.close({action: "writeReview"});
+  }
 
+  onClickDelete( comment ) {
+    if ( comment['delete'] ) return;
+    comment['delete'] = true;
+    console.log(comment.documentID);
+    this.review.delete(comment.documentID , () => {
+      this.rate_info['accumulated'] = this.rate_info['accumulated'] - comment.rate;
+      const summary = {
+        idx: this.teacher.idx,
+        accumulated: this.rate_info['accumulated'],
+        total_comment: --this.rate_info['total_comment']
+      };
+      this.review.setTeacherRate(summary, res => {
+        console.log("setTeacherRate::onClickDelete::", res);
+        comment.documentID = null;
+        alert("Comment has been deleted.");
+      });
+
+
+    });
+  }
+
+  onClickCommentEdit( comment ) {
+    this.comment = comment.comment;
+    this.setStars(comment.rate);
+    this.rate = comment.rate;
+    this.data = comment;
+    document.getElementsByTagName('ngb-modal-window').item(0).scrollTo( 0, 0);
+  }
+
+
+
+
+  setStars(n) {
+    this.stars = this.getStars(n);
+  }
+
+  getStars(n , addEmpty = true) {
+    const s = [];
+    for (let i = 1 ; i <=  n / 2; i++) {
+      s.push("fa-star");
+    }
+    if ( n % 2) { s.push("fa-star-half-o"); }
+    if ( addEmpty ) {
+      const arr = 5 - Math.ceil(n / 2);
+      const emptyStar = Array(arr).fill("fa-star-o");
+      return s.concat(emptyStar);
+    } else { return s; }
+  }
+
+
+
+  toNumber(n) {
+    if (typeof  n != 'number') {
+      return parseInt(n, 10);
+    }
+    return n;
+  }
 }

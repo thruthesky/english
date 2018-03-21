@@ -1,4 +1,4 @@
-<div class="forum-post-modal">
+<div class="comment-review-modal" id="comment-review">
   <div class="modal-header">
 
     <h5 class="modal-title">
@@ -11,53 +11,104 @@
   </div>
 
   <div class="modal-body">
-    <div class="form-container">
+    <section class="form-container part" id="teacher-comment-review">
       <div class="p-absolute l-0 r-0 t-0 b-0 bg-dimgrey text-center z-index-medium" style="opacity: .7" *ngIf="loader">
         <div class="p-relative h-100 white p-5 fs-2rem">
           <span class="py-5 text-center"><i class="fa fa-spinner fa-spin"></i> Loading</span>
           <!--<div>-->
-            <!--You don't have any past class with this teacher.-->
+          <!--You don't have any past class with this teacher.-->
           <!--</div>-->
         </div>
       </div>
-      <form  (ngSubmit)="onClickSubmit()" novalidate>
-        <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden" style="width:7rem; height:7rem">
-              <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem" src="{{ lms.url }}/{{ teacher.photo }}">
+      <form (ngSubmit)="onClickSubmit()" novalidate>
+        <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden"
+             style="width:7rem; height:7rem">
+          <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem"
+               src="{{ lms.url }}/{{ teacher.photo }}">
         </div>
-        <div   class="mt-2 text-center grey">{{teacher.nickname}}</div>
+        <div class="mt-2 text-center grey">{{teacher.nickname}}</div>
         <div class="input-group my-3">
-          <textarea name="content" class="form-control form-control-sm" id="content" [(ngModel)]="comment" placeholder="수업 후기를 작성해 주세요." rows="3"></textarea>
+          <textarea name="content"
+                    class="form-control form-control-sm"
+                    id="content"
+                    [(ngModel)]="comment"
+                    placeholder="강사평가를 작성해주세요."
+                    rows="3"></textarea>
         </div>
 
-        <div class="col-md-12 post pointers" >
-          RATING : {{rate}}
-          <span *ngIf="rate < 1" (click)="rate=1"><i class="fa fa-star-o"></i></span>
-          <span *ngIf="rate >= 1" (click)="rate=1"><i class="fa fa-star"></i></span>
+        <div class="col-md-12 post">
+          평점주기:
+          <select class="ml-2 pointer" id="rate" name="selectedRates" [(ngModel)]="rate"
+                  (ngModelChange)="setStars(rate)">
+            <option *ngFor="let r of [1,2,3,4,5,6,7,8,9,10]" [value]="r">{{ r }}</option>
+          </select>
 
-          <span *ngIf="rate < 2" (click)="rate=2"><i class="fa fa-star-o"></i></span>
-          <span *ngIf="rate >= 2" (click)="rate=2"><i class="fa fa-star"></i></span>
+          <span *ngFor="let r of stars">
+            <i class="fa {{r}}"></i>
+          </span>
 
-          <span *ngIf="rate < 3" (click)="rate=3"><i class="fa fa-star-o"></i></span>
-          <span *ngIf="rate >= 3" (click)="rate=3"><i class="fa fa-star"></i></span>
 
-          <span *ngIf="rate < 4" (click)="rate=4"><i class="fa fa-star-o"></i></span>
-          <span *ngIf="rate >= 4" (click)="rate=4"><i class="fa fa-star"></i></span>
-
-          <span *ngIf="rate < 5" (click)="rate=5"><i class="fa fa-star-o"></i></span>
-          <span *ngIf="rate >= 5" (click)="rate=5"><i class="fa fa-star"></i></span>
         </div>
         <div class="row mt-2" *ngIf="errorMessage">
           <div class="col-md-12 post"><i class="fa fa-info-circle"></i> {{errorMessage}}</div>
         </div>
         <div class="row mt-2">
           <div class="col-md-12 post">
-            <button type="button" class="center input-group btn form-control pointer btn-block white d-block" style="background-color: #8fa3ad;" (click)="onClickSubmit()">
+            <button type="button" class="center input-group btn form-control pointer btn-block white d-block"
+                    style="background-color: #8fa3ad;" (click)="onClickSubmit()">
               <i class="fa fa-spinner fa-spin" *ngIf="sending"></i> 등록
             </button>
           </div>
         </div>
         <hr/>
       </form>
+    </section>
+    <div>
+      <ng-container *ngFor="let comment of comments; let odd = odd">
+
+
+        <div class="comment bg-white p-2 mb-2" *ngIf="comment.documentID">
+          <div class="container p-0">
+            <div class="row p-0">
+              <div class="col-12 col-sm-4">
+                <div class="name mt-0 mb-2">
+                  <div>{{comment.studentName}}</div>
+                  <div>
+                    <span *ngFor="let r of getStars(comment.rate)">
+                      <i class="fa {{r}}"></i>
+                    </span>
+                  </div>
+                </div>
+                <div *ngIf="comment.idxStudent == user.info.idx">
+                  <div class="d-inline-block py-1 pointer mr-3" (click)="onClickDelete( comment )">
+                    <i class="fa {{ comment['delete'] ? 'fa-spinner fa-spin': 'fa-trash'}}"></i> DELETE
+                  </div>
+                  <div class="d-inline-block py-1 pointer" (click)="onClickCommentEdit( comment )">
+                    <i class="fa fa-pencil"></i> EDIT
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-8">
+                <span class="description" *ngIf="!comment['more']">{{comment.comment.slice(0,100)}} <span class="fs-xl"
+                                                                                                          *ngIf="comment.comment.length>100"> ...</span></span>
+                <span class="description" *ngIf="comment['more']">{{comment.comment}}</span>
+                <ng-container *ngIf="comment.comment.length>100">
+                  <span class="pointer text-nowrap" (click)="comment['more'] = !comment['more']"> {{comment['more']? ' See Less..' : ' See More..'}}</span>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="fs-2rem text-center py-3" *ngIf=" loading ">
+        <i class="fa fa-spinner fa-spin"></i> Connecting to Server
+      </div>
+      <div class="text-center pointer" (click)="loadReview()" *ngIf="showMore && !loading">
+        <i class="fa fa-arrow-circle-down"></i> Show More...
+      </div>
+      <div class="py-3 text-center" *ngIf="!showMore && !loading">
+        No More Comment...
+      </div>
     </div>
 
   </div>

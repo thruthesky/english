@@ -5,6 +5,7 @@ import { App } from './../../providers/app';
 import {TeacherCommentViewComponent} from "../modals/teacher-comment-view/teacher-comment-view";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {TeacherCommentReviewComponent} from "../modals/teacher-comment-review/teacher-comment-review";
+import {ReviewService} from "../../providers/review-service";
 
 @Component({
     selector: 'teacher-component',
@@ -19,13 +20,16 @@ export class TeacherComponent {
     whole_teacher: any = [];
     first_9_teachers;
     rest_teacher;
+    teachers_rate: any = {};
 
     constructor(
       public app: App,
       public lms: LMS,
       public sanitizer: DomSanitizer,
       private modal: NgbModal,
+      public review: ReviewService
     ) {
+      this.loadTeachersRate();
     }
 
     ngOnChanges(changes) {
@@ -106,25 +110,40 @@ export class TeacherComponent {
     }
 
     onClickTeacherRate(teacher) {
-        console.log("onClickTeacherRate::", teacher);
-        const modalRefView = this.modal.open(TeacherCommentViewComponent, {windowClass: 'enhance-modal', size: "lg"});
-        modalRefView.componentInstance['idx_teacher'] = teacher.idx;
 
-      modalRefView.result.then((result) => {
-        console.log("result::", result);
-
-        if(! result ) return;
-
-        if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
-        const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal' } );
-        modalRefReview.componentInstance['teacher'] = teacher;
-        if (result['action'] == "editReview") {
-          modalRefReview.componentInstance['data'] = result['data'];
-        }
-        modalRefReview.result.then( res => {
-        }).catch( e => {} );
+      if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
+      const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal', size: "lg" } );
+      modalRefReview.componentInstance['teacher'] = teacher;
+      modalRefReview.result.then( result => {
+        this.loadTeachersRate();
       }, reason => {
-        console.log("reason", reason);
-      } ).catch( e => {} );
+        this.loadTeachersRate();
+      }).catch( error => {} );
+
+
     }
+
+    loadTeachersRate() {
+      this.review.getTeachersRate(res => {
+        // console.log("getTeachersRate::", res);
+        this.teachers_rate = res;
+      });
+    }
+
+
+  getStars(n , addEmpty = true) {
+    if(!n) n = 0;
+    const s = [];
+    for (let i = 1 ; i <=  n / 2; i++) {
+      s.push("fa-star");
+    }
+    if ( n % 2) { s.push("fa-star-half-o"); }
+    if ( addEmpty ) {
+      const arr = 5 - Math.ceil(n / 2);
+      const emptyStar = Array(arr).fill("fa-star-o");
+      return s.concat(emptyStar);
+    } else { return s; }
+  }
+
+
 }

@@ -24,6 +24,7 @@ export class AppComponent {
     else backend.setBackendUrl("https://" + window.location.hostname  + "/index.php");
 
     app.getSiteConfig();
+    app.getTeacherStatus();
 
     app.setWidth(window.innerWidth);
     document.addEventListener("deviceready", () => this.onDevinceReady(), false);

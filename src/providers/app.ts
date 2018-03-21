@@ -91,6 +91,9 @@ export class App {
     useFacebook: boolean = false;
 
     config: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{};
+    teachers_status = {};
+    teacher_config = 'teachers-status';
+
     defaultLogoUrl: string = "/assets/images/logo/logo24.png";
     logoUrl: string = this.defaultLogoUrl;
 
@@ -257,8 +260,8 @@ export class App {
                 }
             }
         }
-        
-        
+
+
     }
 
     /**
@@ -729,7 +732,7 @@ export class App {
 
             //console.log('meta.config', res);
             if (res && res.data && res.data.config) {
-                //console.log('meta.config::config', res);
+                // console.log('meta.config::config', res);
                 config = res.data.config;
                 try {
                     this.config = JSON.parse(config);
@@ -744,6 +747,36 @@ export class App {
         }, error => this.meta.errorResponse(error));
 
 
+    }
+
+
+
+    getTeacherStatus() {
+
+      // localStorage.setItem( this.site_config, '' );
+      let config = localStorage.getItem(this.teacher_config);
+      // console.log('config:: ', config);
+      if (config) {
+        try {
+          this.teachers_status = JSON.parse(config);
+          // console.log('metaData',this.metaData);
+        } catch (e) {
+        }
+      }
+
+      this.meta.config(this.teacher_config).subscribe((res) => {
+        // console.log('meta.teacher_config.config', res);
+        if (res && res.data && res.data.config) {
+          // console.log('meta.config::config', res);
+          config = res.data.config;
+          try {
+            this.teachers_status = JSON.parse(config);
+            // console.log('metaData::config',this.metaData);
+          } catch (e) {
+          }
+          localStorage.setItem(this.teacher_config, config);
+        }
+      }, error => this.meta.errorResponse(error));
     }
 
     preConfig() {

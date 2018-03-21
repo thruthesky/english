@@ -17,25 +17,26 @@ import { ReviewService } from '../../providers/review-service';
 export class HomePage implements AfterViewInit {
     data;
     teachers: TEACHERS = null;
+
     @ViewChild('reservation') reservation: ReservationComponent;
     constructor(
         public app: App,
         public user: User,
         private lms: LMS,
         public shared: ShareService,
-        review: ReviewService
+        review: ReviewService,
     ) {
             this.lms.getTeachers( teachers => this.teachers = teachers );
             // this.shared.page = 'my-page'; //test only
             // this.shared.page = 'english-news';
 
-
             // this.lms.isMyTeacher( 27830, re => {
             //     console.log("home: re", re);
             // } );
 
-
             // console.log("db: ", db);
+
+
 
 
 
@@ -44,5 +45,6 @@ export class HomePage implements AfterViewInit {
 
     ngAfterViewInit() {
     }
+
 
 }
