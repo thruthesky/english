@@ -111,7 +111,7 @@ export class TeacherComponent {
 
     onClickTeacherRate(teacher) {
 
-      if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
+      // if ( ! this.app.user.logged ) return this.app.alertModal( "수업 후기를 작성하기 위해서는 먼저 회원 로그인을 해야 합니다.", "로그인 필요" );
       const modalRefReview = this.modal.open( TeacherCommentReviewComponent, { windowClass: 'enhance-modal', size: "lg" } );
       modalRefReview.componentInstance['teacher'] = teacher;
       modalRefReview.result.then( result => {

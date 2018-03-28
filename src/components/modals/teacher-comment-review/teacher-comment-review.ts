@@ -12,6 +12,7 @@ import {ShareService} from '../../../providers/share-service';
 import {LMS} from "../../../providers/lms";
 import {ReviewService} from "../../../providers/review-service";
 import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
+import {Message} from "../../../providers/message";
 
 
 @Component({
@@ -54,7 +55,9 @@ export class TeacherCommentReviewComponent implements OnInit {
               public user: User,
               public activeModal: NgbActiveModal,
               public share: ShareService,
-              public review: ReviewService) {
+              public review: ReviewService,
+              private message: Message
+  ) {
 
     this.setStars(5);
   }
@@ -136,13 +139,16 @@ export class TeacherCommentReviewComponent implements OnInit {
   }
 
   createReview(data) {
+
+    const m = "Student " + data.studentName + " created comment to Teacher " + data.teacherName;
+
     this.review.create(data, re => {
       console.log("onClickSubmit:: ", re);
       const summary = {
         idx: this.teacher.idx,
       };
 
-
+      this.message.send('Student Comment', m);
 
       if ( this.rate_info ) {
         console.log("rate_info::", this.rate_info);
@@ -163,9 +169,12 @@ export class TeacherCommentReviewComponent implements OnInit {
   }
 
   editReview(data) {
+    const m = "Student " + data.studentName + " edit comment to Teacher " + data.teacherName;
+
     data['id'] = this.data.documentID;
     this.review.edit(data, re => {
       console.log("editReview", re);
+      this.message.send('Student Edit Comment', m);
       const summary = {
         idx: this.teacher.idx,
         accumulated: this.rate_info['accumulated'] - this.data.rate + this.toNumber(this.rate),

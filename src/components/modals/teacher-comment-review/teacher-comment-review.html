@@ -20,14 +20,18 @@
           <!--</div>-->
         </div>
       </div>
-      <form (ngSubmit)="onClickSubmit()" novalidate>
-        <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden"
-             style="width:7rem; height:7rem">
-          <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem"
-               src="{{ lms.url }}/{{ teacher.photo }}">
-        </div>
-        <div class="mt-2 text-center grey">{{teacher.nickname}}</div>
-        <div class="input-group my-3">
+      <div class="p-relative form-group form_image my-0 mx-auto rounded-circle of-hidden"
+           style="width:7rem; height:7rem">
+        <img class="my-0 mx-auto d-block p-relative w-100 h-auto" style="min-width:7rem; min-height:7rem"
+             src="{{ lms.url }}/{{ teacher.photo }}">
+      </div>
+      <div class="mt-2 text-center grey">{{teacher.nickname}}</div>
+
+
+      <form (ngSubmit)="onClickSubmit()" novalidate *ngIf="app.user.logged">
+
+        <div class="text-right"><span class="{{comment.length < 50 || comment.length > 300 ? 'red': 'green' }}">{{comment.length}}</span> / 300</div>
+        <div class="input-group mb-3">
           <textarea name="content"
                     class="form-control form-control-sm"
                     id="content"
@@ -46,7 +50,6 @@
           <span *ngFor="let r of stars">
             <i class="fa {{r}}"></i>
           </span>
-
 
         </div>
         <div class="row mt-2" *ngIf="errorMessage">

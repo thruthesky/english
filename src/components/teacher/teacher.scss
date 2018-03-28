@@ -62,8 +62,19 @@ h1 {
 
 @keyframes blink { 50% { border-color: #ffffff; }  }
 
-.status-blink {
+.blink_border {
   border: 4px solid #FFD700;
   background-color: #ffffff;
   animation: blink .75s step-end infinite alternate;
+}
+
+
+.blink_text {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }

@@ -80,8 +80,10 @@ import { EnglishNewsComponent } from '../components/english-news/english-news';
 import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-page-leveltest';
 
 
+import { LandingPage } from '../pages/landing/landing';
 
-const appRoutes:Routes = [
+const appRoutes: Routes = [
+  { path: 'landing', component: LandingPage },
   { path: '', component: HomePage },
   { path: '**', component: HomePage }
 ];
@@ -89,6 +91,7 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     HomePage,
+    LandingPage,
     HeaderComponent,
     BigHeaderComponent,
     SmallHeaderComponent,

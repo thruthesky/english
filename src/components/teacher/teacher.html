@@ -24,13 +24,18 @@
           <div class="mx-auto mw-12 mh-12 rounded-circle of-hidden b-white" style="border-width: 3px;">
             <img class="w-100" src="{{ lms.url }}/{{ teacher.photo }}">
           </div>
-          <h3 class="my-3 text-center">
-            {{ teacher.nickname }}
-          </h3>
+          <div>
+            <h3 class="my-3 text-center">
+              {{ teacher.nickname }}
+            </h3>
+            <!--<div class="status font-weight-bold" style="word-break: keep-all" *ngIf="app.teachers_status[teacher.idx]">-->
+              <!--{{app.teachers_status[teacher.idx]}}-->
+            <!--</div>-->
+          </div>
           <table width="100%">
             <tr>
               <td>
-                <table width="99%" class="fs-1rem">
+                <table width="100%" class="fs-1rem">
                   <tr>
                     <td>나이</td>
                     <td>{{ teacher.age }} 세</td>
@@ -49,11 +54,6 @@
                     </td>
                   </tr>
                 </table>
-              </td>
-              <td class="align-top" width="1%">
-                <div class="status-blink p-3 text-center font-weight-bold" *ngIf="app.teachers_status[teacher.idx]">
-                  {{app.teachers_status[teacher.idx]}}
-                </div>
               </td>
             </tr>
           </table>
