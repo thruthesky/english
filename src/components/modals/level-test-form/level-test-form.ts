@@ -13,7 +13,6 @@ import {
   File, _POST_CREATE, _POST_CREATE_RESPONSE, PostData,
 } from 'angular-backend';
 import {App} from "../../../providers/app";
-import {forEach} from "@angular/router/src/utils/collection";
 @Component({
   selector: 'level-test-form-component',
   templateUrl: 'level-test-form.html',
