@@ -25,9 +25,8 @@ export class LandingPage {
     private modal: NgbModal,
   ) {
 
-    console.log("~~~~LANDING PAGE~~~~");
+    // console.log("~~~~LANDING PAGE~~~~");
 
-    this.onClickOpenForm();
   }
 
   onClickOpenForm() {
