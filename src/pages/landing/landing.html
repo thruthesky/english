@@ -1,20 +1,30 @@
-<section [class]="app.widthSize">
+<section class="of-hidden {{app.widthSize}}">
   <div class="landing-content">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_01.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_02.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_03.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_04.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_05.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_06.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_07.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_08.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_09.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_10.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_11.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_12.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_13.jpg">
-  <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_14.jpg">
-  <img class="w-100" src="/assets/images/landing/iamtalkative_15.jpg">
+    <a routerLink="" class="go-home p-absolute pointer"></a>
+    <div><img class="w-100" src="/assets/images/landing/iamtalkative_01.jpg"></div>
+    <div><img class="w-100 pointer" (click)="onClickOpenForm()" src="/assets/images/landing/iamtalkative_02.jpg"></div>
+    <div><img class="w-100" src="/assets/images/landing/iamtalkative_03_01.jpg"></div>
+    <div class="row p-30 no-gutters">
+      <div class="col-12 col-md-6">
+        <img class="w-100" src="/assets/images/landing/iamtalkative_03_02.jpg">
+      </div>
+      <div class="col-12 col-md-6">
+        <img class="w-100" src="/assets/images/landing/iamtalkative_03_03.jpg">
+      </div>
+    </div>
+    <img class="w-100" src="/assets/images/landing/iamtalkative_03_04.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_04.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_05.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_06.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_07.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_08.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_09.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_10.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_11.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_12.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_13.jpg">
+    <img class="w-100 pointer" src="/assets/images/landing/iamtalkative_14.jpg">
+    <img class="w-100" src="/assets/images/landing/iamtalkative_15.jpg">
   </div>
 </section>
 <!--<chat-component *ngIf=" ! app.isAdmin() "></chat-component>-->

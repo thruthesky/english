@@ -6,6 +6,8 @@ import { LMS } from '../../providers/lms';
 import {ShareService} from '../../providers/share-service';
 
 import { ReviewService } from '../../providers/review-service';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {LevelTestFormComponent} from "../../components/modals/level-test-form/level-test-form";
 
 
 @Component( {
@@ -20,11 +22,19 @@ export class LandingPage {
     public user: User,
     private lms: LMS,
     public shared: ShareService,
-    review: ReviewService,
+    private modal: NgbModal,
   ) {
 
     console.log("~~~~LANDING PAGE~~~~");
+
+    this.onClickOpenForm();
   }
+
+  onClickOpenForm() {
+    this.modal.open(LevelTestFormComponent, { windowClass: 'level-test-form', size: "lg" });
+  }
+
+
 
 
 }

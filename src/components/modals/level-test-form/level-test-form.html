@@ -1,0 +1,144 @@
+<div class="forum-view-modal" style="font-size: 14px">
+  <div class="modal-header bg-7abbfc white">
+    <h5 class="modal-title fs-2em nanum lh-142857143">
+      무료레벨 테스트 신청
+    </h5>
+    <button class="close white" type="button" aria-hidden="true" (click)="onClickDismiss()" style="font-size:43px; font-weight: normal; opacity: 1; text-shadow: none;">
+      <span class="nanum">×</span>
+    </button>
+
+  </div>
+
+  <div class="modal-body bg-white">
+    <div class="container no-gutters p-0">
+      <div class="row no-gutters">
+        <div class="col-12 col-md-5 pr-0 pr-md-2 mb-3 mb-md-0">
+          <table width="100%">
+            <tr>
+              <td class="pr-5px">
+                <div class="form-group mb-15px">
+                  <input class="form-control h-40 rounded-0 fs-14px nanum" type="text" [(ngModel)]="name" placeholder="한글이름">
+                </div>
+              </td>
+              <td class="pl-5px">
+                <div class="form-group mb-15px">
+                  <input class="form-control h-40 rounded-0 fs-14px nanum" type="text" [(ngModel)]="phone" placeholder="전화번호">
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <div class="form-group mb-15px">
+                  <input class="form-control h-40 rounded-0 fs-14px nanum" type="text" [(ngModel)]="email" placeholder="이메일">
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <div class="p-relative" style="border: 1px solid #cacbcc;">
+                  <table class="bg-white" width="100%">
+                    <tr>
+                      <td colspan="2">
+                        <div class="p-3 fs-120 c-a5a5a5">예약일시: <span class="c-3d8bf7">{{selectedDay}} {{selectedTime}}</span></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="50%" *ngFor="let day of days">
+                        <label class="of-hidden d-block  mb-0">
+                          <input class="date-picker" type="radio" name="date" [(ngModel)]="selectedDay" [value]="day.date">
+                          <div class="p-2 text-center">{{day.date}} ({{day.day}})</div>
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="of-hidden" style="max-height: 152px; overflow-y: scroll;">
+                          <div class="schedule-tab">
+                              <div class="row no-gutters">
+                                <label class="set-time p-1 col-4 text-center pointer" *ngFor="let time of times[selectedDay]">
+                                  <span class="of-hidden d-inline-block m-0 fs-1rem br-5">
+                                    <input type="radio" name="time" [value]="time" [(ngModel)]="selectedTime"
+                                           class="time-picker position-hide">
+                                    <div class="py-1 px-2 fs-90 pointer">
+                                      {{time}}
+                                    </div>
+                                  </span>
+                                </label>
+                              </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="c-a5a5a5 fs-80 pt-3">
+                * 정확한 레벨테스트 시간은 문자로 발송해 드립니다.
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="custom-checkbox">
+                  <label class="c-a5a5a5 fs-80 pointer" style="line-height: 22px;">
+                    <input class="pointer" [(ngModel)]="agreement" type="checkbox" name="agreement" style="display: inline; padding: 0; height: 20px; width: 20px; vertical-align: bottom;">
+                    <span class="ml-2"><strong>개인정보 수집 및 이용</strong>에 동의합니다.</span>
+                  </label>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="alert alert-danger" *ngIf="errorMessage">
+            {{errorMessage}}
+          </div>
+          <div class="text-center">
+            <input class="form-input-button mw-100" type="image" (click)="onClickSubmit()" src="assets/images/level-test-form/lt-btn.png">
+          </div>
+        </div>
+        <div class="col-12 col-md-7 pl-0 pl-md-2">
+          <h4 class="mt-0 mb-2">부담없이 회원님의 영어 실력을 점검해보세요.</h4>
+          <img class="mb-3 mw-100" src="assets/images/level-test-form/arrow-steps.jpg">
+          <h4 class="mt-0 mb-2 d-inline-block pr-2" style="background: linear-gradient(180deg, #ffffff 50%, #ffdd02 50%);">파워잉글리쉬 고객만족 1위</h4>
+
+          <div class="bg-b7dbff pl-1 pr-1 pt-2 pb-3" style="background: #b7dbff url('assets/images/level-test-form/icon-hand.jpg') no-repeat 97% 20px;">
+            100%강사공개 회원님이 직접 강사님 지정가능
+            <br><br>
+            매일 시간/강사님 변경 가능 나만의 맞춤 스케줄 기능
+            <br><br>
+            꼼꼼한 피드백 제공 및 무료영어 첨삭 서비스
+            <br><br>
+            내가 원하는 수업방식 선택가능
+          </div>
+
+          <table width="100%" class="mt-2">
+            <tbody><tr>
+              <td></td>
+              <td class="pl-2"><h4>파워잉글리쉬 수강후기</h4></td>
+            </tr>
+
+            <tr>
+              <td valign="top"><img src="assets/images/level-test-form/avatar.jpg" alt=""></td>
+              <td valign="top" class="pl-3">
+                <div class="chat_box p-2 br-5">
+                  <p class="c-a5a5a5 fs-80">
+                    전화수업하다 보면 매일같은 시간에 수업하기 어려운 점이 있는데<br>
+                    파워잉글리쉬는 홈페이지에서 내맘대로 수업 스케줄이 변경되서<br>
+                    너무 편리하네요. 셀프스케줄 변경 정말 좋아요 ^^
+                  </p>
+                  <h6 class="mb-0">- 이성준 회원님 -</h6>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

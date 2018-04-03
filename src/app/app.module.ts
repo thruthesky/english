@@ -81,6 +81,7 @@ import { MyPageLeveltestComponent } from '../components/my-page-leveltest/my-pag
 
 
 import { LandingPage } from '../pages/landing/landing';
+import {LevelTestFormComponent} from "../components/modals/level-test-form/level-test-form";
 
 const appRoutes: Routes = [
   { path: 'landing', component: LandingPage },
@@ -129,7 +130,8 @@ const appRoutes: Routes = [
     MyPageLeveltestComponent,
     EnglishNewsComponent,
     TeacherCommentViewComponent,
-    TeacherCommentReviewComponent
+    TeacherCommentReviewComponent,
+    LevelTestFormComponent
   ],
   imports: [
     BrowserModule,
@@ -158,7 +160,8 @@ const appRoutes: Routes = [
     CommentReviewComponent,
     ChangePasswordComponent,
     TeacherCommentViewComponent,
-    TeacherCommentReviewComponent
+    TeacherCommentReviewComponent,
+    LevelTestFormComponent
   ]
 })
 export class AppModule { }

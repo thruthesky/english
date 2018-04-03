@@ -1,6 +1,29 @@
-.small .landing-content {
+.big .landing-content {
 
+  .go-home {
+    height: 10%;
+    width: 20%;
+    //border: 2px solid red;
+    left: 20%;
+  }
+
+}
+
+.small .landing-content {
   margin: 0 -30%;
   padding: 0;
+
+  .go-home {
+    height: 8%;
+    width: 30%;
+    //border: 2px solid red;
+    left: 0;
+  }
+
+  .row {
+    &.p-30 {
+      padding: 0 17%;
+    }
+  }
 
 }

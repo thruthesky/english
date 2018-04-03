@@ -302,4 +302,25 @@ export class LMS {
         });
     }
 
+
+  getAllHolidays(success) {
+    const url = LMS_ENDPOINT_URL + `?function=api_holidays`;
+
+    // console.log("URL: " , url);
+    this.http.get(url).subscribe(re => {
+
+      let json = null;
+      try {
+        json = JSON.parse(re['_body']);
+      }
+      catch (e) {
+        alert("Error in retrieving first Holidays.");
+        return;
+      }
+      success(json['data']);
+    }, e => {
+      alert(" Error in retrieving first Holidays... ");
+    });
+  }
+
 }

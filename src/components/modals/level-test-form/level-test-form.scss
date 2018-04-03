@@ -1,0 +1,131 @@
+.h-40 {
+  height: 40px;
+}
+.mb-15px {
+  margin-bottom: 15px;
+}
+
+.pr-5px {
+  padding-right: 5px;
+}
+.pl-5px {
+  padding-left: 5px;
+}
+.br-5 {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.c-a5a5a5 {
+    color: #a5a5a5;
+  }
+  .c-3d8bf7 {
+    color: #3d8bf7;
+  }
+  .bg-7abbfc {
+    background-color: #7abbfc;
+  }
+  .bg-b7dbff {
+    background-color: #b7dbff;
+  }
+
+  .fs-14px {
+    font-size: 14px;
+  }
+
+.lh-142857143 {
+  line-height: 1.42857143;
+}
+
+  .nanum {
+    font-family: 'Nanum Gothic', Helvetica, Arial, sans-serif;
+  }
+
+  .form-control {
+    border: 1px solid #ccc;
+  }
+
+  .placeholder-color {
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #ccc;
+      opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #ccc;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+      color: #ccc;
+    }
+  }
+
+.date-picker {
+    position: absolute; left: -9999px;
+    &:checked + div {
+      color: #ffffff;
+      background-color: #4892f7;
+      border-color: #3d8bf7;
+    }
+
+    + div {
+      color: #a5a5a5;
+      background-color: #efefef;
+      border-top: 1px solid #cacbcc;
+      border-bottom: 1px solid #cacbcc;
+    }
+  }
+
+  .time-picker {
+    position: absolute; left: -9999px;
+    &:checked + div {
+      color: #ffffff;
+      background-color: #4892f7;
+      border-color: #3d8bf7;
+      border-radius: 5px;
+    }
+    + div {
+      color: #a5a5a5;
+    }
+  }
+
+
+
+
+  .schedule-tab {
+
+    .set-time {
+      border-bottom: 1px dashed #cacbcc;
+      text-align: center;
+    }
+  }
+
+  .chat_box {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #c9cacc;
+    &:before, &:after {
+      right: 100%;
+      top: 20px;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    &:before {
+      border-color: rgba(201, 202, 204, 0);
+      border-right-color: #c9cacc;
+      border-width: 11px;
+      margin-top: -11px;
+    }
+    &:after {
+      border-color: rgba(255, 255, 255, 0);
+      border-right-color: #ffffff;
+      border-width: 10px;
+      margin-top: -10px;
+    }
+
+  }
