@@ -26,7 +26,7 @@ export class LandingPage {
   ) {
 
     // console.log("~~~~LANDING PAGE~~~~");
-
+    // this.onClickOpenForm();
   }
 
   onClickOpenForm() {
