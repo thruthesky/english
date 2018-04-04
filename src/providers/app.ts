@@ -81,6 +81,21 @@ export interface _SITE_CONFIGURATION {
 }
 
 
+export interface _TEACHER  {
+  idx?: number;
+  status_url?: string;
+}
+
+export interface _STATUS  {
+  best?: boolean;
+  good?: boolean;
+  new?: boolean;
+}
+
+
+export type _TEACHER_STATUS  = _STATUS[];
+
+
 
 export enum DAYS_EN { 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' };
 // export const is_chrome = /chrome/.test( navigator.userAgent.toLowerCase() );
@@ -91,7 +106,7 @@ export class App {
     useFacebook: boolean = false;
 
     config: _SITE_CONFIGURATION = <_SITE_CONFIGURATION>{};
-    teachers_status = {};
+    teachers_status = <_TEACHER_STATUS>{};
     teacher_config = 'teachers-status';
 
     defaultLogoUrl: string = "/assets/images/logo/logo24.png";

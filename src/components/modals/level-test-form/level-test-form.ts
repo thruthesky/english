@@ -41,7 +41,6 @@ export class LevelTestFormComponent {
     public user: User,
     public file: File,
     private fc: FirebaseChat,
-    private modal: NgbModal,
     public share: ShareService,
     private message: Message,
     private postData: PostData,

@@ -120,7 +120,7 @@ export class ReviewService {
 
     docRef.get().then(doc => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        // console.log("Document data:", doc.data());
         const data = doc.data();
         data['id'] = doc.id;
         callback(data);
@@ -173,7 +173,7 @@ export class ReviewService {
 
     docRef.get().then(doc => {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        // console.log("Document data:", doc.data());
         const data = doc.data();
         data['idx'] = doc.id;
         callback(data);

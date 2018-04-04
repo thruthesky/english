@@ -66,7 +66,7 @@ export class TeacherCommentReviewComponent implements OnInit {
     this.loader = false;
     this.loadReview();
     this.review.getTeacherRate( this.teacher.idx, re => {
-      console.log("getTeacherRate", re);
+      // console.log("getTeacherRate", re);
       this.rate_info = re;
     });
   }
