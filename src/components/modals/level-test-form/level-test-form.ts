@@ -106,23 +106,23 @@ export class LevelTestFormComponent {
   onClickSubmit() {
     this.errorMessage = '';
     if ( !this.name ) {
-      this.errorMessage = "Input Name";
+      this.errorMessage = "이름을 입력하세요.";
       return;
     }
     if ( !this.phone ) {
-      this.errorMessage = "Input Phone Number";
+      this.errorMessage = "전화번호를 입력하세요.";
       return;
     }
     if ( !this.email ) {
-      this.errorMessage = "Input Email";
+      this.errorMessage = "이메일 주소를 입력하세요.";
       return;
     }
     if ( !this.selectedTime ) {
-      this.errorMessage = "Please Select Time";
+      this.errorMessage = "시간을 선택하세요.";
       return;
     }
     if ( !this.agreement ) {
-      this.errorMessage = "Agree to collect and use personal information";
+      this.errorMessage = "개인정보 수집에 동의를 해 주세요.";
       return;
     }
 

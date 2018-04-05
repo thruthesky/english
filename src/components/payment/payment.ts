@@ -131,8 +131,13 @@ export class PaymentComponent implements AfterViewInit {
       /// @todo needs to be test !!
       this.message.send("수업료 결재", `${user.name} 님께서 결재를 시도합니다.`);
 
-      let url = `https://` + window.location.hostname + `/model/custom-agspay/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
 
+      // old url.
+      // let url = `https://` + window.location.hostname + `/model/custom-agspay`
+      //  + `/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
+
+      const url = `https://` + window.location.hostname + '/model/agspay-new'
+        + `/AGS_pay.php?id=${user.id}&name=${user.name}&email=${user.email}&mobile=${user.mobile}&amount=${amount}`;
       // this.app.scrollTo('paymentIframe');
       // setTimeout(() => {
       //   this.iframeUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
