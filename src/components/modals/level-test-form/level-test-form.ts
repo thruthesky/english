@@ -13,6 +13,7 @@ import {
   File, _POST_CREATE, _POST_CREATE_RESPONSE, PostData,
 } from 'angular-backend';
 import {App} from "../../../providers/app";
+import {Router} from "@angular/router";
 @Component({
   selector: 'level-test-form-component',
   templateUrl: 'level-test-form.html',
@@ -44,6 +45,7 @@ export class LevelTestFormComponent {
     public share: ShareService,
     private message: Message,
     private postData: PostData,
+    private router: Router
   ) {
 
 
@@ -157,6 +159,11 @@ export class LevelTestFormComponent {
       });
     }, err => this.postData.alert(err));
 
+  }
+
+  onClickHome( ) {
+    this.onClickDismiss();
+    this.router.navigateByUrl("/");
   }
 
 }
