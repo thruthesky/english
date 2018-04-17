@@ -70,6 +70,11 @@ export class LevelTestFormComponent {
       // if (this.holidays.includes(hdate)) continue;
 
 
+      if (this.holidays.indexOf(hdate) != -1) {
+        continue;
+      }
+
+
       let currentTime = 2;
       if ( today == hdate ) {
         if ( d.getHours() > 13) currentTime = d.getHours() - 11;
