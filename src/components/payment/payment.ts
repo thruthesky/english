@@ -115,6 +115,14 @@ export class PaymentComponent implements AfterViewInit {
       return;
     }
 
+    // console.log("onClickPayment", this.selectedMinutes , this.selectedDays ,  this.discounts);
+
+
+    if ( this.selectedMinutes == "25" && this.selectedDays == "2" && this.discounts[0]['checked'] == true ) {
+      this.app.alert("주2회는 첫결제 대상에 해당하지 않습니다");
+      return;
+    }
+
 
     //let amount = this.getAmount().replace(/,/g, '');
     let amount = this.getAmount();

@@ -82,11 +82,11 @@
                     </span>
                   </div>
                 </div>
-                <div *ngIf="comment.idxStudent == user.info.idx">
-                  <div class="d-inline-block py-1 pointer mr-3" (click)="onClickDelete( comment )">
+                <div>
+                  <div class="d-inline-block py-1 pointer mr-3" *ngIf="comment.idxStudent == user.info.idx || app.isAdmin()" (click)="onClickDelete( comment )">
                     <i class="fa {{ comment['delete'] ? 'fa-spinner fa-spin': 'fa-trash'}}"></i> DELETE
                   </div>
-                  <div class="d-inline-block py-1 pointer" (click)="onClickCommentEdit( comment )">
+                  <div class="d-inline-block py-1 pointer" *ngIf="comment.idxStudent == user.info.idx" (click)="onClickCommentEdit( comment )">
                     <i class="fa fa-pencil"></i> EDIT
                   </div>
                 </div>

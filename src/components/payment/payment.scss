@@ -6,7 +6,6 @@
     background-size: auto 200px;
     background-position: 60% 0;
     .content-wrapper .title {
-        height: 200px;
         color: white;
         background-color: rgba( 1, 1, 1, .4 );
 
@@ -15,4 +14,22 @@
         }
         @include shadow(.4);
     }
+
+  .title {
+    height: 100%;
+    @media ( min-width: $sm ) {
+      height: 200px;
+    }
+    .guide {
+      position: relative;
+      @media ( min-width: $sm ) {
+        position: absolute;
+        right: 5px;
+        top: 0;
+      }
+    }
+  }
+
+
+
 }

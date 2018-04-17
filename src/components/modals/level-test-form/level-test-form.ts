@@ -65,7 +65,7 @@ export class LevelTestFormComponent {
       if (newDate.getDay() == 0 || newDate.getDay() == 6) continue;
       const hdate = '' + newDate.getFullYear() + this.app.add0((newDate.getMonth() + 1)) + this.app.add0(newDate.getDate());
       // console.log("hdate::", hdate);
-      if (this.holidays.includes(hdate)) continue;
+      // if (this.holidays.includes(hdate)) continue;
 
 
       let currentTime = 2;

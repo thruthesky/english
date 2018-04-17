@@ -37,10 +37,6 @@ export class HomePage implements AfterViewInit {
             // console.log("db: ", db);
 
 
-
-
-
-
     }
 
     ngAfterViewInit() {

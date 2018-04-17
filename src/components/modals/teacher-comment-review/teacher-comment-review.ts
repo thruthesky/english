@@ -13,6 +13,7 @@ import {LMS} from "../../../providers/lms";
 import {ReviewService} from "../../../providers/review-service";
 import {toInteger} from "@ng-bootstrap/ng-bootstrap/util/util";
 import {Message} from "../../../providers/message";
+import {CONFIRM_OPTION} from "../../../providers/bootstrap/confirm/confirm";
 
 
 @Component({
@@ -79,9 +80,9 @@ export class TeacherCommentReviewComponent implements OnInit {
       limit: this.limit
     };
     if ( this.next ) req['next'] = this.next;
-    console.log(req);
+    // console.log(req);
     this.review.gets( req, re => {
-      console.log("gets re: ", re);
+      // console.log("gets re: ", re);
       if ( re['data'].length < this.limit ) this.showMore = false;
       if ( re['data'] && re['data'].length ) {
         re['data'].forEach( v => {
@@ -99,6 +100,7 @@ export class TeacherCommentReviewComponent implements OnInit {
   }
 
   onClickSubmit() {
+    if ( this.sending ) return;
     this.sending = true;
     this.errorMessage = '';
 
@@ -143,7 +145,7 @@ export class TeacherCommentReviewComponent implements OnInit {
     const m = "Student " + data.studentName + " created comment to Teacher " + data.teacherName;
 
     this.review.create(data, re => {
-      console.log("onClickSubmit:: ", re);
+      // console.log("onClickSubmit:: ", re);
       const summary = {
         idx: this.teacher.idx,
       };
@@ -151,18 +153,19 @@ export class TeacherCommentReviewComponent implements OnInit {
       this.message.send('Student Comment', m);
 
       if ( this.rate_info ) {
-        console.log("rate_info::", this.rate_info);
+        // console.log("rate_info::", this.rate_info);
         summary['accumulated'] = this.rate_info['accumulated'] + this.toNumber(this.rate);
         summary['total_comment'] = ++this.rate_info['total_comment'];
       } else {
         summary['accumulated'] = this.toNumber(this.rate);
         summary['total_comment'] = 1;
       }
-      console.log("summary", summary);
+      // console.log("summary", summary);
       this.review.setTeacherRate(summary, res => {
-        console.log("setTeacherRate::reviewCreated::", res);
+        // console.log("setTeacherRate::reviewCreated::", res);
         this.activeModal.close("reviewCreated");
         alert("Review Successfully Created.");
+        this.sending = false;
       });
 
     });
@@ -173,7 +176,7 @@ export class TeacherCommentReviewComponent implements OnInit {
 
     data['id'] = this.data.documentID;
     this.review.edit(data, re => {
-      console.log("editReview", re);
+      // console.log("editReview", re);
       this.message.send('Student Edit Comment', m);
       const summary = {
         idx: this.teacher.idx,
@@ -181,9 +184,10 @@ export class TeacherCommentReviewComponent implements OnInit {
         total_comment: this.rate_info['total_comment']
       };
       this.review.setTeacherRate(summary, res => {
-        console.log("setTeacherRate::editReview::", res);
+        // console.log("setTeacherRate::editReview::", res);
         this.activeModal.close("reviewUpdated");
         alert("Review Success Updated.");
+        this.sending = false;
       });
     });
   }
@@ -194,8 +198,18 @@ export class TeacherCommentReviewComponent implements OnInit {
 
   onClickDelete( comment ) {
     if ( comment['delete'] ) return;
+
+
+    const option: CONFIRM_OPTION = {
+      class: 'enhance-modal',
+      title: '글 삭제',
+      content: '정말 삭제를 하시겠습니까?',
+      confirm: '예',
+      cancel: '아니오'
+    };
+    this.app.confirmModal( option , () => {
     comment['delete'] = true;
-    console.log(comment.documentID);
+    // console.log(comment.documentID);
     this.review.delete(comment.documentID , () => {
       this.rate_info['accumulated'] = this.rate_info['accumulated'] - comment.rate;
       const summary = {
@@ -204,11 +218,11 @@ export class TeacherCommentReviewComponent implements OnInit {
         total_comment: --this.rate_info['total_comment']
       };
       this.review.setTeacherRate(summary, res => {
-        console.log("setTeacherRate::onClickDelete::", res);
+        // console.log("setTeacherRate::onClickDelete::", res);
         comment.documentID = null;
         alert("Comment has been deleted.");
       });
-
+    });
 
     });
   }
