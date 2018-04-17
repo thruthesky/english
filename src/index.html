@@ -34,69 +34,7 @@
 
 
   </script>
-  <script>
 
-    var payment_customization = {
-      customAmountInput: true,  /// To show a box that user can input amount.
-      defaultMinutes: 'N',  /// If 0, then custom amout input will be selected by default. If 25, then, 25 will be selected by default.
-      defaultDays: 5,       /// Default days to be selected.
-      defaultMonths: 1,     /// Defalt months to be selected.
-      text: {               /// Text(title) to display on the form.
-        minutes: {
-          25: '25분',
-          // 50: '50분 (10% 할인)'
-        },
-        months: {
-          1: '1개월',
-          3: '3개월 (5% DC)',
-          6: '6개월 (10% DC)',
-          12: '12개월 (15% DC)'
-        },
-        days: {
-          5: '주 5 회',
-          4: '주 4 회',
-          3: '주 3 회',
-          2: '주 2 회'
-        }
-      },
-      minutes_months_days : {
-        25: { // minutes
-          1: { // months
-            5: 130000,
-            3: 100000,
-            2: 60000
-          },
-          3: {
-            5: 390000,
-            3: 300000,
-            2: 180000
-          },
-          6: {
-            5: 780000,
-            3: 600000,
-            2: 360000
-          },
-          12: {
-            5: 1560000,
-            3: 1200000,
-            2: 720000
-          }
-        }
-      },
-      discounts : [
-        { discount: 10, label: '첫 결제 할인', checked: false },
-        { discount: 10, label: '낮시간 할인', checked: false },
-        { discount: 5, label: '재수강 할인', checked: false },
-        { discount: 5, label: '지인추천,형제할인', checked: false }
-      ],
-      months_discount: {
-        1: 0,
-        3: 5,
-        6: 10,
-        12: 15
-      }
-    };
-  </script>
 
 </head>
 
