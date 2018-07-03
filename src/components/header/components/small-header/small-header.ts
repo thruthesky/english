@@ -63,7 +63,7 @@ export class SmallHeaderComponent implements OnInit {
     }
 
     onClickKakao() {
-      window.open('https://open.kakao.com/o/s3H2K1s', '_blank');
+      window.open('https://pf.kakao.com/_vxjCxkC/chat', '_blank');
     }
 
 
