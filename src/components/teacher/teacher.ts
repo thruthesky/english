@@ -145,5 +145,12 @@ export class TeacherComponent {
     } else { return s; }
   }
 
+  teacherStatus(teacher_idx, status: string) {
+    if (this.app.teachers_status[teacher_idx] && this.app.teachers_status[teacher_idx][status]) {
+      return true;
+    }
+    return false;
+  }
+
 
 }

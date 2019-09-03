@@ -7,7 +7,7 @@
           <img *ngIf=" ! app.firstVisit " class="" style="height: 46px;" src="{{ app.logoUrl }}">
 
           <ng-container *ngIf=" app.firstVisit ">
-            <img class="" style="height: 46px;" src="assets/images/logo/logo24.png?version=0.0.2" placement="bottom"
+            <img class="" style="height: 46px;" src="assets/images/logo/logo24.png?version=0.0.5" placement="bottom"
                  [ngbPopover]="popLogo" #pLogo="ngbPopover"
                  (click)="closeAllHelp()">
             <ng-template #popLogo>

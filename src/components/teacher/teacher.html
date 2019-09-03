@@ -27,7 +27,7 @@
           <div>
             <h3 class="my-3 text-center">
               {{ teacher.nickname }}
-              <i class="fa fa-trophy orange" ngbTooltip="Best Teacher" *ngIf="app.teachers_status[teacher.idx]['best']"></i>
+              <i class="fa fa-trophy orange" ngbTooltip="Best Teacher" *ngIf="teacherStatus(teacher.idx, 'best')"></i>
               <i class="fa fa-graduation-cap green" ngbTooltip="Good Teacher" *ngIf="app.teachers_status[teacher.idx]['good']"></i>
               <i class="fa fa-bookmark purple" ngbTooltip="New Teacher" *ngIf="app.teachers_status[teacher.idx]['new']"></i>
             </h3>
