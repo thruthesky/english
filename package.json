@@ -52,7 +52,7 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.3",
+    "@angular/cli": "^14.2.8",
     "@angular/compiler-cli": "^4.2.2",
     "@angularclass/hmr": "^1.2.2",
     "@ngtools/webpack": "^1.10.2",
