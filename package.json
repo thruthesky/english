@@ -52,10 +52,10 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.3",
+    "@angular/cli": "^15.0.4",
     "@angular/compiler-cli": "^4.2.2",
     "@angularclass/hmr": "^1.2.2",
-    "@ngtools/webpack": "^1.10.2",
+    "@ngtools/webpack": "^15.0.4",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.102",
     "codelyzer": "~2.0.0",
@@ -73,7 +73,7 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
     "typescript": "^2.3.4",
-    "webpack": "^3.11.0",
+    "webpack": "^5.75.0",
     "webpack-dev-server": "^2.11.2"
   }
 }
